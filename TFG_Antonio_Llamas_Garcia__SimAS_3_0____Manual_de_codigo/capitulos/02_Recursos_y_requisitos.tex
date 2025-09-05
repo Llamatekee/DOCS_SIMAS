@@ -2,19 +2,197 @@
 
 \section{Introducción}
 
+Este capítulo describe los recursos necesarios para el desarrollo, compilación y ejecución de la aplicación SimAS 3.0. Se incluyen tanto los requisitos técnicos como las herramientas de desarrollo utilizadas en el proyecto.
 
-\section{Recursos}
-	
+\section{Requisitos del sistema}
 
-\section{Recursos de hardware}
+\subsection{Requisitos mínimos de hardware}
 
-\section{Recursos de software}
+Para la ejecución de SimAS 3.0 se requieren los siguientes recursos mínimos de hardware:
 
+\begin{itemize}
+    \item \textbf{Procesador}: Intel Core i3 o equivalente AMD
+    \item \textbf{Memoria RAM}: 4 GB (recomendado 8 GB)
+    \item \textbf{Espacio en disco}: 500 MB para la aplicación y dependencias
+    \item \textbf{Resolución de pantalla}: 1024x768 píxeles (recomendado 1366x768 o superior)
+    \item \textbf{Conectividad}: No requerida para funcionamiento básico
+\end{itemize}
 
-	
-\section{Entorno de Desarrollo}
+\subsection{Requisitos de software}
 
+\subsubsection{Java Runtime Environment (JRE)}
+\begin{itemize}
+    \item \textbf{Versión requerida}: Java 17 o superior
+    \item \textbf{Distribución}: Oracle JDK, OpenJDK, o cualquier distribución compatible
+    \item \textbf{Arquitectura}: Compatible con x64, ARM64 (Apple Silicon)
+\end{itemize}
 
+\subsubsection{Sistemas operativos soportados}
+\begin{itemize}
+    \item \textbf{Windows}: Windows 10 o superior (x64)
+    \item \textbf{macOS}: macOS 10.15 (Catalina) o superior
+    \item \textbf{Linux}: Distribuciones modernas con soporte para JavaFX
+\end{itemize}
 
-\section{Descripción modular}
+\section{Entorno de desarrollo}
+
+\subsection{Java Development Kit (JDK)}
+\begin{itemize}
+    \item \textbf{Versión}: JDK 17 o superior
+    \item \textbf{Recomendado}: OpenJDK 17 LTS
+    \item \textbf{Configuración}: Variables de entorno JAVA\_HOME configuradas correctamente
+\end{itemize}
+
+\subsection{JavaFX SDK}
+\begin{itemize}
+    \item \textbf{Versión}: JavaFX 17.0.12
+    \item \textbf{Ubicación}: Incluido en el directorio \texttt{lib/javafx-sdk-17.0.12/}
+    \item \textbf{Propósito}: Proporciona las librerías necesarias para la interfaz gráfica
+\end{itemize}
+
+\subsection{Herramientas de construcción}
+\begin{itemize}
+    \item \textbf{jpackage}: Incluido en JDK 14+ para crear ejecutables nativos
+    \item \textbf{Scripts de construcción}: 
+    \begin{itemize}
+        \item \texttt{build.sh} - Para sistemas Unix/Linux/macOS
+        \item \texttt{build.bat} - Para sistemas Windows
+        \item \texttt{create-standalone-app.sh} - Para crear aplicación independiente
+    \end{itemize}
+\end{itemize}
+
+\section{Arquitectura del sistema}
+
+\subsection{Visión general}
+
+SimAS 3.0 sigue una arquitectura de capas bien definida que separa las responsabilidades de cada componente:
+
+\begin{figure}[H]
+\centering
+\begin{tabular}{|c|}
+\hline
+\textbf{Capa de Presentación} \\
+\textit{JavaFX + FXML} \\
+\hline
+$\downarrow$ \\
+\hline
+\textbf{Capa de Control} \\
+\textit{Controladores} \\
+\hline
+$\downarrow$ \\
+\hline
+\textbf{Lógica de Negocio} \\
+\textit{Modelos + Algoritmos} \\
+\hline
+$\downarrow$ \\
+\hline
+\textbf{Capa de Datos} \\
+\textit{Gramáticas + Tablas} \\
+\hline
+\end{tabular}
+\caption{Arquitectura en capas de SimAS 3.0}
+\label{fig:arquitectura-capas}
+\end{figure}
+
+\subsection{Patrones de diseño utilizados}
+
+\subsubsection{Modelo-Vista-Controlador (MVC)}
+\begin{itemize}
+    \item \textbf{Modelo}: Clases en el paquete \texttt{gramatica} que representan las entidades del dominio
+    \item \textbf{Vista}: Archivos FXML en el directorio \texttt{vistas}
+    \item \textbf{Controlador}: Clases Java que manejan la lógica de presentación
+\end{itemize}
+
+\subsubsection{Observer Pattern}
+\begin{itemize}
+    \item Utilizado para la gestión de eventos de la interfaz de usuario
+    \item Implementado a través de los mecanismos de JavaFX
+\end{itemize}
+
+\subsubsection{Factory Pattern}
+\begin{itemize}
+    \item Para la creación de diferentes tipos de símbolos (terminales, no terminales)
+    \item En la generación de componentes de la interfaz de usuario
+\end{itemize}
+
+\section{Organización modular}
+
+\subsection{Estructura de paquetes}
+
+La aplicación está organizada en los siguientes paquetes principales:
+
+\begin{description}
+    \item[\texttt{bienvenida}] Gestión de la pantalla de bienvenida y menú principal
+    \item[\texttt{editor}] Editor de gramáticas con múltiples paneles de configuración
+    \item[\texttt{gramatica}] Modelo de datos y algoritmos para gramáticas libres de contexto
+    \item[\texttt{simulador}] Simulador de análisis sintáctico descendente predictivo
+    \item[\texttt{utils}] Utilidades generales, internacionalización y gestión de ventanas
+    \item[\texttt{centroayuda}] Sistema de ayuda y documentación integrada
+    \item[\texttt{vistas}] Archivos FXML que definen las interfaces de usuario
+\end{description}
+
+\subsection{Dependencias entre módulos}
+
+\begin{figure}[H]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Módulo} & \textbf{Dependencias} \\
+\hline
+bienvenida & editor, simulador, utils, gramatica \\
+\hline
+editor & gramatica, utils, vistas \\
+\hline
+simulador & gramatica, utils, vistas \\
+\hline
+gramatica & (independiente) \\
+\hline
+utils & (independiente) \\
+\hline
+centroayuda & utils \\
+\hline
+vistas & utils \\
+\hline
+\end{tabular}
+\caption{Dependencias entre módulos de SimAS 3.0}
+\label{fig:dependencias-modulos}
+\end{figure}
+
+\section{Recursos de compilación}
+
+\subsection{Scripts de construcción}
+
+\subsubsection{build.sh (Unix/Linux/macOS)}
+\begin{itemize}
+    \item Compila el código fuente Java
+    \item Empaqueta las dependencias JavaFX
+    \item Genera el archivo JAR ejecutable
+    \item Crea la estructura de directorios necesaria
+\end{itemize}
+
+\subsubsection{build.bat (Windows)}
+\begin{itemize}
+    \item Equivalente al script build.sh para sistemas Windows
+    \item Utiliza comandos nativos de Windows
+    \item Genera la misma estructura de archivos
+\end{itemize}
+
+\subsubsection{create-standalone-app.sh}
+\begin{itemize}
+    \item Crea una aplicación independiente para macOS
+    \item Utiliza jpackage para generar un archivo .app
+    \item Incluye todas las dependencias necesarias
+    \item Genera un ejecutable completamente autónomo
+\end{itemize}
+
+\subsection{Configuración de compilación}
+
+El proceso de compilación requiere:
+
+\begin{itemize}
+    \item Configuración correcta de las variables de entorno Java
+    \item Acceso a las librerías JavaFX en \texttt{lib/javafx-sdk-17.0.12/}
+    \item Permisos de ejecución en los scripts de construcción
+    \item Espacio suficiente en disco para archivos temporales
+\end{itemize}
 

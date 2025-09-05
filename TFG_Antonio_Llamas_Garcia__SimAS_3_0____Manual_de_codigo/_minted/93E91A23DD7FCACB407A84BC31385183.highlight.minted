@@ -1,0 +1,188 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/bin/bash}
+
+\PYG{c+c1}{\PYGZsh{} Script de build para SimAS 3.0}
+\PYG{c+c1}{\PYGZsh{} Crea ejecutables multiplataforma usando jpackage}
+
+\PYG{n+nb}{set}\PYG{+w}{ }\PYGZhy{}e
+
+\PYG{c+c1}{\PYGZsh{} Colores para output}
+\PYG{n+nv}{RED}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}033[0;31m\PYGZsq{}}
+\PYG{n+nv}{GREEN}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}033[0;32m\PYGZsq{}}
+\PYG{n+nv}{YELLOW}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}033[1;33m\PYGZsq{}}
+\PYG{n+nv}{NC}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}\PYGZbs{}033[0m\PYGZsq{}}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} No Color}
+
+\PYG{c+c1}{\PYGZsh{} Configuración}
+\PYG{n+nv}{APP\PYGZus{}NAME}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}SimAS\PYGZdq{}}
+\PYG{n+nv}{APP\PYGZus{}VERSION}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}3.0\PYGZdq{}}
+\PYG{n+nv}{MAIN\PYGZus{}CLASS}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}bienvenida.Bienvenida\PYGZdq{}}
+\PYG{n+nv}{JAVAFX\PYGZus{}PATH}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}./lib/javafx\PYGZhy{}sdk\PYGZhy{}17.0.12\PYGZdq{}}
+\PYG{n+nv}{OUTPUT\PYGZus{}DIR}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}./dist\PYGZdq{}}
+\PYG{n+nv}{BUILD\PYGZus{}DIR}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}./build\PYGZdq{}}
+
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{GREEN}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{=== SimAS 3.0 Build Script ===}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Verificar que Java 17+ esté instalado}
+\PYG{k}{if}\PYG{+w}{ }!\PYG{+w}{ }\PYG{n+nb}{command}\PYG{+w}{ }\PYGZhy{}v\PYG{+w}{ }java\PYG{+w}{ }\PYG{p}{\PYGZam{}}\PYGZgt{}\PYG{+w}{ }/dev/null\PYG{p}{;}\PYG{+w}{ }\PYG{k}{then}
+\PYG{+w}{    }\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{RED}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{Error: Java no está instalado}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{+w}{    }\PYG{n+nb}{exit}\PYG{+w}{ }\PYG{l+m}{1}
+\PYG{k}{fi}
+
+\PYG{n+nv}{JAVA\PYGZus{}VERSION}\PYG{o}{=}\PYG{k}{\PYGZdl{}(}java\PYG{+w}{ }\PYGZhy{}version\PYG{+w}{ }\PYG{l+m}{2}\PYGZgt{}\PYG{p}{\PYGZam{}}\PYG{l+m}{1}\PYG{+w}{ }\PYG{p}{|}\PYG{+w}{ }head\PYG{+w}{ }\PYGZhy{}n\PYG{+w}{ }\PYG{l+m}{1}\PYG{+w}{ }\PYG{p}{|}\PYG{+w}{ }cut\PYG{+w}{ }\PYGZhy{}d\PYG{l+s+s1}{\PYGZsq{}\PYGZdq{}\PYGZsq{}}\PYG{+w}{ }\PYGZhy{}f2\PYG{+w}{ }\PYG{p}{|}\PYG{+w}{ }cut\PYG{+w}{ }\PYGZhy{}d\PYG{l+s+s1}{\PYGZsq{}.\PYGZsq{}}\PYG{+w}{ }\PYGZhy{}f1\PYG{k}{)}
+\PYG{k}{if}\PYG{+w}{ }\PYG{o}{[}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}JAVA\PYGZus{}VERSION}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYGZhy{}lt\PYG{+w}{ }\PYG{l+m}{17}\PYG{+w}{ }\PYG{o}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{k}{then}
+\PYG{+w}{    }\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{RED}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{Error: Se requiere Java 17 o superior. Versión actual: }\PYG{n+nv}{\PYGZdl{}JAVA\PYGZus{}VERSION}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{+w}{    }\PYG{n+nb}{exit}\PYG{+w}{ }\PYG{l+m}{1}
+\PYG{k}{fi}
+
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{GREEN}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{Java version: }\PYG{k}{\PYGZdl{}(}java\PYG{+w}{ }\PYGZhy{}version\PYG{+w}{ }\PYG{l+m}{2}\PYGZgt{}\PYG{p}{\PYGZam{}}\PYG{l+m}{1}\PYG{+w}{ }\PYG{p}{|}\PYG{+w}{ }head\PYG{+w}{ }\PYGZhy{}n\PYG{+w}{ }\PYG{l+m}{1}\PYG{k}{)}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Verificar que jpackage esté disponible}
+\PYG{k}{if}\PYG{+w}{ }!\PYG{+w}{ }\PYG{n+nb}{command}\PYG{+w}{ }\PYGZhy{}v\PYG{+w}{ }jpackage\PYG{+w}{ }\PYG{p}{\PYGZam{}}\PYGZgt{}\PYG{+w}{ }/dev/null\PYG{p}{;}\PYG{+w}{ }\PYG{k}{then}
+\PYG{+w}{    }\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{RED}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{Error: jpackage no está disponible. Asegúrate de tener Java 14+ instalado}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{+w}{    }\PYG{n+nb}{exit}\PYG{+w}{ }\PYG{l+m}{1}
+\PYG{k}{fi}
+
+\PYG{c+c1}{\PYGZsh{} Crear directorios}
+mkdir\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}BUILD\PYGZus{}DIR}\PYG{l+s+s2}{\PYGZdq{}}
+mkdir\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}OUTPUT\PYGZus{}DIR}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{YELLOW}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{Compilando aplicación...}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Compilar con módulos JavaFX pero sin iText como módulo}
+javac\PYG{+w}{ }\PYGZhy{}\PYGZhy{}module\PYGZhy{}path\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}JAVAFX\PYGZus{}PATH}\PYG{l+s+s2}{/lib}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{      }\PYGZhy{}\PYGZhy{}add\PYGZhy{}modules\PYG{+w}{ }javafx.controls,javafx.fxml\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{      }\PYGZhy{}cp\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}JAVAFX\PYGZus{}PATH}\PYG{l+s+s2}{/lib/itextpdf\PYGZhy{}5.5.13.3.jar}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{      }\PYGZhy{}d\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}BUILD\PYGZus{}DIR}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{      }\PYG{k}{\PYGZdl{}(}find\PYG{+w}{ }src\PYG{+w}{ }\PYGZhy{}name\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}*.java\PYGZdq{}}\PYG{k}{)}
+
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{GREEN}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{Compilación completada}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Copiar recursos}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{YELLOW}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{Copiando recursos...}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+cp\PYG{+w}{ }\PYGZhy{}r\PYG{+w}{ }src/vistas\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}BUILD\PYGZus{}DIR}\PYG{l+s+s2}{/}\PYG{l+s+s2}{\PYGZdq{}}
+cp\PYG{+w}{ }\PYGZhy{}r\PYG{+w}{ }src/resources\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}BUILD\PYGZus{}DIR}\PYG{l+s+s2}{/}\PYG{l+s+s2}{\PYGZdq{}}
+cp\PYG{+w}{ }\PYGZhy{}r\PYG{+w}{ }src/centroayuda/ayuda.html\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}BUILD\PYGZus{}DIR}\PYG{l+s+s2}{/}\PYG{l+s+s2}{\PYGZdq{}}
+cp\PYG{+w}{ }\PYGZhy{}r\PYG{+w}{ }src/centroayuda/SimAS.html\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}BUILD\PYGZus{}DIR}\PYG{l+s+s2}{/}\PYG{l+s+s2}{\PYGZdq{}}
+cp\PYG{+w}{ }\PYGZhy{}r\PYG{+w}{ }src/centroayuda/*.pdf\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}BUILD\PYGZus{}DIR}\PYG{l+s+s2}{/}\PYG{l+s+s2}{\PYGZdq{}}
+cp\PYG{+w}{ }\PYGZhy{}r\PYG{+w}{ }src/centroayuda/imagenes\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}BUILD\PYGZus{}DIR}\PYG{l+s+s2}{/}\PYG{l+s+s2}{\PYGZdq{}}
+cp\PYG{+w}{ }\PYGZhy{}r\PYG{+w}{ }src/utils/*.properties\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}BUILD\PYGZus{}DIR}\PYG{l+s+s2}{/}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Copiar iText JAR al directorio de build}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{YELLOW}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{Copiando dependencias...}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+cp\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}JAVAFX\PYGZus{}PATH}\PYG{l+s+s2}{/lib/itextpdf\PYGZhy{}5.5.13.3.jar}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}BUILD\PYGZus{}DIR}\PYG{l+s+s2}{/}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Crear JAR ejecutable}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{YELLOW}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{Creando JAR ejecutable...}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{cd}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}BUILD\PYGZus{}DIR}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Crear MANIFEST.MF}
+cat\PYG{+w}{ }\PYGZgt{}\PYG{+w}{ }MANIFEST.MF\PYG{+w}{ }\PYG{l+s}{\PYGZlt{}\PYGZlt{} EOF}
+\PYG{l+s}{Manifest\PYGZhy{}Version: 1.0}
+\PYG{l+s}{Main\PYGZhy{}Class: \PYGZdl{}MAIN\PYGZus{}CLASS}
+\PYG{l+s}{Class\PYGZhy{}Path: itextpdf\PYGZhy{}5.5.13.3.jar}
+\PYG{l+s}{EOF}
+
+\PYG{c+c1}{\PYGZsh{} Crear JAR con MANIFEST}
+jar\PYG{+w}{ }cfm\PYG{+w}{ }SimAS.jar\PYG{+w}{ }MANIFEST.MF\PYG{+w}{ }*
+\PYG{n+nb}{cd}\PYG{+w}{ }\PYGZhy{}\PYG{+w}{ }\PYGZgt{}\PYG{+w}{ }/dev/null
+
+\PYG{c+c1}{\PYGZsh{} Detectar el sistema operativo}
+\PYG{n+nv}{OS}\PYG{o}{=}\PYG{k}{\PYGZdl{}(}uname\PYG{+w}{ }\PYGZhy{}s\PYG{k}{)}
+\PYG{k}{case}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}OS}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{k}{in}
+\PYG{+w}{    }Darwin*\PYG{o}{)}\PYG{+w}{    }\PYG{n+nv}{PLATFORM}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}mac\PYGZdq{}}\PYG{p}{;}\PYG{p}{;}
+\PYG{+w}{    }Linux*\PYG{o}{)}\PYG{+w}{     }\PYG{n+nv}{PLATFORM}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}linux\PYGZdq{}}\PYG{p}{;}\PYG{p}{;}
+\PYG{+w}{    }MINGW*\PYG{p}{|}CYGWIN*\PYG{p}{|}MSYS*\PYG{o}{)}\PYG{+w}{ }\PYG{n+nv}{PLATFORM}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}windows\PYGZdq{}}\PYG{p}{;}\PYG{p}{;}
+\PYG{+w}{    }*\PYG{o}{)}\PYG{+w}{          }\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{RED}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{Sistema operativo no soportado: }\PYG{n+nv}{\PYGZdl{}OS}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{;}\PYG{+w}{ }\PYG{n+nb}{exit}\PYG{+w}{ }\PYG{l+m}{1}\PYG{p}{;}\PYG{p}{;}
+\PYG{k}{esac}
+
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{YELLOW}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{Creando ejecutable para }\PYG{n+nv}{\PYGZdl{}PLATFORM}\PYG{l+s+s2}{...}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Crear el ejecutable usando jpackage}
+jpackage\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{    }\PYGZhy{}\PYGZhy{}input\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}BUILD\PYGZus{}DIR}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{    }\PYGZhy{}\PYGZhy{}name\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}NAME}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{    }\PYGZhy{}\PYGZhy{}main\PYGZhy{}jar\PYG{+w}{ }SimAS.jar\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{    }\PYGZhy{}\PYGZhy{}main\PYGZhy{}class\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}MAIN\PYGZus{}CLASS}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{    }\PYGZhy{}\PYGZhy{}module\PYGZhy{}path\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}JAVAFX\PYGZus{}PATH}\PYG{l+s+s2}{/lib}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{    }\PYGZhy{}\PYGZhy{}add\PYGZhy{}modules\PYG{+w}{ }javafx.controls,javafx.fxml\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{    }\PYGZhy{}\PYGZhy{}type\PYG{+w}{ }app\PYGZhy{}image\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{    }\PYGZhy{}\PYGZhy{}dest\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}OUTPUT\PYGZus{}DIR}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{    }\PYGZhy{}\PYGZhy{}app\PYGZhy{}version\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}VERSION}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{    }\PYGZhy{}\PYGZhy{}vendor\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Universidad de Córdoba\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{    }\PYGZhy{}\PYGZhy{}description\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Simulador de Autómatas y Sintaxis 3.0\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{    }\PYGZhy{}\PYGZhy{}icon\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}src/resources/logo.png\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{    }\PYGZhy{}\PYGZhy{}java\PYGZhy{}options\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}add\PYGZhy{}opens=javafx.graphics/javafx.scene=ALL\PYGZhy{}UNNAMED\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{    }\PYGZhy{}\PYGZhy{}java\PYGZhy{}options\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}add\PYGZhy{}opens=javafx.controls/javafx.scene.control=ALL\PYGZhy{}UNNAMED\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{    }\PYGZhy{}\PYGZhy{}java\PYGZhy{}options\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}add\PYGZhy{}opens=javafx.fxml/javafx.fxml=ALL\PYGZhy{}UNNAMED\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{    }\PYGZhy{}\PYGZhy{}java\PYGZhy{}options\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZhy{}cp }\PYG{n+nv}{\PYGZdl{}JAVAFX\PYGZus{}PATH}\PYG{l+s+s2}{/lib/itextpdf\PYGZhy{}5.5.13.3.jar}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{GREEN}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{¡Ejecutable creado exitosamente!}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{GREEN}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{Ubicación: }\PYG{n+nv}{\PYGZdl{}OUTPUT\PYGZus{}DIR}\PYG{l+s+s2}{/}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}NAME}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Crear instalador si es posible}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{YELLOW}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{Creando instalador...}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{k}{case}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}PLATFORM}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{k}{in}
+\PYG{+w}{            }\PYG{l+s+s2}{\PYGZdq{}mac\PYGZdq{}}\PYG{o}{)}
+\PYG{+w}{            }jpackage\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{                }\PYGZhy{}\PYGZhy{}input\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}BUILD\PYGZus{}DIR}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{                }\PYGZhy{}\PYGZhy{}name\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}NAME}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{                }\PYGZhy{}\PYGZhy{}main\PYGZhy{}jar\PYG{+w}{ }SimAS.jar\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{                }\PYGZhy{}\PYGZhy{}main\PYGZhy{}class\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}MAIN\PYGZus{}CLASS}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{                }\PYGZhy{}\PYGZhy{}module\PYGZhy{}path\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}JAVAFX\PYGZus{}PATH}\PYG{l+s+s2}{/lib}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{                }\PYGZhy{}\PYGZhy{}add\PYGZhy{}modules\PYG{+w}{ }javafx.controls,javafx.fxml\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{                }\PYGZhy{}\PYGZhy{}type\PYG{+w}{ }dmg\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{                }\PYGZhy{}\PYGZhy{}dest\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}OUTPUT\PYGZus{}DIR}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{                }\PYGZhy{}\PYGZhy{}app\PYGZhy{}version\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}VERSION}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{                }\PYGZhy{}\PYGZhy{}vendor\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Universidad de Córdoba\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{                }\PYGZhy{}\PYGZhy{}description\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Simulador de Autómatas y Sintaxis 3.0\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{                }\PYGZhy{}\PYGZhy{}icon\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}src/resources/logo.png\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{                }\PYGZhy{}\PYGZhy{}java\PYGZhy{}options\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}add\PYGZhy{}opens=javafx.graphics/javafx.scene=ALL\PYGZhy{}UNNAMED\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{                }\PYGZhy{}\PYGZhy{}java\PYGZhy{}options\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}add\PYGZhy{}opens=javafx.controls/javafx.scene.control=ALL\PYGZhy{}UNNAMED\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{                }\PYGZhy{}\PYGZhy{}java\PYGZhy{}options\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}add\PYGZhy{}opens=javafx.fxml/javafx.fxml=ALL\PYGZhy{}UNNAMED\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{                }\PYGZhy{}\PYGZhy{}java\PYGZhy{}options\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZhy{}cp }\PYG{n+nv}{\PYGZdl{}JAVAFX\PYGZus{}PATH}\PYG{l+s+s2}{/lib/itextpdf\PYGZhy{}5.5.13.3.jar}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{+w}{        }\PYG{p}{;}\PYG{p}{;}
+\PYG{+w}{    }\PYG{l+s+s2}{\PYGZdq{}linux\PYGZdq{}}\PYG{o}{)}
+\PYG{+w}{        }jpackage\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}input\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}BUILD\PYGZus{}DIR}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}name\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}NAME}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}main\PYGZhy{}jar\PYG{+w}{ }SimAS.jar\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}main\PYGZhy{}class\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}MAIN\PYGZus{}CLASS}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}module\PYGZhy{}path\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}JAVAFX\PYGZus{}PATH}\PYG{l+s+s2}{/lib}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}add\PYGZhy{}modules\PYG{+w}{ }javafx.controls,javafx.fxml\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}type\PYG{+w}{ }deb\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}dest\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}OUTPUT\PYGZus{}DIR}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}app\PYGZhy{}version\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}VERSION}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}vendor\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Universidad de Córdoba\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}description\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Simulador de Autómatas y Sintaxis 3.0\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}icon\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}src/resources/logo.png\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}java\PYGZhy{}options\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}add\PYGZhy{}opens=javafx.graphics/javafx.scene=ALL\PYGZhy{}UNNAMED\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}java\PYGZhy{}options\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}add\PYGZhy{}opens=javafx.controls/javafx.scene.control=ALL\PYGZhy{}UNNAMED\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}java\PYGZhy{}options\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}add\PYGZhy{}opens=javafx.fxml/javafx.fxml=ALL\PYGZhy{}UNNAMED\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}java\PYGZhy{}options\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZhy{}cp }\PYG{n+nv}{\PYGZdl{}JAVAFX\PYGZus{}PATH}\PYG{l+s+s2}{/lib/itextpdf\PYGZhy{}5.5.13.3.jar}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{+w}{        }\PYG{p}{;}\PYG{p}{;}
+\PYG{+w}{    }\PYG{l+s+s2}{\PYGZdq{}windows\PYGZdq{}}\PYG{o}{)}
+\PYG{+w}{        }jpackage\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}input\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}BUILD\PYGZus{}DIR}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}name\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}NAME}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}main\PYGZhy{}jar\PYG{+w}{ }SimAS.jar\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}main\PYGZhy{}class\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}MAIN\PYGZus{}CLASS}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}module\PYGZhy{}path\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}JAVAFX\PYGZus{}PATH}\PYG{l+s+s2}{/lib}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}add\PYGZhy{}modules\PYG{+w}{ }javafx.controls,javafx.fxml\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}type\PYG{+w}{ }exe\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}dest\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}OUTPUT\PYGZus{}DIR}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}app\PYGZhy{}version\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}VERSION}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}vendor\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Universidad de Córdoba\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}description\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Simulador de Autómatas y Sintaxis 3.0\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}icon\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}src/resources/logo.png\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}java\PYGZhy{}options\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}add\PYGZhy{}opens=javafx.graphics/javafx.scene=ALL\PYGZhy{}UNNAMED\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}java\PYGZhy{}options\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}add\PYGZhy{}opens=javafx.controls/javafx.scene.control=ALL\PYGZhy{}UNNAMED\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}java\PYGZhy{}options\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}add\PYGZhy{}opens=javafx.fxml/javafx.fxml=ALL\PYGZhy{}UNNAMED\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }\PYGZhy{}\PYGZhy{}java\PYGZhy{}options\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZhy{}cp }\PYG{n+nv}{\PYGZdl{}JAVAFX\PYGZus{}PATH}\PYG{l+s+s2}{/lib/itextpdf\PYGZhy{}5.5.13.3.jar}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{+w}{        }\PYG{p}{;}\PYG{p}{;}
+\PYG{k}{esac}
+
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{GREEN}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{¡Instalador creado exitosamente!}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{GREEN}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{=== Build completado ===}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYGZhy{}e\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{YELLOW}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{Archivos generados en: }\PYG{n+nv}{\PYGZdl{}OUTPUT\PYGZus{}DIR}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{NC}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}
+\end{MintedVerbatim}

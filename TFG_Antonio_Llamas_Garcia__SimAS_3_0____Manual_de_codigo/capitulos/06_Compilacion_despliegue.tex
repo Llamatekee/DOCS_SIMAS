@@ -1,0 +1,375 @@
+\chapter{Compilación y Despliegue}\label{cap-compilacion-despliegue}
+
+\section{Introducción}
+
+Este capítulo describe el proceso completo de compilación, empaquetado y despliegue de la aplicación SimAS 3.0. Se incluyen los scripts de construcción, configuración de dependencias y procedimientos para generar ejecutables nativos.
+
+\section{Herramientas de construcción}
+
+\subsection{Java Development Kit (JDK)}
+
+\textbf{Requisitos:}
+\begin{itemize}
+    \item JDK 17 o superior
+    \item Herramienta \texttt{jpackage} (incluida desde JDK 14+)
+    \item Variables de entorno configuradas correctamente
+\end{itemize}
+
+\textbf{Verificación de instalación:}
+\begin{lstlisting}[language=bash, caption=Verificación del JDK]
+java -version
+javac -version
+jpackage --version
+\end{lstlisting}
+
+\subsection{JavaFX SDK}
+
+\textbf{Versión utilizada:} JavaFX 17.0.12
+
+\textbf{Ubicación:} \texttt{lib/javafx-sdk-17.0.12/}
+
+\textbf{Componentes incluidos:}
+\begin{itemize}
+    \item \texttt{lib/}: Librerías JavaFX
+    \item \texttt{bin/}: Herramientas de JavaFX
+    \item \texttt{legal/}: Licencias y documentación legal
+\end{itemize}
+
+\section{Scripts de construcción}
+
+\subsection{build.sh (Unix/Linux/macOS)}
+
+Script principal para sistemas Unix-like:
+
+\inputminted[linenos,breaklines]{bash}{codigo/build.sh}
+
+\textbf{Funcionalidades:}
+
+\begin{itemize}
+    \item \textbf{Líneas 1-10}: Configuración de variables y verificación de dependencias
+    \item \textbf{Líneas 12-15}: Creación de directorios necesarios
+    \item \textbf{Líneas 17-25}: Compilación del código fuente Java
+    \item \textbf{Líneas 27-35}: Copia de recursos y dependencias
+    \item \textbf{Líneas 37-45}: Creación del archivo JAR ejecutable
+    \item \textbf{Líneas 47-50}: Generación del manifest con información de la aplicación
+\end{itemize}
+
+\subsection{build.bat (Windows)}
+
+Script equivalente para sistemas Windows:
+
+\inputminted[linenos,breaklines]{batch}{codigo/build.bat}
+
+\textbf{Diferencias con build.sh:}
+\begin{itemize}
+    \item Sintaxis de comandos de Windows
+    \item Variables de entorno específicas de Windows
+    \item Rutas con separadores de Windows
+\end{itemize}
+
+\subsection{create-standalone-app.sh}
+
+Script para crear aplicación independiente en macOS:
+
+\inputminted[linenos,breaklines]{bash}{codigo/create-standalone-app.sh}
+
+\textbf{Características principales:}
+
+\begin{itemize}
+    \item Utiliza \texttt{jpackage} para crear aplicación nativa
+    \item Incluye todas las dependencias JavaFX
+    \item Genera archivo \texttt{.app} ejecutable
+    \item Configuración específica para macOS
+\end{itemize}
+
+\section{Proceso de compilación}
+
+\subsection{Paso 1: Preparación del entorno}
+
+\begin{enumerate}
+    \item Verificar instalación de JDK 17+
+    \item Configurar variables de entorno:
+    \begin{lstlisting}[language=bash]
+    export JAVA_HOME=/path/to/jdk17
+    export PATH=$JAVA_HOME/bin:$PATH
+    \end{lstlisting}
+    \item Verificar acceso a JavaFX SDK
+    \item Dar permisos de ejecución a scripts:
+    \begin{lstlisting}[language=bash]
+    chmod +x build.sh
+    chmod +x create-standalone-app.sh
+    \end{lstlisting}
+\end{enumerate}
+
+\subsection{Paso 2: Compilación del código fuente}
+
+\begin{lstlisting}[language=bash, caption=Compilación del proyecto]
+# Para sistemas Unix/Linux/macOS
+./build.sh
+
+# Para sistemas Windows
+build.bat
+\end{lstlisting}
+
+\textbf{Proceso interno:}
+
+\begin{enumerate}
+    \item Creación de directorio \texttt{build/}
+    \item Compilación de archivos Java a bytecode
+    \item Copia de recursos (imágenes, FXML, propiedades)
+    \item Copia de librerías JavaFX
+    \item Generación del archivo JAR
+\end{enumerate}
+
+\subsection{Paso 3: Estructura de archivos generada}
+
+Después de la compilación, se genera la siguiente estructura:
+
+\begin{lstlisting}[language=bash, caption=Estructura del directorio build]
+build/
+|-- SimAS.jar                    # Archivo JAR principal
+|-- lib/                         # Librerías JavaFX
+|   |-- javafx.controls.jar
+|   |-- javafx.fxml.jar
+|   |-- ...
+|-- resources/                   # Recursos de la aplicación
+|   |-- logo.png
+|   |-- icons/
+|   |-- ...
+|-- vistas/                      # Archivos FXML
+|   |-- MenuPrincipal.fxml
+|   |-- Bienvenida.fxml
+|   |-- ...
+|-- utils/                       # Archivos de propiedades
+|   |-- messages_es.properties
+|   |-- messages_en.properties
+|   |-- ...
+|-- MANIFEST.MF                  # Manifest del JAR
+\end{lstlisting}
+
+\section{Creación de ejecutables nativos}
+
+\subsection{Usando jpackage}
+
+\textbf{Comando básico:}
+\begin{lstlisting}[language=bash, caption=Creación de ejecutable con jpackage]
+jpackage --input build \
+         --main-jar SimAS.jar \
+         --main-class bienvenida.Bienvenida \
+         --name SimAS \
+         --app-version 3.0 \
+         --vendor "Antonio Llamas García" \
+         --description "Simulador de Análisis Sintáctico" \
+         --dest dist
+\end{lstlisting}
+
+\textbf{Parámetros específicos por plataforma:}
+
+\subsubsection{macOS}
+\begin{lstlisting}[language=bash, caption=Configuración para macOS]
+jpackage --input build \
+         --main-jar SimAS.jar \
+         --main-class bienvenida.Bienvenida \
+         --name SimAS \
+         --type dmg \
+         --app-version 3.0 \
+         --mac-package-identifier com.simas.app \
+         --mac-package-name "SimAS 3.0" \
+         --dest dist
+\end{lstlisting}
+
+\subsubsection{Windows}
+\begin{lstlisting}[language=bash, caption=Configuración para Windows]
+jpackage --input build \
+         --main-jar SimAS.jar \
+         --main-class bienvenida.Bienvenida \
+         --name SimAS \
+         --type msi \
+         --app-version 3.0 \
+         --win-dir-chooser \
+         --win-menu \
+         --win-shortcut \
+         --dest dist
+\end{lstlisting}
+
+\subsubsection{Linux}
+\begin{lstlisting}[language=bash, caption=Configuración para Linux]
+jpackage --input build \
+         --main-jar SimAS.jar \
+         --main-class bienvenida.Bienvenida \
+         --name SimAS \
+         --type deb \
+         --app-version 3.0 \
+         --linux-shortcut \
+         --dest dist
+\end{lstlisting}
+
+\subsection{Aplicación independiente para macOS}
+
+El script \texttt{create-standalone-app.sh} crea una aplicación completamente independiente:
+
+\begin{lstlisting}[language=bash, caption=Creación de aplicación independiente]
+./create-standalone-app.sh
+\end{lstlisting}
+
+\textbf{Resultado:}
+\begin{itemize}
+    \item Archivo \texttt{SimAS.app} en \texttt{dist-standalone/}
+    \item Aplicación completamente autónoma
+    \item No requiere Java instalado en el sistema
+    \item Incluye todas las dependencias necesarias
+\end{itemize}
+
+\section{Configuración del manifest}
+
+\subsection{MANIFEST.MF}
+
+El archivo manifest contiene metadatos importantes:
+
+\inputminted[linenos,breaklines]{properties}{codigo/build/MANIFEST.MF}
+
+\textbf{Atributos principales:}
+
+\begin{itemize}
+    \item \texttt{Main-Class}: Clase principal de la aplicación
+    \item \texttt{Class-Path}: Ruta a las librerías JavaFX
+    \item \texttt{Implementation-Title}: Nombre de la aplicación
+    \item \texttt{Implementation-Version}: Versión de la aplicación
+    \item \texttt{Implementation-Vendor}: Desarrollador
+\end{itemize}
+
+\section{Distribución}
+
+\subsection{Requisitos para usuarios finales}
+
+\textbf{Opción 1: JAR ejecutable}
+\begin{itemize}
+    \item Java Runtime Environment (JRE) 17+
+    \item JavaFX Runtime (incluido en JRE 11+ o por separado)
+\end{itemize}
+
+\textbf{Opción 2: Aplicación nativa}
+\begin{itemize}
+    \item No requiere Java instalado
+    \item Ejecutable nativo del sistema operativo
+    \item Mayor tamaño de descarga
+\end{itemize}
+
+\subsection{Instrucciones de instalación}
+
+\subsubsection{Para desarrolladores}
+\begin{enumerate}
+    \item Clonar el repositorio
+    \item Ejecutar \texttt{./build.sh} o \texttt{build.bat}
+    \item Ejecutar \texttt{java -jar build/SimAS.jar}
+\end{enumerate}
+
+\subsubsection{Para usuarios finales}
+\begin{enumerate}
+    \item Descargar la aplicación desde el repositorio
+    \item Ejecutar \texttt{./dist-standalone/SimAS.app} (macOS)
+    \item O ejecutar \texttt{java -jar SimAS.jar} (requiere Java)
+\end{enumerate}
+
+\section{Solución de problemas}
+
+\subsection{Errores comunes}
+
+\subsubsection{Error: \texttt{JavaFX runtime components are missing}}
+\textbf{Causa:} JavaFX no está disponible en el classpath
+\textbf{Solución:} Asegurar que las librerías JavaFX estén en \texttt{lib/}
+
+\subsubsection{Error: \texttt{Main class not found}}
+\textbf{Causa:} La clase principal no está especificada correctamente
+\textbf{Solución:} Verificar el manifest y la estructura de paquetes
+
+\subsubsection{Error: \texttt{Permission denied}}
+\textbf{Causa:} Scripts sin permisos de ejecución
+\textbf{Solución:} \texttt{chmod +x build.sh create-standalone-app.sh}
+
+\subsection{Verificación de la instalación}
+
+\begin{lstlisting}[language=bash, caption=Verificación de la instalación]
+# Verificar que la aplicación se ejecuta
+java -jar build/SimAS.jar
+
+# Verificar estructura de archivos
+ls -la build/
+
+# Verificar manifest
+unzip -p build/SimAS.jar META-INF/MANIFEST.MF
+\end{lstlisting}
+
+\section{Optimizaciones de rendimiento}
+
+\subsection{Configuración de JVM}
+
+\textbf{Parámetros recomendados:}
+\begin{lstlisting}[language=bash, caption=Parámetros JVM optimizados]
+java -Xmx512m -Xms256m -jar SimAS.jar
+\end{lstlisting}
+
+\subsection{Reducción del tamaño}
+
+\begin{itemize}
+    \item Uso de ProGuard para ofuscación y minificación
+    \item Eliminación de dependencias no utilizadas
+    \item Compresión de recursos
+\end{itemize}
+
+\section{Automatización con CI/CD}
+
+\subsection{GitHub Actions}
+
+Ejemplo de workflow para compilación automática:
+
+\begin{lstlisting}[language=bash, caption=Workflow de GitHub Actions]
+name: Build SimAS
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'
+        distribution: 'adopt'
+    
+    - name: Build application
+      run: |
+        chmod +x build.sh
+        ./build.sh
+    
+    - name: Create native executable
+      run: |
+        chmod +x create-standalone-app.sh
+        ./create-standalone-app.sh
+\end{lstlisting}
+
+\section{Consideraciones de seguridad}
+
+\subsection{Firma de código}
+
+Para distribuir la aplicación de forma segura:
+
+\begin{itemize}
+    \item Firmar el JAR con certificado digital
+    \item Firmar ejecutables nativos
+    \item Verificar integridad de archivos
+\end{itemize}
+
+\subsection{Verificación de dependencias}
+
+\begin{itemize}
+    \item Verificar checksums de librerías JavaFX
+    \item Actualizar dependencias regularmente
+    \item Usar versiones estables y soportadas
+\end{itemize}

@@ -1,3 +1,89 @@
 \chapter{Introducción}\label{cap-introduccion}
 
-   Ejemplo de cita \cite{lopd}
+\section{Propósito del documento}
+
+Este manual de código tiene como objetivo proporcionar una documentación técnica completa y detallada de la aplicación \textbf{SimAS 3.0} (Simulador de Análisis Sintáctico), desarrollada como Trabajo de Fin de Grado en Ingeniería Informática en la Universidad de Córdoba.
+
+El documento está dirigido a desarrolladores, mantenedores del software y cualquier persona que necesite comprender la estructura interna, el funcionamiento y los algoritmos implementados en la aplicación.
+
+\section{Descripción general del proyecto}
+
+SimAS 3.0 es una aplicación educativa desarrollada en Java que implementa un simulador de analizadores sintácticos descendentes predictivos. La aplicación permite a los usuarios:
+
+\begin{itemize}
+    \item Crear y editar gramáticas libres de contexto
+    \item Generar automáticamente tablas de análisis predictivo
+    \item Simular el proceso de análisis sintáctico descendente
+    \item Visualizar el árbol de derivación resultante
+    \item Gestionar funciones de error personalizadas
+\end{itemize}
+
+\section{Características principales}
+
+\subsection{Interfaz de usuario moderna}
+La aplicación utiliza JavaFX 17 para proporcionar una interfaz de usuario moderna e intuitiva, con:
+\begin{itemize}
+    \item Diseño responsivo y adaptable
+    \item Sistema de pestañas para múltiples proyectos
+    \item Interfaz completamente internacionalizada
+    \item Atajos de teclado para operaciones frecuentes
+\end{itemize}
+
+\subsection{Algoritmos de análisis sintáctico}
+Implementa algoritmos estándar de análisis sintáctico descendente predictivo:
+\begin{itemize}
+    \item Construcción de conjuntos FIRST y FOLLOW
+    \item Generación de tablas de análisis predictivo
+    \item Algoritmo de análisis LL(1)
+    \item Detección y manejo de conflictos
+\end{itemize}
+
+\subsection{Arquitectura modular}
+El sistema está diseñado con una arquitectura modular que separa claramente:
+\begin{itemize}
+    \item Lógica de negocio (modelo de gramáticas)
+    \item Interfaz de usuario (controladores y vistas)
+    \item Algoritmos de análisis (simulador)
+    \item Utilidades y servicios auxiliares
+\end{itemize}
+
+\section{Alcance del manual}
+
+Este manual cubre los siguientes aspectos de la aplicación:
+
+\begin{enumerate}
+    \item \textbf{Arquitectura del sistema}: Diseño general y organización de componentes
+    \item \textbf{Documentación de paquetes}: Descripción detallada de cada paquete Java
+    \item \textbf{Clases principales}: Documentación de las clases más importantes
+    \item \textbf{Algoritmos implementados}: Explicación de los algoritmos de análisis sintáctico
+    \item \textbf{Interfaz de usuario}: Documentación de la capa de presentación
+    \item \textbf{Sistema de internacionalización}: Gestión de múltiples idiomas
+    \item \textbf{Compilación y despliegue}: Proceso de construcción de la aplicación
+\end{enumerate}
+
+\section{Convenciones utilizadas}
+
+A lo largo de este manual se utilizarán las siguientes convenciones:
+
+\begin{itemize}
+    \item \textbf{Código Java}: Se mostrará con sintaxis resaltada y numeración de líneas
+    \item \textbf{Nombres de clases}: Se escribirán en formato \texttt{ClaseNombre}
+    \item \textbf{Nombres de métodos}: Se escribirán en formato \texttt{metodoNombre()}
+    \item \textbf{Paquetes}: Se escribirán en formato \texttt{paquete.subpaquete}
+    \item \textbf{Archivos}: Se escribirán en formato \texttt{archivo.extensión}
+\end{itemize}
+
+\section{Estructura del documento}
+
+El manual está organizado en las siguientes secciones principales:
+
+\begin{description}
+    \item[Parte I - Documentación Externa] Contiene información sobre recursos, requisitos y arquitectura general del sistema.
+    \item[Parte II - Documentación Interna] Incluye la documentación detallada del código fuente, algoritmos y componentes internos.
+\end{description}
+
+Esta estructura permite tanto una visión general del sistema como un análisis profundo de su implementación, facilitando la comprensión y mantenimiento del código.
+
+\section{Referencias técnicas}
+
+Este manual se basa en los principios fundamentales de análisis sintáctico descritos en \cite{aho2006compilers} y \cite{hopcroft2006introduction}, implementados utilizando las tecnologías Java \cite{java} y JavaFX \cite{javafx}. La aplicación utiliza herramientas modernas de desarrollo como \cite{jpackage} para la generación de ejecutables nativos.

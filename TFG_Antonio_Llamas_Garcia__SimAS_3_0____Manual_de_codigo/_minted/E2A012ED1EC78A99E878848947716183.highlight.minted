@@ -1,0 +1,64 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{package}\PYG{+w}{ }\PYG{n+nn}{utils}\PYG{p}{;}
+
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.scene.control.ListCell}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.scene.layout.HBox}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.scene.layout.Priority}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.scene.paint.Color}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.scene.control.Label}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.scene.image.ImageView}\PYG{p}{;}
+
+\PYG{c+cm}{/**}
+\PYG{c+cm}{ * Celda personalizada para mostrar idiomas con banderas en el ComboBox}
+\PYG{c+cm}{ */}
+\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{class} \PYG{n+nc}{LanguageListCell}\PYG{+w}{ }\PYG{k+kd}{extends}\PYG{+w}{ }\PYG{n}{ListCell}\PYG{o}{\PYGZlt{}}\PYG{n}{LanguageItem}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kd}{final}\PYG{+w}{ }\PYG{n}{HBox}\PYG{+w}{ }\PYG{n}{content}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kd}{final}\PYG{+w}{ }\PYG{n}{Label}\PYG{+w}{ }\PYG{n}{textLabel}\PYG{p}{;}
+\PYG{+w}{    }
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n+nf}{LanguageListCell}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{content}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{HBox}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{content}\PYG{p}{.}\PYG{n+na}{setSpacing}\PYG{p}{(}\PYG{l+m+mi}{8}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }
+\PYG{+w}{        }\PYG{n}{textLabel}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Label}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{textLabel}\PYG{p}{.}\PYG{n+na}{setTextFill}\PYG{p}{(}\PYG{n}{Color}\PYG{p}{.}\PYG{n+na}{WHITE}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// Establecer el color del texto en blanco}
+\PYG{+w}{        }\PYG{n}{textLabel}\PYG{p}{.}\PYG{n+na}{setStyle}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZhy{}fx\PYGZhy{}text\PYGZhy{}fill: white;}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// CSS adicional para asegurar el color blanco}
+\PYG{+w}{        }\PYG{n}{HBox}\PYG{p}{.}\PYG{n+na}{setHgrow}\PYG{p}{(}\PYG{n}{textLabel}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Priority}\PYG{p}{.}\PYG{n+na}{ALWAYS}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }
+\PYG{+w}{        }\PYG{n}{content}\PYG{p}{.}\PYG{n+na}{getChildren}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{addAll}\PYG{p}{(}\PYG{n}{textLabel}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }
+\PYG{+w}{    }\PYG{n+nd}{@Override}
+\PYG{+w}{    }\PYG{k+kd}{protected}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{updateItem}\PYG{p}{(}\PYG{n}{LanguageItem}\PYG{+w}{ }\PYG{n}{item}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{boolean}\PYG{+w}{ }\PYG{n}{empty}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kd}{super}\PYG{p}{.}\PYG{n+na}{updateItem}\PYG{p}{(}\PYG{n}{item}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{empty}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{empty}\PYG{+w}{ }\PYG{o}{|}\PYG{o}{|}\PYG{+w}{ }\PYG{n}{item}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{setGraphic}\PYG{p}{(}\PYG{k+kc}{null}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{setText}\PYG{p}{(}\PYG{k+kc}{null}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{c+c1}{// Limpiar contenido anterior}
+\PYG{+w}{            }\PYG{n}{content}\PYG{p}{.}\PYG{n+na}{getChildren}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{clear}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }
+\PYG{+w}{            }\PYG{c+c1}{// Crear una nueva instancia del ImageView para evitar problemas de referencia}
+\PYG{+w}{            }\PYG{n}{ImageView}\PYG{+w}{ }\PYG{n}{flagView}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{ImageView}\PYG{p}{(}\PYG{n}{item}\PYG{p}{.}\PYG{n+na}{getFlagImageView}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{getImage}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{flagView}\PYG{p}{.}\PYG{n+na}{setFitHeight}\PYG{p}{(}\PYG{l+m+mi}{16}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{flagView}\PYG{p}{.}\PYG{n+na}{setFitWidth}\PYG{p}{(}\PYG{l+m+mi}{24}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{flagView}\PYG{p}{.}\PYG{n+na}{setPreserveRatio}\PYG{p}{(}\PYG{k+kc}{true}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }
+\PYG{+w}{            }\PYG{c+c1}{// Agregar la bandera}
+\PYG{+w}{            }\PYG{n}{content}\PYG{p}{.}\PYG{n+na}{getChildren}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{add}\PYG{p}{(}\PYG{n}{flagView}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }
+\PYG{+w}{            }\PYG{c+c1}{// Agregar el texto del idioma}
+\PYG{+w}{            }\PYG{n}{textLabel}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{item}\PYG{p}{.}\PYG{n+na}{getName}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{content}\PYG{p}{.}\PYG{n+na}{getChildren}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{add}\PYG{p}{(}\PYG{n}{textLabel}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }
+\PYG{+w}{            }\PYG{c+c1}{// Asegurar que el contenido se mantenga visible}
+\PYG{+w}{            }\PYG{n}{setGraphic}\PYG{p}{(}\PYG{n}{content}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{setText}\PYG{p}{(}\PYG{k+kc}{null}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }
+\PYG{+w}{            }\PYG{c+c1}{// Forzar la actualización del layout}
+\PYG{+w}{            }\PYG{n}{content}\PYG{p}{.}\PYG{n+na}{requestLayout}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}

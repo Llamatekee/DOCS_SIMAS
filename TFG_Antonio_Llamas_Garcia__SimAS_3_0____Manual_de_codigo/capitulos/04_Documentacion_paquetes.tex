@@ -1,0 +1,413 @@
+\chapter{Documentación de Paquetes}\label{cap-documentacion-paquetes}
+
+\section{Introducción}
+
+Este capítulo proporciona una documentación detallada de cada paquete Java que constituye la aplicación SimAS 3.0. Para cada paquete se incluye una descripción de su propósito, las clases que contiene y las relaciones con otros paquetes.
+
+\section{Paquete bienvenida}
+
+\subsection{Propósito}
+
+El paquete \texttt{bienvenida} se encarga de la gestión de la pantalla de bienvenida y el menú principal de la aplicación. Es el punto de entrada de la aplicación y coordina la navegación hacia los diferentes módulos.
+
+\subsection{Clases principales}
+
+\subsubsection{Bienvenida.java}
+
+Clase principal que gestiona la pantalla de bienvenida de la aplicación.
+
+\begin{itemize}
+    \item \textbf{Herencia}: Extiende \texttt{Application} de JavaFX
+    \item \textbf{Responsabilidades}:
+    \begin{itemize}
+        \item Mostrar la pantalla de bienvenida con información del proyecto
+        \item Gestionar la transición automática al menú principal
+        \item Configurar el estilo y comportamiento de la ventana de bienvenida
+    \end{itemize}
+    \item \textbf{Métodos principales}:
+    \begin{itemize}
+        \item \texttt{start(Stage primaryStage)}: Inicializa la ventana de bienvenida
+        \item \texttt{abrirMenuPrincipal()}: Lanza el menú principal después del tiempo de espera
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{MenuPrincipal.java}
+
+Controlador principal que gestiona el menú principal de la aplicación y coordina la navegación.
+
+\begin{itemize}
+    \item \textbf{Herencia}: Extiende \texttt{Application} de JavaFX
+    \item \textbf{Responsabilidades}:
+    \begin{itemize}
+        \item Gestionar la interfaz del menú principal
+        \item Coordinar la apertura de diferentes módulos (editor, simulador, ayuda)
+        \item Gestionar el sistema de pestañas para múltiples proyectos
+        \item Implementar la internacionalización de la interfaz
+        \item Configurar atajos de teclado para operaciones frecuentes
+    \end{itemize}
+    \item \textbf{Métodos principales}:
+    \begin{itemize}
+        \item \texttt{onBtnEditorAction()}: Abre el editor de gramáticas
+        \item \texttt{onBtnSimuladorAction()}: Abre el simulador
+        \item \texttt{onBtnAyudaAction()}: Abre el sistema de ayuda
+        \item \texttt{cambiarIdioma()}: Cambia el idioma de la interfaz
+    \end{itemize}
+\end{itemize}
+
+\subsection{Dependencias}
+
+\begin{itemize}
+    \item \texttt{editor.Editor}: Para abrir el editor de gramáticas
+    \item \texttt{simulador.PanelSimuladorDesc}: Para abrir el simulador
+    \item \texttt{utils.*}: Para gestión de ventanas, internacionalización y tabs
+    \item \texttt{gramatica.Gramatica}: Para manejo de datos de gramáticas
+\end{itemize}
+
+\section{Paquete editor}
+
+\subsection{Propósito}
+
+El paquete \texttt{editor} implementa el editor de gramáticas, permitiendo a los usuarios crear, modificar y validar gramáticas libres de contexto de manera visual e intuitiva.
+
+\subsection{Clases principales}
+
+\subsubsection{Editor.java}
+
+Clase principal del editor que coordina todos los paneles de edición.
+
+\begin{itemize}
+    \item \textbf{Responsabilidades}:
+    \begin{itemize}
+        \item Coordinar los diferentes paneles de edición
+        \item Gestionar el flujo de trabajo de creación de gramáticas
+        \item Validar la gramática en cada paso del proceso
+        \item Gestionar la persistencia de datos
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{EditorWindow.java}
+
+Ventana principal del editor que contiene todos los paneles de edición.
+
+\begin{itemize}
+    \item \textbf{Responsabilidades}:
+    \begin{itemize}
+        \item Gestionar la interfaz de usuario del editor
+        \item Coordinar la navegación entre paneles
+        \item Gestionar el estado de la gramática en edición
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{PanelCreacionGramatica.java}
+
+Panel base que define la estructura común para todos los paneles de creación.
+
+\subsubsection{PanelCreacionGramaticaPaso1.java}
+
+Panel para la definición del nombre y descripción de la gramática.
+
+\subsubsection{PanelCreacionGramaticaPaso2.java}
+
+Panel para la definición de símbolos terminales y no terminales de la gramática.
+
+\subsubsection{PanelCreacionGramaticaPaso3.java}
+
+Panel para la definición de producciones de la gramática.
+
+\subsubsection{PanelCreacionGramaticaPaso4.java}
+
+Panel para la definición del símbolo inicial y validación de la gramática.
+
+\subsubsection{PanelProducciones.java}
+
+Panel especializado para la gestión de producciones con funcionalidades avanzadas.
+
+\subsubsection{PanelSimbolosNoTerminales.java}
+
+Panel especializado para la gestión de símbolos no terminales.
+
+\subsubsection{PanelSimbolosTerminales.java}
+
+Panel especializado para la gestión de símbolos terminales.
+
+\subsection{Dependencias}
+
+\begin{itemize}
+    \item \texttt{gramatica.*}: Para el modelo de datos de gramáticas
+    \item \texttt{utils.*}: Para utilidades de interfaz y gestión de ventanas
+    \item \texttt{vistas.*}: Para las definiciones FXML de la interfaz
+\end{itemize}
+
+\section{Paquete gramatica}
+
+\subsection{Propósito}
+
+El paquete \texttt{gramatica} contiene el modelo de datos y los algoritmos fundamentales para el manejo de gramáticas libres de contexto y la generación de tablas de análisis predictivo.
+
+\subsection{Clases principales}
+
+\subsubsection{Gramatica.java}
+
+Clase central que representa una gramática libre de contexto completa.
+
+\begin{itemize}
+    \item \textbf{Responsabilidades}:
+    \begin{itemize}
+        \item Almacenar todos los componentes de una gramática
+        \item Implementar algoritmos de análisis sintáctico
+        \item Generar tablas de análisis predictivo
+        \item Validar la gramática y detectar conflictos
+    \end{itemize}
+    \item \textbf{Métodos principales}:
+    \begin{itemize}
+        \item \texttt{generarTablaPredictiva()}: Genera la tabla de análisis predictivo
+        \item \texttt{calcularFirst()}: Calcula los conjuntos FIRST
+        \item \texttt{calcularFollow()}: Calcula los conjuntos FOLLOW
+        \item \texttt{esLL1()}: Verifica si la gramática es LL(1)
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Simbolo.java}
+
+Clase abstracta base para todos los símbolos de la gramática.
+
+\subsubsection{Terminal.java}
+
+Representa un símbolo terminal de la gramática.
+
+\subsubsection{NoTerminal.java}
+
+Representa un símbolo no terminal de la gramática.
+
+\subsubsection{Produccion.java}
+
+Representa una producción de la gramática con su antecedente y consecuente.
+
+\subsubsection{Antecedente.java}
+
+Representa el lado izquierdo de una producción (no terminal).
+
+\subsubsection{Consecuente.java}
+
+Representa el lado derecho de una producción (secuencia de símbolos).
+
+\subsubsection{TablaPredictiva.java}
+
+Clase base para la representación de tablas de análisis predictivo.
+
+\subsubsection{TablaPredictivaPaso5.java}
+
+Implementación específica de la tabla predictiva con funcionalidades avanzadas.
+
+\subsubsection{FilaTablaPredictiva.java}
+
+Representa una fila de la tabla predictiva.
+
+\subsubsection{FuncionError.java}
+
+Representa una función de error personalizada para el análisis.
+
+\subsection{Algoritmos implementados}
+
+\subsubsection{Cálculo de conjuntos FIRST}
+
+El algoritmo calcula para cada símbolo no terminal el conjunto de símbolos terminales que pueden aparecer al inicio de las cadenas derivadas.
+
+\subsubsection{Cálculo de conjuntos FOLLOW}
+
+El algoritmo calcula para cada símbolo no terminal el conjunto de símbolos terminales que pueden aparecer inmediatamente después de él en alguna derivación.
+
+\subsubsection{Generación de tabla predictiva}
+
+Utiliza los conjuntos FIRST y FOLLOW para construir la tabla de análisis predictivo LL(1).
+
+\subsection{Dependencias}
+
+Este paquete es independiente y no tiene dependencias externas, sirviendo como base para otros paquetes.
+
+\section{Paquete simulador}
+
+\subsection{Propósito}
+
+El paquete \texttt{simulador} implementa el simulador de análisis sintáctico descendente predictivo, permitiendo a los usuarios simular el proceso de análisis paso a paso.
+
+\subsection{Clases principales}
+
+\subsubsection{PanelSimuladorDesc.java}
+
+Panel principal del simulador que coordina todos los componentes de simulación.
+
+\subsubsection{PanelSimulacion.java}
+
+Panel que gestiona la interfaz de usuario del simulador y el estado de la simulación.
+
+\subsubsection{SimulacionFinal.java}
+
+Clase que implementa la lógica de simulación del análisis sintáctico.
+
+\subsubsection{PanelNuevaSimDescPaso*.java}
+
+Conjunto de paneles para la configuración paso a paso de una nueva simulación.
+
+\subsubsection{EditorCadenaEntradaController.java}
+
+Controlador para la edición de cadenas de entrada a analizar.
+
+\subsubsection{NuevaFuncionError.java}
+
+Panel para la creación de nuevas funciones de error personalizadas.
+
+\subsubsection{PanelGramaticaOriginal.java}
+
+Panel que muestra la gramática original utilizada en la simulación.
+
+\subsection{Características del simulador}
+
+\begin{itemize}
+    \item Simulación paso a paso del análisis sintáctico
+    \item Visualización de la pila de análisis
+    \item Visualización del estado de la entrada
+    \item Generación del árbol de derivación
+    \item Manejo de errores con funciones personalizadas
+    \item Interfaz intuitiva con controles de navegación
+\end{itemize}
+
+\subsection{Dependencias}
+
+\begin{itemize}
+    \item \texttt{gramatica.*}: Para acceso a gramáticas y tablas predictivas
+    \item \texttt{utils.*}: Para utilidades de interfaz
+    \item \texttt{vistas.*}: Para las definiciones FXML
+\end{itemize}
+
+\section{Paquete utils}
+
+\subsection{Propósito}
+
+El paquete \texttt{utils} contiene utilidades generales, servicios de internacionalización y herramientas de gestión de ventanas que son utilizadas por toda la aplicación.
+
+\subsection{Clases principales}
+
+\subsubsection{SecondaryWindow.java}
+
+Utilidad para la gestión de ventanas secundarias de la aplicación.
+
+\subsubsection{TabManager.java}
+
+Gestiona el sistema de pestañas para múltiples proyectos simultáneos.
+
+\subsubsection{TabPaneMonitor.java}
+
+Monitor que gestiona el estado y comportamiento de las pestañas.
+
+\subsubsection{ActualizableTextos.java}
+
+Interfaz para componentes que pueden actualizar sus textos según el idioma seleccionado.
+
+\subsubsection{LanguageItem.java}
+
+Representa un elemento de idioma en el sistema de internacionalización.
+
+\subsubsection{LanguageListCell.java}
+
+Celda personalizada para la visualización de idiomas en listas.
+
+\subsection{Sistema de internacionalización}
+
+El paquete incluye archivos de propiedades para múltiples idiomas:
+
+\begin{itemize}
+    \item \texttt{messages\_es.properties}: Textos en español
+    \item \texttt{messages\_en.properties}: Textos en inglés
+    \item \texttt{messages\_de.properties}: Textos en alemán
+    \item \texttt{messages\_fr.properties}: Textos en francés
+    \item \texttt{messages\_ja.properties}: Textos en japonés
+    \item \texttt{messages\_pt.properties}: Textos en portugués
+\end{itemize}
+
+\subsection{Dependencias}
+
+Este paquete es independiente y proporciona servicios a otros paquetes.
+
+\section{Paquete centroayuda}
+
+\subsection{Propósito}
+
+El paquete \texttt{centroayuda} implementa el sistema de ayuda integrado de la aplicación, incluyendo documentación, tutoriales y información sobre el proyecto.
+
+\subsection{Clases principales}
+
+\subsubsection{AcercaDe.java}
+
+Ventana que muestra información sobre la aplicación, desarrolladores y versión.
+
+\subsection{Recursos incluidos}
+
+\begin{itemize}
+    \item \texttt{ayuda.html}: Documentación principal de ayuda
+    \item \texttt{SimAS.html}: Información específica sobre la aplicación
+    \item \texttt{Tema\_*.pdf}: Documentos temáticos sobre análisis sintáctico
+    \item \texttt{imagenes/}: Recursos gráficos para la documentación
+\end{itemize}
+
+\subsection{Dependencias}
+
+\begin{itemize}
+    \item \texttt{utils.*}: Para utilidades de interfaz
+\end{itemize}
+
+\section{Paquete vistas}
+
+\subsection{Propósito}
+
+El paquete \texttt{vistas} contiene todos los archivos FXML que definen las interfaces de usuario de la aplicación, siguiendo el patrón de separación de vista y lógica.
+
+\subsection{Archivos FXML principales}
+
+\begin{itemize}
+    \item \texttt{Bienvenida.fxml}: Pantalla de bienvenida
+    \item \texttt{MenuPrincipal.fxml}: Menú principal de la aplicación
+    \item \texttt{Editor.fxml}: Interfaz principal del editor
+    \item \texttt{PanelCreacionGramaticaPaso*.fxml}: Paneles de creación de gramáticas
+    \item \texttt{PanelSimulacion.fxml}: Interfaz del simulador
+    \item \texttt{SimulacionFinal.fxml}: Interfaz de simulación final
+    \item \texttt{styles2.css}: Estilos CSS para la aplicación
+\end{itemize}
+
+\subsection{Características de las vistas}
+
+\begin{itemize}
+    \item Diseño responsivo y adaptable
+    \item Uso de estilos CSS para personalización
+    \item Integración con el sistema de internacionalización
+    \item Separación clara entre presentación y lógica
+\end{itemize}
+
+\section{Resumen de dependencias}
+
+La siguiente tabla resume las dependencias principales entre paquetes:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Paquete} & \textbf{Dependencias principales} \\
+\hline
+bienvenida & editor, simulador, utils, gramatica \\
+\hline
+editor & gramatica, utils, vistas \\
+\hline
+simulador & gramatica, utils, vistas \\
+\hline
+gramatica & (independiente) \\
+\hline
+utils & (independiente) \\
+\hline
+centroayuda & utils \\
+\hline
+vistas & utils \\
+\hline
+\end{tabular}
+\caption{Dependencias entre paquetes de SimAS 3.0}
+\label{tab:dependencias-paquetes}
+\end{table}

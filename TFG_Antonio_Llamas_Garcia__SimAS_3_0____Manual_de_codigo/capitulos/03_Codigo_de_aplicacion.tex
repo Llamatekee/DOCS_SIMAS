@@ -1,18 +1,449 @@
 \chapter{Código de la aplicación}\label{cap-documentacion-interna}
 
+\section{Introducción}
 
-\section{Ejemplo USANDO MINTED}
+Este capítulo presenta una documentación detallada del código fuente de SimAS 3.0, incluyendo ejemplos de las clases más importantes, explicaciones de algoritmos clave y análisis de la implementación.
 
-\inputminted[linenos,breaklines]{java}{codigo/SimAs/Bienvenida.java}
-
-
-\section{Ejemplo USANDO lstinputlisting}
-	
-%\lstinputlisting[language=Java]{doc/name.tex}
- 
-\section{Paquete SimAS}	
+\section{Clases principales del paquete bienvenida}
 
 \subsection{Bienvenida.java}
 
-\lstinputlisting[language=Java,breaklines=true]{codigo/SimAs/Bienvenida.java}
+La clase \texttt{Bienvenida} es el punto de entrada de la aplicación y gestiona la pantalla de bienvenida.
+
+\inputminted[linenos,breaklines,firstline=1,lastline=30]{java}{codigo/src/bienvenida/Bienvenida.java}
+
+\textbf{Análisis del código:}
+
+\begin{itemize}
+    \item \textbf{Líneas 1-12}: Importaciones necesarias para JavaFX y gestión de tiempo
+    \item \textbf{Línea 13}: La clase extiende \texttt{Application}, siguiendo el patrón de JavaFX
+    \item \textbf{Líneas 16-32}: Método \texttt{start()} que configura la ventana de bienvenida
+    \item \textbf{Líneas 21-27}: Configuración de la ventana (sin decoraciones, siempre encima, dimensiones)
+    \item \textbf{Líneas 35-40}: Timeline que espera 2.5 segundos antes de abrir el menú principal
+    \item \textbf{Líneas 43-51}: Método que lanza el menú principal de forma asíncrona
+\end{itemize}
+
+\subsection{MenuPrincipal.java}
+
+La clase \texttt{MenuPrincipal} es el controlador principal de la aplicación.
+
+\inputminted[linenos,breaklines,firstline=1,lastline=50]{java}{codigo/src/bienvenida/MenuPrincipal.java}
+
+\textbf{Análisis del código:}
+
+\begin{itemize}
+    \item \textbf{Líneas 1-27}: Importaciones que incluyen JavaFX, utilidades y otros paquetes
+    \item \textbf{Líneas 31-45}: Declaración de componentes FXML y variables de estado
+    \item \textbf{Líneas 47-65}: Método \texttt{start()} que configura la ventana principal
+    \item \textbf{Líneas 66-80}: Configuración de atajos de teclado para operaciones frecuentes
+\end{itemize}
+
+\section{Clases principales del paquete gramatica}
+
+\subsection{Gramatica.java}
+
+La clase \texttt{Gramatica} es el núcleo del sistema, implementando los algoritmos de análisis sintáctico.
+
+\inputminted[linenos,breaklines,firstline=1,lastline=50]{java}{codigo/src/gramatica/Gramatica.java}
+
+\textbf{Características principales:}
+
+\begin{itemize}
+    \item Almacena símbolos terminales y no terminales
+    \item Gestiona las producciones de la gramática
+    \item Implementa algoritmos de cálculo de conjuntos FIRST y FOLLOW
+    \item Genera tablas de análisis predictivo
+    \item Valida si la gramática es LL(1)
+\end{itemize}
+
+\subsection{Simbolo.java}
+
+Clase abstracta base para todos los símbolos de la gramática.
+
+\inputminted[linenos,breaklines,firstline=1,lastline=30]{java}{codigo/src/gramatica/Simbolo.java}
+
+\subsection{Terminal.java}
+
+Implementación concreta para símbolos terminales.
+
+\inputminted[linenos,breaklines,firstline=1,lastline=25]{java}{codigo/src/gramatica/Terminal.java}
+
+\subsection{NoTerminal.java}
+
+Implementación concreta para símbolos no terminales.
+
+\inputminted[linenos,breaklines,firstline=1,lastline=25]{java}{codigo/src/gramatica/NoTerminal.java}
+
+\section{Algoritmos de análisis sintáctico}
+
+\subsection{Cálculo de conjuntos FIRST}
+
+El algoritmo para calcular los conjuntos FIRST se implementa en la clase \texttt{Gramatica}:
+
+\begin{lstlisting}[language=Java, caption=Algoritmo de cálculo de conjuntos FIRST]
+public void calcularFirst() {
+    // Inicializar conjuntos FIRST
+    for (NoTerminal noTerminal : noTerminales) {
+        first.put(noTerminal, new HashSet<>());
+    }
+    
+    boolean cambio = true;
+    while (cambio) {
+        cambio = false;
+        for (Produccion produccion : producciones) {
+            NoTerminal A = produccion.getAntecedente().getNoTerminal();
+            List<Simbolo> alfa = produccion.getConsecuente().getSimbolos();
+            
+            // FIRST(A) = FIRST(A) U FIRST(alfa)
+            Set<Terminal> firstAlfa = calcularFirstCadena(alfa);
+            if (first.get(A).addAll(firstAlfa)) {
+                cambio = true;
+            }
+        }
+    }
+}
+\end{lstlisting}
+
+\subsection{Cálculo de conjuntos FOLLOW}
+
+El algoritmo para calcular los conjuntos FOLLOW:
+
+\begin{lstlisting}[language=Java, caption=Algoritmo de cálculo de conjuntos FOLLOW]
+public void calcularFollow() {
+    // Inicializar conjuntos FOLLOW
+    for (NoTerminal noTerminal : noTerminales) {
+        follow.put(noTerminal, new HashSet<>());
+    }
+    
+    // FOLLOW(S) = {$} donde S es el símbolo inicial
+    follow.get(simboloInicial).add(new Terminal("$"));
+    
+    boolean cambio = true;
+    while (cambio) {
+        cambio = false;
+        for (Produccion produccion : producciones) {
+            NoTerminal A = produccion.getAntecedente().getNoTerminal();
+            List<Simbolo> alfa = produccion.getConsecuente().getSimbolos();
+            
+            for (int i = 0; i < alfa.size(); i++) {
+                if (alfa.get(i) instanceof NoTerminal) {
+                    NoTerminal B = (NoTerminal) alfa.get(i);
+                    List<Simbolo> beta = alfa.subList(i + 1, alfa.size());
+                    
+                    Set<Terminal> firstBeta = calcularFirstCadena(beta);
+                    if (firstBeta.contains(new Terminal("epsilon"))) {
+                        firstBeta.remove(new Terminal("epsilon"));
+                        if (follow.get(B).addAll(follow.get(A))) {
+                            cambio = true;
+                        }
+                    }
+                    if (follow.get(B).addAll(firstBeta)) {
+                        cambio = true;
+                    }
+                }
+            }
+        }
+    }
+}
+\end{lstlisting}
+
+\section{Clases del paquete simulador}
+
+\subsection{PanelSimulacion.java}
+
+Panel principal que gestiona la interfaz del simulador.
+
+\inputminted[linenos,breaklines,firstline=1,lastline=40]{java}{codigo/src/simulador/PanelSimulacion.java}
+
+\textbf{Características principales:}
+
+\begin{itemize}
+    \item Gestiona la interfaz de usuario del simulador
+    \item Mantiene el estado de la simulación (pila, entrada, posición)
+    \item Coordina la visualización de resultados
+    \item Implementa controles de navegación paso a paso
+\end{itemize}
+
+\subsection{SimulacionFinal.java}
+
+La clase \texttt{SimulacionFinal} es el componente principal del simulador final que ejecuta el análisis sintáctico paso a paso.
+
+\inputminted[linenos,breaklines,firstline=1,lastline=100]{java}{codigo/src/simulador/SimulacionFinal.java}
+
+\textbf{Características principales:}
+
+\begin{itemize}
+    \item \textbf{Análisis sintáctico completo:} Implementa el algoritmo completo de análisis sintáctico descendente predictivo
+    \item \textbf{Simulación paso a paso:} Permite ejecutar el análisis sintáctico paso por paso con navegación completa (avance, retroceso, ir al inicio/final)
+    \item \textbf{Visualización del estado:} Muestra en tiempo real el estado de la pila, entrada restante y acción realizada
+    \item \textbf{Generación de derivaciones:} Crea automáticamente la derivación izquierda del análisis
+    \item \textbf{Visualización de árboles sintácticos:} Genera representaciones gráficas del árbol sintáctico usando Graphviz
+    \item \textbf{Estados de simulación:} Maneja estados de aceptación, error y finalización
+    \item \textbf{Historial completo:} Mantiene un historial detallado de todos los pasos realizados
+    \item \textbf{Internacionalización:} Soporte completo para múltiples idiomas
+    \item \textbf{Generación de informes:} Crea informes PDF profesionales con el resultado del análisis
+\end{itemize}
+
+\textbf{Algoritmo principal de simulación:}
+
+\begin{lstlisting}[language=Java, caption=Algoritmo principal de simulación paso a paso]
+private void avanzarPaso() {
+    if (!simulacionEnCurso) return;
+    if (pilaSimulacion.isEmpty() || entradaSimulacion.isEmpty()) return;
+
+    // Guardar estado actual antes de modificarlo
+    estadosAnteriores.add(new EstadoSimulacion(pilaSimulacion, entradaSimulacion, ""));
+
+    // Marcar que se ha realizado al menos un paso
+    seHaRealizadoAlMenosUnPaso = true;
+
+    String cimaPila = pilaSimulacion.peek();
+    String simboloEntrada = entradaSimulacion.get(0);
+    String accionRealizada = "";
+
+    // Caso de aceptación
+    if (cimaPila.equals("$") && simboloEntrada.equals("$")) {
+        accionRealizada = bundle.getString("simulacionfinal.accion.aceptar");
+        simulacionEnCurso = false;
+        estadoFinalAlcanzado = true;
+        btnPaso.setDisable(true);
+        btnFinal.setDisable(true);
+        actualizarEstadoBotonInforme();
+        pasoActual++;
+        agregarPasoHistorial(accionRealizada);
+        actualizarVista();
+        actualizarPestañasHijas();
+        return;
+    }
+
+    // Si son iguales y terminales, consumir
+    if (cimaPila.equals(simboloEntrada)) {
+        pilaSimulacion.pop();
+        entradaSimulacion.remove(0);
+        accionRealizada = bundle.getString("simulacionfinal.accion.emparejar");
+    } else {
+        // Buscar producción o función de error en la tabla predictiva
+        String accion = buscarAccionTabla(cimaPila, simboloEntrada);
+        if (accion == null || accion.isEmpty()) {
+            accionRealizada = bundle.getString("simulacionfinal.accion.error");
+            simulacionEnCurso = false;
+            estadoFinalAlcanzado = true;
+            // ... manejo de error
+        } else {
+            // Procesar producción o función de error
+            // ... lógica de expansión
+        }
+    }
+    pasoActual++;
+    agregarPasoHistorial(accionRealizada);
+    actualizarVista();
+    actualizarPestañasHijas();
+}
+\end{lstlisting}
+
+\section{Clases del paquete editor}
+
+\subsection{Editor.java}
+
+La clase \texttt{Editor} es el componente principal para la creación y edición de gramáticas en SimAS 3.0.
+
+\inputminted[linenos,breaklines,firstline=1,lastline=150]{java}{codigo/src/editor/Editor.java}
+
+\textbf{Características principales:}
+
+\begin{itemize}
+    \item \textbf{Interfaz completa de edición:} Proporciona una interfaz completa para crear y editar gramáticas
+    \item \textbf{Validación integrada:} Incluye validación automática de gramáticas con mensajes de error detallados
+    \item \textbf{Generación de informes:} Crea informes PDF profesionales de las gramáticas
+    \item \textbf{Sistema de pestañas jerárquico:} Gestiona relaciones padre-hijo entre pestañas
+    \item \textbf{Internacionalización:} Soporte completo para múltiples idiomas
+    \item \textbf{Integración con simulador:} Permite lanzar simulaciones directamente desde el editor
+    \item \textbf{Guardado y carga:} Soporta guardar y cargar gramáticas desde archivos
+    \item \textbf{Estados dinámicos:} Actualiza automáticamente el estado de los botones según la gramática actual
+\end{itemize}
+
+\textbf{Constructor principal:}
+
+\begin{lstlisting}[language=Java, caption=Constructor principal del Editor]
+public Editor(TabPane tabPane, MenuPrincipal menuPane) {
+    this.tabPane = tabPane;
+    this.menuPane = menuPane;
+    this.gramatica = new Gramatica();
+    this.editorId = "editor_" + System.currentTimeMillis() + "_" + (++contadorEditores);
+    cargarFXML();
+    configurarRelacionesPadreHijo();
+}
+\end{lstlisting}
+
+\section{Clases del paquete utils}
+
+\subsection{TabManager.java}
+
+La clase \texttt{TabManager} es el núcleo del sistema de gestión de pestañas de SimAS 3.0, implementando un sistema complejo de pestañas jerárquicas.
+
+\inputminted[linenos,breaklines,firstline=1,lastline=100]{java}{codigo/src/utils/TabManager.java}
+
+\textbf{Características principales:}
+
+\begin{itemize}
+    \item \textbf{Gestión de pestañas jerárquica:} Sistema padre-hijo para organizar pestañas relacionadas
+    \item \textbf{Agrupación de elementos:} Agrupa editores y simuladores relacionados por número de grupo
+    \item \textbf{Movimiento entre ventanas:} Permite arrastrar y soltar pestañas entre ventanas
+    \item \textbf{Renovación automática:} Reasigna números de grupo cuando cambian las pestañas
+    \item \textbf{Internacionalización:} Soporte para textos en múltiples idiomas
+    \item \textbf{Instancias múltiples:} Permite múltiples instancias de editores y simuladores
+    \item \textbf{Menús contextuales:} Gestiona menús contextuales personalizados para pestañas
+    \item \textbf{Persistencia de estado:} Mantiene el estado de grupos y relaciones entre sesiones
+\end{itemize}
+
+\textbf{Método principal de creación de pestañas:}
+
+\begin{lstlisting}[language=Java, caption=Método principal getOrCreateTab]
+public static Tab getOrCreateTab(TabPane tabPane, Class<?> tabType, String title,
+                                Object content, String parentId, String childId) {
+
+    // Inicializar mapas para este TabPane
+    tabInstances.computeIfAbsent(tabPane, k -> new HashMap<>());
+    parentChildRelations.computeIfAbsent(tabPane, k -> new HashMap<>());
+    elementoToGrupo.computeIfAbsent(tabPane, k -> new HashMap<>());
+    gruposGramatica.computeIfAbsent(tabPane, k -> new HashMap<>());
+
+    // Lógica para determinar si usar caché o crear nueva instancia
+    boolean isChildOfEditor = (parentId != null && parentId.startsWith("editor_")) ||
+                             (childId != null && (childId.contains("editor_") ||
+                                                 childId.contains("creacion_") ||
+                                                 childId.startsWith("terminales_")));
+
+    boolean isChildOfSimulator = (parentId != null && parentId.startsWith("simulador_")) ||
+                                (childId != null && (childId.startsWith("gramatica_simulador_") ||
+                                                    childId.startsWith("funciones_error_simulador_") ||
+                                                    childId.startsWith("derivacion_") ||
+                                                    childId.startsWith("arbol_")));
+
+    // Crear nueva pestaña según las reglas definidas
+    Tab newTab = new Tab(title, nodeContent);
+    newTab.setClosable(true);
+
+    // Establecer userData para identificar relaciones padre-hijo
+    if (childId != null) {
+        newTab.setUserData(childId);
+    } else if (parentId != null) {
+        newTab.setUserData(parentId);
+    }
+
+    // Configurar listeners y relaciones
+    configurarListenersYPadreHijo(newTab, tabPane, parentId, childId);
+
+    return newTab;
+}
+\end{lstlisting}
+
+\subsection{SecondaryWindow.java}
+
+La clase \texttt{SecondaryWindow} implementa el sistema de ventanas secundarias de SimAS 3.0.
+
+\inputminted[linenos,breaklines,firstline=1,lastline=150]{java}{codigo/src/utils/SecondaryWindow.java}
+
+\textbf{Características principales:}
+
+\begin{itemize}
+    \item \textbf{Ventanas múltiples:} Permite crear múltiples ventanas secundarias independientes
+    \item \textbf{Arrastre de pestañas:} Soporta arrastrar y soltar pestañas entre ventanas
+    \item \textbf{Atajos de teclado:} Implementa atajos específicos para ventanas secundarias
+    \item \textbf{Numeración automática:} Asigna números automáticamente a las ventanas
+    \item \textbf{Internacionalización:} Soporte completo para múltiples idiomas
+    \item \textbf{Integración con TabManager:} Funciona perfectamente con el sistema de pestañas
+    \item \textbf{Cierre inteligente:} Gestiona el cierre automático cuando no hay pestañas
+    \item \textbf{Estados persistentes:} Mantiene el estado de las ventanas activas
+\end{itemize}
+
+\textbf{Constructor principal:}
+
+\begin{lstlisting}[language=Java, caption=Constructor de SecondaryWindow]
+public SecondaryWindow(ResourceBundle bundle, String baseTitle) {
+    super(null); // No inicializar la ventana en la clase padre
+
+    this.bundle = bundle;
+
+    windowNumber = getNextAvailableNumber();
+    windowId = "SecondaryWindow-" + windowNumber;
+    activeWindows.put(windowId, this);
+
+    // Crear un nuevo TabPane local para esta ventana
+    localTabPane = new TabPane();
+    configureTabPane();
+
+    // Configurar la ventana
+    stage = new Stage();
+    Scene scene = new Scene(rootContainer);
+    stage.setScene(scene);
+
+    // Configurar el título con el número de ventana
+    updateWindowTitle(baseTitle);
+}
+\end{lstlisting}
+
+\subsection{LanguageItem.java}
+
+Representa un elemento de idioma en el sistema de internacionalización.
+
+\inputminted[linenos,breaklines,firstline=1,lastline=25]{java}{codigo/src/utils/LanguageItem.java}
+
+\section{Patrones de diseño implementados}
+
+\subsection{Patrón MVC}
+
+La aplicación implementa claramente el patrón Modelo-Vista-Controlador:
+
+\begin{itemize}
+    \item \textbf{Modelo}: Clases en el paquete \texttt{gramatica}
+    \item \textbf{Vista}: Archivos FXML en el directorio \texttt{vistas}
+    \item \textbf{Controlador}: Clases Java que manejan la lógica de presentación
+\end{itemize}
+
+\subsection{Patrón Observer}
+
+Utilizado para la gestión de eventos de la interfaz de usuario a través de los mecanismos de JavaFX.
+
+\subsection{Patrón Factory}
+
+Implementado para la creación de diferentes tipos de símbolos y componentes de la interfaz.
+
+\section{Consideraciones de rendimiento}
+
+\subsection{Gestión de memoria}
+
+\begin{itemize}
+    \item Uso de \texttt{HashSet} para conjuntos FIRST y FOLLOW para acceso O(1)
+    \item Implementación eficiente de algoritmos de análisis sintáctico
+    \item Gestión adecuada de recursos JavaFX
+\end{itemize}
+
+\subsection{Optimizaciones implementadas}
+
+\begin{itemize}
+    \item Cálculo incremental de conjuntos FIRST y FOLLOW
+    \item Cache de resultados de análisis
+    \item Lazy loading de componentes de interfaz
+\end{itemize}
+
+\section{Tratamiento de errores}
+
+\subsection{Validación de gramáticas}
+
+La aplicación implementa validaciones exhaustivas:
+
+\begin{itemize}
+    \item Verificación de gramáticas bien formadas
+    \item Detección de conflictos LL(1)
+    \item Validación de símbolos y producciones
+\end{itemize}
+
+\subsection{Manejo de excepciones}
+
+\begin{itemize}
+    \item Uso de excepciones específicas para diferentes tipos de errores
+    \item Mensajes de error informativos para el usuario
+    \item Recuperación graceful de errores
+\end{itemize}
 

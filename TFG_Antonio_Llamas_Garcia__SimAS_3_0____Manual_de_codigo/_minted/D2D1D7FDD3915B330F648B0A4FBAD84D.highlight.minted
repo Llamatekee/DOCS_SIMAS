@@ -1,0 +1,132 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/bin/bash}
+
+\PYG{c+c1}{\PYGZsh{} Script para crear una aplicación completamente independiente}
+
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}=== Creando aplicación independiente ===\PYGZdq{}}
+
+\PYG{n+nv}{APP\PYGZus{}NAME}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}SimAS\PYGZdq{}}
+\PYG{n+nv}{OUTPUT\PYGZus{}DIR}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}./dist\PYGZhy{}standalone\PYGZdq{}}
+\PYG{n+nv}{BUILD\PYGZus{}DIR}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}./build\PYGZdq{}}
+
+\PYG{k}{if}\PYG{+w}{ }\PYG{o}{[}\PYG{+w}{ }!\PYG{+w}{ }\PYGZhy{}d\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}BUILD\PYGZus{}DIR}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{]}\PYG{p}{;}\PYG{+w}{ }\PYG{k}{then}
+\PYG{+w}{    }\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}ERROR: No se encontró el directorio de build\PYGZdq{}}
+\PYG{+w}{    }\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Ejecuta primero: ./build\PYGZhy{}with\PYGZhy{}natives.sh\PYGZdq{}}
+\PYG{+w}{    }\PYG{n+nb}{exit}\PYG{+w}{ }\PYG{l+m}{1}
+\PYG{k}{fi}
+
+\PYG{c+c1}{\PYGZsh{} Crear directorio de salida}
+mkdir\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}OUTPUT\PYGZus{}DIR}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}SUCCESS: Directorio de salida creado\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Crear estructura de la aplicación}
+\PYG{n+nv}{APP\PYGZus{}PATH}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}OUTPUT\PYGZus{}DIR}\PYG{l+s+s2}{/}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}NAME}\PYG{l+s+s2}{.app}\PYG{l+s+s2}{\PYGZdq{}}
+mkdir\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}PATH}\PYG{l+s+s2}{/Contents/MacOS}\PYG{l+s+s2}{\PYGZdq{}}
+mkdir\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}PATH}\PYG{l+s+s2}{/Contents/Java}\PYG{l+s+s2}{\PYGZdq{}}
+mkdir\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}PATH}\PYG{l+s+s2}{/Contents/Resources}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}SUCCESS: Estructura de aplicación creada\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Copiar JAR principal}
+cp\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}BUILD\PYGZus{}DIR}\PYG{l+s+s2}{/SimAS.jar}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}PATH}\PYG{l+s+s2}{/Contents/Java/}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Copiar todas las librerías de JavaFX}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Copiando librerías de JavaFX...\PYGZdq{}}
+cp\PYG{+w}{ }lib/javafx\PYGZhy{}sdk\PYGZhy{}17.0.12/lib/*.jar\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}PATH}\PYG{l+s+s2}{/Contents/Java/}\PYG{l+s+s2}{\PYGZdq{}}
+cp\PYG{+w}{ }lib/javafx\PYGZhy{}sdk\PYGZhy{}17.0.12/lib/*.dylib\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}PATH}\PYG{l+s+s2}{/Contents/Java/}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Crear script de lanzamiento}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Creando script de lanzamiento...\PYGZdq{}}
+cat\PYG{+w}{ }\PYGZgt{}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}PATH}\PYG{l+s+s2}{/Contents/MacOS/}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}NAME}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZlt{}\PYGZlt{} \PYGZsq{}EOF\PYGZsq{}}
+\PYG{l+s}{\PYGZsh{}!/bin/bash}
+
+\PYG{l+s}{\PYGZsh{} Script de lanzamiento para SimAS}
+\PYG{l+s}{APP\PYGZus{}DIR=\PYGZdq{}\PYGZdl{}(dirname \PYGZdq{}\PYGZdl{}0\PYGZdq{})/..\PYGZdq{}}
+\PYG{l+s}{JAR\PYGZus{}PATH=\PYGZdq{}\PYGZdl{}APP\PYGZus{}DIR/Java/SimAS.jar\PYGZdq{}}
+\PYG{l+s}{JAVA\PYGZus{}LIB\PYGZus{}PATH=\PYGZdq{}\PYGZdl{}APP\PYGZus{}DIR/Java\PYGZdq{}}
+
+\PYG{l+s}{\PYGZsh{} Construir classpath}
+\PYG{l+s}{CLASSPATH=\PYGZdq{}\PYGZdl{}JAR\PYGZus{}PATH\PYGZdq{}}
+\PYG{l+s}{for jar in \PYGZdq{}\PYGZdl{}JAVA\PYGZus{}LIB\PYGZus{}PATH\PYGZdq{}/*.jar; do}
+\PYG{l+s}{    if [ \PYGZhy{}f \PYGZdq{}\PYGZdl{}jar\PYGZdq{} ]; then}
+\PYG{l+s}{        CLASSPATH=\PYGZdq{}\PYGZdl{}CLASSPATH:\PYGZdl{}jar\PYGZdq{}}
+\PYG{l+s}{    fi}
+\PYG{l+s}{done}
+
+\PYG{l+s}{\PYGZsh{} Ejecutar con JavaFX modules}
+\PYG{l+s}{exec java \PYGZbs{}}
+\PYG{l+s}{    \PYGZhy{}\PYGZhy{}module\PYGZhy{}path \PYGZdq{}\PYGZdl{}JAVA\PYGZus{}LIB\PYGZus{}PATH\PYGZdq{} \PYGZbs{}}
+\PYG{l+s}{    \PYGZhy{}\PYGZhy{}add\PYGZhy{}modules javafx.controls,javafx.fxml \PYGZbs{}}
+\PYG{l+s}{    \PYGZhy{}\PYGZhy{}add\PYGZhy{}opens=javafx.graphics/javafx.scene=ALL\PYGZhy{}UNNAMED \PYGZbs{}}
+\PYG{l+s}{    \PYGZhy{}\PYGZhy{}add\PYGZhy{}opens=javafx.controls/javafx.scene.control=ALL\PYGZhy{}UNNAMED \PYGZbs{}}
+\PYG{l+s}{    \PYGZhy{}\PYGZhy{}add\PYGZhy{}opens=javafx.fxml/javafx.fxml=ALL\PYGZhy{}UNNAMED \PYGZbs{}}
+\PYG{l+s}{    \PYGZhy{}cp \PYGZdq{}\PYGZdl{}CLASSPATH\PYGZdq{} \PYGZbs{}}
+\PYG{l+s}{    \PYGZhy{}Djava.library.path=\PYGZdq{}\PYGZdl{}JAVA\PYGZus{}LIB\PYGZus{}PATH\PYGZdq{} \PYGZbs{}}
+\PYG{l+s}{    bienvenida.Bienvenida}
+\PYG{l+s}{EOF}
+
+\PYG{c+c1}{\PYGZsh{} Hacer el script ejecutable}
+chmod\PYG{+w}{ }+x\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}PATH}\PYG{l+s+s2}{/Contents/MacOS/}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}NAME}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Crear Info.plist}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Creando Info.plist...\PYGZdq{}}
+cat\PYG{+w}{ }\PYGZgt{}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}PATH}\PYG{l+s+s2}{/Contents/Info.plist}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{l+s}{\PYGZlt{}\PYGZlt{} EOF}
+\PYG{l+s}{\PYGZlt{}?xml version=\PYGZdq{}1.0\PYGZdq{} ?\PYGZgt{}}
+\PYG{l+s}{\PYGZlt{}!DOCTYPE plist PUBLIC \PYGZdq{}\PYGZhy{}//Apple//DTD PLIST 1.0//EN\PYGZdq{} \PYGZdq{}https://www.apple.com/DTDs/PropertyList\PYGZhy{}1.0.dtd\PYGZdq{}\PYGZgt{}}
+\PYG{l+s}{\PYGZlt{}plist version=\PYGZdq{}1.0\PYGZdq{}\PYGZgt{}}
+\PYG{l+s}{ \PYGZlt{}dict\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}key\PYGZgt{}LSMinimumSystemVersion\PYGZlt{}/key\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}string\PYGZgt{}10.11\PYGZlt{}/string\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}key\PYGZgt{}CFBundleDevelopmentRegion\PYGZlt{}/key\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}string\PYGZgt{}English\PYGZlt{}/string\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}key\PYGZgt{}CFBundleAllowMixedLocalizations\PYGZlt{}/key\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}true/\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}key\PYGZgt{}CFBundleExecutable\PYGZlt{}/key\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}string\PYGZgt{}\PYGZdl{}APP\PYGZus{}NAME\PYGZlt{}/string\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}key\PYGZgt{}CFBundleIconFile\PYGZlt{}/key\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}string\PYGZgt{}\PYGZdl{}APP\PYGZus{}NAME.icns\PYGZlt{}/string\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}key\PYGZgt{}CFBundleIdentifier\PYGZlt{}/key\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}string\PYGZgt{}com.simas.app\PYGZlt{}/string\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}key\PYGZgt{}CFBundleInfoDictionaryVersion\PYGZlt{}/key\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}string\PYGZgt{}6.0\PYGZlt{}/string\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}key\PYGZgt{}CFBundleName\PYGZlt{}/key\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}string\PYGZgt{}\PYGZdl{}APP\PYGZus{}NAME\PYGZlt{}/string\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}key\PYGZgt{}CFBundlePackageType\PYGZlt{}/key\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}string\PYGZgt{}APPL\PYGZlt{}/string\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}key\PYGZgt{}CFBundleShortVersionString\PYGZlt{}/key\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}string\PYGZgt{}3.0\PYGZlt{}/string\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}key\PYGZgt{}CFBundleSignature\PYGZlt{}/key\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}string\PYGZgt{}????\PYGZlt{}/string\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}key\PYGZgt{}LSApplicationCategoryType\PYGZlt{}/key\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}string\PYGZgt{}public.app\PYGZhy{}category.utilities\PYGZlt{}/string\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}key\PYGZgt{}CFBundleVersion\PYGZlt{}/key\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}string\PYGZgt{}3.0\PYGZlt{}/string\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}key\PYGZgt{}NSHumanReadableCopyright\PYGZlt{}/key\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}string\PYGZgt{}Copyright (C) 2025 Universidad de Córdoba\PYGZlt{}/string\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}key\PYGZgt{}NSHighResolutionCapable\PYGZlt{}/key\PYGZgt{}}
+\PYG{l+s}{  \PYGZlt{}string\PYGZgt{}true\PYGZlt{}/string\PYGZgt{}}
+\PYG{l+s}{ \PYGZlt{}/dict\PYGZgt{}}
+\PYG{l+s}{\PYGZlt{}/plist\PYGZgt{}}
+\PYG{l+s}{EOF}
+
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{SUCCESS: Aplicación independiente creada en }\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}PATH}\PYG{l+s+s2}{\PYGZdq{}}
+
+\PYG{c+c1}{\PYGZsh{} Probar la aplicación}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Probando la aplicación...\PYGZdq{}}
+\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}PATH}\PYG{l+s+s2}{/Contents/MacOS/}\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}NAME}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{p}{\PYGZam{}}
+\PYG{n+nv}{APP\PYGZus{}PID}\PYG{o}{=}\PYG{n+nv}{\PYGZdl{}!}
+
+sleep\PYG{+w}{ }\PYG{l+m}{5}
+
+\PYG{k}{if}\PYG{+w}{ }\PYG{n+nb}{kill}\PYG{+w}{ }\PYGZhy{}0\PYG{+w}{ }\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}PID}\PYG{+w}{ }\PYG{l+m}{2}\PYGZgt{}/dev/null\PYG{p}{;}\PYG{+w}{ }\PYG{k}{then}
+\PYG{+w}{    }\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}SUCCESS: ¡La aplicación se está ejecutando correctamente!\PYGZdq{}}
+\PYG{+w}{    }\PYG{n+nb}{kill}\PYG{+w}{ }\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}PID}
+\PYG{k}{else}
+\PYG{+w}{    }\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}ERROR: La aplicación no se pudo ejecutar\PYGZdq{}}
+\PYG{k}{fi}
+
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}=== Aplicación independiente creada ===\PYGZdq{}}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Ubicación: }\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}PATH}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Puedes hacer doble clic en }\PYG{n+nv}{\PYGZdl{}APP\PYGZus{}PATH}\PYG{l+s+s2}{ para ejecutar la aplicación}\PYG{l+s+s2}{\PYGZdq{}}
+\end{MintedVerbatim}

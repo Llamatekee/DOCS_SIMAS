@@ -1,0 +1,611 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{package}\PYG{+w}{ }\PYG{n+nn}{editor}\PYG{p}{;}
+
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{bienvenida.MenuPrincipal}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{simulador.PanelSimuladorDesc}\PYG{p}{;}
+
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{gramatica.Gramatica}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.collections.FXCollections}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.collections.ObservableList}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.fxml.FXML}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.fxml.FXMLLoader}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.scene.Parent}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.scene.control.*}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.scene.control.Alert.AlertType}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.scene.layout.BorderPane}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.scene.layout.GridPane}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.scene.layout.Priority}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.scene.layout.VBox}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.stage.Stage}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.stage.FileChooser}\PYG{p}{;}
+
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{java.io.IOException}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{java.io.File}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{java.util.ArrayList}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{java.util.List}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{java.util.Map}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{java.util.Optional}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{java.util.ResourceBundle}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{utils.TabManager}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{utils.ActualizableTextos}\PYG{p}{;}
+
+\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{class} \PYG{n+nc}{Editor}\PYG{+w}{ }\PYG{k+kd}{extends}\PYG{+w}{ }\PYG{n}{VBox}\PYG{+w}{ }\PYG{k+kd}{implements}\PYG{+w}{ }\PYG{n}{ActualizableTextos}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Modelo}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Gramatica}\PYG{+w}{ }\PYG{n}{gramatica}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{crearGramatica}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c+c1}{// Dependencias del sistema}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n}{TabPane}\PYG{+w}{ }\PYG{n}{tabPane}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n}{MenuPrincipal}\PYG{+w}{ }\PYG{n}{menuPane}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c+c1}{// Componentes inyectados desde el FXML}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{BorderPane}\PYG{+w}{ }\PYG{n}{rootPane}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Label}\PYG{+w}{ }\PYG{n}{labelTitulo}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Button}\PYG{+w}{ }\PYG{n}{btnAnadir}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Button}\PYG{+w}{ }\PYG{n}{btnAbrir}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Button}\PYG{+w}{ }\PYG{n}{btnGuardar}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Button}\PYG{+w}{ }\PYG{n}{btnEditar}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Button}\PYG{+w}{ }\PYG{n}{btnEliminar}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Button}\PYG{+w}{ }\PYG{n}{btnValidar}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Button}\PYG{+w}{ }\PYG{n}{btnInforme}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Button}\PYG{+w}{ }\PYG{n}{btnSimular}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Button}\PYG{+w}{ }\PYG{n}{btnSalir}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{TextField}\PYG{+w}{ }\PYG{n}{txtNombre}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{TextField}\PYG{+w}{ }\PYG{n}{txtAreaDesc}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{TextField}\PYG{+w}{ }\PYG{n}{txtSimInicial}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{ListView}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{listNoTerminales}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{ListView}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{listTerminales}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{ListView}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{listProducciones}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Label}\PYG{+w}{ }\PYG{n}{labelPanelTitulo}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Label}\PYG{+w}{ }\PYG{n}{labelNombre}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Label}\PYG{+w}{ }\PYG{n}{labelSimboloInicial}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Label}\PYG{+w}{ }\PYG{n}{labelDescripcion}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Label}\PYG{+w}{ }\PYG{n}{labelNoTerminales}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Label}\PYG{+w}{ }\PYG{n}{labelTerminales}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}\PYG{+w}{ }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Label}\PYG{+w}{ }\PYG{n}{labelProducciones}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{ResourceBundle}\PYG{+w}{ }\PYG{n}{bundle}\PYG{p}{;}
+\PYG{+w}{    }
+\PYG{+w}{    }\PYG{c+c1}{// Sistema de identificación para relaciones padre\PYGZhy{}hijo}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{String}\PYG{+w}{ }\PYG{n}{editorId}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kd}{static}\PYG{+w}{ }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{contadorEditores}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{boolean}\PYG{+w}{ }\PYG{n}{listenerConfigured}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{false}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{c+c1}{// ==========================}
+\PYG{+w}{    }\PYG{c+c1}{// CONSTRUCTORES}
+\PYG{+w}{    }\PYG{c+c1}{// ==========================}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Constructor vacio (requerido por JavaFX para cargar FXML).}
+\PYG{c+cm}{     * ATENCION: Se deben asignar `tabPane` y `menuPane` despues de la carga.}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n+nf}{Editor}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Gramatica}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{editorId}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor\PYGZus{}}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{currentTimeMillis}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZus{}}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{+}\PYG{o}{+}\PYG{n}{contadorEditores}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{cargarFXML}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{configurarRelacionesPadreHijo}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Constructor con TabPane y MenuPrincipal para uso manual.}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n+nf}{Editor}\PYG{p}{(}\PYG{n}{TabPane}\PYG{+w}{ }\PYG{n}{tabPane}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MenuPrincipal}\PYG{+w}{ }\PYG{n}{menuPane}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{tabPane}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{tabPane}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{menuPane}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{menuPane}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Gramatica}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{editorId}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor\PYGZus{}}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{currentTimeMillis}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZus{}}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{+}\PYG{o}{+}\PYG{n}{contadorEditores}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{cargarFXML}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{configurarRelacionesPadreHijo}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Constructor con gramatica preexistente.}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n+nf}{Editor}\PYG{p}{(}\PYG{n}{TabPane}\PYG{+w}{ }\PYG{n}{tabPane}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Gramatica}\PYG{+w}{ }\PYG{n}{gramatica}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MenuPrincipal}\PYG{+w}{ }\PYG{n}{menuPane}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{tabPane}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{tabPane}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{menuPane}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{menuPane}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{gramatica}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{editorId}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor\PYGZus{}}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{currentTimeMillis}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZus{}}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{+}\PYG{o}{+}\PYG{n}{contadorEditores}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{cargarFXML}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{configurarRelacionesPadreHijo}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Constructor con TabPane, MenuPrincipal y ResourceBundle.}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n+nf}{Editor}\PYG{p}{(}\PYG{n}{TabPane}\PYG{+w}{ }\PYG{n}{tabPane}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{MenuPrincipal}\PYG{+w}{ }\PYG{n}{menuPane}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ResourceBundle}\PYG{+w}{ }\PYG{n}{bundle}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{tabPane}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{tabPane}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{menuPane}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{menuPane}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Gramatica}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{bundle}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{bundle}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{editorId}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor\PYGZus{}}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{currentTimeMillis}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZus{}}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{+}\PYG{o}{+}\PYG{n}{contadorEditores}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{cargarFXML}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{configurarRelacionesPadreHijo}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// ==========================}
+\PYG{+w}{    }\PYG{c+c1}{// MÉTODOS DE INICIALIZACIÓN}
+\PYG{+w}{    }\PYG{c+c1}{// ==========================}
+\PYG{+w}{    }
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Configura las relaciones padre\PYGZhy{}hijo para cerrar pestanas hijas cuando se cierre el editor.}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{configurarRelacionesPadreHijo}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{tabPane}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{o}{!}\PYG{n}{listenerConfigured}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{c+c1}{// Configurar listener para detectar cuando se cierran pestañas}
+\PYG{+w}{            }\PYG{n}{tabPane}\PYG{p}{.}\PYG{n+na}{getTabs}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{addListener}\PYG{p}{(}\PYG{p}{(}\PYG{n}{javafx}\PYG{p}{.}\PYG{n+na}{collections}\PYG{p}{.}\PYG{n+na}{ListChangeListener}\PYG{p}{.}\PYG{n+na}{Change}\PYG{o}{\PYGZlt{}}\PYG{o}{?}\PYG{+w}{ }\PYG{k+kd}{extends}\PYG{+w}{ }\PYG{n}{Tab}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{change}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{while}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{change}\PYG{p}{.}\PYG{n+na}{next}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{change}\PYG{p}{.}\PYG{n+na}{wasRemoved}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                        }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Tab}\PYG{+w}{ }\PYG{n}{tab}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{n}{change}\PYG{p}{.}\PYG{n+na}{getRemoved}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{tab}\PYG{p}{.}\PYG{n+na}{getContent}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{tab}\PYG{p}{.}\PYG{n+na}{getUserData}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                                }\PYG{n}{String}\PYG{+w}{ }\PYG{n}{elementId}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{tab}\PYG{p}{.}\PYG{n+na}{getUserData}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{toString}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                                }\PYG{c+c1}{// Cerrar las pestañas hijas}
+\PYG{+w}{                                }\PYG{n}{TabManager}\PYG{p}{.}\PYG{n+na}{closeChildTabs}\PYG{p}{(}\PYG{n}{tabPane}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{elementId}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                                }\PYG{c+c1}{// Forzar renumeración de grupos}
+\PYG{+w}{                                }\PYG{n}{TabManager}\PYG{p}{.}\PYG{n+na}{reasignarNumerosGruposGramatica}\PYG{p}{(}\PYG{n}{tabPane}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{                        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{                    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }
+\PYG{+w}{            }\PYG{c+c1}{// Buscar la pestaña que contiene este editor}
+\PYG{+w}{            }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Tab}\PYG{+w}{ }\PYG{n}{tab}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{n}{tabPane}\PYG{p}{.}\PYG{n+na}{getTabs}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{tab}\PYG{p}{.}\PYG{n+na}{getContent}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{tab}\PYG{p}{.}\PYG{n+na}{getUserData}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{n}{String}\PYG{+w}{ }\PYG{n}{elementId}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{tab}\PYG{p}{.}\PYG{n+na}{getUserData}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{toString}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                    }\PYG{c+c1}{// Registrar las relaciones padre\PYGZhy{}hijo existentes}
+\PYG{+w}{                    }\PYG{n}{Map}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{List}\PYG{o}{\PYGZlt{}}\PYG{n}{Tab}\PYG{o}{\PYGZgt{}}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{relations}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{TabManager}\PYG{p}{.}\PYG{n+na}{getParentChildRelations}\PYG{p}{(}\PYG{n}{tabPane}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n}{relations}\PYG{p}{.}\PYG{n+na}{containsKey}\PYG{p}{(}\PYG{n}{elementId}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                        }\PYG{n}{relations}\PYG{p}{.}\PYG{n+na}{put}\PYG{p}{(}\PYG{n}{elementId}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{ArrayList}\PYG{o}{\PYGZlt{}}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{                    }\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }
+\PYG{+w}{            }\PYG{n}{listenerConfigured}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{true}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Carga la interfaz desde el archivo FXML.}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{cargarFXML}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{try}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{FXMLLoader}\PYG{+w}{ }\PYG{n}{loader}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{FXMLLoader}\PYG{p}{(}\PYG{n}{getClass}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{getResource}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{/vistas/Editor.fxml}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{loader}\PYG{p}{.}\PYG{n+na}{setController}\PYG{p}{(}\PYG{k}{this}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{loader}\PYG{p}{.}\PYG{n+na}{setResources}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{Parent}\PYG{+w}{ }\PYG{n}{root}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{loader}\PYG{p}{.}\PYG{n+na}{load}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{getChildren}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{setAll}\PYG{p}{(}\PYG{n}{root}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{catch}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{IOException}\PYG{+w}{ }\PYG{n}{e}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{e}\PYG{p}{.}\PYG{n+na}{printStackTrace}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Obtiene el ID unico de este editor.}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n}{String}\PYG{+w}{ }\PYG{n+nf}{getEditorId}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{editorId}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n}{Gramatica}\PYG{+w}{ }\PYG{n+nf}{getGramatica}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{setGramatica}\PYG{p}{(}\PYG{n}{Gramatica}\PYG{+w}{ }\PYG{n}{gramatica}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{gramatica}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Método de inicialización; se invoca automáticamente tras cargar el FXML.}
+\PYG{+w}{    }\PYG{n+nd}{@FXML}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{initialize}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{actualizarTextos}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{configurarTooltips}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{c+c1}{// Configurar la vista según sea necesario}
+\PYG{+w}{        }\PYG{n}{btnEditar}\PYG{p}{.}\PYG{n+na}{setDisable}\PYG{p}{(}\PYG{k+kc}{true}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{btnEliminar}\PYG{p}{.}\PYG{n+na}{setDisable}\PYG{p}{(}\PYG{k+kc}{true}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{btnGuardar}\PYG{p}{.}\PYG{n+na}{setDisable}\PYG{p}{(}\PYG{k+kc}{true}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{btnValidar}\PYG{p}{.}\PYG{n+na}{setDisable}\PYG{p}{(}\PYG{k+kc}{true}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{btnInforme}\PYG{p}{.}\PYG{n+na}{setDisable}\PYG{p}{(}\PYG{k+kc}{true}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{btnSimular}\PYG{p}{.}\PYG{n+na}{setDisable}\PYG{p}{(}\PYG{k+kc}{true}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Métodos para inyectar dependencias (si se crean desde MenuPrincipal)}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{setTabPane}\PYG{p}{(}\PYG{n}{TabPane}\PYG{+w}{ }\PYG{n}{tabPane}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{tabPane}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{tabPane}\PYG{p}{;}
+\PYG{+w}{        }\PYG{c+c1}{// Configurar relaciones padre\PYGZhy{}hijo si aún no se ha hecho}
+\PYG{+w}{        }\PYG{n}{configurarRelacionesPadreHijo}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{setMenuPane}\PYG{p}{(}\PYG{n}{MenuPrincipal}\PYG{+w}{ }\PYG{n}{menuPane}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{menuPane}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{menuPane}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Método para obtener el nodo raíz del editor (para incluirlo en una pestaña)}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n}{Parent}\PYG{+w}{ }\PYG{n+nf}{getRoot}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{rootPane}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// Método auxiliar para crear una gramática vacía}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{Gramatica}\PYG{+w}{ }\PYG{n+nf}{crearGramatica}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Gramatica}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// ===============================}
+\PYG{+w}{    }\PYG{c+c1}{// Métodos de manejo de eventos}
+\PYG{+w}{    }\PYG{c+c1}{// ===============================}
+
+\PYG{+w}{    }\PYG{n+nd}{@FXML}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{onBtnAnadirAction}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{c+c1}{// Crear una nueva pestaña de creación como hija del editor}
+\PYG{+w}{        }\PYG{n}{String}\PYG{+w}{ }\PYG{n}{childId}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{creacion\PYGZus{}}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{editorId}\PYG{p}{.}\PYG{n+na}{replace}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor\PYGZus{}}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{PanelCreacionGramatica}\PYG{+w}{ }\PYG{n}{asistente}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{PanelCreacionGramatica}\PYG{p}{(}\PYG{k}{this}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tabPane}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{menuPane}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{childId}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{TabManager}\PYG{p}{.}\PYG{n+na}{getOrCreateTab}\PYG{p}{(}\PYG{n}{tabPane}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{PanelCreacionGramatica}\PYG{p}{.}\PYG{n+na}{class}\PYG{p}{,}\PYG{+w}{ }
+\PYG{+w}{            }\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{creacion.tab.paso1}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{asistente}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{editorId}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{childId}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n+nd}{@FXML}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{onBtnAbrirAction}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{cargarGramatica}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n+nd}{@FXML}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{onBtnGuardarAction}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{grabarGramatica}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n+nd}{@FXML}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{onBtnEditarAction}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{tabPane}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{+w}{ }\PYG{o}{|}\PYG{o}{|}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{menuPane}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{mostrarError}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Error}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{No se pueden iniciar la edición en este momento.}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{c+c1}{// Crear una nueva pestaña de edición como hija del editor}
+\PYG{+w}{        }\PYG{n}{String}\PYG{+w}{ }\PYG{n}{childId}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{creacion\PYGZus{}}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{editorId}\PYG{p}{.}\PYG{n+na}{replace}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor\PYGZus{}}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{PanelCreacionGramatica}\PYG{+w}{ }\PYG{n}{asistente}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{PanelCreacionGramatica}\PYG{p}{(}\PYG{k}{this}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tabPane}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{menuPane}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{childId}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{TabManager}\PYG{p}{.}\PYG{n+na}{getOrCreateTab}\PYG{p}{(}\PYG{n}{tabPane}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{PanelCreacionGramatica}\PYG{p}{.}\PYG{n+na}{class}\PYG{p}{,}\PYG{+w}{ }
+\PYG{+w}{            }\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{creacion.tab.paso1}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{asistente}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{editorId}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{childId}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n+nd}{@FXML}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{onBtnEliminarAction}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{ButtonType}\PYG{+w}{ }\PYG{n}{btnSi}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{ButtonType}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{button.si}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ButtonBar}\PYG{p}{.}\PYG{n+na}{ButtonData}\PYG{p}{.}\PYG{n+na}{YES}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{ButtonType}\PYG{+w}{ }\PYG{n}{btnNo}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{ButtonType}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{button.no}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ButtonBar}\PYG{p}{.}\PYG{n+na}{ButtonData}\PYG{p}{.}\PYG{n+na}{NO}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{Alert}\PYG{+w}{ }\PYG{n}{confirm}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Alert}\PYG{p}{(}\PYG{n}{AlertType}\PYG{p}{.}\PYG{n+na}{CONFIRMATION}\PYG{p}{,}\PYG{+w}{ }
+\PYG{+w}{            }\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.msg.confirmar.eliminar}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }
+\PYG{+w}{            }\PYG{n}{btnSi}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{btnNo}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{confirm}\PYG{p}{.}\PYG{n+na}{setTitle}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.dialog.eliminar.titulo}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{confirm}\PYG{p}{.}\PYG{n+na}{setHeaderText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.header.eliminar}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{Optional}\PYG{o}{\PYGZlt{}}\PYG{n}{ButtonType}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{result}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{confirm}\PYG{p}{.}\PYG{n+na}{showAndWait}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{result}\PYG{p}{.}\PYG{n+na}{isPresent}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{result}\PYG{p}{.}\PYG{n+na}{get}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{btnSi}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Gramatica}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{actualizarVisualizacion}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n+nd}{@FXML}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{onBtnValidarAction}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{validarGramatica}\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n+nd}{@FXML}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{onBtnInformeAction}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{generarInformePDF}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n+nd}{@FXML}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{onBtnSimularAction}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{tabPane}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{+w}{ }\PYG{o}{|}\PYG{o}{|}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{menuPane}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{mostrarError}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Error}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{No se puede iniciar la simulación en este momento.}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }
+\PYG{+w}{        }\PYG{c+c1}{// Solo validar si no está ya validada}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{p}{.}\PYG{n+na}{getEstado}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{validarGramatica}\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{p}{.}\PYG{n+na}{getEstado}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }
+\PYG{+w}{        }\PYG{c+c1}{// Verificar si ya existe un simulador para este editor}
+\PYG{+w}{        }\PYG{n}{String}\PYG{+w}{ }\PYG{n}{simuladorId}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{simulador\PYGZus{}}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{editorId}\PYG{p}{.}\PYG{n+na}{replace}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor\PYGZus{}}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Tab}\PYG{+w}{ }\PYG{n}{tab}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{n}{tabPane}\PYG{p}{.}\PYG{n+na}{getTabs}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{tab}\PYG{p}{.}\PYG{n+na}{getUserData}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{tab}\PYG{p}{.}\PYG{n+na}{getUserData}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{toString}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{equals}\PYG{p}{(}\PYG{n}{simuladorId}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{c+c1}{// Si existe, mostrar mensaje y seleccionar la pestaña}
+\PYG{+w}{                }\PYG{n}{Alert}\PYG{+w}{ }\PYG{n}{alert}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Alert}\PYG{p}{(}\PYG{n}{AlertType}\PYG{p}{.}\PYG{n+na}{INFORMATION}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setTitle}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.simulador.existente.titulo}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setHeaderText}\PYG{p}{(}\PYG{k+kc}{null}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setContentText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.simulador.existente.mensaje}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{showAndWait}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{tabPane}\PYG{p}{.}\PYG{n+na}{getSelectionModel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{select}\PYG{p}{(}\PYG{n}{tab}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }
+\PYG{+w}{        }\PYG{c+c1}{// Crear una copia de la gramática para el simulador (para no modificar la original del editor)}
+\PYG{+w}{        }\PYG{n}{Gramatica}\PYG{+w}{ }\PYG{n}{gramaticaParaSimulador}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Gramatica}\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c+c1}{// Crear un nuevo simulador como hijo del editor con la copia de la gramática}
+\PYG{+w}{        }\PYG{n}{PanelSimuladorDesc}\PYG{+w}{ }\PYG{n}{simulador}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{PanelSimuladorDesc}\PYG{p}{(}\PYG{n}{gramaticaParaSimulador}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{tabPane}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{menuPane}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{simuladorId}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{bundle}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }
+\PYG{+w}{        }\PYG{c+c1}{// Asignar el simulador al mismo grupo que el editor}
+\PYG{+w}{        }\PYG{n}{TabManager}\PYG{p}{.}\PYG{n+na}{asignarSimuladorAGrupoDeEditor}\PYG{p}{(}\PYG{n}{tabPane}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{simuladorId}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{editorId}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }
+\PYG{+w}{        }\PYG{c+c1}{// Crear la pestaña del simulador con el título correcto (Asistente Simulador)}
+\PYG{+w}{        }\PYG{n}{String}\PYG{+w}{ }\PYG{n}{tituloBase}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{simulador.asistente}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{numeroGrupo}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{TabManager}\PYG{p}{.}\PYG{n+na}{obtenerNumeroGrupo}\PYG{p}{(}\PYG{n}{tabPane}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{simuladorId}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{String}\PYG{+w}{ }\PYG{n}{tituloFinal}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{numeroGrupo}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{o}{?}\PYG{+w}{ }\PYG{n}{numeroGrupo}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZhy{}}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{tituloBase}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{n}{tituloBase}\PYG{p}{;}
+\PYG{+w}{        }
+\PYG{+w}{        }\PYG{c+c1}{// Crear la pestaña y mostrar el primer paso}
+\PYG{+w}{        }\PYG{n}{Tab}\PYG{+w}{ }\PYG{n}{tab}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Tab}\PYG{p}{(}\PYG{n}{tituloFinal}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{tab}\PYG{p}{.}\PYG{n+na}{setContent}\PYG{p}{(}\PYG{n}{simulador}\PYG{p}{.}\PYG{n+na}{getRoot}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{tab}\PYG{p}{.}\PYG{n+na}{setUserData}\PYG{p}{(}\PYG{n}{simuladorId}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }
+\PYG{+w}{        }\PYG{c+c1}{// Insertar la pestaña en la posición correcta}
+\PYG{+w}{        }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{posicion}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{TabManager}\PYG{p}{.}\PYG{n+na}{calcularPosicionInsercion}\PYG{p}{(}\PYG{n}{tabPane}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{PanelSimuladorDesc}\PYG{p}{.}\PYG{n+na}{class}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{editorId}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{simuladorId}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{tabPane}\PYG{p}{.}\PYG{n+na}{getTabs}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{add}\PYG{p}{(}\PYG{n}{posicion}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{tab}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{tabPane}\PYG{p}{.}\PYG{n+na}{getSelectionModel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{select}\PYG{p}{(}\PYG{n}{tab}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{n+nd}{@FXML}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{onBtnSalirAction}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{ButtonType}\PYG{+w}{ }\PYG{n}{btnSi}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{ButtonType}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{button.si}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ButtonBar}\PYG{p}{.}\PYG{n+na}{ButtonData}\PYG{p}{.}\PYG{n+na}{YES}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{ButtonType}\PYG{+w}{ }\PYG{n}{btnNo}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{ButtonType}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{button.no}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ButtonBar}\PYG{p}{.}\PYG{n+na}{ButtonData}\PYG{p}{.}\PYG{n+na}{NO}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{Alert}\PYG{+w}{ }\PYG{n}{confirm}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Alert}\PYG{p}{(}\PYG{n}{AlertType}\PYG{p}{.}\PYG{n+na}{CONFIRMATION}\PYG{p}{,}
+\PYG{+w}{                }\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{msg.confirmar.salir}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{,}
+\PYG{+w}{                }\PYG{n}{btnSi}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{btnNo}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{confirm}\PYG{p}{.}\PYG{n+na}{setTitle}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.header.salir}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{confirm}\PYG{p}{.}\PYG{n+na}{setHeaderText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.header.salir}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{confirm}\PYG{p}{.}\PYG{n+na}{showAndWait}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{ifPresent}\PYG{p}{(}\PYG{n}{response}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{response}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{n}{btnSi}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n}{Stage}\PYG{+w}{ }\PYG{n}{stage}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Stage}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{rootPane}\PYG{p}{.}\PYG{n+na}{getScene}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{getWindow}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{stage}\PYG{p}{.}\PYG{n+na}{close}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{c+c1}{// ===============================}
+\PYG{+w}{    }\PYG{c+c1}{// Métodos auxiliares (adaptados o comentados)}
+\PYG{+w}{    }\PYG{c+c1}{// ===============================}
+
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{cargarGramatica}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Gramatica}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{  }\PYG{c+c1}{// Crear una nueva instancia si era null}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{n}{Gramatica}\PYG{+w}{ }\PYG{n}{gr}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{p}{.}\PYG{n+na}{cargarGramatica}\PYG{p}{(}\PYG{k+kc}{null}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{gr}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{gr}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{actualizarVisualizacion}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{validarGramatica}\PYG{p}{(}\PYG{n}{gramatica}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// Si no se carga una nueva gramática, aseguramos que quede en null}
+\PYG{+w}{            }\PYG{n}{actualizarVisualizacion}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{grabarGramatica}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{gramatica}\PYG{p}{.}\PYG{n+na}{guardarGramatica}\PYG{p}{(}\PYG{k+kc}{null}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// Pasar null como ownerWindow}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{Alert}\PYG{+w}{ }\PYG{n}{alert}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Alert}\PYG{p}{(}\PYG{n}{AlertType}\PYG{p}{.}\PYG{n+na}{INFORMATION}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.msg.guardar.exito}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ButtonType}\PYG{p}{.}\PYG{n+na}{OK}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setTitle}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.dialog.guardar.titulo}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{showAndWait}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{actualizarEstadoBotones}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kt}{boolean}\PYG{+w}{ }\PYG{n}{hayGramatica}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{gramatica}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{gramatica}\PYG{p}{.}\PYG{n+na}{getNombre}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{o}{!}\PYG{n}{gramatica}\PYG{p}{.}\PYG{n+na}{getNombre}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{isEmpty}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{n}{btnEditar}\PYG{p}{.}\PYG{n+na}{setDisable}\PYG{p}{(}\PYG{o}{!}\PYG{n}{hayGramatica}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{btnEliminar}\PYG{p}{.}\PYG{n+na}{setDisable}\PYG{p}{(}\PYG{o}{!}\PYG{n}{hayGramatica}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{btnGuardar}\PYG{p}{.}\PYG{n+na}{setDisable}\PYG{p}{(}\PYG{o}{!}\PYG{n}{hayGramatica}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{btnValidar}\PYG{p}{.}\PYG{n+na}{setDisable}\PYG{p}{(}\PYG{o}{!}\PYG{n}{hayGramatica}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{btnInforme}\PYG{p}{.}\PYG{n+na}{setDisable}\PYG{p}{(}\PYG{o}{!}\PYG{n}{hayGramatica}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{btnSimular}\PYG{p}{.}\PYG{n+na}{setDisable}\PYG{p}{(}\PYG{o}{!}\PYG{n}{hayGramatica}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{actualizarVisualizacion}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{listNoTerminales}\PYG{p}{.}\PYG{n+na}{setItems}\PYG{p}{(}\PYG{n}{gramatica}\PYG{p}{.}\PYG{n+na}{getNoTerminalesModel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{listTerminales}\PYG{p}{.}\PYG{n+na}{setItems}\PYG{p}{(}\PYG{n}{gramatica}\PYG{p}{.}\PYG{n+na}{getTerminalesModel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{listProducciones}\PYG{p}{.}\PYG{n+na}{setItems}\PYG{p}{(}\PYG{n}{gramatica}\PYG{p}{.}\PYG{n+na}{getProduccionesModel}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{txtNombre}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{gramatica}\PYG{p}{.}\PYG{n+na}{getNombre}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{txtAreaDesc}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{gramatica}\PYG{p}{.}\PYG{n+na}{getDescripcion}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{txtSimInicial}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{gramatica}\PYG{p}{.}\PYG{n+na}{getSimbInicial}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{c+c1}{// Limpiar campos si no hay gramática}
+\PYG{+w}{            }\PYG{n}{listNoTerminales}\PYG{p}{.}\PYG{n+na}{setItems}\PYG{p}{(}\PYG{n}{FXCollections}\PYG{p}{.}\PYG{n+na}{observableArrayList}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{listTerminales}\PYG{p}{.}\PYG{n+na}{setItems}\PYG{p}{(}\PYG{n}{FXCollections}\PYG{p}{.}\PYG{n+na}{observableArrayList}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{listProducciones}\PYG{p}{.}\PYG{n+na}{setItems}\PYG{p}{(}\PYG{n}{FXCollections}\PYG{p}{.}\PYG{n+na}{observableArrayList}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{txtNombre}\PYG{p}{.}\PYG{n+na}{clear}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{txtAreaDesc}\PYG{p}{.}\PYG{n+na}{clear}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{txtSimInicial}\PYG{p}{.}\PYG{n+na}{clear}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{n}{actualizarEstadoBotones}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// Llamamos para activar/desactivar los botones segun corresponda}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{validarGramatica}\PYG{p}{(}\PYG{n}{Gramatica}\PYG{+w}{ }\PYG{n}{gramatica}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{ObservableList}\PYG{o}{\PYGZlt{}}\PYG{n}{String}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{mensajesError}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{gramatica}\PYG{p}{.}\PYG{n+na}{validarGramatica}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{estadoValidacion}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{gramatica}\PYG{p}{.}\PYG{n+na}{getEstado}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{estadoValidacion}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{gramatica}\PYG{p}{.}\PYG{n+na}{setEstado}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{Alert}\PYG{+w}{ }\PYG{n}{alert}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Alert}\PYG{p}{(}\PYG{n}{Alert}\PYG{p}{.}\PYG{n+na}{AlertType}\PYG{p}{.}\PYG{n+na}{INFORMATION}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setTitle}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.dialog.validar.titulo}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setHeaderText}\PYG{p}{(}\PYG{k+kc}{null}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setContentText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.msg.validar.exito}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{showAndWait}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{gramatica}\PYG{p}{.}\PYG{n+na}{setEstado}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{            }\PYG{c+c1}{// Construcción del mensaje sin etiquetas HTML}
+\PYG{+w}{            }\PYG{n}{StringBuilder}\PYG{+w}{ }\PYG{n}{mensajeError}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{StringBuilder}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.msg.validar.errores}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZbs{}}\PYG{l+s}{n}\PYG{l+s}{\PYGZbs{}}\PYG{l+s}{n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{mensajesError}\PYG{p}{.}\PYG{n+na}{size}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}\PYG{+w}{ }\PYG{n}{i}\PYG{o}{+}\PYG{o}{+}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n}{mensajeError}\PYG{p}{.}\PYG{n+na}{append}\PYG{p}{(}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{append}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{. }\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{append}\PYG{p}{(}\PYG{n}{mensajesError}\PYG{p}{.}\PYG{n+na}{get}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{append}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZbs{}}\PYG{l+s}{n}\PYG{l+s}{\PYGZbs{}}\PYG{l+s}{n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{            }\PYG{c+c1}{// Crear un alert de error con el formato correcto}
+\PYG{+w}{            }\PYG{n}{Alert}\PYG{+w}{ }\PYG{n}{alert}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Alert}\PYG{p}{(}\PYG{n}{Alert}\PYG{p}{.}\PYG{n+na}{AlertType}\PYG{p}{.}\PYG{n+na}{ERROR}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setTitle}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.dialog.validar.error.titulo}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setHeaderText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.dialog.validar.error.header}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setContentText}\PYG{p}{(}\PYG{n}{mensajeError}\PYG{p}{.}\PYG{n+na}{toString}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{            }\PYG{c+c1}{// Hacer que la alerta muestre todo el texto correctamente si es muy largo}
+\PYG{+w}{            }\PYG{n}{TextArea}\PYG{+w}{ }\PYG{n}{textArea}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{TextArea}\PYG{p}{(}\PYG{n}{mensajeError}\PYG{p}{.}\PYG{n+na}{toString}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{textArea}\PYG{p}{.}\PYG{n+na}{setEditable}\PYG{p}{(}\PYG{k+kc}{false}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{textArea}\PYG{p}{.}\PYG{n+na}{setWrapText}\PYG{p}{(}\PYG{k+kc}{true}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{textArea}\PYG{p}{.}\PYG{n+na}{setMaxWidth}\PYG{p}{(}\PYG{n}{Double}\PYG{p}{.}\PYG{n+na}{MAX\PYGZus{}VALUE}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{textArea}\PYG{p}{.}\PYG{n+na}{setMaxHeight}\PYG{p}{(}\PYG{n}{Double}\PYG{p}{.}\PYG{n+na}{MAX\PYGZus{}VALUE}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{GridPane}\PYG{p}{.}\PYG{n+na}{setVgrow}\PYG{p}{(}\PYG{n}{textArea}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Priority}\PYG{p}{.}\PYG{n+na}{ALWAYS}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{GridPane}\PYG{p}{.}\PYG{n+na}{setHgrow}\PYG{p}{(}\PYG{n}{textArea}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Priority}\PYG{p}{.}\PYG{n+na}{ALWAYS}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{            }\PYG{n}{GridPane}\PYG{+w}{ }\PYG{n}{gridPane}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{GridPane}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{gridPane}\PYG{p}{.}\PYG{n+na}{setMaxWidth}\PYG{p}{(}\PYG{n}{Double}\PYG{p}{.}\PYG{n+na}{MAX\PYGZus{}VALUE}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{gridPane}\PYG{p}{.}\PYG{n+na}{add}\PYG{p}{(}\PYG{n}{textArea}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{getDialogPane}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{setExpandableContent}\PYG{p}{(}\PYG{n}{gridPane}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{showAndWait}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{mostrarError}\PYG{p}{(}\PYG{n}{String}\PYG{+w}{ }\PYG{n}{titulo}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{String}\PYG{+w}{ }\PYG{n}{mensaje}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n}{Alert}\PYG{+w}{ }\PYG{n}{alert}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Alert}\PYG{p}{(}\PYG{n}{Alert}\PYG{p}{.}\PYG{n+na}{AlertType}\PYG{p}{.}\PYG{n+na}{ERROR}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setTitle}\PYG{p}{(}\PYG{n}{titulo}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setHeaderText}\PYG{p}{(}\PYG{k+kc}{null}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setContentText}\PYG{p}{(}\PYG{n}{mensaje}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{showAndWait}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{generarInformePDF}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{+w}{ }\PYG{o}{|}\PYG{o}{|}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{p}{.}\PYG{n+na}{getNombre}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{+w}{ }\PYG{o}{|}\PYG{o}{|}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{p}{.}\PYG{n+na}{getNombre}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{isEmpty}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{Alert}\PYG{+w}{ }\PYG{n}{alert}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Alert}\PYG{p}{(}\PYG{n}{Alert}\PYG{p}{.}\PYG{n+na}{AlertType}\PYG{p}{.}\PYG{n+na}{WARNING}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setTitle}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.informe.error.titulo}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setHeaderText}\PYG{p}{(}\PYG{k+kc}{null}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setContentText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.informe.error.sin.gramatica}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{showAndWait}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{c+c1}{// Crear y configurar el FileChooser}
+\PYG{+w}{        }\PYG{n}{FileChooser}\PYG{+w}{ }\PYG{n}{fileChooser}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{FileChooser}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{fileChooser}\PYG{p}{.}\PYG{n+na}{setTitle}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.informe.guardar.titulo}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{fileChooser}\PYG{p}{.}\PYG{n+na}{getExtensionFilters}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{add}\PYG{p}{(}
+\PYG{+w}{            }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{FileChooser}\PYG{p}{.}\PYG{n+na}{ExtensionFilter}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{Documentos PDF}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{*.pdf}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\PYG{+w}{        }\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }
+\PYG{+w}{        }\PYG{c+c1}{// Sugerir nombre de archivo basado en el nombre del archivo fuente}
+\PYG{+w}{        }\PYG{n}{String}\PYG{+w}{ }\PYG{n}{nombreArchivo}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{p}{.}\PYG{n+na}{generarNombreArchivoPDF}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{bundle}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{fileChooser}\PYG{p}{.}\PYG{n+na}{setInitialFileName}\PYG{p}{(}\PYG{n}{nombreArchivo}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{        }\PYG{c+c1}{// Mostrar diálogo de guardado}
+\PYG{+w}{        }\PYG{n}{File}\PYG{+w}{ }\PYG{n}{archivo}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{fileChooser}\PYG{p}{.}\PYG{n+na}{showSaveDialog}\PYG{p}{(}\PYG{n}{rootPane}\PYG{p}{.}\PYG{n+na}{getScene}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{getWindow}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{archivo}\PYG{+w}{ }\PYG{o}{=}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{k}{return}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// Usuario canceló}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{        }\PYG{k}{try}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{c+c1}{// Generar el informe usando el método de la clase Gramatica}
+\PYG{+w}{            }\PYG{k+kt}{boolean}\PYG{+w}{ }\PYG{n}{exito}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{gramatica}\PYG{p}{.}\PYG{n+na}{generarInforme}\PYG{p}{(}\PYG{n}{archivo}\PYG{p}{.}\PYG{n+na}{getAbsolutePath}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{bundle}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{exito}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n}{Alert}\PYG{+w}{ }\PYG{n}{alert}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Alert}\PYG{p}{(}\PYG{n}{Alert}\PYG{p}{.}\PYG{n+na}{AlertType}\PYG{p}{.}\PYG{n+na}{INFORMATION}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setTitle}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.informe.exito.titulo}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setHeaderText}\PYG{p}{(}\PYG{k+kc}{null}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setContentText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.informe.exito.mensaje}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZbs{}}\PYG{l+s}{n}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{archivo}\PYG{p}{.}\PYG{n+na}{getAbsolutePath}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{showAndWait}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n}{Alert}\PYG{+w}{ }\PYG{n}{alert}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Alert}\PYG{p}{(}\PYG{n}{Alert}\PYG{p}{.}\PYG{n+na}{AlertType}\PYG{p}{.}\PYG{n+na}{ERROR}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setTitle}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.informe.error.titulo}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setHeaderText}\PYG{p}{(}\PYG{k+kc}{null}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setContentText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.informe.error.gramatica.no.validada}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{showAndWait}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{catch}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Exception}\PYG{+w}{ }\PYG{n}{e}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{Alert}\PYG{+w}{ }\PYG{n}{alert}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Alert}\PYG{p}{(}\PYG{n}{Alert}\PYG{p}{.}\PYG{n+na}{AlertType}\PYG{p}{.}\PYG{n+na}{ERROR}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setTitle}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.informe.error.titulo}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setHeaderText}\PYG{p}{(}\PYG{k+kc}{null}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{setContentText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.informe.error.generacion}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{\PYGZbs{}}\PYG{l+s}{n}\PYG{l+s}{\PYGZdq{}}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n}{e}\PYG{p}{.}\PYG{n+na}{getMessage}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{alert}\PYG{p}{.}\PYG{n+na}{showAndWait}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{e}\PYG{p}{.}\PYG{n+na}{printStackTrace}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{actualizarTextos}\PYG{p}{(}\PYG{n}{ResourceBundle}\PYG{+w}{ }\PYG{n}{nuevoBundle}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{bundle}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{nuevoBundle}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{try}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{c+c1}{// Actualizar título}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{labelTitulo}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n}{labelTitulo}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.title}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }\PYG{c+c1}{// Actualizar labels de secciones y campos}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{labelPanelTitulo}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{labelPanelTitulo}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.label.titulo}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{labelNombre}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{labelNombre}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.label.nombre}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{labelSimboloInicial}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{labelSimboloInicial}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.label.simb.inicial}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{labelDescripcion}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{labelDescripcion}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.label.descripcion}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{labelNoTerminales}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{labelNoTerminales}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.label.no.terminales}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{labelTerminales}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{labelTerminales}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.label.terminales}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{labelProducciones}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{labelProducciones}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.label.producciones}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{c+c1}{// Actualizar textos de los botones}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{btnAnadir}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{btnAnadir}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.btn.nueva}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{btnAbrir}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{btnAbrir}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.btn.abrir}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{btnGuardar}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{btnGuardar}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.btn.guardar}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{btnEditar}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{btnEditar}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.btn.editar}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{btnEliminar}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{btnEliminar}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.btn.eliminar}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{btnValidar}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{btnValidar}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.btn.validar}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{btnInforme}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{btnInforme}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.btn.informe}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{btnSimular}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{btnSimular}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.btn.simular}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{btnSalir}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{btnSalir}\PYG{p}{.}\PYG{n+na}{setText}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{btn.salir}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }
+\PYG{+w}{            }\PYG{c+c1}{// Actualizar tooltips de los botones}
+\PYG{+w}{            }\PYG{n}{configurarTooltips}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }
+\PYG{+w}{            }\PYG{c+c1}{// Actualizar título de la ventana}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{rootPane}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{rootPane}\PYG{p}{.}\PYG{n+na}{getScene}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{n}{Stage}\PYG{+w}{ }\PYG{n}{stage}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Stage}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{rootPane}\PYG{p}{.}\PYG{n+na}{getScene}\PYG{p}{(}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{getWindow}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                }\PYG{n}{stage}\PYG{p}{.}\PYG{n+na}{setTitle}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.title}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{            }\PYG{c+c1}{// Actualizar el simulador si existe}
+\PYG{+w}{            }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{tabPane}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                }\PYG{k}{for}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Tab}\PYG{+w}{ }\PYG{n}{tab}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{n}{tabPane}\PYG{p}{.}\PYG{n+na}{getTabs}\PYG{p}{(}\PYG{p}{)}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                    }\PYG{n}{Object}\PYG{+w}{ }\PYG{n}{userData}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{tab}\PYG{p}{.}\PYG{n+na}{getUserData}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{userData}\PYG{+w}{ }\PYG{k}{instanceof}\PYG{+w}{ }\PYG{n}{simulador}\PYG{p}{.}\PYG{n+na}{PanelSimuladorDesc}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{                        }\PYG{p}{(}\PYG{p}{(}\PYG{n}{simulador}\PYG{p}{.}\PYG{n+na}{PanelSimuladorDesc}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{userData}\PYG{p}{)}\PYG{p}{.}\PYG{n+na}{setBundle}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{                    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{                }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{catch}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{Exception}\PYG{+w}{ }\PYG{n}{e}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{e}\PYG{p}{.}\PYG{n+na}{printStackTrace}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n}{ResourceBundle}\PYG{+w}{ }\PYG{n+nf}{getBundle}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{bundle}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{setBundle}\PYG{p}{(}\PYG{n}{ResourceBundle}\PYG{+w}{ }\PYG{n}{bundle}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{bundle}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{bundle}\PYG{p}{;}
+\PYG{+w}{        }\PYG{n}{actualizarTextos}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }
+\PYG{+w}{    }\PYG{c+cm}{/**}
+\PYG{c+cm}{     * Configura los tooltips para todos los botones del editor}
+\PYG{c+cm}{     */}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{configurarTooltips}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{bundle}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{=}\PYG{+w}{ }\PYG{k+kc}{null}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n}{btnAnadir}\PYG{p}{.}\PYG{n+na}{setTooltip}\PYG{p}{(}\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Tooltip}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.tooltip.nueva}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{btnAbrir}\PYG{p}{.}\PYG{n+na}{setTooltip}\PYG{p}{(}\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Tooltip}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.tooltip.abrir}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{btnGuardar}\PYG{p}{.}\PYG{n+na}{setTooltip}\PYG{p}{(}\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Tooltip}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.tooltip.guardar}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{btnEditar}\PYG{p}{.}\PYG{n+na}{setTooltip}\PYG{p}{(}\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Tooltip}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.tooltip.editar}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{btnEliminar}\PYG{p}{.}\PYG{n+na}{setTooltip}\PYG{p}{(}\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Tooltip}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.tooltip.eliminar}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{btnValidar}\PYG{p}{.}\PYG{n+na}{setTooltip}\PYG{p}{(}\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Tooltip}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.tooltip.validar}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{btnInforme}\PYG{p}{.}\PYG{n+na}{setTooltip}\PYG{p}{(}\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Tooltip}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.tooltip.informe}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{btnSimular}\PYG{p}{.}\PYG{n+na}{setTooltip}\PYG{p}{(}\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Tooltip}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.tooltip.simular}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{            }\PYG{n}{btnSalir}\PYG{p}{.}\PYG{n+na}{setTooltip}\PYG{p}{(}\PYG{k}{new}\PYG{+w}{ }\PYG{n}{Tooltip}\PYG{p}{(}\PYG{n}{bundle}\PYG{p}{.}\PYG{n+na}{getString}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{editor.tooltip.salir}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}

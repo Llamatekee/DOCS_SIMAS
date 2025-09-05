@@ -1,0 +1,51 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{package}\PYG{+w}{ }\PYG{n+nn}{gramatica}\PYG{p}{;}
+
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.collections.FXCollections}\PYG{p}{;}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{javafx.collections.ObservableList}\PYG{p}{;}
+
+\PYG{c+cm}{/**}
+\PYG{c+cm}{ * Representa un símbolo no terminal de la gramática.}
+\PYG{c+cm}{ */}
+\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{class} \PYG{n+nc}{NoTerminal}\PYG{+w}{ }\PYG{k+kd}{extends}\PYG{+w}{ }\PYG{n}{Simbolo}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{k+kt}{boolean}\PYG{+w}{ }\PYG{n}{simboloInicial}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{ObservableList}\PYG{o}{\PYGZlt{}}\PYG{n}{Terminal}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{primeros}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k+kd}{private}\PYG{+w}{ }\PYG{n}{ObservableList}\PYG{o}{\PYGZlt{}}\PYG{n}{Terminal}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{siguientes}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n+nf}{NoTerminal}\PYG{p}{(}\PYG{n}{String}\PYG{+w}{ }\PYG{n}{nombre}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{String}\PYG{+w}{ }\PYG{n}{valor}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k+kd}{super}\PYG{p}{(}\PYG{n}{nombre}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{valor}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{c+c1}{// Inicializamos las listas como ObservableList}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{primeros}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{FXCollections}\PYG{p}{.}\PYG{n+na}{observableArrayList}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{siguientes}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{FXCollections}\PYG{p}{.}\PYG{n+na}{observableArrayList}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{boolean}\PYG{+w}{ }\PYG{n+nf}{getSimboloInicial}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{simboloInicial}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{setSimboloInicial}\PYG{p}{(}\PYG{k+kt}{boolean}\PYG{+w}{ }\PYG{n}{simboloInicial}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{simboloInicial}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{simboloInicial}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n}{ObservableList}\PYG{o}{\PYGZlt{}}\PYG{n}{Terminal}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n+nf}{getPrimeros}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{primeros}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{setPrimeros}\PYG{p}{(}\PYG{n}{ObservableList}\PYG{o}{\PYGZlt{}}\PYG{n}{Terminal}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{primeros}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{primeros}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{primeros}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n}{ObservableList}\PYG{o}{\PYGZlt{}}\PYG{n}{Terminal}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n+nf}{getSiguientes}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{siguientes}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{setSiguientes}\PYG{p}{(}\PYG{n}{ObservableList}\PYG{o}{\PYGZlt{}}\PYG{n}{Terminal}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{siguientes}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{this}\PYG{p}{.}\PYG{n+na}{siguientes}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{siguientes}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{n+nd}{@Override}
+\PYG{+w}{    }\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n}{String}\PYG{+w}{ }\PYG{n+nf}{toString}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{getNombre}\PYG{p}{(}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}
