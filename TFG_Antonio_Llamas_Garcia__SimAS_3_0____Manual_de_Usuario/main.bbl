@@ -1,0 +1,281 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{aho2008}{book}{}{}
+      \name{author}{4}{}{%
+        {{hash=e420950f8f40fc94d76be0255146dde9}{%
+           family={{Aho, A. V.}},
+           familyi={A\bibinitperiod}}}%
+        {{hash=c10007a17893cbe3f6ace9e08c08cb0b}{%
+           family={{Lam, M. S.}},
+           familyi={L\bibinitperiod}}}%
+        {{hash=4821cd03dfb7939bca2dea09d9b27c38}{%
+           family={{Sethi, R.}},
+           familyi={S\bibinitperiod}}}%
+        {{hash=a7b7b8d32b60420d0288e69b0caeac82}{%
+           family={{Ullman, J. D.}},
+           familyi={U\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {México}%
+      }
+      \list{publisher}{1}{%
+        {Pearson Educación}%
+      }
+      \strng{namehash}{0a0aa03e4a8fe9b7d8172f390c480d6e}
+      \strng{fullhash}{a94076a05d385168d118ec8b27db3df9}
+      \strng{fullhashraw}{a94076a05d385168d118ec8b27db3df9}
+      \strng{bibnamehash}{a94076a05d385168d118ec8b27db3df9}
+      \strng{authorbibnamehash}{a94076a05d385168d118ec8b27db3df9}
+      \strng{authornamehash}{0a0aa03e4a8fe9b7d8172f390c480d6e}
+      \strng{authorfullhash}{a94076a05d385168d118ec8b27db3df9}
+      \strng{authorfullhashraw}{a94076a05d385168d118ec8b27db3df9}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Compiladores: Principios, Técnicas y Herramientas. Segunda edición}
+      \field{year}{2008}
+    \endentry
+    \entry{adoptium}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=375052a773e353bc8d8d541d3ebca086}{%
+           family={{Eclipse Adoptium}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{375052a773e353bc8d8d541d3ebca086}
+      \strng{fullhash}{375052a773e353bc8d8d541d3ebca086}
+      \strng{fullhashraw}{375052a773e353bc8d8d541d3ebca086}
+      \strng{bibnamehash}{375052a773e353bc8d8d541d3ebca086}
+      \strng{authorbibnamehash}{375052a773e353bc8d8d541d3ebca086}
+      \strng{authornamehash}{375052a773e353bc8d8d541d3ebca086}
+      \strng{authorfullhash}{375052a773e353bc8d8d541d3ebca086}
+      \strng{authorfullhashraw}{375052a773e353bc8d8d541d3ebca086}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[En línea. Última consulta: 15-12-2024]}
+      \field{title}{Eclipse Adoptium - OpenJDK (alternativa de código abierto)}
+      \verb{urlraw}
+      \verb https://adoptium.net/
+      \endverb
+      \verb{url}
+      \verb https://adoptium.net/
+      \endverb
+    \endentry
+    \entry{first-follow}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=f1e069787ece74531d112559945c6871}{%
+           family={{GeeksforGeeks}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{f1e069787ece74531d112559945c6871}
+      \strng{fullhash}{f1e069787ece74531d112559945c6871}
+      \strng{fullhashraw}{f1e069787ece74531d112559945c6871}
+      \strng{bibnamehash}{f1e069787ece74531d112559945c6871}
+      \strng{authorbibnamehash}{f1e069787ece74531d112559945c6871}
+      \strng{authornamehash}{f1e069787ece74531d112559945c6871}
+      \strng{authorfullhash}{f1e069787ece74531d112559945c6871}
+      \strng{authorfullhashraw}{f1e069787ece74531d112559945c6871}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[En línea. Última consulta: 15-12-2024]}
+      \field{title}{First and Follow Sets}
+      \verb{urlraw}
+      \verb https://www.geeksforgeeks.org/first-set-in-syntax-analysis/
+      \endverb
+      \verb{url}
+      \verb https://www.geeksforgeeks.org/first-set-in-syntax-analysis/
+      \endverb
+    \endentry
+    \entry{itextpdf}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=05f2767d8f3451e6bcad0222e32d1c69}{%
+           family={{iText Group}},
+           familyi={i\bibinitperiod}}}%
+      }
+      \strng{namehash}{05f2767d8f3451e6bcad0222e32d1c69}
+      \strng{fullhash}{05f2767d8f3451e6bcad0222e32d1c69}
+      \strng{fullhashraw}{05f2767d8f3451e6bcad0222e32d1c69}
+      \strng{bibnamehash}{05f2767d8f3451e6bcad0222e32d1c69}
+      \strng{authorbibnamehash}{05f2767d8f3451e6bcad0222e32d1c69}
+      \strng{authornamehash}{05f2767d8f3451e6bcad0222e32d1c69}
+      \strng{authorfullhash}{05f2767d8f3451e6bcad0222e32d1c69}
+      \strng{authorfullhashraw}{05f2767d8f3451e6bcad0222e32d1c69}
+      \field{sortinit}{i}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[En línea. Última consulta: 15-12-2024]}
+      \field{title}{iText}
+      \verb{urlraw}
+      \verb https://itextpdf.com/
+      \endverb
+      \verb{url}
+      \verb https://itextpdf.com/
+      \endverb
+    \endentry
+    \entry{java}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=30162ed78b6c10f731411f2fc440c24f}{%
+           family={{Oracle}},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{fullhash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{fullhashraw}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{bibnamehash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{authorbibnamehash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{authornamehash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{authorfullhash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{authorfullhashraw}{30162ed78b6c10f731411f2fc440c24f}
+      \field{extraname}{1}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[En línea. Última consulta: 29-5-2023]}
+      \field{title}{Java}
+      \verb{urlraw}
+      \verb https://www.java.com/es
+      \endverb
+      \verb{url}
+      \verb https://www.java.com/es
+      \endverb
+    \endentry
+    \entry{javafx}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=30162ed78b6c10f731411f2fc440c24f}{%
+           family={{Oracle}},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{fullhash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{fullhashraw}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{bibnamehash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{authorbibnamehash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{authornamehash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{authorfullhash}{30162ed78b6c10f731411f2fc440c24f}
+      \strng{authorfullhashraw}{30162ed78b6c10f731411f2fc440c24f}
+      \field{extraname}{2}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[En línea. Última consulta: 15-12-2024]}
+      \field{title}{JavaFX}
+      \verb{urlraw}
+      \verb https://openjfx.io/
+      \endverb
+      \verb{url}
+      \verb https://openjfx.io/
+      \endverb
+    \endentry
+    \entry{bnf}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=9c677286866aad38f8e9b660f5411814}{%
+           family={{Wikipedia}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhashraw}{9c677286866aad38f8e9b660f5411814}
+      \strng{bibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorbibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authornamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorfullhash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorfullhashraw}{9c677286866aad38f8e9b660f5411814}
+      \field{extraname}{1}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[En línea. Última consulta: 15-12-2024]}
+      \field{title}{Forma de Backus-Naur}
+      \verb{urlraw}
+      \verb https://es.wikipedia.org/wiki/Forma_de_Backus-Naur
+      \endverb
+      \verb{url}
+      \verb https://es.wikipedia.org/wiki/Forma_de_Backus-Naur
+      \endverb
+    \endentry
+    \entry{ll1}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=9c677286866aad38f8e9b660f5411814}{%
+           family={{Wikipedia}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhashraw}{9c677286866aad38f8e9b660f5411814}
+      \strng{bibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorbibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authornamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorfullhash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorfullhashraw}{9c677286866aad38f8e9b660f5411814}
+      \field{extraname}{2}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[En línea. Última consulta: 15-12-2024]}
+      \field{title}{LL parser}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/LL_parser
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/LL_parser
+      \endverb
+    \endentry
+    \entry{xml}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=db9cf05d287d957752cfafc7afff1fc0}{%
+           family={{XML Tutorial}},
+           familyi={X\bibinitperiod}}}%
+      }
+      \strng{namehash}{db9cf05d287d957752cfafc7afff1fc0}
+      \strng{fullhash}{db9cf05d287d957752cfafc7afff1fc0}
+      \strng{fullhashraw}{db9cf05d287d957752cfafc7afff1fc0}
+      \strng{bibnamehash}{db9cf05d287d957752cfafc7afff1fc0}
+      \strng{authorbibnamehash}{db9cf05d287d957752cfafc7afff1fc0}
+      \strng{authornamehash}{db9cf05d287d957752cfafc7afff1fc0}
+      \strng{authorfullhash}{db9cf05d287d957752cfafc7afff1fc0}
+      \strng{authorfullhashraw}{db9cf05d287d957752cfafc7afff1fc0}
+      \field{sortinit}{X}
+      \field{sortinithash}{1965c258adceecf23ce3d67b05113442}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{[En línea. Última consulta: 15-12-2024]}
+      \field{title}{W3 School}
+      \verb{urlraw}
+      \verb https://www.w3schools.com/xml/
+      \endverb
+      \verb{url}
+      \verb https://www.w3schools.com/xml/
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

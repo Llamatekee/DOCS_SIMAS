@@ -1,3 +1,114 @@
-\chapter {Introducción}
+\chapter{Introducción}
 
-Ejemplo de cita \cite{aho2008}
+\section{¿Qué es SimAS 3.0?}
+
+SimAS 3.0 (Simulador de Análisis Sintáctico) es una aplicación educativa desarrollada en Java que permite a estudiantes y profesores de informática comprender y practicar los conceptos fundamentales del análisis sintáctico descendente predictivo \cite{ll1}. Esta herramienta proporciona un entorno interactivo y visual para el aprendizaje de una de las técnicas más importantes en el diseño de compiladores \cite{aho2008}.
+
+La aplicación está diseñada específicamente para facilitar el estudio de los analizadores sintácticos descendentes predictivos, una clase de analizadores que construyen el árbol de análisis sintáctico de arriba hacia abajo, utilizando una tabla predictiva para determinar qué producción aplicar en cada paso del análisis.
+
+\section{Objetivos de SimAS 3.0}
+
+Los principales objetivos de SimAS 3.0 son:
+
+\begin{itemize}
+    \item \textbf{Educativo}: proporcionar una herramienta didáctica que facilite la comprensión de los analizadores sintácticos descendentes predictivos.
+    \item \textbf{Interactivo}: permitir a los usuarios experimentar con diferentes gramáticas y observar el comportamiento del analizador en tiempo real.
+    \item \textbf{Visual}: ofrecer representaciones gráficas claras de los procesos de análisis sintáctico.
+    \item \textbf{Práctico}: facilitar la creación, edición y validación de gramáticas de contexto libre.
+    \item \textbf{Completo}: cubrir todos los aspectos del análisis descendente predictivo, desde la construcción de la tabla predictiva hasta la simulación del análisis.
+\end{itemize}
+
+\section{Características principales}
+
+SimAS 3.0 ofrece las siguientes características principales:
+
+\subsection{Editor de gramáticas}
+\begin{itemize}
+    \item \textbf{Asistente guiado}: proceso de creación de gramáticas en 4 pasos claramente definidos.
+    \item \textbf{Validación automática}: verificación de la corrección sintáctica y semántica de las gramáticas.
+    \item \textbf{Gestión de archivos}: capacidad para guardar, cargar y gestionar múltiples gramáticas.
+    \item \textbf{Generación de informes}: creación automática de informes PDF con la información de la gramática.
+\end{itemize}
+
+\subsection{Simulador descendente predictivo}
+\begin{itemize}
+    \item \textbf{Proceso paso a paso}: simulación detallada del análisis sintáctico con control manual.
+    \item \textbf{Construcción de tablas}: generación automática de las tablas con los conjuntos PRIMERO, SIGUIENTE y la tabla predictiva \cite{first-follow}.
+    \item \textbf{Recuperación de errores}: implementación de funciones de error para manejar cadenas incorrectas.
+    \item \textbf{Visualización clara}: representación gráfica de la pila, entrada y acciones realizadas.
+\end{itemize}
+
+\subsection{Interfaz de usuario}
+\begin{itemize}
+    \item \textbf{Multilingüe}: soporte para español, inglés, francés, alemán, japonés y portugués.
+    \item \textbf{Intuitiva}: diseño moderno y fácil de usar basado en JavaFX \cite{javafx}.
+    \item \textbf{Gestión de pestañas}: trabajo simultáneo con múltiples gramáticas y simulaciones.
+    \item \textbf{Atajos de teclado}: acceso rápido a las funciones principales.
+\end{itemize}
+
+\section{Requisitos del sistema}
+
+Para ejecutar SimAS 3.0, el sistema debe cumplir los siguientes requisitos:
+
+\subsection{Requisitos mínimos}
+\begin{itemize}
+    \item \textbf{Sistema operativo}: Windows 10/11, macOS 10.14+, o Linux (Ubuntu 18.04+).
+    \item \textbf{Java Runtime Environment}: versión 17 o superior \cite{java}.
+    \item \textbf{Memoria RAM}: 512 MB disponibles.
+    \item \textbf{Espacio en disco}: 100 MB libres.
+    \item \textbf{Resolución de pantalla}: 1024x768 píxeles mínimo.
+\end{itemize}
+
+\subsection{Requisitos recomendados}
+\begin{itemize}
+    \item \textbf{Memoria RAM}: 2 GB o más.
+    \item \textbf{Resolución de pantalla}: 1366x768 píxeles o superior.
+    \item \textbf{Procesador}: dual-core 2.0 GHz o superior.
+\end{itemize}
+
+\section{Organización del manual}
+
+Este manual de usuario está organizado de la siguiente manera:
+
+\begin{itemize}
+    \item \textbf{Capítulo 2}: instalación y configuración del programa, incluyendo requisitos del sistema y procedimientos de instalación.
+    \item \textbf{Capítulo 3}: características de la interfaz de usuario, navegación y configuración de idiomas.
+    \item \textbf{Capítulo 4}: uso del editor de gramáticas, desde la creación hasta la validación.
+    \item \textbf{Capítulo 5}: funcionamiento del simulador descendente predictivo y análisis de resultados.
+    \item \textbf{Capítulo 6}: ejemplos prácticos completos que ilustran el uso de la aplicación.
+\end{itemize}
+
+\section{Convenciones utilizadas}
+
+A lo largo de este manual se utilizan las siguientes convenciones:
+
+\begin{itemize}
+    \item \textbf{Texto en negrita}: se utiliza para resaltar elementos de la interfaz, nombres de archivos o conceptos importantes.
+    \item \textbf{Cursiva}: se emplea para términos técnicos o referencias a otros capítulos.
+    \item \textbf{``Texto entre comillas''}: se usa para citar mensajes del sistema o nombres de archivos.
+    \item \textbf{Menú > Opción}: indica la secuencia de navegación por los menús de la aplicación.
+    \item \textbf{Ctrl+Tecla}: representa las combinaciones de teclas de atajo.
+\end{itemize}
+
+\section{Notas importantes}
+
+Antes de comenzar a utilizar SimAS 3.0, es importante tener en cuenta lo siguiente:
+
+\begin{itemize}
+    \item La aplicación está diseñada para fines educativos y de aprendizaje.
+    \item Se recomienda tener conocimientos básicos de teoría de lenguajes formales y análisis sintáctico.
+    \item Las gramáticas deben estar en forma de Backus-Naur (BNF) \cite{bnf}.
+    \item La aplicación incluye funciones de recuperación de errores, pero es importante entender sus limitaciones.
+\end{itemize}
+
+\section{Contacto y Soporte}
+
+Para obtener soporte técnico o reportar problemas con SimAS 3.0, puede contactar con:
+
+\begin{itemize}
+    \item \textbf{Desarrollador}: Antonio Llamas García.
+    \item \textbf{Director del proyecto}: Prof. Dr. Nicolás Luis Fernández García.
+    \item \textbf{Institución}: Escuela Politécnica Superior de Córdoba.
+\end{itemize}
+
+Este manual proporciona una guía completa para el uso de SimAS 3.0. Se recomienda leer los capítulos en orden secuencial para obtener el máximo provecho de la aplicación.

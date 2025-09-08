@@ -1,21 +1,262 @@
-\chapter{Instalación y desinstalación del programa}
+\chapter{Instalación y configuración}
 
-\section{Requisitos}
+\section{Requisitos del sistema}
 
+Antes de proceder con la instalación de SimAS 3.0, es importante verificar que el sistema cumple con los requisitos necesarios para el correcto funcionamiento de la aplicación.
 
+\subsection{Requisitos mínimos}
 
+Para ejecutar SimAS 3.0, el sistema debe cumplir los siguientes requisitos mínimos:
 
-\section{Ficheros de instalación}
+\begin{itemize}
+    \item \textbf{Sistema operativo}: Windows 10/11, macOS 10.14+, o Linux (Ubuntu 18.04+).
+    \item \textbf{Java Runtime Environment}: versión 17 o superior \cite{java}.
+    \item \textbf{Memoria RAM}: 512 MB disponibles.
+    \item \textbf{Espacio en disco}: 100 MB libres.
+    \item \textbf{Resolución de pantalla}: 1024x768 píxeles mínimo.
+\end{itemize}
 
+\subsection{Requisitos recomendados}
 
-\subsection{Instalación}
+Para obtener un rendimiento óptimo, se recomienda:
 
+\begin{itemize}
+    \item \textbf{Memoria RAM}: 2 GB o más.
+    \item \textbf{Resolución de pantalla}: 1366x768 píxeles o superior.
+    \item \textbf{Procesador}: dual-core 2.0 GHz o superior.
+    \item \textbf{Espacio en disco}: 200 MB libres (para almacenar gramáticas y/o informes).
+\end{itemize}
 
-\subsection{Desinstalación}
+\section{Instalación de Java}
 
-\section{Estructura del programa ejecutable}
+SimAS 3.0 requiere Java Runtime Environment (JRE) versión 17 o superior \cite{java}. Si no tiene Java instalado o tiene una versión anterior, siga estos pasos:
 
-\section{Instalación de Graphviz}
+\subsection{Verificación de Java}
 
+Para verificar si Java está instalado y qué versión tiene:
 
-\section{Ejecución de SimAS}
+\begin{itemize}
+    \item \textbf{Windows}: abra el símbolo del sistema (cmd) y ejecute: \texttt{java -version}.
+    \item \textbf{macOS}: abra Terminal y ejecute: \texttt{java -version}.
+    \item \textbf{Linux}: abra una terminal y ejecute: \texttt{java -version}.
+\end{itemize}
+
+\subsection{Descarga e instalación de Java}
+
+Si no tiene Java instalado o tiene una versión anterior a la 17:
+
+\begin{enumerate}
+    \item Visite el sitio web oficial de Java: \cite{java}.
+    \item Descargue Java 17 LTS (Long Term Support) para su sistema operativo.
+    \item Ejecute el instalador y siga las instrucciones.
+    \item Reinicie el sistema si es necesario.
+    \item Verifique la instalación ejecutando \texttt{java -version} nuevamente.
+\end{enumerate}
+
+\textbf{Nota}: Como alternativa de código abierto, también puede descargar Java desde \cite{adoptium}.
+
+\section{Descarga de SimAS 3.0}
+
+\subsection{Ubicación de los archivos}
+
+SimAS 3.0 se distribuye como una aplicación independiente que incluye todas las dependencias necesarias. Los archivos de distribución se encuentran en:
+
+\begin{itemize}
+    \item \textbf{Aplicación ejecutable}: \texttt{SimAS.app} (macOS) o \texttt{SimAS.exe} (Windows).
+    \item \textbf{Archivo JAR}: \texttt{SimAS.jar} (para ejecución manual).
+    \item \textbf{Documentación}: manual de usuario y archivos de ayuda.
+\end{itemize}
+
+\subsection{Verificación de la descarga}
+
+Antes de proceder con la instalación, verifique que:
+
+\begin{itemize}
+    \item Los archivos se descargaron completamente.
+    \item No hay errores de corrupción en los archivos.
+    \item Tiene permisos de lectura y ejecución en los archivos.
+\end{itemize}
+
+\section{Instalación de SimAS 3.0}
+
+\subsection{Instalación en macOS}
+
+Para instalar SimAS 3.0 en macOS:
+
+\begin{enumerate}
+    \item Localice el archivo \texttt{SimAS.app} en su carpeta de descargas.
+    \item Arrastre \texttt{SimAS.app} a la carpeta \texttt{Aplicaciones}.
+    \item Opcionalmente, puede crear un alias en el escritorio para acceso rápido.
+    \item La aplicación estará disponible en el Launchpad y en la carpeta Aplicaciones.
+\end{enumerate}
+
+\subsection{Instalación en Windows}
+
+Para instalar SimAS 3.0 en Windows:
+
+\begin{enumerate}
+    \item Localice el archivo \texttt{SimAS.exe} en su carpeta de descargas.
+    \item Haga clic derecho sobre el archivo y seleccione \string"Ejecutar como administrador\string".
+    \item Siga las instrucciones del instalador.
+    \item La aplicación se instalará en la carpeta \texttt{Program Files}.
+    \item Se creará un acceso directo en el escritorio y en el menú Inicio.
+\end{enumerate}
+
+\subsection{Instalación en Linux}
+
+Para instalar SimAS 3.0 en Linux:
+
+\begin{enumerate}
+    \item Abra una terminal y navegue a la carpeta donde descargó SimAS 3.0.
+    \item Haga el archivo ejecutable: \texttt{chmod +x SimAS.jar}.
+    \item Cree un directorio para la aplicación: \texttt{sudo mkdir /opt/simas}.
+    \item Copie los archivos: \texttt{sudo cp -r * /opt/simas/}.
+    \item Cree un acceso directo en el escritorio o menú de aplicaciones.
+\end{enumerate}
+
+\section{Primera ejecución}
+
+\subsection{Inicio de la aplicación}
+
+Para ejecutar SimAS 3.0 por primera vez:
+
+\begin{enumerate}
+    \item \textbf{macOS}: haga doble clic en \texttt{SimAS.app} o búsquelo en Launchpad.
+    \item \textbf{Windows}: haga doble clic en el acceso directo del escritorio o búsquelo en el menú Inicio.
+    \item \textbf{Linux}: ejecute \texttt{java -jar /opt/simas/SimAS.jar} o use el acceso directo creado.
+\end{enumerate}
+
+\subsection{Pantalla de bienvenida}
+
+La primera vez que ejecute SimAS 3.0, verá:
+
+\begin{itemize}
+    \item La pantalla de bienvenida con el logo de la aplicación.
+    \item Información sobre la versión y el desarrollador.
+    \item Un indicador de progreso mientras se cargan los componentes.
+\end{itemize}
+
+\subsection{Configuración inicial}
+
+Después de la primera ejecución:
+
+\begin{enumerate}
+    \item La aplicación se abrirá en el menú principal.
+    \item Se establecerán los valores predeterminados para la interfaz.
+    \item El idioma se configurará en español por defecto.
+    \item La aplicación estará lista para crear y gestionar gramáticas.
+\end{enumerate}
+
+\section{Configuración de la aplicación}
+
+\subsection{Selección de idioma}
+
+SimAS 3.0 soporta múltiples idiomas. Para cambiar el idioma:
+
+\begin{enumerate}
+    \item Localice el selector de idioma en la esquina superior derecha.
+    \item Haga clic en el menú desplegable.
+    \item Seleccione el idioma deseado de la lista disponible.
+    \item La interfaz se actualizará inmediatamente al nuevo idioma.
+\end{enumerate}
+
+\subsection{Gestión de archivos}
+
+SimAS 3.0 permite guardar y cargar archivos en cualquier ubicación de su sistema:
+
+\begin{itemize}
+    \item \textbf{Gramáticas}: se guardan en formato XML \cite{xml} en la ubicación que elija el usuario.
+    \item \textbf{Informes PDF}: se generan en la ubicación seleccionada por el usuario usando iText \cite{itextpdf}.
+    \item \textbf{Archivos de configuración}: se almacenan temporalmente en memoria durante la sesión.
+    \item \textbf{Archivos de ayuda}: incluidos en la aplicación, no requieren instalación adicional.
+\end{itemize}
+
+\section{Desinstalación}
+
+\subsection{Desinstalación en macOS}
+
+Para desinstalar SimAS 3.0 en macOS:
+
+\begin{enumerate}
+    \item Abra la carpeta \texttt{Aplicaciones}.
+    \item Arrastre \texttt{SimAS.app} a la papelera.
+    \item No es necesario eliminar carpetas adicionales, ya que SimAS 3.0 no crea archivos de configuración permanentes.
+\end{enumerate}
+
+\subsection{Desinstalación en Windows}
+
+Para desinstalar SimAS 3.0 en Windows:
+
+\begin{enumerate}
+    \item Abra el Panel de control.
+    \item Seleccione \string"Programas y características\string".
+    \item Busque \string"SimAS 3.0\string" en la lista.
+    \item Haga clic en \string"Desinstalar\string" y siga las instrucciones.
+    \item No es necesario eliminar carpetas adicionales, ya que SimAS 3.0 no crea archivos de configuración permanentes.
+\end{enumerate}
+
+\subsection{Desinstalación en Linux}
+
+Para desinstalar SimAS 3.0 en Linux:
+
+\begin{enumerate}
+    \item Elimine la carpeta de instalación: \texttt{sudo rm -rf /opt/simas}.
+    \item Elimine los accesos directos creados.
+    \item No es necesario eliminar carpetas adicionales, ya que SimAS 3.0 no crea archivos de configuración permanentes.
+\end{enumerate}
+
+\section{Solución de problemas}
+
+\subsection{Problemas comunes}
+
+Si experimenta problemas durante la instalación o ejecución:
+
+\begin{itemize}
+    \item \textbf{Error \string"Java no encontrado\string"}: verifique que Java 17+ esté instalado correctamente.
+    \item \textbf{Aplicación no se abre}: compruebe los permisos de ejecución del archivo.
+    \item \textbf{Error de memoria}: cierre otras aplicaciones para liberar memoria RAM.
+    \item \textbf{Interfaz no se muestra correctamente}: verifique la resolución de pantalla.
+\end{itemize}
+
+\subsection{Información para soporte técnico}
+
+Si necesita ayuda técnica, proporcione la siguiente información:
+
+\begin{enumerate}
+    \item Sistema operativo y versión.
+    \item Versión de Java instalada (ejecute \texttt{java -version}).
+    \item Descripción detallada del problema.
+    \item Pasos para reproducir el error.
+\end{enumerate}
+
+\section{Actualizaciones futuras}
+
+\subsection{Política de versiones}
+
+SimAS 3.0 es una versión estable y completa. Las futuras mejoras y nuevas funcionalidades se desarrollarán como nuevas versiones principales:
+
+\begin{itemize}
+    \item \textbf{SimAS 4.0}: futuras mejoras y nuevas características.
+    \item \textbf{SimAS 5.0}: versiones posteriores con funcionalidades avanzadas.
+    \item \textbf{SimAS 6.0}: y así sucesivamente.
+\end{itemize}
+
+\subsection{Información sobre nuevas versiones}
+
+Para estar informado sobre nuevas versiones:
+
+\begin{enumerate}
+    \item Consulte el sitio web oficial del proyecto.
+    \item Revise las publicaciones académicas relacionadas.
+    \item Contacte con el desarrollador para información sobre futuras versiones.
+\end{enumerate}
+
+\subsection{Migración entre versiones}
+
+Al instalar una nueva versión principal:
+
+\begin{enumerate}
+    \item Sus gramáticas guardadas serán compatibles con versiones futuras.
+    \item Los informes PDF generados se mantendrán accesibles.
+    \item No será necesario migrar configuraciones, ya que SimAS no utiliza archivos de configuración permanentes.
+\end{enumerate}
