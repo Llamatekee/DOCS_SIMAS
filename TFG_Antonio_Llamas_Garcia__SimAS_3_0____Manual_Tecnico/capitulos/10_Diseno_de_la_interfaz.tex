@@ -16,7 +16,7 @@ Puesto que muchos componentes son similares, se mostrará únicamente un compone
 
 A continuación se muestran los elementos gráficos de la interfaz final de la aplicación con una explicación detallada de cada una de las partes que los componen, destacando las innovaciones técnicas implementadas.
 
-\section{Menú principal}
+\section{Pestaña \textit{Menú Principal}}
 
 El menú principal constituye la interfaz de entrada principal a la aplicación SimAS 3.0, sirviendo como punto de acceso centralizado a todas las funcionalidades del sistema. Diseñado con una arquitectura modular clara, este componente actúa como un hub de navegación que facilita el acceso intuitivo a los diferentes módulos de la aplicación.
 
@@ -77,7 +77,7 @@ Por ejemplo, las operaciones relacionadas con gramáticas están representadas c
 Esta estrategia de diseño no solo mejora la intuitividad de la interfaz, sino que también optimiza el espacio disponible y reduce la carga cognitiva del usuario. El sistema de habilitación contextual asegura que los usuarios se centren en las tareas apropiadas para cada etapa del proceso, mejorando tanto la eficiencia como la calidad del trabajo realizado.
   
 
-\section{Pestaña del editor}
+\section{Pestaña \textit{Editor}}
 
 La pestaña del editor representa el módulo principal de creación y gestión de gramáticas en SimAS 3.0. Este componente se abre en una nueva pestaña independiente cuando el usuario selecciona las opciones de crear una nueva gramática o editar una existente desde el menú principal.
 
@@ -101,7 +101,7 @@ En la figura \ref{fig:d3}, se muestra un ejemplo completo de la pestaña del edi
 
 La barra de herramientas del editor ya fue detallada en la sección anterior, destacando su sistema inteligente de habilitación/deshabilitación de controles. A continuación se describe la pestaña de edición, que implementa un proceso estructurado de 4 pasos para la creación y modificación de gramáticas.
 
-\subsection{Pestaña de edición}
+\subsection{Pestaña \textit{Asistente Editor}}
 
 La pestaña de edición representa la interfaz principal de interacción para la creación y modificación de gramáticas de contexto libre en SimAS 3.0. Esta pestaña se abre inicialmente en el paso 1 del proceso y proporciona un flujo de trabajo guiado que asegura la correcta definición de todos los componentes necesarios para una gramática funcional.
 
@@ -179,59 +179,151 @@ La figura \ref{fig:paso4} muestra la interfaz del paso 4 donde se selecciona el 
 
 Esta estructura de 4 pasos proporciona una experiencia de usuario intuitiva y pedagógica, guiando al estudiante a través del proceso de definición de gramáticas de manera sistemática y asegurando que no se omitan componentes esenciales.
 
-\section{Pestaña del simulador}
+\section{Pestaña \textit{Simulador}}
 
-La pestaña del simulador permite ejecutar la simulación de un analizador descendente o ascendente utilizando una gramática. En la figura \ref{fig:d5}, se muestra un ejemplo de esta pestaña.
+La pestaña del simulador integra tanto el asistente de preparación de gramáticas como la interfaz del simulador propiamente dicho. Esta pestaña se abre cuando el usuario selecciona una gramática preparada y desea proceder con la simulación de análisis sintáctico descendente predictivo.
 
-La pestaña está compuesta de los siguientes elementos:
-\begin{enumerate}
- \item \textbf{Barra de menús}: barra de menús de la pestaña.
- \item \textbf{Barra de herramientas}: barra de herramientas de la pestaña.
- \item \textbf{Panel de simulación}: panel que muestra los datos de la gramática a simular.
-\end{enumerate}
+El asistente integrado en esta pestaña consta de 5 pasos secuenciales que preparan la gramática para la simulación LL(1), seguidos de un sexto paso que corresponde al simulador propiamente dicho.
 
-\begin{figure}[htp]
+\subsubsection{Paso 1: Eliminación de recursividad y factorización}
+
+El primer paso del asistente verifica y corrige automáticamente la gramática original para eliminar cualquier recursividad por la izquierda y realizar factorización cuando sea necesario. Este proceso asegura que la gramática cumpla con los requisitos del análisis predictivo LL(1).
+
+En la figura \ref{fig:paso1_sim}, se muestra la interfaz del paso 1 donde se realiza la eliminación de recursividad y factorización de la gramática.
+
+\needspace{6cm}
+\begin{figure}[H]
 \centering
-	\includegraphics[width=0.8\textwidth]{figuras2/ejemplo_practico/simulador.png}
-	\caption{Pestaña de simulación.}
-	\label{fig:d5}
+\includegraphics[width=0.8\textwidth]{figuras2/simulador/paso1_recursividad_factorizacion.png}
+\caption{Paso 1: Eliminación de recursividad y factorización.}
+\label{fig:paso1_sim}
 \end{figure}
 
-  En las secciones anteriores ya se vio con detalle la barra de menús y la barra de herramientas; a continuación, se llevará a cabo la descripción de cada una de las partes que compone el panel de simulación.
+\subsubsection{Paso 2: Construcción de conjuntos Primero y Siguiente}
 
+En este paso se calculan automáticamente los conjuntos Primero ($\text{First}$) y Siguiente ($\text{Follow}$) para cada símbolo no terminal de la gramática. Estos conjuntos son fundamentales para la construcción de la tabla predictiva y constituyen la base matemática del análisis sintáctico.
 
+La figura \ref{fig:paso2_sim} ilustra la interfaz del paso 2 donde se muestran los conjuntos Primero y Siguiente calculados para la gramática.
 
-\subsection{Panel de simulación}
-
-El panel de simulación permite visualizar las simulaciones de los analizadores sintácticos. En la figura \ref{fig:d6}, se muestra un ejemplo de este panel.
-
-El panel está compuesto de los siguientes elementos:
-\begin{enumerate}
- \item \textbf{Tipo de análisis}: muestra el tipo de simulación que se va a llevar a cabo, \textit{descendente} o \textit{ascendente}. En el caso de ser la simulación del análisis ascendente, también se detalla el tipo: \textit{SLR}, \textit{LR-canónico} o \textit{LALR}.
- \item \textbf{Producciones de la gramática}: visualización gráfica de las producciones de la gramática.
- \item \textbf{Funciones de error}: lista de funciones de error de la gramática.
- \item \textbf{Tabla predictiva o tabla LR}: muestra la tabla predictiva o la tabla LR, dependiendo del método seleccionado.
-\end{enumerate}
-
-\begin{figure}[htp]
+\needspace{6cm}
+\begin{figure}[H]
 \centering
-	\includegraphics[width=0.8\textwidth]{figuras2/simulador/paso5_tablaPredictivaCompleta.png}
-	\caption{Panel de simulación.}
-	\label{fig:d6}
+\includegraphics[width=0.8\textwidth]{figuras2/simulador/paso2_conjuntos.png}
+\caption{Paso 2: Construcción de conjuntos Primero y Siguiente.}
+\label{fig:paso2_sim}
 \end{figure}
 
-\subsection{Pestaña de Gramática Original}
+\subsubsection{Paso 3: Construcción de la tabla predictiva}
 
-\textbf{Visualización de la Gramática Original} (Novedad): a medida que se generan los diferentes conjuntos, tablas y funciones de error, se le permite al usuario visualizar la gramática original para así poder realizar las comparaciones que desee si dicha gramática se ha transformado en otra porque se ha eliminado la recursividad por la izquierda o se ha factorizado por la izquierda. La pestaña será un panel simple donde se muestre la gramática original de la misma forma que se muestra la gramática modificada (Figura \ref{fig:d10}).
+El asistente construye la tabla predictiva LL(1) utilizando los conjuntos calculados en el paso anterior. Esta tabla determina, para cada combinación de símbolo no terminal y símbolo terminal, cuál es la producción que debe aplicarse durante el análisis.
 
-\begin{figure}[htp]
+En la figura \ref{fig:paso3_sim}, se presenta la interfaz del paso 3 donde se construye la tabla predictiva LL(1).
+
+\needspace{6cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figuras2/simulador/paso3_tablaPredictiva.png}
+\caption{Paso 3: Construcción de la tabla predictiva.}
+\label{fig:paso3_sim}
+\end{figure}
+
+\subsubsection{Paso 4: Definición de funciones de error}
+
+El sistema predefine automáticamente algunas funciones de error básicas, pero permite al usuario personalizar y definir funciones de error adicionales según sus necesidades específicas. Las funciones de error son cruciales para el manejo adecuado de situaciones de error durante el análisis sintáctico.
+
+La figura \ref{fig:paso4_sim} muestra la interfaz del paso 4 donde se definen y configuran las funciones de error para la simulación.
+
+\needspace{6cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figuras2/simulador/paso4_funcionesError.png}
+\caption{Paso 4: Definición de funciones de error.}
+\label{fig:paso4_sim}
+\end{figure}
+
+\subsubsection{Paso 5: Construcción interactiva de la tabla predictiva final}
+
+En el último paso del asistente, el usuario puede revisar y modificar interactivamente la tabla predictiva, añadiendo las funciones de error definidas en el paso anterior. Esta construcción interactiva permite al usuario tener un control total sobre el comportamiento del analizador.
+
+En la figura \ref{fig:paso5_sim}, se muestra la interfaz del paso 5 donde el usuario puede construir interactivamente la tabla predictiva final incorporando las funciones de error.
+
+\needspace{6cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figuras2/simulador/paso5_tablaPredictivaCompleta.png}
+\caption{Paso 5: Construcción interactiva de la tabla predictiva final.}
+\label{fig:paso5_sim}
+\end{figure}
+
+\subsubsection{Paso 6: Simulador (Resumen y ejecución)}
+
+Una vez completados los 5 pasos del asistente, se accede al simulador propiamente dicho, que actúa como resumen de todo el proceso preparatorio. El simulador contiene:
+
+\begin{itemize}
+ \item \textbf{Producciones modificadas}: las reglas de producción preparadas para simulación LL(1)
+ \item \textbf{Funciones de error definidas}: el conjunto completo de funciones de error configuradas
+ \item \textbf{Tabla predictiva completa}: la tabla final que se utilizará en la simulación
+\end{itemize}
+
+En la figura \ref{fig:simulador}, se muestra la interfaz del simulador en funcionamiento, donde se integran las producciones modificadas, funciones de error y tabla predictiva completa preparadas para la simulación.
+
+\needspace{8cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figuras2/simulador/simulador.png}
+\caption{Simulador con producciones modificadas y tabla predictiva completa.}
+\label{fig:simulador}
+\end{figure}
+
+El simulador proporciona capacidades avanzadas de documentación y navegación:
+
+\begin{itemize}
+ \item \textbf{Generación de informes}: capacidad de generar informes detallados con toda la información necesaria para la simulación, incluyendo producciones modificadas, funciones de error y tabla predictiva completa
+ \item \textbf{Llave de navegación}: actúa como punto de acceso principal para abrir las pestañas de simulación individual, permitiendo al usuario ejecutar análisis sintácticos paso a paso
+\end{itemize}
+
+Esta integración del asistente y el simulador en una sola pestaña proporciona una experiencia de usuario coherente y eficiente, permitiendo tanto la preparación automática de la gramática como la ejecución interactiva de simulaciones.
+
+\subsection{Pestaña \textit{Gramática Original}}
+
+La pestaña de Gramática Original representa una innovadora funcionalidad pedagógica introducida en SimAS 3.0, que no estaba disponible en versiones anteriores del software. Esta característica se activa mediante el botón \string"Gramática\string" ubicado en el menú inferior de navegación, el cual permanece visible y accesible durante todos los pasos del asistente de simulador.
+
+Esta funcionalidad permite al usuario mantener una referencia visual constante de la gramática original mientras observa cómo el sistema la transforma y prepara para el análisis LL(1). A medida que se generan los diferentes conjuntos, tablas y funciones de error a través de los 5 pasos del asistente, el usuario puede consultar en cualquier momento la gramática original para realizar comparaciones pedagógicas y comprender mejor las transformaciones aplicadas.
+
+\subsubsection{Propósito pedagógico y técnico}
+
+La pestaña cumple un doble propósito tanto educativo como técnico:
+
+\begin{itemize}
+ \item \textbf{Propósito educativo}: permite al estudiante comparar visualmente cómo la gramática original se transforma durante el proceso de eliminación de recursividad por la izquierda y factorización, facilitando la comprensión de estos conceptos fundamentales del análisis sintáctico.
+
+ \item \textbf{Propósito técnico}: ofrece una referencia constante que ayuda al usuario a verificar que las transformaciones aplicadas mantienen la equivalencia semántica con la gramática original, asegurando la corrección del proceso de preparación.
+\end{itemize}
+
+\subsubsection{Disponibilidad y accesibilidad}
+
+A diferencia de otras funcionalidades que se activan solo en ciertos pasos, el botón de acceso a la gramática original permanece disponible durante toda la sesión del asistente, permitiendo al usuario:
+
+\begin{itemize}
+ \item Consultar la gramática original en cualquier momento del proceso
+ \item Realizar comparaciones entre la gramática original y las versiones transformadas
+ \item Verificar visualmente las modificaciones aplicadas en cada paso
+ \item Mantener una referencia contextual durante todo el proceso de preparación
+\end{itemize}
+
+La pestaña se presenta como un panel simple y limpio que muestra la gramática original en el mismo formato visual utilizado para las gramáticas modificadas, facilitando las comparaciones directas. En la figura \ref{fig:gramatica_original}, se muestra un ejemplo de esta interfaz.
+
+\needspace{8cm}
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{figuras2/simulador/gramatica_original.png}
-\caption{Gramática Original.}
-\label{fig:d10}
+\caption{Pestaña de visualización de la gramática original.}
+\label{fig:gramatica_original}
 \end{figure}
 
-\section{Pestaña de simulación}
+Esta funcionalidad representa un avance significativo en la interfaz pedagógica de SimAS, proporcionando una herramienta visual que facilita el aprendizaje de los conceptos de transformación de gramáticas y su importancia en el análisis sintáctico descendente predictivo.
+
+\section{Pestaña \textit{Simulación}}
 
 La pestaña de simulación se encarga de ejecutar las simulaciones de una cadena de entrada. En la figura \ref{fig:d7}, se muestra un ejemplo de esta pestaña.
 
@@ -241,8 +333,8 @@ La pestaña está compuesta de los siguientes elementos:
  \item \textbf{Cadena de entrada}: permite introducir los símbolos terminales que forman parte de la cadena de entrada que se va a simular.
  \item \textbf{Botones de Avance y Retroceso}: la simulación se podrá realizar paso a paso o de forma completa, pudiendo avanzar y retroceder en cada paso.
  \item \textbf{Tabla de análisis}: representa la tabla de resultados del análisis.
- \item \textbf{Generar Árbol Sintáctico} (Novedad): permite abrir una pestaña en la que se genere el árbol sintáctico correspondiente.
- \item \textbf{Generar Derivación} (Novedad): permite abrir una pestaña en la que se genere la derivación de la simulación correspondiente.
+ \item \textbf{Generar Árbol Sintáctico}: permite abrir una pestaña en la que se genere el árbol sintáctico correspondiente.
+ \item \textbf{Generar Derivación}: permite abrir una pestaña en la que se genere la derivación de la simulación correspondiente.
  \item \textbf{Informe de la Simulación}: permite al usuario generar un informe en pdf de la simulación.
 \end{enumerate}
 
@@ -253,7 +345,7 @@ La pestaña está compuesta de los siguientes elementos:
 	\label{fig:d7}
 \end{figure}
 
-\section{Pestaña de Visualización del Árbol Sintáctico}
+\section{Pestaña \textit{Árbol Sintáctico}}
 
 El árbol sintáctico se podrá ver en una pestaña la cual se irá repintando a medida que se continue con la simulación (Figura \ref{fig:da22}).
 
@@ -264,7 +356,7 @@ El árbol sintáctico se podrá ver en una pestaña la cual se irá repintando a
 	\label{fig:da22}
 \end{figure}
 
- \section{Pestaña de Derivación Sintáctica}
+\section{Pestaña \textit{Derivación}}
 
 Además del árbol, es posible generar la derivación de la simulación actual en una pestaña adicional tal y como se muestra en la imagen \ref{fig:da24}:
 
@@ -273,22 +365,4 @@ Además del árbol, es posible generar la derivación de la simulación actual e
 	\includegraphics[width=0.8\textwidth]{figuras2/simulador/simulacion_derivacion.png}
 	\caption{Pestaña de simulación.}
 	\label{fig:da24}
-\end{figure}
-
-\section{Pestaña de asistente} \label{sec:pestaña_asistente}
-
-En SimAS se han creado dos tipos de asistentes: el \textit{asistente de creación de una gramática} y el \textit{asistente de creación de una simulación}. En la figura \ref{fig:d8}, se muestra un ejemplo de esta pestaña; en concreto, el primer paso del asistente de creación de una gramática.
-
-La pestaña está compuesta de los siguientes elementos:
-\begin{enumerate}
- \item \textbf{Título}: contiene un título descriptivo de la pestaña en la que se sitúe el asistente.
- \item \textbf{Contenido}: información que se muestra en el panel en función del paso en el que se está.
- \item \textbf{Botonera}: permite controlar la evolución del asistente (cancelar, ir al paso anterior, ir al primer paso, etcétera).
-\end{enumerate}
-
-\begin{figure}[htp]
-\centering
-	\includegraphics[width=0.8\textwidth]{figuras2/ejemplo_practico/editor_paso1.png}
-	\caption{Pestaña de asistente.}
-	\label{fig:d8}
 \end{figure}
