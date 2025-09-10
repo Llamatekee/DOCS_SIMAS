@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1757519537.70238 "main.bcf" "main.bbl" "main" 1757519578.48122 0
-  "main.bcf" 1757519577.61786 115927 03c39a72cfd8601a7e0509d54fd128a6 "pdflatex"
-  "references.bib" 1757418317.58614 5708 1cc7f76518d3b0f2c6664fdc1fd96568 ""
+["biber main"] 1757521607.90319 "main.bcf" "main.bbl" "main" 1757521650.49196 0
+  "main.bcf" 1757521649.55931 116073 5768b06c66cd983065b890c43b3ff7ce "pdflatex"
+  "references.bib" 1757521589.67698 5908 c1a047f455cf84bff95b8a0bd2a77ae4 ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1757519566.20072 "main.tex" "main.pdf" "main" 1757519578.48195 0
+["pdflatex"] 1757521636.79627 "main.tex" "main.pdf" "main" 1757521650.49277 0
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
@@ -313,8 +313,9 @@
   "capitulos/07_Analisis_Funcional.tex" 1757418317.18165 70088 26e02448f61274299f93123711ae7203 ""
   "capitulos/08_Diseno_de_paquetes.tex" 1757418317.18296 53312 c93c358ced6d417e2ed9017e3aca51ed ""
   "capitulos/09_Diseno_de_clases.tex" 1757493952.13924 135409 17835c938a7722f44a7f51ac64f029a4 ""
-  "capitulos/10_Diseno_de_la_interfaz.tex" 1757519518.36856 30641 de85f6dd094f0632468624cc3dffee53 ""
+  "capitulos/10_Diseno_de_la_interfaz.tex" 1757519711.84175 30634 cf09acef6a5adace211d6325281e4760 ""
   "capitulos/11_Pruebas.tex" 1757418317.18622 10028 b80f2203cc297a421fc1934a0389197b ""
+  "capitulos/12_Conclusiones.tex" 1757521591.38361 10995 aaab63bd0797f9425788db95148fed35 ""
   "figuras/Cap1/fasescomp.png" 1757418317.18996 45531 8fc69d01cc4de000286810c7750cfbe3 ""
   "figuras/Cap3/Paso-13-arbol-derivacion-descendente.pdf" 1757418317.20909 8052 f326978410c034a25d8783a27cb2ce54 ""
   "figuras/Cap3/Paso-2-arbol-derivacion-descendente.pdf" 1757418317.20985 5073 e7cfeb4d378cc3102d1167eaf5934881 ""
@@ -372,7 +373,7 @@
   "figuras2/simulador/paso4_funcionesError.png" 1757505063.16542 121882 c6b3a34e49ed25587229a3cd80d94f28 ""
   "figuras2/simulador/paso5_tablaPredictivaCompleta.png" 1757505063.17094 134850 6d5b33a348267ed1cb070db16e5ba24f ""
   "figuras2/simulador/simulacion_arbol.png" 1757505063.17314 98208 3ecf6d3825e98f0c9b5cf940b233815d ""
-  "figuras2/simulador/simulacion_cadenaEntrada.png" 1757505063.17686 192330 ac285c259898b778ac51ea8d34d4c55d ""
+  "figuras2/simulador/simulacion_completa.png" 1757505063.17924 109750 c657d6ca1469672f8714c514eeab27d7 ""
   "figuras2/simulador/simulacion_derivacion.png" 1757505063.18355 84149 00a1f1b732a3128bd5888bf91bcead18 ""
   "figuras2/simulador/simulador.png" 1757505063.18883 128632 fbcb20ccc67296e409c593e3cdaacb5d ""
   "img/LogotipoEPSC.pdf" 1757418317.38797 12822 57b0480af6abc8db2232e4c5207e32f8 ""
@@ -380,14 +381,14 @@
   "img/emblema-ing-informatica.pdf" 1757418317.46617 8580 50917c02c22450d26b55704c4c5679ec ""
   "img/topRightCorner.pdf" 1757418317.52638 1281 aa53b8ee73503bf55b28924ecfa3585f ""
   "img/uco_debajo.pdf" 1757418317.52695 22217 3f0ec81e6d4ee2ee174a8c125f9a9095 ""
-  "main.aux" 1757519577.58685 102522 9b59c64517683a6395c014aa3003d022 "pdflatex"
-  "main.bbl" 1757519541.79199 34752 85252f128c3b7273b22e0effe1e8dde8 "biber main"
-  "main.lof" 1757519577.61967 7880 ecdf02b5e84dc8e92cfbaf57a5386afb "pdflatex"
-  "main.lot" 1757519577.61975 8995 437011f6632329d5950a8920ced6248f "pdflatex"
-  "main.out" 1757519577.61259 70791 cc35c07860118ca44b13c19c5013cb91 "pdflatex"
-  "main.run.xml" 1757519577.61938 2305 76c44fea4789d1f6305c2f013e1aba2a "pdflatex"
-  "main.tex" 1757508706.16641 8541 7b01ee41d1a2acd101e41a3abaf8525f ""
-  "main.toc" 1757519577.61954 36406 b35b40b07519bd78b146b29eff06a240 "pdflatex"
+  "main.aux" 1757521649.52257 104539 7c394950f91b3b2d7debf0a3d3c54e6e "pdflatex"
+  "main.bbl" 1757521611.53413 35930 caea111dfd3a9bd931bf327554c13efe "biber main"
+  "main.lof" 1757521649.5608 7900 fc66927f2e40f86a8b336adad8dd3e42 "pdflatex"
+  "main.lot" 1757521649.56086 9015 28a150780fe5c44a1608cef2e5612f08 "pdflatex"
+  "main.out" 1757521649.55343 73399 9319fc9b1b034ff8048c6f2c7953206e "pdflatex"
+  "main.run.xml" 1757521649.56054 2305 76c44fea4789d1f6305c2f013e1aba2a "pdflatex"
+  "main.tex" 1757520014.03633 8539 343d2a9f6d0106aafbedb25470789f20 ""
+  "main.toc" 1757521649.56069 37626 752911fb9e767e8e558ef01ddae836ab "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"

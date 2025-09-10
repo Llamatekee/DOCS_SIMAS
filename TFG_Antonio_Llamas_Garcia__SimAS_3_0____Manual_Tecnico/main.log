@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  10 SEP 2025 17:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  10 SEP 2025 18:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1725,22 +1725,22 @@ Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 Package caption Info: rotating package is loaded.
 Package caption Info: threeparttable package is loaded.
 Package caption Info: End \AtBeginDocument code.
-<img/topRightCorner.pdf, id=1360, 372.71536pt x 177.29297pt>
+<img/topRightCorner.pdf, id=1408, 372.71536pt x 177.29297pt>
 File: img/topRightCorner.pdf Graphic file (type pdf)
 <use img/topRightCorner.pdf>
 Package pdftex.def Info: img/topRightCorner.pdf  used on input line 184.
 (pdftex.def)             Requested size: 358.91168pt x 170.71652pt.
-<img/bottomLeftCorner.pdf, id=1361, 373.7158pt x 179.53836pt>
+<img/bottomLeftCorner.pdf, id=1409, 373.7158pt x 179.53836pt>
 File: img/bottomLeftCorner.pdf Graphic file (type pdf)
 <use img/bottomLeftCorner.pdf>
 Package pdftex.def Info: img/bottomLeftCorner.pdf  used on input line 187.
 (pdftex.def)             Requested size: 355.36444pt x 170.71652pt.
-<img/uco_debajo.pdf, id=1362, 112.27277pt x 64.74771pt>
+<img/uco_debajo.pdf, id=1410, 112.27277pt x 64.74771pt>
 File: img/uco_debajo.pdf Graphic file (type pdf)
 <use img/uco_debajo.pdf>
 Package pdftex.def Info: img/uco_debajo.pdf  used on input line 189.
 (pdftex.def)             Requested size: 98.67528pt x 56.9055pt.
-<img/emblema-ing-informatica.pdf, id=1363, 75.72227pt x 63.87949pt>
+<img/emblema-ing-informatica.pdf, id=1411, 75.72227pt x 63.87949pt>
 File: img/emblema-ing-informatica.pdf Graphic file (type pdf)
 <use img/emblema-ing-informatica.pdf>
 Package pdftex.def Info: img/emblema-ing-informatica.pdf  used on input line 19
@@ -1754,7 +1754,7 @@ File: t1fvs.fd 2004/09/07 scalable font definitions for T1/fvs.
 )
 LaTeX Font Info:    Font shape `T1/fvs/m/n' will be
 (Font)              scaled to size 10.79993pt on input line 200.
-<img/LogotipoEPSC.pdf, id=1364, 634.5805pt x 190.81488pt>
+<img/LogotipoEPSC.pdf, id=1412, 634.5805pt x 190.81488pt>
 File: img/LogotipoEPSC.pdf Graphic file (type pdf)
 <use img/LogotipoEPSC.pdf>
 Package pdftex.def Info: img/LogotipoEPSC.pdf  used on input line 205.
@@ -2041,7 +2041,7 @@ Underfull \vbox (badness 1205) has occurred while \output is active []
 [3
 
 ]
-<figuras/Cap1/fasescomp.png, id=2134, 683.55376pt x 503.8825pt>
+<figuras/Cap1/fasescomp.png, id=2194, 683.55376pt x 503.8825pt>
 File: figuras/Cap1/fasescomp.png Graphic file (type png)
 <use figuras/Cap1/fasescomp.png>
 Package pdftex.def Info: figuras/Cap1/fasescomp.png  used on input line 70.
@@ -2120,7 +2120,7 @@ LaTeX Info: Redefining \% on input line 120.
 LaTeX Info: Redefining \. on input line 168.
 LaTeX Info: Redefining \% on input line 168.
 [20]
-<figuras/Cap3/arbol-derivacion-gramatica-contexto-libre.pdf, id=2290, 547.04375
+<figuras/Cap3/arbol-derivacion-gramatica-contexto-libre.pdf, id=2350, 547.04375
 pt x 362.35374pt>
 File: figuras/Cap3/arbol-derivacion-gramatica-contexto-libre.pdf Graphic file (
 type pdf)
@@ -2137,7 +2137,7 @@ LaTeX Info: Redefining \% on input line 193.
 LaTeX Info: Redefining \. on input line 237.
 LaTeX Info: Redefining \% on input line 237.
 [22]
-<figuras/Cap3/Paso-2-arbol-derivacion-descendente.pdf, id=2311, 429.605pt x 543
+<figuras/Cap3/Paso-2-arbol-derivacion-descendente.pdf, id=2371, 429.605pt x 543
 .02875pt>
 File: figuras/Cap3/Paso-2-arbol-derivacion-descendente.pdf Graphic file (type p
 df)
@@ -2145,7 +2145,7 @@ df)
 Package pdftex.def Info: figuras/Cap3/Paso-2-arbol-derivacion-descendente.pdf  
 used on input line 240.
 (pdftex.def)             Requested size: 171.83894pt x 217.20764pt.
-<figuras/Cap3/Paso-13-arbol-derivacion-descendente.pdf, id=2312, 820.06375pt x 
+<figuras/Cap3/Paso-13-arbol-derivacion-descendente.pdf, id=2372, 820.06375pt x 
 551.05875pt>
 File: figuras/Cap3/Paso-13-arbol-derivacion-descendente.pdf Graphic file (type 
 pdf)
@@ -2171,13 +2171,13 @@ LaTeX Info: Redefining \% on input line 370.
 LaTeX Info: Redefining \. on input line 429.
 LaTeX Info: Redefining \% on input line 429.
 [26]
-<figuras/Cap3/SLR-paso-inicial.pdf, id=2360, 423.5825pt x 281.05pt>
+<figuras/Cap3/SLR-paso-inicial.pdf, id=2421, 423.5825pt x 281.05pt>
 File: figuras/Cap3/SLR-paso-inicial.pdf Graphic file (type pdf)
 <use figuras/Cap3/SLR-paso-inicial.pdf>
 Package pdftex.def Info: figuras/Cap3/SLR-paso-inicial.pdf  used on input line 
 436.
 (pdftex.def)             Requested size: 211.79073pt x 140.52464pt.
-<figuras/Cap3/SLR-paso-final.pdf, id=2361, 372.39125pt x 315.1775pt>
+<figuras/Cap3/SLR-paso-final.pdf, id=2422, 372.39125pt x 315.1775pt>
 File: figuras/Cap3/SLR-paso-final.pdf Graphic file (type pdf)
 <use figuras/Cap3/SLR-paso-final.pdf>
 Package pdftex.def Info: figuras/Cap3/SLR-paso-final.pdf  used on input line 43
@@ -2188,17 +2188,17 @@ Package pdftex.def Info: figuras/Cap3/SLR-paso-final.pdf  used on input line 43
 LaTeX Info: Redefining \. on input line 445.
 LaTeX Info: Redefining \% on input line 445.
 [27 <./figuras/Cap3/SLR-paso-inicial.pdf> <./figuras/Cap3/SLR-paso-final.pdf>]
-<figuras/Cap3/interfaz.JPG, id=2384, 689.57625pt x 839.135pt>
+<figuras/Cap3/interfaz.JPG, id=2445, 689.57625pt x 839.135pt>
 File: figuras/Cap3/interfaz.JPG Graphic file (type jpg)
 <use figuras/Cap3/interfaz.JPG>
 Package pdftex.def Info: figuras/Cap3/interfaz.JPG  used on input line 465.
 (pdftex.def)             Requested size: 344.78728pt x 419.56647pt.
-<figuras/Cap3/da12.png, id=2386, 822.07124pt x 665.48625pt>
+<figuras/Cap3/da12.png, id=2447, 822.07124pt x 665.48625pt>
 File: figuras/Cap3/da12.png Graphic file (type png)
 <use figuras/Cap3/da12.png>
 Package pdftex.def Info: figuras/Cap3/da12.png  used on input line 481.
 (pdftex.def)             Requested size: 328.82266pt x 266.18977pt.
-<figuras/Cap3/da14.png, id=2388, 679.53876pt x 717.68124pt>
+<figuras/Cap3/da14.png, id=2449, 679.53876pt x 717.68124pt>
 File: figuras/Cap3/da14.png Graphic file (type png)
 <use figuras/Cap3/da14.png>
 Package pdftex.def Info: figuras/Cap3/da14.png  used on input line 496.
@@ -2226,19 +2226,19 @@ LaTeX Info: Redefining \% on input line 513.
 LaTeX Info: Redefining \. on input line 535.
 LaTeX Info: Redefining \% on input line 535.
 [31]
-<figuras/Cap3/SimAS2/editor.png, id=2438, 684.5575pt x 819.06pt>
+<figuras/Cap3/SimAS2/editor.png, id=2498, 684.5575pt x 819.06pt>
 File: figuras/Cap3/SimAS2/editor.png Graphic file (type png)
 <use figuras/Cap3/SimAS2/editor.png>
 Package pdftex.def Info: figuras/Cap3/SimAS2/editor.png  used on input line 545
 .
 (pdftex.def)             Requested size: 342.27791pt x 409.52899pt.
-<figuras/Cap3/SimAS2/paso1.png, id=2440, 569.12625pt x 523.9575pt>
+<figuras/Cap3/SimAS2/paso1.png, id=2500, 569.12625pt x 523.9575pt>
 File: figuras/Cap3/SimAS2/paso1.png Graphic file (type png)
 <use figuras/Cap3/SimAS2/paso1.png>
 Package pdftex.def Info: figuras/Cap3/SimAS2/paso1.png  used on input line 560.
 
 (pdftex.def)             Requested size: 284.56242pt x 261.9781pt.
-<figuras/Cap3/SimAS2/paso2.png, id=2442, 605.26125pt x 487.8225pt>
+<figuras/Cap3/SimAS2/paso2.png, id=2502, 605.26125pt x 487.8225pt>
 File: figuras/Cap3/SimAS2/paso2.png Graphic file (type png)
 <use figuras/Cap3/SimAS2/paso2.png>
 Package pdftex.def Info: figuras/Cap3/SimAS2/paso2.png  used on input line 575.
@@ -2257,13 +2257,13 @@ LaTeX Info: Redefining \% on input line 580.
 LaTeX Info: Redefining \. on input line 580.
 LaTeX Info: Redefining \% on input line 580.
 [34 <./figuras/Cap3/SimAS2/paso1.png> <./figuras/Cap3/SimAS2/paso2.png>]
-<figuras/Cap3/SimAS2/paso3.png, id=2465, 705.63625pt x 521.95pt>
+<figuras/Cap3/SimAS2/paso3.png, id=2525, 705.63625pt x 521.95pt>
 File: figuras/Cap3/SimAS2/paso3.png Graphic file (type png)
 <use figuras/Cap3/SimAS2/paso3.png>
 Package pdftex.def Info: figuras/Cap3/SimAS2/paso3.png  used on input line 589.
 
 (pdftex.def)             Requested size: 352.81726pt x 260.97435pt.
-<figuras/Cap3/SimAS2/paso4.png, id=2467, 648.4225pt x 509.905pt>
+<figuras/Cap3/SimAS2/paso4.png, id=2527, 648.4225pt x 509.905pt>
 File: figuras/Cap3/SimAS2/paso4.png Graphic file (type png)
 <use figuras/Cap3/SimAS2/paso4.png>
 Package pdftex.def Info: figuras/Cap3/SimAS2/paso4.png  used on input line 602.
@@ -2274,13 +2274,13 @@ Package pdftex.def Info: figuras/Cap3/SimAS2/paso4.png  used on input line 602.
 LaTeX Info: Redefining \. on input line 611.
 LaTeX Info: Redefining \% on input line 611.
 [35 <./figuras/Cap3/SimAS2/paso3.png>]
-<figuras/Cap3/SimAS2/paso5.png, id=2480, 690.58pt x 634.37pt>
+<figuras/Cap3/SimAS2/paso5.png, id=2540, 690.58pt x 634.37pt>
 File: figuras/Cap3/SimAS2/paso5.png Graphic file (type png)
 <use figuras/Cap3/SimAS2/paso5.png>
 Package pdftex.def Info: figuras/Cap3/SimAS2/paso5.png  used on input line 616.
 
 (pdftex.def)             Requested size: 345.28915pt x 317.18422pt.
-<figuras/Cap3/SimAS2/finalizar.png, id=2482, 819.06pt x 732.7375pt>
+<figuras/Cap3/SimAS2/finalizar.png, id=2542, 819.06pt x 732.7375pt>
 File: figuras/Cap3/SimAS2/finalizar.png Graphic file (type png)
 <use figuras/Cap3/SimAS2/finalizar.png>
 Package pdftex.def Info: figuras/Cap3/SimAS2/finalizar.png  used on input line 
@@ -2307,7 +2307,7 @@ LaTeX Info: Redefining \% on input line 660.
 LaTeX Info: Redefining \. on input line 687.
 LaTeX Info: Redefining \% on input line 687.
 [40]
-<figuras/Cap3/SimAS2/fallos/ubuntu1.png, id=2525, 1445.4pt x 903.375pt>
+<figuras/Cap3/SimAS2/fallos/ubuntu1.png, id=2585, 1445.4pt x 903.375pt>
 File: figuras/Cap3/SimAS2/fallos/ubuntu1.png Graphic file (type png)
 <use figuras/Cap3/SimAS2/fallos/ubuntu1.png>
 Package pdftex.def Info: figuras/Cap3/SimAS2/fallos/ubuntu1.png  used on input 
@@ -2318,7 +2318,7 @@ line 704.
 LaTeX Info: Redefining \. on input line 716.
 LaTeX Info: Redefining \% on input line 716.
 [41]
-<figuras/Cap3/SimAS2/fallos/ubuntu2.png, id=2532, 674.52pt x 519.9425pt>
+<figuras/Cap3/SimAS2/fallos/ubuntu2.png, id=2592, 674.52pt x 519.9425pt>
 File: figuras/Cap3/SimAS2/fallos/ubuntu2.png Graphic file (type png)
 <use figuras/Cap3/SimAS2/fallos/ubuntu2.png>
 Package pdftex.def Info: figuras/Cap3/SimAS2/fallos/ubuntu2.png  used on input 
@@ -2330,7 +2330,7 @@ LaTeX Info: Redefining \. on input line 727.
 LaTeX Info: Redefining \% on input line 727.
 [42 <./figuras/Cap3/SimAS2/fallos/ubuntu1.png> <./figuras/Cap3/SimAS2/fallos/ub
 untu2.png>]
-<figuras/Cap3/SimAS2/fallos/macos1.png, id=2540, 1445.4pt x 903.375pt>
+<figuras/Cap3/SimAS2/fallos/macos1.png, id=2600, 1445.4pt x 903.375pt>
 File: figuras/Cap3/SimAS2/fallos/macos1.png Graphic file (type png)
 <use figuras/Cap3/SimAS2/fallos/macos1.png>
 Package pdftex.def Info: figuras/Cap3/SimAS2/fallos/macos1.png  used on input l
@@ -2341,7 +2341,7 @@ ine 734.
 LaTeX Info: Redefining \. on input line 744.
 LaTeX Info: Redefining \% on input line 744.
 [43 <./figuras/Cap3/SimAS2/fallos/macos1.png>]
-<figuras/Cap3/SimAS2/fallos/macos2.png, id=2547, 689.57625pt x 645.41125pt>
+<figuras/Cap3/SimAS2/fallos/macos2.png, id=2607, 689.57625pt x 645.41125pt>
 File: figuras/Cap3/SimAS2/fallos/macos2.png Graphic file (type png)
 <use figuras/Cap3/SimAS2/fallos/macos2.png>
 Package pdftex.def Info: figuras/Cap3/SimAS2/fallos/macos2.png  used on input l
@@ -2439,7 +2439,7 @@ LaTeX Info: Redefining \% on input line 319.
 
 [58] (./capitulos/06_Especificacion_Requisitos.tex
 Cap\'{\i }tulo 6.
-<figuras/Cap6/diagrama-descomposicion.png, id=2660, 542.025pt x 189.70876pt>
+<figuras/Cap6/diagrama-descomposicion.png, id=2720, 542.025pt x 189.70876pt>
 File: figuras/Cap6/diagrama-descomposicion.png Graphic file (type png)
 <use figuras/Cap6/diagrama-descomposicion.png>
 Package pdftex.def Info: figuras/Cap6/diagrama-descomposicion.png  used on inpu
@@ -2508,7 +2508,7 @@ Cap\'{\i }tulo 7.
 [73
 
 ]
-<figuras/Cap7/CU0.png, id=2741, 517.935pt x 414.54875pt>
+<figuras/Cap7/CU0.png, id=2801, 517.935pt x 414.54875pt>
 File: figuras/Cap7/CU0.png Graphic file (type png)
 <use figuras/Cap7/CU0.png>
 Package pdftex.def Info: figuras/Cap7/CU0.png  used on input line 36.
@@ -2525,7 +2525,7 @@ Underfull \hbox (badness 2644) in paragraph at lines 75--76
 LaTeX Info: Redefining \. on input line 97.
 LaTeX Info: Redefining \% on input line 97.
 [75]
-<figuras/Cap7/CU1.png, id=2759, 803.0pt x 761.84625pt>
+<figuras/Cap7/CU1.png, id=2819, 803.0pt x 761.84625pt>
 File: figuras/Cap7/CU1.png Graphic file (type png)
 <use figuras/Cap7/CU1.png>
 Package pdftex.def Info: figuras/Cap7/CU1.png  used on input line 108.
@@ -2564,7 +2564,7 @@ LaTeX Info: Redefining \% on input line 181.
 LaTeX Info: Redefining \. on input line 181.
 LaTeX Info: Redefining \% on input line 181.
  [79]
-<figuras/Cap7/CU11.png, id=2805, 517.935pt x 338.26375pt>
+<figuras/Cap7/CU11.png, id=2866, 517.935pt x 338.26375pt>
 File: figuras/Cap7/CU11.png Graphic file (type png)
 <use figuras/Cap7/CU11.png>
 Package pdftex.def Info: figuras/Cap7/CU11.png  used on input line 192.
@@ -2577,7 +2577,7 @@ LaTeX Info: Redefining \% on input line 196.
 LaTeX Info: Redefining \. on input line 231.
 LaTeX Info: Redefining \% on input line 231.
  [81 <./figuras/Cap7/CU11.png>]
-<figuras/Cap7/CU12.png, id=2835, 691.58376pt x 355.3275pt>
+<figuras/Cap7/CU12.png, id=2895, 691.58376pt x 355.3275pt>
 File: figuras/Cap7/CU12.png Graphic file (type png)
 <use figuras/Cap7/CU12.png>
 Package pdftex.def Info: figuras/Cap7/CU12.png  used on input line 241.
@@ -2597,7 +2597,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 LaTeX Info: Redefining \. on input line 290.
 LaTeX Info: Redefining \% on input line 290.
 [83]
-<figuras/Cap7/CU13.png, id=2861, 691.58376pt x 355.3275pt>
+<figuras/Cap7/CU13.png, id=2921, 691.58376pt x 355.3275pt>
 File: figuras/Cap7/CU13.png Graphic file (type png)
 <use figuras/Cap7/CU13.png>
 Package pdftex.def Info: figuras/Cap7/CU13.png  used on input line 299.
@@ -2623,7 +2623,7 @@ LaTeX Info: Redefining \% on input line 349.
 LaTeX Info: Redefining \. on input line 349.
 LaTeX Info: Redefining \% on input line 349.
  [85]
-<figuras/Cap7/CU14.png, id=2885, 707.64375pt x 355.3275pt>
+<figuras/Cap7/CU14.png, id=2945, 707.64375pt x 355.3275pt>
 File: figuras/Cap7/CU14.png Graphic file (type png)
 <use figuras/Cap7/CU14.png>
 Package pdftex.def Info: figuras/Cap7/CU14.png  used on input line 363.
@@ -2636,7 +2636,7 @@ LaTeX Info: Redefining \% on input line 415.
 LaTeX Info: Redefining \. on input line 415.
 LaTeX Info: Redefining \% on input line 415.
  [87]
-<figuras/Cap7/CU16.png, id=2908, 691.58376pt x 355.3275pt>
+<figuras/Cap7/CU16.png, id=2969, 691.58376pt x 355.3275pt>
 File: figuras/Cap7/CU16.png Graphic file (type png)
 <use figuras/Cap7/CU16.png>
 Package pdftex.def Info: figuras/Cap7/CU16.png  used on input line 431.
@@ -2652,7 +2652,7 @@ LaTeX Info: Redefining \% on input line 436.
 LaTeX Info: Redefining \. on input line 479.
 LaTeX Info: Redefining \% on input line 479.
  [89 <./figuras/Cap7/CU16.png>]
-<figuras/Cap7/CU17.png, id=2933, 707.64375pt x 355.3275pt>
+<figuras/Cap7/CU17.png, id=2993, 707.64375pt x 355.3275pt>
 File: figuras/Cap7/CU17.png Graphic file (type png)
 <use figuras/Cap7/CU17.png>
 Package pdftex.def Info: figuras/Cap7/CU17.png  used on input line 489.
@@ -2669,7 +2669,7 @@ LaTeX Info: Redefining \% on input line 494.
 LaTeX Info: Redefining \. on input line 495.
 LaTeX Info: Redefining \% on input line 495.
 [91 <./figuras/Cap7/CU17.png>]
-<figuras/Cap7/CU18.png, id=2951, 707.64375pt x 355.3275pt>
+<figuras/Cap7/CU18.png, id=3011, 707.64375pt x 355.3275pt>
 File: figuras/Cap7/CU18.png Graphic file (type png)
 <use figuras/Cap7/CU18.png>
 Package pdftex.def Info: figuras/Cap7/CU18.png  used on input line 543.
@@ -2695,7 +2695,7 @@ Underfull \hbox (badness 8000) in paragraph at lines 568--569
 LaTeX Info: Redefining \. on input line 594.
 LaTeX Info: Redefining \% on input line 594.
 [94]
-<figuras/Cap7/CU19.png, id=2984, 707.64375pt x 355.3275pt>
+<figuras/Cap7/CU19.png, id=3044, 707.64375pt x 355.3275pt>
 File: figuras/Cap7/CU19.png Graphic file (type png)
 <use figuras/Cap7/CU19.png>
 Package pdftex.def Info: figuras/Cap7/CU19.png  used on input line 601.
@@ -2703,7 +2703,7 @@ Package pdftex.def Info: figuras/Cap7/CU19.png  used on input line 601.
 LaTeX Info: Redefining \. on input line 648.
 LaTeX Info: Redefining \% on input line 648.
  [95 <./figuras/Cap7/CU19.png>]
-<figuras/Cap7/CU110.png, id=2996, 681.54625pt x 355.3275pt>
+<figuras/Cap7/CU110.png, id=3057, 681.54625pt x 355.3275pt>
 File: figuras/Cap7/CU110.png Graphic file (type png)
 <use figuras/Cap7/CU110.png>
 Package pdftex.def Info: figuras/Cap7/CU110.png  used on input line 658.
@@ -2723,7 +2723,7 @@ LaTeX Info: Redefining \% on input line 705.
 LaTeX Info: Redefining \. on input line 714.
 LaTeX Info: Redefining \% on input line 714.
 [98]
-<figuras/Cap7/CU112.png, id=3031, 707.64375pt x 355.3275pt>
+<figuras/Cap7/CU112.png, id=3091, 707.64375pt x 355.3275pt>
 File: figuras/Cap7/CU112.png Graphic file (type png)
 <use figuras/Cap7/CU112.png>
 Package pdftex.def Info: figuras/Cap7/CU112.png  used on input line 721.
@@ -2738,7 +2738,7 @@ Underfull \vbox (badness 4886) has occurred while \output is active []
 LaTeX Info: Redefining \. on input line 774.
 LaTeX Info: Redefining \% on input line 774.
 [100]
-<figuras/Cap7/CU2.png, id=3050, 691.58376pt x 623.32875pt>
+<figuras/Cap7/CU2.png, id=3110, 691.58376pt x 623.32875pt>
 File: figuras/Cap7/CU2.png Graphic file (type png)
 <use figuras/Cap7/CU2.png>
 Package pdftex.def Info: figuras/Cap7/CU2.png  used on input line 788.
@@ -2757,7 +2757,7 @@ LaTeX Info: Redefining \% on input line 828.
 LaTeX Info: Redefining \. on input line 839.
 LaTeX Info: Redefining \% on input line 839.
 [102]
-<figuras/Cap7/CU21.png, id=3072, 773.89125pt x 683.55376pt>
+<figuras/Cap7/CU21.png, id=3132, 773.89125pt x 683.55376pt>
 File: figuras/Cap7/CU21.png Graphic file (type png)
 <use figuras/Cap7/CU21.png>
 Package pdftex.def Info: figuras/Cap7/CU21.png  used on input line 854.
@@ -2777,7 +2777,7 @@ LaTeX Info: Redefining \% on input line 919.
 LaTeX Info: Redefining \. on input line 940.
 LaTeX Info: Redefining \% on input line 940.
 [106]
-<figuras/Cap7/CU3.png, id=3118, 681.54625pt x 355.3275pt>
+<figuras/Cap7/CU3.png, id=3179, 681.54625pt x 355.3275pt>
 File: figuras/Cap7/CU3.png Graphic file (type png)
 <use figuras/Cap7/CU3.png>
 Package pdftex.def Info: figuras/Cap7/CU3.png  used on input line 969.
@@ -2790,7 +2790,7 @@ LaTeX Info: Redefining \% on input line 974.
 LaTeX Info: Redefining \. on input line 1010.
 LaTeX Info: Redefining \% on input line 1010.
  [108 <./figuras/Cap7/CU3.png>]
-<figuras/Cap7/CU4.png, id=3138, 681.54625pt x 355.3275pt>
+<figuras/Cap7/CU4.png, id=3198, 681.54625pt x 355.3275pt>
 File: figuras/Cap7/CU4.png Graphic file (type png)
 <use figuras/Cap7/CU4.png>
 Package pdftex.def Info: figuras/Cap7/CU4.png  used on input line 1030.
@@ -2958,7 +2958,7 @@ LaTeX Info: Redefining \% on input line 714.
 LaTeX Info: Redefining \. on input line 756.
 LaTeX Info: Redefining \% on input line 756.
 [137]
-<figuras/Cap8/diagrama_paquetes.png, id=3373, 556.0775pt x 698.61pt>
+<figuras/Cap8/diagrama_paquetes.png, id=3434, 556.0775pt x 698.61pt>
 File: figuras/Cap8/diagrama_paquetes.png Graphic file (type png)
 <use figuras/Cap8/diagrama_paquetes.png>
 Package pdftex.def Info: figuras/Cap8/diagrama_paquetes.png  used on input line
@@ -3390,7 +3390,7 @@ LaTeX Info: Redefining \% on input line 613.
 LaTeX Info: Redefining \. on input line 631.
 LaTeX Info: Redefining \% on input line 631.
 [166]
-<figuras/Cap9/diagrama_gramatica_bueno.png, id=3705, 878.28125pt x 830.10126pt>
+<figuras/Cap9/diagrama_gramatica_bueno.png, id=3765, 878.28125pt x 830.10126pt>
 
 File: figuras/Cap9/diagrama_gramatica_bueno.png Graphic file (type png)
 <use figuras/Cap9/diagrama_gramatica_bueno.png>
@@ -3711,7 +3711,7 @@ LaTeX Info: Redefining \% on input line 916.
 LaTeX Info: Redefining \. on input line 916.
 LaTeX Info: Redefining \% on input line 916.
  [176]
-<figuras/Cap9/diagrama_utils.png, id=3841, 735.74875pt x 533.995pt>
+<figuras/Cap9/diagrama_utils.png, id=3901, 735.74875pt x 533.995pt>
 File: figuras/Cap9/diagrama_utils.png Graphic file (type png)
 <use figuras/Cap9/diagrama_utils.png>
 Package pdftex.def Info: figuras/Cap9/diagrama_utils.png  used on input line 93
@@ -4238,7 +4238,7 @@ LaTeX Info: Redefining \% on input line 1405.
 LaTeX Warning: Citation 'gamma1995design' on page 195 undefined on input line 1
 405.
 
-<figuras/Cap9/diagrama_editor.png, id=4084, 1453.43pt x 1008.76875pt>
+<figuras/Cap9/diagrama_editor.png, id=4145, 1453.43pt x 1008.76875pt>
 File: figuras/Cap9/diagrama_editor.png Graphic file (type png)
 <use figuras/Cap9/diagrama_editor.png>
 Package pdftex.def Info: figuras/Cap9/diagrama_editor.png  used on input line 1
@@ -4554,7 +4554,7 @@ LaTeX Info: Redefining \% on input line 1857.
 LaTeX Info: Redefining \. on input line 1895.
 LaTeX Info: Redefining \% on input line 1895.
 [210]
-<figuras/Cap9/diagrama_simulador2.png, id=4289, 1845.89626pt x 512.91624pt>
+<figuras/Cap9/diagrama_simulador2.png, id=4349, 1845.89626pt x 512.91624pt>
 File: figuras/Cap9/diagrama_simulador2.png Graphic file (type png)
 <use figuras/Cap9/diagrama_simulador2.png>
 Package pdftex.def Info: figuras/Cap9/diagrama_simulador2.png  used on input li
@@ -4783,7 +4783,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 LaTeX Info: Redefining \. on input line 33.
 LaTeX Info: Redefining \% on input line 33.
 [224]
-<figuras2/menu.png, id=4352, 799.98875pt x 901.3675pt>
+<figuras2/menu.png, id=4413, 799.98875pt x 901.3675pt>
 File: figuras2/menu.png Graphic file (type png)
 <use figuras2/menu.png>
 Package pdftex.def Info: figuras2/menu.png  used on input line 36.
@@ -4793,7 +4793,7 @@ Package pdftex.def Info: figuras2/menu.png  used on input line 36.
 LaTeX Info: Redefining \. on input line 49.
 LaTeX Info: Redefining \% on input line 49.
 [225 <./figuras2/menu.png>]
-<figuras2/editor/barra_herramientas_deshabilita_parcial.png, id=4359, 797.98125
+<figuras2/editor/barra_herramientas_deshabilita_parcial.png, id=4420, 797.98125
 pt x 56.21pt>
 File: figuras2/editor/barra_herramientas_deshabilita_parcial.png Graphic file (
 type png)
@@ -4801,7 +4801,7 @@ type png)
 Package pdftex.def Info: figuras2/editor/barra_herramientas_deshabilita_parcial
 .png  used on input line 56.
 (pdftex.def)             Requested size: 364.19667pt x 25.65363pt.
-<figuras2/editor/barra_herramientas.png, id=4361, 794.97pt x 58.2175pt>
+<figuras2/editor/barra_herramientas.png, id=4422, 794.97pt x 58.2175pt>
 File: figuras2/editor/barra_herramientas.png Graphic file (type png)
 <use figuras2/editor/barra_herramientas.png>
 Package pdftex.def Info: figuras2/editor/barra_herramientas.png  used on input 
@@ -4816,7 +4816,7 @@ LaTeX Info: Redefining \. on input line 83.
 LaTeX Info: Redefining \% on input line 83.
 [226 <./figuras2/editor/barra_herramientas_deshabilita_parcial.png> <./figuras2
 /editor/barra_herramientas.png>]
-<figuras2/ejemplo_practico/editor.png, id=4369, 790.955pt x 882.29625pt>
+<figuras2/ejemplo_practico/editor.png, id=4430, 790.955pt x 882.29625pt>
 File: figuras2/ejemplo_practico/editor.png Graphic file (type png)
 <use figuras2/ejemplo_practico/editor.png>
 Package pdftex.def Info: figuras2/ejemplo_practico/editor.png  used on input li
@@ -4831,7 +4831,7 @@ LaTeX Info: Redefining \% on input line 101.
 LaTeX Info: Redefining \. on input line 109.
 LaTeX Info: Redefining \% on input line 109.
 [228 <./figuras2/ejemplo_practico/editor.png>]
-<figuras2/editor/paso1_datos.png, id=4385, 806.01125pt x 905.3825pt>
+<figuras2/editor/paso1_datos.png, id=4445, 806.01125pt x 905.3825pt>
 File: figuras2/editor/paso1_datos.png Graphic file (type png)
 <use figuras2/editor/paso1_datos.png>
 Package pdftex.def Info: figuras2/editor/paso1_datos.png  used on input line 12
@@ -4842,7 +4842,7 @@ Package pdftex.def Info: figuras2/editor/paso1_datos.png  used on input line 12
 LaTeX Info: Redefining \. on input line 134.
 LaTeX Info: Redefining \% on input line 134.
 [229 <./figuras2/editor/paso1_datos.png>]
-<figuras2/editor/paso2_simbolos.png, id=4392, 804.00375pt x 905.3825pt>
+<figuras2/editor/paso2_simbolos.png, id=4452, 804.00375pt x 905.3825pt>
 File: figuras2/editor/paso2_simbolos.png Graphic file (type png)
 <use figuras2/editor/paso2_simbolos.png>
 Package pdftex.def Info: figuras2/editor/paso2_simbolos.png  used on input line
@@ -4853,7 +4853,7 @@ Package pdftex.def Info: figuras2/editor/paso2_simbolos.png  used on input line
 LaTeX Info: Redefining \. on input line 154.
 LaTeX Info: Redefining \% on input line 154.
 [230 <./figuras2/editor/paso2_simbolos.png>]
-<figuras2/editor/paso3_producciones.png, id=4399, 804.00375pt x 903.375pt>
+<figuras2/editor/paso3_producciones.png, id=4459, 804.00375pt x 903.375pt>
 File: figuras2/editor/paso3_producciones.png Graphic file (type png)
 <use figuras2/editor/paso3_producciones.png>
 Package pdftex.def Info: figuras2/editor/paso3_producciones.png  used on input 
@@ -4864,7 +4864,7 @@ line 157.
 LaTeX Info: Redefining \. on input line 172.
 LaTeX Info: Redefining \% on input line 172.
 [231 <./figuras2/editor/paso3_producciones.png>]
-<figuras2/editor/paso4_inicial.png, id=4406, 801.99625pt x 899.36pt>
+<figuras2/editor/paso4_inicial.png, id=4466, 801.99625pt x 899.36pt>
 File: figuras2/editor/paso4_inicial.png Graphic file (type png)
 <use figuras2/editor/paso4_inicial.png>
 Package pdftex.def Info: figuras2/editor/paso4_inicial.png  used on input line 
@@ -4883,7 +4883,7 @@ Underfull \vbox (badness 2050) has occurred while \output is active []
 LaTeX Info: Redefining \. on input line 191.
 LaTeX Info: Redefining \% on input line 191.
 [232 <./figuras2/editor/paso4_inicial.png>]
-<figuras2/simulador/paso1_recursividad_factorizacion.png, id=4413, 806.01125pt 
+<figuras2/simulador/paso1_recursividad_factorizacion.png, id=4473, 806.01125pt 
 x 906.38625pt>
 File: figuras2/simulador/paso1_recursividad_factorizacion.png Graphic file (typ
 e png)
@@ -4896,7 +4896,7 @@ g  used on input line 197.
 LaTeX Info: Redefining \. on input line 207.
 LaTeX Info: Redefining \% on input line 207.
 [233 <./figuras2/simulador/paso1_recursividad_factorizacion.png>]
-<figuras2/simulador/paso2_conjuntos.png, id=4421, 805.0075pt x 905.3825pt>
+<figuras2/simulador/paso2_conjuntos.png, id=4481, 805.0075pt x 905.3825pt>
 File: figuras2/simulador/paso2_conjuntos.png Graphic file (type png)
 <use figuras2/simulador/paso2_conjuntos.png>
 Package pdftex.def Info: figuras2/simulador/paso2_conjuntos.png  used on input 
@@ -4907,7 +4907,7 @@ line 211.
 LaTeX Info: Redefining \. on input line 222.
 LaTeX Info: Redefining \% on input line 222.
 [234 <./figuras2/simulador/paso2_conjuntos.png>]
-<figuras2/simulador/paso3_tablaPredictiva.png, id=4428, 803.0pt x 904.37875pt>
+<figuras2/simulador/paso3_tablaPredictiva.png, id=4488, 803.0pt x 904.37875pt>
 File: figuras2/simulador/paso3_tablaPredictiva.png Graphic file (type png)
 <use figuras2/simulador/paso3_tablaPredictiva.png>
 Package pdftex.def Info: figuras2/simulador/paso3_tablaPredictiva.png  used on 
@@ -4918,7 +4918,7 @@ input line 225.
 LaTeX Info: Redefining \. on input line 236.
 LaTeX Info: Redefining \% on input line 236.
 [235 <./figuras2/simulador/paso3_tablaPredictiva.png>]
-<figuras2/simulador/paso4_funcionesError.png, id=4435, 799.98875pt x 905.3825pt
+<figuras2/simulador/paso4_funcionesError.png, id=4495, 799.98875pt x 905.3825pt
 >
 File: figuras2/simulador/paso4_funcionesError.png Graphic file (type png)
 <use figuras2/simulador/paso4_funcionesError.png>
@@ -4930,7 +4930,7 @@ nput line 239.
 LaTeX Info: Redefining \. on input line 250.
 LaTeX Info: Redefining \% on input line 250.
 [236 <./figuras2/simulador/paso4_funcionesError.png>]
-<figuras2/simulador/paso5_tablaPredictivaCompleta.png, id=4442, 805.0075pt x 90
+<figuras2/simulador/paso5_tablaPredictivaCompleta.png, id=4502, 805.0075pt x 90
 3.375pt>
 File: figuras2/simulador/paso5_tablaPredictivaCompleta.png Graphic file (type p
 ng)
@@ -4943,7 +4943,7 @@ used on input line 253.
 LaTeX Info: Redefining \. on input line 270.
 LaTeX Info: Redefining \% on input line 270.
 [237 <./figuras2/simulador/paso5_tablaPredictivaCompleta.png>]
-<figuras2/simulador/simulador.png, id=4449, 800.9925pt x 900.36375pt>
+<figuras2/simulador/simulador.png, id=4510, 800.9925pt x 900.36375pt>
 File: figuras2/simulador/simulador.png Graphic file (type png)
 <use figuras2/simulador/simulador.png>
 Package pdftex.def Info: figuras2/simulador/simulador.png  used on input line 2
@@ -4961,7 +4961,7 @@ LaTeX Info: Redefining \% on input line 290.
 LaTeX Info: Redefining \. on input line 316.
 LaTeX Info: Redefining \% on input line 316.
 [239]
-<figuras2/simulador/gramatica_original.png, id=4461, 805.0075pt x 903.375pt>
+<figuras2/simulador/gramatica_original.png, id=4522, 805.0075pt x 903.375pt>
 File: figuras2/simulador/gramatica_original.png Graphic file (type png)
 <use figuras2/simulador/gramatica_original.png>
 Package pdftex.def Info: figuras2/simulador/gramatica_original.png  used on inp
@@ -4972,23 +4972,22 @@ ut line 319.
 LaTeX Info: Redefining \. on input line 334.
 LaTeX Info: Redefining \% on input line 334.
 [240 <./figuras2/simulador/gramatica_original.png>]
-<figuras2/simulador/simulacion_cadenaEntrada.png, id=4468, 800.9925pt x 903.375
-pt>
-File: figuras2/simulador/simulacion_cadenaEntrada.png Graphic file (type png)
-<use figuras2/simulador/simulacion_cadenaEntrada.png>
-Package pdftex.def Info: figuras2/simulador/simulacion_cadenaEntrada.png  used 
-on input line 349.
-(pdftex.def)             Requested size: 364.19667pt x 410.7468pt.
+<figuras2/simulador/simulacion_completa.png, id=4529, 804.00375pt x 903.375pt>
+File: figuras2/simulador/simulacion_completa.png Graphic file (type png)
+<use figuras2/simulador/simulacion_completa.png>
+Package pdftex.def Info: figuras2/simulador/simulacion_completa.png  used on in
+put line 349.
+(pdftex.def)             Requested size: 364.19667pt x 409.20296pt.
 
 
 LaTeX Info: Redefining \. on input line 355.
 LaTeX Info: Redefining \% on input line 355.
-[241 <./figuras2/simulador/simulacion_cadenaEntrada.png>]
+[241 <./figuras2/simulador/simulacion_completa.png>]
 
 LaTeX Info: Redefining \. on input line 384.
 LaTeX Info: Redefining \% on input line 384.
 [242]
-<figuras2/simulador/simulacion_arbol.png, id=4484, 805.0075pt x 904.37875pt>
+<figuras2/simulador/simulacion_arbol.png, id=4545, 805.0075pt x 904.37875pt>
 File: figuras2/simulador/simulacion_arbol.png Graphic file (type png)
 <use figuras2/simulador/simulacion_arbol.png>
 Package pdftex.def Info: figuras2/simulador/simulacion_arbol.png  used on input
@@ -4999,7 +4998,7 @@ Package pdftex.def Info: figuras2/simulador/simulacion_arbol.png  used on input
 LaTeX Info: Redefining \. on input line 400.
 LaTeX Info: Redefining \% on input line 400.
 [243 <./figuras2/simulador/simulacion_arbol.png>]
-<figuras2/simulador/simulacion_derivacion.png, id=4492, 800.9925pt x 904.37875p
+<figuras2/simulador/simulacion_derivacion.png, id=4552, 800.9925pt x 904.37875p
 t>
 File: figuras2/simulador/simulacion_derivacion.png Graphic file (type png)
 <use figuras2/simulador/simulacion_derivacion.png>
@@ -5028,13 +5027,45 @@ Cap\'{\i }tulo 11.
 
 ]
 
-[249
+[249]
+
+[250] (./capitulos/12_Conclusiones.tex
+Cap\'{\i }tulo 12.
+
+
+[251
 
 ]
 
-[250
+LaTeX Info: Redefining \. on input line 47.
+LaTeX Info: Redefining \% on input line 47.
+[252]
+
+LaTeX Info: Redefining \. on input line 86.
+LaTeX Info: Redefining \% on input line 86.
+[253]
+
+LaTeX Info: Redefining \. on input line 110.
+LaTeX Info: Redefining \% on input line 110.
+[254])
+
+LaTeX Info: Redefining \. on input line 339.
+LaTeX Info: Redefining \% on input line 339.
+[255]
+
+[256
 
 ]
+
+[257
+
+]
+
+[258
+
+]
+
+[259]
 Overfull \hbox (21.44801pt too wide) in paragraph at lines 345--345
 []\T1/cmr/m/n/12 Oracle Cor-po-ra-tion. \T1/cmr/m/it/12 Fac-tory Method Pat-ter
 n\T1/cmr/m/n/12 . [][]$\T1/cmtt/m/n/12 https : / / www . oracle . com / technet
@@ -5043,12 +5074,10 @@ work /
 
 
 
-[251]
-
 LaTeX Info: Redefining \. on input line 350.
 LaTeX Info: Redefining \% on input line 350.
-[252]
-runsystem(latexminted cleantemp  --timestamp 20250910175246 FAD58DE7366495DB465
+[260]
+runsystem(latexminted cleantemp  --timestamp 20250910182717 FAD58DE7366495DB465
 0CFEFAC2FCD61)...executed safely (allowed).
 
  (./main.aux
@@ -5061,16 +5090,16 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: CC35C07860118CA44B13C19C5013CB91;70791.
+(rerunfilecheck)             Checksum: 9319FC9B1B034FF8048C6F2C7953206E;73399.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45738 strings out of 473190
- 880031 string characters out of 5715801
- 1816622 words of memory out of 5000000
- 66515 multiletter control sequences out of 15000+600000
+ 45811 strings out of 473190
+ 881145 string characters out of 5715801
+ 1816690 words of memory out of 5000000
+ 66535 multiletter control sequences out of 15000+600000
  609345 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,14n,117p,1197b,2385s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -5098,10 +5127,10 @@ public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/pu
 blic/cm-super/sfti1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/publ
 ic/cm-super/sfti1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public
 /cm-super/sftt1200.pfb>
-Output written on main.pdf (278 pages, 5373787 bytes).
+Output written on main.pdf (286 pages, 5319916 bytes).
 PDF statistics:
- 5039 PDF objects out of 5155 (max. 8388607)
- 4529 compressed objects within 46 object streams
- 1742 named destinations out of 2073 (max. 500000)
- 3034 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 5174 PDF objects out of 6186 (max. 8388607)
+ 4655 compressed objects within 47 object streams
+ 1792 named destinations out of 2073 (max. 500000)
+ 3130 words of extra memory for PDF output out of 10000 (max. 10000000)
 

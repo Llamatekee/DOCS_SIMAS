@@ -358,5 +358,17 @@
 \contentsline {subsection}{\numberline {11.2.1}Almacenamiento y recuperación de gramáticas}{247}{subsection.11.2.1}%
 \contentsline {subsection}{\numberline {11.2.2}Validación de gramáticas}{247}{subsection.11.2.2}%
 \contentsline {section}{\numberline {11.3}Pruebas del módulo Simulador}{247}{section.11.3}%
-\contentsline {chapter}{Bibliografía}{249}{section.11.3}%
-\contentsline {chapter}{Bibliograf\'{\i }a}{249}{chapter*.99}%
+\contentsline {part}{V\hspace {1em}Conclusiones y futuras mejoras}{249}{part.5}%
+\contentsline {chapter}{\numberline {12}Conclusiones}{251}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Evolución histórica de SimAS}{251}{section.12.1}%
+\contentsline {subsection}{\numberline {12.1.1}Versiones 1.0 y 2.0: Bases fundamentales}{251}{subsection.12.1.1}%
+\contentsline {subsection}{\numberline {12.1.2}Version 3.0: La revolución técnica}{252}{subsection.12.1.2}%
+\contentsline {subsubsection}{\numberline {12.1.2.1}Interfaz basada en pestañas}{252}{subsubsection.12.1.2.1}%
+\contentsline {subsubsection}{\numberline {12.1.2.2}Asistente integrado de preparación}{253}{subsubsection.12.1.2.2}%
+\contentsline {subsubsection}{\numberline {12.1.2.3}Simulador avanzado}{253}{subsubsection.12.1.2.3}%
+\contentsline {subsubsection}{\numberline {12.1.2.4}Pestaña de gramática original}{253}{subsubsection.12.1.2.4}%
+\contentsline {subsubsection}{\numberline {12.1.2.5}Arquitectura técnica mejorada}{253}{subsubsection.12.1.2.5}%
+\contentsline {section}{\numberline {12.2}Impacto pedagógico y logros alcanzados}{254}{section.12.2}%
+\contentsline {section}{\numberline {12.3}Conclusiones finales}{254}{section.12.3}%
+\contentsline {chapter}{Bibliografía}{257}{section.12.3}%
+\contentsline {chapter}{Bibliograf\'{\i }a}{257}{chapter*.99}%

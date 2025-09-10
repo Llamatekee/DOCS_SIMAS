@@ -1,35 +1,111 @@
 \chapter{Conclusiones}
 
-% La principal conclusión del presente proyecto de fin de carrera es que se ha conseguido corregir y mejorar la aplicación de escritorio denominada \textbf{SimAS} de manera que permita generar cualquier tipo de análisis sintáctico, tanto descendente como ascendente. Con ella, los alumnos que cursen la asignatura \textit{Procesadores del Lenguaje} tendrán una herramienta que les ayudará en la comprensión del análisis sintáctico de gramáticas de contexto libre.
+La principal conclusión del presente proyecto de fin de carrera es que se ha conseguido evolucionar y mejorar significativamente la aplicación de escritorio denominada \textbf{SimAS} hasta su versión 3.0, convirtiéndola en una herramienta pedagógica completa y moderna especializada en el análisis sintáctico descendente predictivo. Esta evolución ha transformado SimAS de una herramienta básica en un entorno de aprendizaje integral que facilita la comprensión profunda de los algoritmos de análisis sintáctico descendente.
 
-% \textbf{SimAS} permitía anteriormente:
-% \begin{enumerate}
-% \item La \textit{edición} de gramáticas de contexto libre, permitiendo la definición de los símbolos terminales, no terminales, símbolo inicial y reglas de producción.
-% \item El \textit{almacenamiento} y \textit{recuperación} de gramáticas de contexto libre utilizando ficheros con formato XML.
-% \item La \textit{generación} de un informe de la gramática, que contiene una representación de la gramática, así como una especificación de todos los componentes que la forman.
-% \item La \textit{generación} de los conjuntos auxiliares \textit{primero} y \textit{siguiente}.
-% \item La \textit{generación} de las colecciones canónicas de elementos LR(0), de elementos LR(1) y de elementos LALR(1).
-% \item La \textit{construcción} de las tablas de análisis sintáctico descendente (tabla predictiva) y ascendente (SLR, LR-canónico y LALR).
-% \item La \textit{definición} de funciones de error asociadas al método de recuperación de nivel de frase.
-% \item La \textit{simulación} de los métodos de análisis sintáctico descendente y ascendente (SLR, LR-canónico y LALR) utilizando las tablas y las funciones de error.
-% \item La \textit{consulta} de un manual de ayuda que permite resolver las dudas sobre el funcionamiento de la aplicación.
-% \end{enumerate}
+\section{Evolución histórica de SimAS}
 
-% Actualmente, además permite también
-% \begin{enumerate}
-%     \item Mayor \textit{modularización} de las gramáticas en los ficheros XML para mejorar la comprensión del alumno.
-%     \item La \textit{validación} automática al carga una gramática.
-%     \item La \textit{corrección} de los errores que suponía la recursividad y factorización por la izquierda junto con las reglas épsilon. 
-%     \item La \textit{definición} automática de funciones de error predefinidas.
-%     \item La \textit{visualización} de la gramática a partir de la cual se están generando las tablas, conjuntos y funciones de error.
-%     \item La \textit{generación} de árboles sintácticos de forma paralela a la simulación.
-%     \item La \textit{generación} de la derivación correspondiente y de forma paralela a la simulación.
-%     \item La correcta \textit{generación} de un informe que muestra los pasos realizados en la simulación.
-% \end{enumerate}
+\subsection{Versiones 1.0 y 2.0: Bases fundamentales}
 
-% Se ha creado una interfaz gráfica sencilla e intuitiva que permite a los usuarios centrarse en el contenido didáctico de la aplicación, sin gastar demasiado
-% tiempo en la comprensión o aprendizaje de la interfaz de la misma. Todo esto, integrado con los módulos de la aplicación, ha hecho que se cumplan los objetivos didácticos de forma satisfactoria. Cumpliendo este tipo de objetivos,  se consigue que la aplicación pueda llevar a cabo su labor didáctica de forma satisfactoria.
+Las versiones anteriores de \textbf{SimAS} ya proporcionaban funcionalidades sólidas que sentaron las bases para el desarrollo actual:
 
-% En conclusión, \textbf{SimAS} ahora es una herramienta con más funcionalidades y ayudas para el alumnado de manera que se le permita comprender mejor la asignatura. Se puede considerar que se han cumplido todos los objetivos planteados y que cumplirá
-% perfectamente su labor de enseñanza de los métodos sintácticos, tanto descendente como ascendente, 
-% permitiendo una mejora en la comprensión de estos métodos en los cursos futuros donde se imparta esta docencia.
+\begin{enumerate}
+\item La \textit{edición} de gramáticas de contexto libre, permitiendo la definición de los símbolos terminales, no terminales, símbolo inicial y reglas de producción.
+\item El \textit{almacenamiento} y \textit{recuperación} de gramáticas de contexto libre utilizando ficheros con formato XML.
+\item La \textit{generación} de un informe de la gramática, que contiene una representación de la gramática, así como una especificación de todos los componentes que la forman.
+\item La \textit{generación} de los conjuntos auxiliares \textit{primero} y \textit{siguiente}.
+\item La \textit{generación} de los conjuntos Primero y Siguiente necesarios para la construcción de la tabla predictiva LL(1).
+\item La \textit{construcción} de la tabla de análisis sintáctico descendente (tabla predictiva LL(1)).
+\item La \textit{definición} de funciones de error asociadas al método de recuperación de nivel de frase.
+\item La \textit{simulación} del método de análisis sintáctico descendente predictivo LL(1) utilizando las tablas y las funciones de error.
+\item La \textit{consulta} de un manual de ayuda que permite resolver las dudas sobre el funcionamiento de la aplicación.
+\end{enumerate}
+
+La versión 2.0 introdujo mejoras significativas como mayor modularización de las gramáticas en XML, validación automática al cargar, corrección automática de recursividad y factorización, definición automática de funciones de error, y mejoras en la generación de informes.
+
+\subsection{Version 3.0: La revolución técnica}
+
+La versión 3.0 representa una transformación completa de SimAS, incorporando innovaciones revolucionarias que elevan la herramienta a un nuevo nivel pedagógico y técnico. Esta versión ha logrado una consistencia completa en toda la aplicación, solucionando problemas críticos de versiones anteriores donde la navegación entre pasos y módulos provocaba pérdida de información o inconsistencias en los datos. Se han corregido errores fundamentales como la generación incorrecta de informes, los cálculos erróneos de conjuntos y tablas, y las fallas en la eliminación de recursividad y factorización.
+
+Además, se han optimizado todos los procesos para lograr una eficiencia excepcional, reduciendo significativamente el uso de memoria RAM y acelerando notablemente la ejecución de todas las operaciones. La aplicación ahora ofrece una experiencia fluida y rápida que permite trabajar de manera productiva sin interrupciones técnicas.
+
+\subsubsection{Interfaz basada en pestañas}
+
+\begin{enumerate}
+    \item \textbf{Sistema avanzado de pestañas}: implementación de un sistema de navegación por pestañas que permite trabajar simultáneamente con múltiples gramáticas y procesos de análisis, mejorando significativamente la productividad del usuario. Este sistema agrupa automáticamente las pestañas por gramática, permitiendo abrir y trabajar con varias gramáticas simultáneamente mientras mantiene unidas las pestañas relacionadas, lo que aumenta considerablemente la consistencia y organización del flujo de trabajo.
+
+    \item \textbf{Pestañas hijas inteligentes}: introducción de pestañas derivadas (árbol sintáctico y derivación) que se actualizan en tiempo real durante el proceso de simulación, proporcionando visualizaciones complementarias dinámicas.
+
+    \item \textbf{Ventanas secundarias}: incorporación de ventanas secundarias que permiten la visualización simultánea de múltiples elementos, facilitando la comparación y el análisis paralelo de diferentes aspectos del proceso de análisis sintáctico.
+
+    \item \textbf{Navegación intuitiva}: sistema de menús contextuales y controles de navegación que facilitan el flujo de trabajo sin interrupciones cognitivas.
+\end{enumerate}
+
+\subsubsection{Asistente integrado de preparación}
+
+\begin{enumerate}
+    \item \textbf{Proceso guiado de 6 pasos}: desde la eliminación de recursividad hasta la simulación final, el asistente guía al usuario a través de todo el proceso de preparación de gramáticas LL(1).
+
+    \item \textbf{Corrección de errores críticos}: solución definitiva a problemas de versiones anteriores como cálculos incorrectos de conjuntos y tablas, fallos en la eliminación de recursividad y factorización, y generación errónea de informes.
+
+    \item \textbf{Validación automática}: detección y corrección automática de problemas en las gramáticas, con explicaciones pedagógicas de cada transformación.
+
+    \item \textbf{Visualización pedagógica}: cada paso del asistente incluye representaciones visuales que facilitan la comprensión de conceptos complejos.
+
+    \item \textbf{Consistencia de datos}: eliminación completa de pérdidas de información al navegar entre pasos y módulos, garantizando que los datos se mantengan íntegros durante todo el proceso.
+\end{enumerate}
+
+\subsubsection{Simulador avanzado}
+
+\begin{enumerate}
+    \item \textbf{Controles intuitivos}: interfaz de simulación con navegación entre pasos en cualquier momento.
+
+    \item \textbf{Visualizaciones dinámicas}: árbol sintáctico y derivación que se construyen en tiempo real, reflejando exactamente el estado del analizador en cada paso.
+
+    \item \textbf{Informes comprensivos}: generación automática de informes PDF que documentan completamente el proceso de análisis, incluyendo gramática original, transformaciones, conjuntos calculados, tabla predictiva y resultado de simulación.
+\end{enumerate}
+
+\subsubsection{Pestaña de gramática original}
+
+\begin{enumerate}
+    \item \textbf{Referencia visual constante}: funcionalidad novedosa que permite mantener visible la gramática original durante todo el proceso de transformación.
+
+    \item \textbf{Comparación pedagógica}: facilita la comprensión de cómo las transformaciones afectan a la estructura original de la gramática.
+
+    \item \textbf{Herramienta didáctica}: ayuda a los estudiantes a comprender la importancia de las transformaciones en el análisis sintáctico.
+\end{enumerate}
+
+\subsubsection{Arquitectura técnica mejorada}
+
+\begin{enumerate}
+    \item \textbf{Patrón MVC}: separación clara entre modelo, vista y controlador que facilita el mantenimiento y extensión del código.
+
+    \item \textbf{Robustez del sistema}: implementación de validaciones exhaustivas y manejo de errores que garantizan la estabilidad de la aplicación en todo momento.
+
+    \item \textbf{Modularidad avanzada}: cada componente del sistema mantiene independencia funcional mientras colabora eficientemente con otros módulos.
+
+    \item \textbf{Mantenibilidad y escalabilidad}: gracias al nuevo enfoque de desarrollo basado en principios SOLID \cite{solid-principles} y arquitectura modular, ahora es mucho más fácil lograr la mantenibilidad y escalabilidad que se buscan en los principios del software. La separación clara de responsabilidades permite añadir nuevas funcionalidades, corregir errores y realizar actualizaciones sin afectar el funcionamiento general del sistema.
+
+    \item \textbf{Internacionalización dinámica}: implementación de un sistema de cambio de idioma dinámico que permite alternar entre 6 idiomas distintos (español, inglés, francés, portugués, alemán y japonés) sin necesidad de reiniciar la aplicación, facilitando su uso en diversos contextos educativos internacionales.
+\end{enumerate}
+
+\section{Impacto pedagógico y logros alcanzados}
+
+La evolución de SimAS 3.0 ha convertido la aplicación en una herramienta pedagógica de referencia especializada en el análisis sintáctico descendente predictivo. Los estudiantes ahora disponen de un entorno visual e interactivo que no solo demuestra los algoritmos teóricos del análisis descendente, sino que permite experimentación práctica con diferentes tipos de gramáticas y escenarios de análisis sintáctico LL(1).
+
+La interfaz intuitiva y las visualizaciones en tiempo real reducen significativamente la curva de aprendizaje, permitiendo a los estudiantes centrarse en los conceptos fundamentales del análisis sintáctico en lugar de luchar con interfaces complejas. La capacidad de generar informes detallados proporciona documentación valiosa para el estudio posterior y la resolución de dudas.
+
+\section{Conclusiones finales}
+
+\textbf{SimAS 3.0} representa la culminación de un proyecto de fin de carrera que ha logrado todos sus objetivos y cumplido con las expectativas iniciales. La aplicación ha evolucionado desde una herramienta básica de simulación a un entorno pedagógico integral que combina:
+
+\begin{itemize}
+\item \textbf{Eficiencia técnica} con algoritmos optimizados y bajo consumo de memoria RAM.
+\item \textbf{Consistencia total} con navegación fluida entre módulos sin pérdida de información.
+\item \textbf{Usabilidad intuitiva} con interfaz moderna basada en pestañas y navegación inteligente.
+\item \textbf{Valor pedagógico} con visualizaciones dinámicas y asistente integrado por pasos.
+\item \textbf{Flexibilidad internacional} con soporte dinámico para 6 idiomas distintos.
+\end{itemize}
+
+Esta herramienta no solo cumple perfectamente su labor de enseñanza del análisis sintáctico descendente predictivo, sino que establece un nuevo estándar en aplicaciones pedagógicas para la enseñanza de compiladores. La combinación de eficiencia técnica, interfaz intuitiva y capacidades pedagógicas avanzadas convierten a SimAS 3.0 en una herramienta indispensable para la enseñanza práctica de los fundamentos del análisis sintáctico.
+
+Además, el enfoque de desarrollo basado en principios SOLID \cite{solid-principles} y arquitectura modular garantiza que la aplicación pueda evolucionar y adaptarse a futuras necesidades educativas, manteniendo su relevancia pedagógica a lo largo del tiempo. Los estudiantes de cursos futuros donde se imparta esta docencia se beneficiarán de una comprensión más profunda y práctica de estos conceptos fundamentales de la informática, mientras que la comunidad académica dispondrá de una herramienta que puede ser fácilmente mantenida, actualizada y extendida según las necesidades emergentes en la enseñanza de compiladores.
