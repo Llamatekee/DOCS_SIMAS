@@ -349,8 +349,8 @@
 \contentsline {subsubsection}{\numberline {10.5.1.1}Propósito pedagógico y técnico}{239}{subsubsection.10.5.1.1}%
 \contentsline {subsubsection}{\numberline {10.5.1.2}Disponibilidad y accesibilidad}{239}{subsubsection.10.5.1.2}%
 \contentsline {section}{\numberline {10.6}Pestaña \textit {Simulación}}{240}{section.10.6}%
-\contentsline {section}{\numberline {10.7}Pestaña \textit {Árbol Sintáctico}}{242}{section.10.7}%
-\contentsline {section}{\numberline {10.8}Pestaña \textit {Derivación}}{242}{section.10.8}%
+\contentsline {subsection}{\numberline {10.6.1}Pestaña \textit {Árbol Sintáctico}}{242}{subsection.10.6.1}%
+\contentsline {subsection}{\numberline {10.6.2}Pestaña \textit {Derivación Sintáctica}}{243}{subsection.10.6.2}%
 \contentsline {part}{IV\hspace {1em}Pruebas}{245}{part.4}%
 \contentsline {chapter}{\numberline {11}Pruebas}{247}{chapter.11}%
 \contentsline {section}{\numberline {11.1}Introducción}{247}{section.11.1}%

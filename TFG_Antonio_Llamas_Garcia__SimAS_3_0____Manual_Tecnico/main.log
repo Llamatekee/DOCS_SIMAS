@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  10 SEP 2025 17:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  10 SEP 2025 17:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -4972,46 +4972,49 @@ ut line 319.
 LaTeX Info: Redefining \. on input line 334.
 LaTeX Info: Redefining \% on input line 334.
 [240 <./figuras2/simulador/gramatica_original.png>]
-<figuras2/simulador/simulacion_cadenaEntrada.png, id=4469, 800.9925pt x 903.375
+<figuras2/simulador/simulacion_cadenaEntrada.png, id=4468, 800.9925pt x 903.375
 pt>
 File: figuras2/simulador/simulacion_cadenaEntrada.png Graphic file (type png)
 <use figuras2/simulador/simulacion_cadenaEntrada.png>
 Package pdftex.def Info: figuras2/simulador/simulacion_cadenaEntrada.png  used 
-on input line 343.
+on input line 349.
 (pdftex.def)             Requested size: 364.19667pt x 410.7468pt.
-<figuras2/simulador/simulacion_arbol.png, id=4471, 805.0075pt x 904.37875pt>
+
+
+LaTeX Info: Redefining \. on input line 355.
+LaTeX Info: Redefining \% on input line 355.
+[241 <./figuras2/simulador/simulacion_cadenaEntrada.png>]
+
+LaTeX Info: Redefining \. on input line 384.
+LaTeX Info: Redefining \% on input line 384.
+[242]
+<figuras2/simulador/simulacion_arbol.png, id=4484, 805.0075pt x 904.37875pt>
 File: figuras2/simulador/simulacion_arbol.png Graphic file (type png)
 <use figuras2/simulador/simulacion_arbol.png>
 Package pdftex.def Info: figuras2/simulador/simulacion_arbol.png  used on input
- line 354.
+ line 392.
 (pdftex.def)             Requested size: 364.19667pt x 409.14703pt.
 
 
-LaTeX Info: Redefining \. on input line 357.
-LaTeX Info: Redefining \% on input line 357.
-[241 <./figuras2/simulador/simulacion_cadenaEntrada.png>]
-<figuras2/simulador/simulacion_derivacion.png, id=4484, 800.9925pt x 904.37875p
+LaTeX Info: Redefining \. on input line 400.
+LaTeX Info: Redefining \% on input line 400.
+[243 <./figuras2/simulador/simulacion_arbol.png>]
+<figuras2/simulador/simulacion_derivacion.png, id=4492, 800.9925pt x 904.37875p
 t>
 File: figuras2/simulador/simulacion_derivacion.png Graphic file (type png)
 <use figuras2/simulador/simulacion_derivacion.png>
 Package pdftex.def Info: figuras2/simulador/simulacion_derivacion.png  used on 
-input line 365.
+input line 408.
 (pdftex.def)             Requested size: 364.19667pt x 411.20319pt.
 )
 
 LaTeX Info: Redefining \. on input line 328.
 LaTeX Info: Redefining \% on input line 328.
-[242 <./figuras2/simulador/simulacion_arbol.png>]
+[244 <./figuras2/simulador/simulacion_derivacion.png>]
 
-LaTeX Info: Redefining \. on input line 328.
-LaTeX Info: Redefining \% on input line 328.
-[243 <./figuras2/simulador/simulacion_derivacion.png>]
-
-[244
+[245
 
 ]
-
-[245]
 
 [246] (./capitulos/11_Pruebas.tex
 Cap\'{\i }tulo 11.
@@ -5045,7 +5048,7 @@ work /
 LaTeX Info: Redefining \. on input line 350.
 LaTeX Info: Redefining \% on input line 350.
 [252]
-runsystem(latexminted cleantemp  --timestamp 20250910173552 FAD58DE7366495DB465
+runsystem(latexminted cleantemp  --timestamp 20250910175246 FAD58DE7366495DB465
 0CFEFAC2FCD61)...executed safely (allowed).
 
  (./main.aux
@@ -5058,16 +5061,16 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: C046A09E875F305420793CF22D9F8C40;70716.
+(rerunfilecheck)             Checksum: CC35C07860118CA44B13C19C5013CB91;70791.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45741 strings out of 473190
- 880016 string characters out of 5715801
- 1816531 words of memory out of 5000000
- 66516 multiletter control sequences out of 15000+600000
+ 45738 strings out of 473190
+ 880031 string characters out of 5715801
+ 1816622 words of memory out of 5000000
+ 66515 multiletter control sequences out of 15000+600000
  609345 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,14n,117p,1197b,2385s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -5095,10 +5098,10 @@ public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/pu
 blic/cm-super/sfti1000.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/publ
 ic/cm-super/sfti1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public
 /cm-super/sftt1200.pfb>
-Output written on main.pdf (278 pages, 5366253 bytes).
+Output written on main.pdf (278 pages, 5373787 bytes).
 PDF statistics:
- 5041 PDF objects out of 5155 (max. 8388607)
- 4531 compressed objects within 46 object streams
- 1744 named destinations out of 2073 (max. 500000)
+ 5039 PDF objects out of 5155 (max. 8388607)
+ 4529 compressed objects within 46 object streams
+ 1742 named destinations out of 2073 (max. 500000)
  3034 words of extra memory for PDF output out of 10000 (max. 10000000)
 

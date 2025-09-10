@@ -1,28 +1,28 @@
 [0] Config.pm:308> INFO - This is Biber 2.20
 [0] Config.pm:311> INFO - Logfile is 'main.blg'
-[89] biber-darwin:340> INFO - === Wed Sep 10, 2025, 17:35:22
-[109] Biber.pm:420> INFO - Reading 'main.bcf'
-[224] Biber.pm:994> INFO - Found 42 citekeys in bib section 0
-[240] Biber.pm:4463> INFO - Processing section 0
-[253] Biber.pm:4654> INFO - Looking for bibtex file 'references.bib' for section 0
-[255] bibtex.pm:1713> INFO - LaTeX decoding ...
-[282] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
-[462] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
-[462] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[462] Biber.pm:4283> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'es-ES'
-[486] bbl.pm:676> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[499] bbl.pm:779> INFO - Output to main.bbl
-[500] Biber.pm:131> WARN - ISBN '978-0321127420' in entry 'observer-pattern' is invalid - run biber with '--validate_datamodel' for details.
-[500] Biber.pm:131> WARN - I didn't find a database entry for 'pressman' (section 0)
-[500] Biber.pm:131> WARN - I didn't find a database entry for 'scrum' (section 0)
-[500] Biber.pm:131> WARN - I didn't find a database entry for 'rad' (section 0)
-[500] Biber.pm:131> WARN - I didn't find a database entry for 'uml' (section 0)
-[500] Biber.pm:131> WARN - I didn't find a database entry for 'macos' (section 0)
-[501] Biber.pm:131> WARN - I didn't find a database entry for 'html' (section 0)
-[501] Biber.pm:131> WARN - I didn't find a database entry for 'gamma1995design' (section 0)
-[501] Biber.pm:131> WARN - I didn't find a database entry for 'burbeck1992applications' (section 0)
-[501] Biber.pm:131> WARN - I didn't find a database entry for 'martin2003agile' (section 0)
-[501] Biber.pm:131> WARN - I didn't find a database entry for 'martin2018clean' (section 0)
-[501] Biber.pm:131> WARN - I didn't find a database entry for 'meyer1988object' (section 0)
-[501] Biber.pm:131> WARN - I didn't find a database entry for 'liсков1994program' (section 0)
-[502] Biber.pm:133> INFO - WARNINGS: 13
+[92] biber-darwin:340> INFO - === Wed Sep 10, 2025, 17:52:21
+[112] Biber.pm:420> INFO - Reading 'main.bcf'
+[229] Biber.pm:994> INFO - Found 42 citekeys in bib section 0
+[247] Biber.pm:4463> INFO - Processing section 0
+[261] Biber.pm:4654> INFO - Looking for bibtex file 'references.bib' for section 0
+[263] bibtex.pm:1713> INFO - LaTeX decoding ...
+[293] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
+[507] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[507] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
+[507] Biber.pm:4283> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'es-ES'
+[532] bbl.pm:676> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[551] bbl.pm:779> INFO - Output to main.bbl
+[552] Biber.pm:131> WARN - ISBN '978-0321127420' in entry 'observer-pattern' is invalid - run biber with '--validate_datamodel' for details.
+[552] Biber.pm:131> WARN - I didn't find a database entry for 'pressman' (section 0)
+[552] Biber.pm:131> WARN - I didn't find a database entry for 'scrum' (section 0)
+[552] Biber.pm:131> WARN - I didn't find a database entry for 'rad' (section 0)
+[552] Biber.pm:131> WARN - I didn't find a database entry for 'uml' (section 0)
+[552] Biber.pm:131> WARN - I didn't find a database entry for 'macos' (section 0)
+[552] Biber.pm:131> WARN - I didn't find a database entry for 'html' (section 0)
+[552] Biber.pm:131> WARN - I didn't find a database entry for 'gamma1995design' (section 0)
+[552] Biber.pm:131> WARN - I didn't find a database entry for 'burbeck1992applications' (section 0)
+[552] Biber.pm:131> WARN - I didn't find a database entry for 'martin2003agile' (section 0)
+[552] Biber.pm:131> WARN - I didn't find a database entry for 'martin2018clean' (section 0)
+[553] Biber.pm:131> WARN - I didn't find a database entry for 'meyer1988object' (section 0)
+[553] Biber.pm:131> WARN - I didn't find a database entry for 'liсков1994program' (section 0)
+[553] Biber.pm:133> INFO - WARNINGS: 13

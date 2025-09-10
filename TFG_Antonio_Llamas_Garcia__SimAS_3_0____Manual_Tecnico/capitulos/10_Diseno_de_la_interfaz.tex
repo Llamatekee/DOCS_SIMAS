@@ -325,44 +325,89 @@ Esta funcionalidad representa un avance significativo en la interfaz pedagógica
 
 \section{Pestaña \textit{Simulación}}
 
-La pestaña de simulación se encarga de ejecutar las simulaciones de una cadena de entrada. En la figura \ref{fig:d7}, se muestra un ejemplo de esta pestaña.
+La pestaña de simulación constituye el núcleo ejecutivo del sistema SimAS 3.0, donde el usuario puede introducir una cadena de entrada y ejecutar el análisis sintáctico descendente predictivo paso a paso. Esta interfaz proporciona un control completo sobre el proceso de análisis, permitiendo tanto ejecuciones automatizadas como inspecciones detalladas de cada paso del algoritmo.
 
-La pestaña está compuesta de los siguientes elementos:
+La pestaña se abre cuando el usuario selecciona la opción de simulación desde el simulador preparado, y proporciona los siguientes elementos de control:
+
 \begin{enumerate}
-  \item \textbf{Tipo de análisis}: muestra el tipo de simulación que se va a llevar a cabo, \textit{descendente} o \textit{ascendente}. En el caso de ser la simulación del análisis ascendente, también se detalla el tipo: \textit{SLR}, \textit{LR-canónico} o \textit{LALR}.
- \item \textbf{Cadena de entrada}: permite introducir los símbolos terminales que forman parte de la cadena de entrada que se va a simular.
- \item \textbf{Botones de Avance y Retroceso}: la simulación se podrá realizar paso a paso o de forma completa, pudiendo avanzar y retroceder en cada paso.
- \item \textbf{Tabla de análisis}: representa la tabla de resultados del análisis.
- \item \textbf{Generar Árbol Sintáctico}: permite abrir una pestaña en la que se genere el árbol sintáctico correspondiente.
- \item \textbf{Generar Derivación}: permite abrir una pestaña en la que se genere la derivación de la simulación correspondiente.
- \item \textbf{Informe de la Simulación}: permite al usuario generar un informe en pdf de la simulación.
+ \item \textbf{Cadena de entrada}: campo interactivo que permite introducir los símbolos terminales que forman parte de la cadena que se desea analizar sintácticamente.
+
+ \item \textbf{Botones de avance y retroceso}: controles que permiten ejecutar la simulación de manera gradual (paso a paso) o completa, con la posibilidad de navegar hacia adelante y hacia atrás en cualquier momento del proceso.
+
+ \item \textbf{Tabla histórica de análisis}: representación visual de la tabla predictiva que se utiliza durante el análisis, mostrando las decisiones tomadas en cada paso.
+
+ \item \textbf{Botón árbol sintáctico}: funcionalidad que abre automáticamente una pestaña hija dedicada a la visualización del árbol sintáctico.
+
+ \item \textbf{Botón derivación}: opción que crea una pestaña hija específica para mostrar la derivación sintáctica paso a paso.
 \end{enumerate}
 
-\begin{figure}[htp]
+En la figura \ref{fig:simulacion}, se muestra la interfaz principal de la pestaña de simulación con sus controles principales.
+
+\needspace{8cm}
+\begin{figure}[H]
 \centering
-	\includegraphics[width=0.8\textwidth]{figuras2/simulador/simulacion_cadenaEntrada.png}
-	\caption{Pestaña de simulación.}
-	\label{fig:d7}
+\includegraphics[width=0.8\textwidth]{figuras2/simulador/simulacion_completa.png}
+\caption{Interfaz principal de la pestaña de simulación.}
+\label{fig:simulacion}
 \end{figure}
 
-\section{Pestaña \textit{Árbol Sintáctico}}
+La pestaña de simulación ofrece un conjunto completo de controles intuitivos que permiten al usuario interactuar de manera fluida con el proceso de análisis sintáctico. El campo de entrada de la cadena permite introducir cualquier secuencia de símbolos terminales que se desee analizar, mientras que los botones de navegación ofrecen flexibilidad completa para explorar el proceso paso a paso o ejecutarlo de manera automática.
 
-El árbol sintáctico se podrá ver en una pestaña la cual se irá repintando a medida que se continue con la simulación (Figura \ref{fig:da22}).
+La tabla de análisis predictiva se muestra de manera prominente, permitiendo al usuario seguir visualmente las decisiones que toma el analizador en cada paso del proceso. Esta representación gráfica es fundamental para comprender cómo el algoritmo selecciona las producciones apropiadas basándose en el símbolo actual de entrada y el estado de la pila.
 
-\begin{figure}[htp]
+La pestaña de simulación incluye una funcionalidad avanzada de generación de informes que se activa únicamente cuando la simulación llega a su conclusión, ya sea que la cadena de entrada sea aceptada por la gramática o rechazada debido a un error sintáctico.
+
+El informe generado es un documento PDF comprensivo que incluye:
+
+\begin{itemize}
+ \item \textbf{Información completa de la gramática original}: incluyendo símbolos terminales, no terminales, símbolo inicial y todas las producciones definidas.
+
+ \item \textbf{Transformaciones aplicadas para LL(1)}: detalle paso a paso de las modificaciones realizadas durante el proceso de preparación, incluyendo eliminación de recursividad por la izquierda, factorización y cualquier otra transformación necesaria.
+
+ \item \textbf{Conjuntos calculados}: presentación de los conjuntos Primero ($\text{First}$) y Siguiente ($\text{Follow}$) utilizados en la construcción de la tabla predictiva.
+
+ \item \textbf{Tabla predictiva completa}: la tabla LL(1) final con todas las entradas y las funciones de error configuradas.
+
+ \item \textbf{Resultado de la simulación}: análisis detallado del proceso de análisis de la cadena de entrada específica, incluyendo cada paso del algoritmo, decisiones tomadas y resultado final.
+
+ \item \textbf{Visualizaciones incluidas}: integración del árbol sintáctico y de la derivación en diferentes estados del proceso.
+\end{itemize}
+
+Esta funcionalidad de informes proporciona una documentación completa y profesional del proceso de análisis, siendo especialmente útil tanto para fines educativos como para la depuración y validación de gramáticas complejas.
+
+La integración de estas funcionalidades en la pestaña de simulación convierte a SimAS 3.0 en una herramienta completa para el estudio y aplicación práctica del análisis sintáctico descendente predictivo.
+
+
+\subsection{Pestaña \textit{Árbol Sintáctico}}
+
+La pestaña del árbol sintáctico proporciona una representación visual jerárquica del proceso de análisis, mostrando cómo se construye la estructura sintáctica de la cadena de entrada. Esta visualización se actualiza dinámicamente a medida que avanza la simulación, permitiendo al usuario observar en tiempo real cómo cada símbolo de la entrada contribuye a la formación del árbol completo.
+
+La construcción del árbol sigue los principios del análisis sintáctico descendente predictivo, donde cada nodo representa una producción aplicada y las hojas corresponden a los símbolos terminales de la cadena original. Esta representación gráfica es especialmente valiosa para estudiantes, ya que facilita la comprensión de conceptos abstractos como el reconocimiento de estructuras sintácticas complejas.
+
+En la figura \ref{fig:arbol_sintactico}, se muestra un ejemplo de la pestaña del árbol sintáctico durante el proceso de análisis.
+
+\needspace{8cm}
+\begin{figure}[H]
 \centering
-	\includegraphics[width=0.8\textwidth]{figuras2/simulador/simulacion_arbol.png}
-	\caption{Pestaña de simulación.}
-	\label{fig:da22}
+\includegraphics[width=0.8\textwidth]{figuras2/simulador/simulacion_arbol.png}
+\caption{Pestaña del árbol sintáctico durante la simulación.}
+\label{fig:arbol_sintactico}
 \end{figure}
 
-\section{Pestaña \textit{Derivación}}
+\subsection{Pestaña \textit{Derivación Sintáctica}}
 
-Además del árbol, es posible generar la derivación de la simulación actual en una pestaña adicional tal y como se muestra en la imagen \ref{fig:da24}:
+Complementando la visualización del árbol, la pestaña de derivación sintáctica ofrece una perspectiva secuencial del proceso de análisis. Esta pestaña muestra paso a paso cómo la cadena de entrada se transforma aplicando sucesivamente las producciones de la gramática, siguiendo el algoritmo de análisis descendente predictivo.
 
-\begin{figure}[htp]
+Cada paso de la derivación refleja exactamente las decisiones tomadas por el analizador, incluyendo la selección de producciones basadas en la tabla predictiva y el consumo de símbolos de la cadena de entrada. Esta representación secuencial es particularmente útil para entender el flujo de control del algoritmo y para identificar posibles puntos de error en el análisis.
+
+La derivación se actualiza en tiempo real conforme avanza la simulación, permitiendo al usuario seguir el progreso del análisis de manera detallada y precisa. En la figura \ref{fig:derivacion}, se muestra un ejemplo de la pestaña de derivación durante el proceso de simulación.
+
+\needspace{8cm}
+\begin{figure}[H]
 \centering
-	\includegraphics[width=0.8\textwidth]{figuras2/simulador/simulacion_derivacion.png}
-	\caption{Pestaña de simulación.}
-	\label{fig:da24}
+\includegraphics[width=0.8\textwidth]{figuras2/simulador/simulacion_derivacion.png}
+\caption{Pestaña de derivación sintáctica durante la simulación.}
+\label{fig:derivacion}
 \end{figure}
+
+Estas dos pestañas hijas proporcionan visualizaciones complementarias que, combinadas con la interfaz principal de simulación, ofrecen una comprensión completa del proceso de análisis sintáctico descendente predictivo.
