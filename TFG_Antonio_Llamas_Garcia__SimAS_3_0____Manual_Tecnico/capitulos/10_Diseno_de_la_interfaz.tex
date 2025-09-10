@@ -42,18 +42,39 @@ El menú principal mantiene una estructura consistente y predecible que facilita
 
 \section{Barras de herramientas}
 
-Las barras de herramientas contienen los accesos directos a las acciones que se pueden realizar en una ventana, que están representadas gráficamente. En la figura \ref{fig:d2}, se muestra un ejemplo de una barra de herramientas para el Editor de gramáticas del programa SimAS.
+Las barras de herramientas constituyen uno de los elementos más importantes de la interfaz de usuario en SimAS 3.0, proporcionando acceso directo e intuitivo a las funciones más utilizadas del sistema. Implementadas como componentes gráficos interactivos, estas barras mejoran significativamente la eficiencia del usuario al reducir la necesidad de navegar por menús complejos.
 
-\begin{figure}[htp]
+En el contexto del Editor de gramáticas, la barra de herramientas juega un papel fundamental al ofrecer accesos directos a todas las operaciones relacionadas con la creación, edición y gestión de gramáticas. Esta implementación sigue los principios de diseño de interfaces modernas, priorizando la usabilidad y la accesibilidad.
+
+Una característica técnica destacada de la barra de herramientas es su comportamiento dinámico de habilitación/deshabilitación de controles. Al abrir inicialmente el editor, solo un conjunto limitado de botones permanece activo, específicamente los botones \textbf{Nueva}, \textbf{Abrir} y \textbf{Salir}. Esta estrategia de diseño inteligente previene errores del usuario y guía el flujo de trabajo de manera natural.
+
+En la figura \ref{fig:d2a}, se muestra el estado inicial de la barra de herramientas, donde la mayoría de los controles aparecen deshabilitados para evitar operaciones prematuras.
+
+\needspace{3cm}
+\begin{figure}[H]
 \centering
-	\includegraphics[width=0.8\textwidth]{figuras2/editor/editor.png}
-	\caption{Barra de herramientas de SimAS.}
-	\label{fig:d2}
+\includegraphics[width=0.8\textwidth]{figuras2/editor/barra_herramientas_deshabilita_parcial.png}
+\caption{Barra de herramientas con controles parcialmente deshabilitados (estado inicial).}
+\label{fig:d2a}
 \end{figure}
 
-Se ha procurado que cada botón sea descriptivo y represente fielmente la operación que realiza. Por esto, se ha tomado como convenio usar una forma base en los iconos según el objeto al que involucran en la operación, por ejemplo: las operaciones de la gramática está representada con la letra \textit{G} y las operaciones de las simulaciones con la letra \textit{S}.
+Una vez que se carga o crea una gramática en el editor, el sistema habilita automáticamente el resto de los controles, permitiendo al usuario acceder a todas las funcionalidades disponibles. Esta transición inteligente refleja la arquitectura de estados del sistema, donde la interfaz se adapta dinámicamente según el contexto de uso.
 
-A esta forma base, se le ha superpuesto una forma que representa de forma gráfica la acción a llevar a cabo. Así, se ha superpuesto la forma base del objeto con la acción a realizar, siempre en la esquina superior derecha de cada uno de los iconos de la barra de herramientas. Todo esto permite que la interfaz sea muy intuitiva y permita al usuario trabajar con eficacia y con el mínimo de confusiones posibles.
+En la figura \ref{fig:d2}, se muestra la barra de herramientas completamente funcional una vez que se ha cargado una gramática.
+
+\needspace{3cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figuras2/editor/barra_herramientas.png}
+\caption{Barra de herramientas completamente funcional.}
+\label{fig:d2}
+\end{figure}
+
+El diseño de los iconos sigue una convención sistemática que facilita el aprendizaje y la memorización. Se ha procurado que cada botón sea descriptivo y represente fielmente la operación que realiza. Para lograr esto, se ha implementado un sistema de iconos compuesto por una forma base que identifica el objeto involucrado en la operación, complementada con una forma secundaria que representa la acción específica.
+
+Por ejemplo, las operaciones relacionadas con gramáticas están representadas con la letra \textit{G} como forma base, mientras que las operaciones de simulación utilizan la letra \textit{S}. A esta forma base se le superpone gráficamente la acción a realizar, siempre posicionada en la esquina superior derecha del icono. Esta composición visual permite una identificación rápida y precisa de las funcionalidades disponibles.
+
+Esta estrategia de diseño no solo mejora la intuitividad de la interfaz, sino que también optimiza el espacio disponible y reduce la carga cognitiva del usuario. El sistema de habilitación contextual asegura que los usuarios se centren en las tareas apropiadas para cada etapa del proceso, mejorando tanto la eficiencia como la calidad del trabajo realizado.
   
 
 \section{Ventana del editor}

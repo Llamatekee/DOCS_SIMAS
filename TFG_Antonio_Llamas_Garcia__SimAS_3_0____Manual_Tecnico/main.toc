@@ -333,15 +333,15 @@
 \contentsline {section}{\numberline {10.2}Menú principal}{224}{section.10.2}%
 \contentsline {section}{\numberline {10.3}Barras de herramientas}{225}{section.10.3}%
 \contentsline {section}{\numberline {10.4}Ventana del editor}{227}{section.10.4}%
-\contentsline {subsection}{\numberline {10.4.1}Panel de edición}{227}{subsection.10.4.1}%
-\contentsline {section}{\numberline {10.5}Ventana del simulador}{230}{section.10.5}%
-\contentsline {subsection}{\numberline {10.5.1}Panel de simulación}{231}{subsection.10.5.1}%
-\contentsline {subsection}{\numberline {10.5.2}Ventana de Gramática Original}{232}{subsection.10.5.2}%
+\contentsline {subsection}{\numberline {10.4.1}Panel de edición}{228}{subsection.10.4.1}%
+\contentsline {section}{\numberline {10.5}Ventana del simulador}{228}{section.10.5}%
+\contentsline {subsection}{\numberline {10.5.1}Panel de simulación}{228}{subsection.10.5.1}%
+\contentsline {subsection}{\numberline {10.5.2}Ventana de Gramática Original}{231}{subsection.10.5.2}%
 \contentsline {section}{\numberline {10.6}Ventana de simulación}{232}{section.10.6}%
-\contentsline {section}{\numberline {10.7}Ventana de Visualización del Árbol Sintáctico}{233}{section.10.7}%
-\contentsline {section}{\numberline {10.8}Ventana de Derivación Sintáctica}{233}{section.10.8}%
-\contentsline {section}{\numberline {10.9}Ventana de asistente}{233}{section.10.9}%
-\contentsline {section}{\numberline {10.10}Ventanas de edición}{238}{section.10.10}%
+\contentsline {section}{\numberline {10.7}Ventana de Visualización del Árbol Sintáctico}{234}{section.10.7}%
+\contentsline {section}{\numberline {10.8}Ventana de Derivación Sintáctica}{234}{section.10.8}%
+\contentsline {section}{\numberline {10.9}Ventana de asistente}{234}{section.10.9}%
+\contentsline {section}{\numberline {10.10}Ventanas de edición}{236}{section.10.10}%
 \contentsline {part}{IV\hspace {1em}Pruebas}{239}{part.4}%
 \contentsline {chapter}{\numberline {11}Pruebas}{241}{chapter.11}%
 \contentsline {section}{\numberline {11.1}Introducción}{241}{section.11.1}%
@@ -350,4 +350,4 @@
 \contentsline {subsection}{\numberline {11.2.2}Validación de gramáticas}{241}{subsection.11.2.2}%
 \contentsline {section}{\numberline {11.3}Pruebas del módulo Simulador}{241}{section.11.3}%
 \contentsline {chapter}{Bibliografía}{243}{section.11.3}%
-\contentsline {chapter}{Bibliograf\'{\i }a}{243}{chapter*.93}%
+\contentsline {chapter}{Bibliograf\'{\i }a}{243}{chapter*.94}%
