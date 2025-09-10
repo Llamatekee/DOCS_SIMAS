@@ -1,56 +1,161 @@
 \chapter{Futuras mejoras} \label{cap: mejoras}
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Permitir que la aplicación pueda usar varias gramáticas simultáneamente.
-
-
-%%%%%%%%%%%%%%%%%%%%
-
-
-%El usuario podrá guardar estas funciones de error para utilizarlas en varias gramáticas .
 
 \section{Introducción}
 
-% En este capítulo se enumeran las futuras mejoras que podrían realizarse a SimAS. Estas mejoras permitirían mejorar su funcionamiento y harían que el programa fuera más completo.
+En este capítulo se enumeran las futuras mejoras que podrían realizarse a SimAS 3.0. Aunque la versión actual ha logrado todos los objetivos propuestos y representa un avance significativo respecto a versiones anteriores, existen diversas áreas donde la aplicación podría ser ampliada y mejorada para ofrecer una experiencia aún más completa y versátil.
 
-% SimAS es un programa que ha cubierto todos los objetivos pro\-pues\-tos, 
-% siendo, además, muy intuitivo y amigable con el usuario. Sin embargo, hay ciertos aspectos que podrían ser mejorados o añadidos en un futuro. 
+Las mejoras propuestas se dividen en dos categorías principales: funcionalidades técnicas que expandirían las capacidades del simulador, y mejoras de usabilidad que optimizarían la experiencia del usuario y facilitarían su adopción en diversos contextos educativos.
 
-% Las mejoras que se podrían hacer al programa son las siguientes:
+\section{Expansión de métodos de análisis}
 
-% \begin{itemize}
-%  \item Internacionalización.
-%  \item Respetar el orden de las reglas.
-%  \item Generación de \textit{grafos} del AFD.
-% \item Utilizar varias gramáticas simultáneamente.
-% \item Traducciones basadas en la sintaxis o esquemas de traducción.
-% \end{itemize}
+\subsection{Incorporación de métodos de análisis ascendente}
 
-\section{Internacionalización}
+Una de las mejoras más importantes sería la incorporación completa de los métodos de análisis sintáctico ascendente (LR). Aunque SimAS 3.0 se centra en el análisis descendente predictivo LL(1), la inclusión de algoritmos LR (SLR, LR-canónico y LALR) permitiría ofrecer una visión completa de las técnicas de análisis sintáctico.
 
-% Sería deseable que la aplicación estuviera disponible en otros idiomas. Esto permitiría potenciar al máximo su ámbito didáctico, puesto que SimAS podría ser utilizado en cualquier universidad donde el estudio de los diferentes métodos del análisis sintáctico estuviera dentro de los planes de estudio.
+Esta expansión incluiría:
+\begin{itemize}
+ \item Implementación de algoritmos para construcción de tablas LR
+ \item Visualización gráfica de autómatas finitos deterministas (AFD) utilizados en análisis ascendente
+ \item Simulación paso a paso de los diferentes métodos LR
+ \item Comparación visual entre análisis descendente y ascendente
+\end{itemize}
 
-% Las traducciones de la aplicación serían guardadas en el paquete de recursos y se cargaría la aplicación con un idioma u otro, según las preferencias del usuario (almacenadas en el fichero de configuración de la aplicación).
+\subsection{Algoritmos avanzados de validación de gramáticas}
 
+\begin{itemize}
+ \item Implementación de algoritmos para detectar símbolos útiles, generadores y accesibles
+ \item Eliminación automática de producciones innecesarias
+ \item Optimización automática de gramáticas para mejorar su eficiencia
+ \item Validación de propiedades formales de las gramáticas
+\end{itemize}
 
- \section{Respetar orden de las reglas}
+\section{Mejoras de internacionalización y personalización}
 
-% Al cargar o modificar una gramática, la aplicación debería ordenar sus reglas de producción en función del símbolo no terminal de la parte izquierda. Esta mejora permitiría visualizar la gramática de una forma más correcta, independientemente de cómo fueran introducidas o modificadas sus reglas de producción.
+\subsection{Expansión de idiomas soportados}
 
- \section{Generación de grafos del AFD}
+Aunque SimAS 3.0 ya incluye soporte para 6 idiomas, sería beneficioso expandir esta capacidad para incluir:
+\begin{itemize}
+ \item Idiomas adicionales como italiano, chino mandarín, árabe y ruso
+ \item Soporte para idiomas con escritura de derecha a izquierda
+ \item Traducciones especializadas para terminología técnica específica de cada región
+ \item Validación automática de traducciones para asegurar consistencia terminológica
+\end{itemize}
 
-% Los métodos de análisis sintáctico ascendente LR utilizan un autómata finito determinista (AFD) para generar su tabla de análisis sintáctico. Actualmente dicho AFD se muestra de forma tabular. La mejora que se propone es que dicho autómata se muestre también mediante un grafo dirigido.
+\subsection{Sistema avanzado de personalización visual}
 
- \section{Utilizar varias gramáticas simultáneamente}
+\subsubsection{Configuración de temas y estilos}
 
-% Esta mejora permitiría al usuario poder editar y simular múltiples gramáticas a la misma vez, de manera que, si el usuario desea comparar de alguna manera las gramáticas, le sea mucho más fácil. Esta mejora convertiría a SimAS en un aplicación MDI: \textit{multiple document interface}.
+Implementar un sistema completo de personalización que permita a los usuarios adaptar la apariencia de la aplicación según sus preferencias:
+\begin{itemize}
+ \item Sistema de temas claros, oscuros y de alto contraste para accesibilidad
+ \item Creación de hojas de estilos CSS personalizables por el usuario
+ \item Configuración de colores, fuentes y tamaños de elementos de interfaz
+ \item Perfiles de configuración guardables y exportables entre sesiones
+ \item Soporte para temas accesibles que faciliten la lectura a usuarios con discapacidades visuales
+\end{itemize}
 
+\subsubsection{Panel de configuración avanzada}
 
- \section{Traducciones basadas en la sintaxis}
+\begin{itemize}
+ \item Configuración de atajos de teclado completamente personalizables
+ \item Preferencias de visualización avanzadas (tamaño de fuentes, densidad de elementos)
+ \item Configuración de comportamiento de la aplicación (animaciones, transiciones, confirmaciones)
+ \item Perfiles de usuario con configuraciones específicas por rol (estudiante, profesor, desarrollador)
+\end{itemize}
 
-% Esta mejora permitiría incluir también el estudio y simulación del análisis semántico en SimAS. Mediante la realización de esta mejora, el software SimAS se completaría, permitiendo al alumno 
-% estudiar todo el proceso de análisis de un programa, que está formado por las fases de análisis \textit{léxico}, \textit{sintáctico}
-% y \textit{semántico}.
+\section{Optimización técnica y mantenimiento}
 
- \section{Algoritmos de Símbolos útiles, generadores y accesibles}
+\subsection{Limpieza y refactorización exhaustiva del código}
 
-% Esta mejora permitiría incluir también los algoritmos de símbolos útiles, generadores y accesibles, para mejorar la validación de la gramática.
+Realizar una limpieza exhaustiva del código fuente para mejorar su calidad y mantenibilidad:
+\begin{itemize}
+ \item Eliminación sistemática de código duplicado y refactorización de métodos largos
+ \item Mejora significativa de la documentación interna y comentarios del código
+ \item Implementación adicional de patrones de diseño donde sea beneficioso
+ \item Implementación de pruebas unitarias automatizadas para garantizar estabilidad
+\end{itemize}
+
+\subsection{Modernización tecnológica continua}
+
+\begin{itemize}
+ \item Actualización a versiones más recientes de JavaFX y bibliotecas dependientes
+ \item Implementación de características modernas de Java (records, text blocks, switch expressions)
+ \item Migración gradual a JavaFX moderno con FXML mejorado
+ \item Implementación de sistema de logging estructurado para mejor depuración
+ \item Integración con herramientas de análisis estático de código
+\end{itemize}
+
+\section{Integración con sistemas externos}
+
+\subsection{Conectividad con plataformas educativas}
+
+\begin{itemize}
+ \item Integración nativa con sistemas de gestión del aprendizaje (LMS) como Moodle, Canvas o Blackboard
+ \item Exportación automática de resultados a formatos estándar educativos (IMS QTI, SCORM)
+ \item Sincronización bidireccional con repositorios de gramáticas compartidas
+ \item Integración con herramientas de colaboración para trabajo en equipo educativo
+ \item API RESTful para integración con otras aplicaciones pedagógicas
+\end{itemize}
+
+\subsection{Análisis de datos y telemetría educativa}
+
+\begin{itemize}
+ \item Recopilación ética de métricas de uso anónimo para mejorar la aplicación
+ \item Generación automática de informes de rendimiento estudiantil detallados
+ \item Estadísticas avanzadas de uso de diferentes algoritmos y funcionalidades
+ \item Sistema de recomendaciones personalizadas basadas en patrones de aprendizaje
+ \item Dashboard administrativo para profesores con métricas de clase
+\end{itemize}
+
+\section{Expansión pedagógica avanzada}
+
+\subsection{Herramientas inteligentes de enseñanza}
+
+\begin{itemize}
+ \item Sistema avanzado de pistas y ayuda contextual durante la simulación
+ \item Generación automática de ejercicios y problemas adaptados al nivel del estudiante
+ \item Modo profesor con herramientas completas de evaluación y seguimiento del progreso
+ \item Biblioteca extensiva de ejemplos y casos de estudio predefinidos
+ \item Sistema de gamificación con logros, niveles y recompensas de aprendizaje
+ \item Tutor inteligente que detecta errores comunes y proporciona retroalimentación específica
+\end{itemize}
+
+\subsection{Recursos multimedia y colaborativos}
+
+\begin{itemize}
+ \item Generación automática de guías didácticas personalizadas según el progreso del estudiante
+ \item Integración con recursos externos (videos explicativos, tutoriales interactivos, documentación)
+ \item Sistema de preguntas frecuentes dinámico basado en patrones de uso
+ \item Comunidad de usuarios integrada con foro de discusión y intercambio de gramáticas
+ \item Posibilidad de compartir creaciones y recibir feedback de la comunidad educativa
+\end{itemize}
+
+\section{Expansión técnica especializada}
+
+\subsection{Análisis semántico integrado}
+
+\begin{itemize}
+ \item Implementación de análisis semántico básico con verificación de tipos
+ \item Traducciones dirigidas por sintaxis para generación de código intermedio
+ \item Integración de esquemas de traducción para compilación completa
+ \item Visualización de árboles de sintaxis abstracta (AST)
+ \item Depuración de código generado con seguimiento de transformaciones
+\end{itemize}
+
+\subsection{Visualizaciones avanzadas}
+
+\begin{itemize}
+ \item Generación automática de grafos dirigidos para autómatas finitos deterministas (AFD)
+ \item Representación gráfica tridimensional de árboles de análisis complejos
+ \item Animaciones paso a paso de algoritmos de análisis sintáctico
+ \item Visualización de conflictos en tablas de análisis LR
+ \item Diagramas interactivos de dependencias entre símbolos
+\end{itemize}
+
+\section{Conclusión}
+
+Las mejoras propuestas para futuras versiones de SimAS buscan no solo expandir sus capacidades técnicas, sino también enriquecer significativamente su valor pedagógico y su integración en el ecosistema educativo moderno. La implementación estratégica de estas funcionalidades convertiría a SimAS en una herramienta aún más completa y versátil para la enseñanza práctica del análisis sintáctico.
+
+La evolución futura de SimAS debe seguir priorizando tres aspectos fundamentales: la experiencia del usuario, el rigor pedagógico, y la integración tecnológica. Cada nueva funcionalidad debe contribuir significativamente a la comprensión profunda de los conceptos fundamentales del análisis sintáctico, facilitando el aprendizaje autónomo y la enseñanza efectiva.
+
+Especialmente importantes son las mejoras relacionadas con la adición de métodos de análisis ascendente, la personalización visual y la integración con plataformas educativas, ya que estas características determinarán la capacidad de SimAS para adaptarse a diferentes contextos educativos globales y mantener su relevancia pedagógica a largo plazo.

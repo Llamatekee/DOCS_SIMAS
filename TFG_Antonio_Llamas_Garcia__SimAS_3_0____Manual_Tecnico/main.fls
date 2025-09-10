@@ -911,6 +911,9 @@ INPUT ./capitulos/12_Conclusiones.tex
 INPUT ./capitulos/12_Conclusiones.tex
 INPUT ./capitulos/12_Conclusiones.tex
 INPUT capitulos/12_Conclusiones.tex
+INPUT ./capitulos/13_Futuras_mejoras.tex
+INPUT ./capitulos/13_Futuras_mejoras.tex
+INPUT capitulos/13_Futuras_mejoras.tex
 INPUT main.aux
 INPUT ./main.out
 INPUT ./main.out
