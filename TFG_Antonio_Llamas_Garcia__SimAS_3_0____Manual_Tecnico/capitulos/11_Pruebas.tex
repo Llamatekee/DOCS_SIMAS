@@ -2,208 +2,209 @@
 
 \section{Introducción}
 
-% En este capítulo se van a describir las pruebas realizadas a la aplicación desarrollada, para asegurar que su funcionamiento es el correcto, amigable y robusto, es decir, puede recuperarse de los errores que puedan ocurrir durante su utilización.
+En este capítulo se van a describir las pruebas realizadas a la aplicación desarrollada, para asegurar que su funcionamiento es el correcto, amigable y robusto, es decir, puede recuperarse de los errores que puedan ocurrir durante su utilización.
 
-% Debido a que esta es una versión actualizada de una anterior, las pruebas irán principalmente enfocadas a aquellas funcionalidades que contenían algún error o aquellas que sean nuevas. Además, gracias a la división del programa en módulos, se podrán clasificar las pruebas de forma más sencilla.
+Debido a que esta es una versión actualizada de una anterior, las pruebas irán principalmente enfocadas a aquellas funcionalidades que contenían algún error o aquellas que sean nuevas. Además, gracias a la división del programa en módulos, se podrán clasificar las pruebas de forma más sencilla.
 
-% Dada la división modular de la aplicación, las pruebas se han agrupado por los módulos que la componen:
+Dada la división modular de la aplicación, las pruebas se han agrupado por los módulos que la componen:
 
-% \begin{itemize}
-%  \item \textbf{Módulo Editor}.
-%  \item \textbf{Módulo Simulador}.
-% \end{itemize}
+\begin{itemize}
+  \item \textbf{Módulo Editor}.
+  \item \textbf{Módulo Simulador}.
+\end{itemize}
 
-% Finalmente, para cada prueba realizada, se detallará el objetivo de la prueba, el proceso llevado a cabo, el resultado de la misma y la acción tomada (en caso de haber detectado e\-rrores en el software).
+Finalmente, para cada prueba realizada, se detallará el objetivo de la prueba, el proceso llevado a cabo, el resultado de la misma y la acción tomada (en caso de haber detectado e\-rrores en el software).
 
 \section{Pruebas del módulo Editor}
 
-% En esta sección se recopilan todas las pruebas efectuadas al módulo de Edición de gramáticas.
+En esta sección se recopilan todas las pruebas efectuadas al módulo de Edición de gramáticas.
 
 
-\subsection{Almacenamiento y recuperación de gramáticas}
+\subsection{Persistencia en la modificación de gramáticas}
 
-% \textbf{Objetivo}: modificar la manera de grabar y cargar gramáticas de forma que sea mucho más modular en el fichero XML. Además, aunque se grabe y se permite cargar con la versión 2.0, aquellas gramáticas creadas en la versión 1.0 también se podrán cargar en la aplicación. 
-% \medskip
+\textbf{Objetivo}: comprobar que la creación y modificación de gramáticas persiste correctamente en el sistema, evitando la pérdida de datos observada en algunas ocasiones en SimAS 2.0.
+\medskip
 
-% \textbf{Proceso}: en su versión anterior las gramáticas eran grabadas en XML de una forma muy poco modular. Las producciones era guardadas directamente como reglas con un único valor, sin poder separar precedente de consecuente de la regla. En esta nueva versión se ha tenido en cuenta el precedente y el consecuente de cada regla, de tal forma de que cada una este separada por dichas partes, cada una con sus respectivos valores.
-% \medskip
+\textbf{Proceso}: se partió de una gramática existente y se realizaron modificaciones sobre sus elementos (terminales, no terminales y producciones). A continuación, se guardó la gramática y se volvió a abrir para verificar que todos los cambios se conservaban. En las figuras se ilustran los pasos clave del proceso:
+\medskip
 
-% \textbf{Resultado}: al finalizar esta prueba, no se detectó ningún e\-rror o anomalía
-% en el comportamiento de la aplicación. además, el comportamiento de SimAS frente a los e\-rrores
-% provocados fue el correcto, controlando y notificando al usuario los e\-rrores producidos
-% en todo momento.
-% \medskip
+\needspace{6cm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figuras2/pruebas/editor/gramatica_original.png}
+  \caption{Gramática original cargada en el editor.}
+\end{figure}
 
-% \textbf{Solución adoptada}: no hubo necesidad de tomar ninguna acción correctora de esta prueba.
+\needspace{6cm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figuras2/pruebas/editor/nuevos_terminales.png}
+  \caption{Edición y adición de terminales.}
+\end{figure}
 
-% %
-% %Prueba Validacion
-% %
+\needspace{6cm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figuras2/pruebas/editor/nuevos_no_term.png}
+  \caption{Edición y adición de no terminales.}
+\end{figure}
 
-\subsection{Validación de gramáticas}
+\needspace{6cm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figuras2/pruebas/editor/nuevas_prod.png}
+  \caption{Edición y adición de producciones.}
+\end{figure}
 
-% \textbf{Objetivo}: cargar una gramática de cualquier versión y validarla automáticamente sin necesidad de pulsar ningún botón.
-% \medskip
+\needspace{6cm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figuras2/pruebas/editor/gramatica_nueva.png}
+  \caption{Gramática guardada y recargada con los cambios persistidos.}
+\end{figure}
 
-% \textbf{Proceso}: se cargaron varias gramáticas, algunas con errores y otras correctas y, al cargarlas, el programa mostraba al usuario un mensaje describiendo el estado de las gramáticas. Se comprobaba si la gramática tenía algún tipo de error o anomalía o si la gramática estaba correctamente validada.
-% \medskip
+\textbf{Resultado}: tras cerrar y volver a abrir la gramática, todos los cambios se mantuvieron correctamente. No se reprodujo la pérdida de datos reportada en SimAS 2.0.
+\medskip
 
-% \textbf{Resultado}:  los errores de la validación se detectaban
-% y notificaban correctamente. 
-% \medskip
+\textbf{Solución adoptada}: se revisó y corrigió la capa de persistencia para asegurar un guardado atómico de la gramática y una serialización consistente de todos sus componentes (terminales, no terminales, producciones y metadatos), además de sincronizar el modelo con la vista previamente al guardado. Con ello, el problema quedó resuelto.
 
-% \textbf{Solución adoptada}: no hubo necesidad de tomar ninguna acción correctora
-% de esta prueba.
+\subsection{Complejidad al añadir producciones}
 
-% %
-% %Pruebas Simulador
-% %
+\textbf{Objetivo}: simplificar y hacer más intuitivo el proceso de añadir producciones en el editor, reduciendo la complejidad que presentaba SimAS 2.0 y mejorando la experiencia de uso.
+\medskip
+
+\textbf{Proceso}: se partió de una gramática existente y se procedió a añadir nuevas producciones mediante el panel de modificación. Las nuevas producciones se agregan inicialmente con ID=0 en la lista de producciones, permitiendo al usuario editarlas antes de confirmar. Al hacer clic en "Aceptar", el sistema asigna automáticamente los IDs correspondientes de forma secuencial. En las figuras se muestra el proceso paso a paso:
+\medskip
+
+\needspace{6cm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figuras2/pruebas/editor/old_prod.png}
+  \caption{Lista de producciones original antes de añadir nuevas.}
+\end{figure}
+
+\needspace{6cm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figuras2/pruebas/editor/mod_prod.png}
+  \caption{Añadiendo nuevas producciones con ID=0 temporal.}
+\end{figure}
+
+\needspace{6cm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figuras2/pruebas/editor/new_prod.png}
+  \caption{Producciones añadidas con IDs asignados automáticamente.}
+\end{figure}
+
+\textbf{Resultado}: el proceso de añadir producciones resultó mucho más intuitivo y consistente, eliminando los pasos innecesarios y reduciendo el tiempo requerido. No se detectaron errores en la asignación de IDs ni en la integración con la gramática existente.
+\medskip
+
+\textbf{Solución adoptada}: se simplificó el flujo de trabajo unificando la adición de producciones en un único panel con asignación automática de IDs. Se implementó validación inmediata de formato y símbolos, y se agregó retroalimentación visual durante el proceso para guiar al usuario. Esto garantiza una experiencia más fluida y consistente con el resto de operaciones del editor.
+
 
 \section{Pruebas del módulo Simulador}
 
-% En esta sección se recopilan todas las pruebas efectuadas al módulo de 
-% \textbf{Simulación de gramáticas}.
+En esta sección se recopilan todas las pruebas efectuadas al módulo de Simulación de gramáticas.
 
-% %
-% %Prueba Conj Prim y Sig con recursividad
-% %
+\subsection{Error ocasional en la generación de conjuntos Primero y Siguiente}
 
-%\subsection{Generación correcta de conjunto primero y siguiente en simulación ascendente si existe recursividad o reglas épsilon}
+\textbf{Objetivo}: verificar que la generación de los conjuntos Primero y Siguiente se realiza correctamente sin errores intermitentes, como se observaba en ocasiones en SimAS 2.0.
+\medskip
 
-% \textbf{Objetivo}: comprobar que se generan correctamente los conjuntos \textit{primero}  y \textit{siguiente} cuando se desea realizar un análisis ascendente con una gramática que posea recursividad  por la izquierda y reglas épsilon.
-% \medskip
+\textbf{Proceso}: se cargaron diversas gramáticas en el simulador y se procedió a generar los conjuntos Primero y Siguiente. Se verificó que el proceso se completara sin fallos y que los resultados fueran consistentes en múltiples ejecuciones. A continuación se muestran ejemplos del proceso:
+\medskip
 
-% \textbf{Proceso}: para conseguir una generación correcta de los conjuntos \textit{primero}  y \textit{siguiente}, se han cargado diferentes gramáticas con recursividad por la izquierda y reglas épsilon para proceder con su análisis ascendente. 
-% \medskip
+\needspace{6cm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figuras2/pruebas/simulador/gramatica.png}
+  \caption{Gramática original cargada en el simulador.}
+\end{figure}
 
-% \textbf{Resultado}: \textit{primero}  y \textit{siguiente} se generaban correctamente. 
-% \medskip
+\needspace{6cm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figuras2/pruebas/simulador/conjuntos.png}
+  \caption{Conjuntos Primero y Siguiente generados correctamente.}
+\end{figure}
 
-% \textbf{Solución adoptada}: no hubo necesidad de tomar ninguna acción correctora
-% de esta prueba.
+\textbf{Resultado}: los conjuntos Primero y Siguiente se generaron de forma correcta y consistente en todas las pruebas realizadas. No se reprodujeron los errores intermitentes observados en la versión anterior.
+\medskip
 
-% %
-% %Prueba Visualizar gramática
-% %
+\textbf{Solución adoptada}: se revisaron y corrigieron los métodos encargados de calcular los conjuntos Primero y Siguiente, asegurando un manejo adecuado de casos recursivos, reglas épsilon y dependencias entre símbolos. Se implementaron verificaciones adicionales para detectar y corregir inconsistencias durante el cálculo, garantizando resultados precisos y libres de errores.
 
-%\subsection{Visualización de la gramática durante la generación de los conjuntos primero, siguiente, tablas y funciones de error}
+\subsection{Problemas al añadir errores}
 
-% \textbf{Objetivo}: mostrar la gramática original durante todo el proceso:  generación de  los conjuntos\textit{primero} y \textit{siguiente}, creación de las tablas de análisis sintáctico, uso de las funciones de error, etc.. En la versión anterior, esto suponía un problema pues, a veces, la gramática original se transformaba y no era posible visualizarla.
-% \medskip
+\textbf{Objetivo}: verificar que la inserción de errores en la tabla predictiva se realiza correctamente, resolviendo los problemas observados en SimAS 2.0 donde no se permitía la inserción en ciertas partes de la tabla.
+\medskip
 
-% \textbf{Proceso}: se han añadido una serie de botones a todos los pasos de manera que se abra la gramática a partir de la cual se esta generando todo y que el usuario la pueda ver en todo momento. 
-% \medskip
+\textbf{Proceso}: se cargó la gramática en el simulador y se avanzó al paso 5 del asistente, donde se interactúa con la tabla predictiva completa. Se probó la nueva funcionalidad para insertar, modificar y eliminar celdas de error de forma intuitiva. A continuación se muestran los elementos clave del proceso:
+\medskip
 
-% \textbf{Resultado}: la gramática orignal se abría en una nueva ventana de forma correcta. 
-% \medskip
+\needspace{6cm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figuras2/pruebas/simulador/gramatica.png}
+  \caption{Gramática original utilizada para la prueba.}
+\end{figure}
 
-% \textbf{Solución adoptada}: no hubo necesidad de tomar ninguna acción correctora
-% de esta prueba.
+\needspace{6cm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figuras2/pruebas/simulador/func_errores.png}
+  \caption{Nueva interfaz para gestionar funciones de error en el paso 5.}
+\end{figure}
 
-% %
-% %Prueba Errores por defecto
-% %
+\textbf{Resultado}: la inserción, modificación y eliminación de errores en la tabla se realizó correctamente sin problemas. La nueva interfaz permite una interacción fluida con cualquier celda de la tabla, incluyendo las partes inferiores que anteriormente presentaban dificultades.
+\medskip
 
-%\subsection{Funciones de Error de insertar por defecto}
+\textbf{Solución adoptada}: se desarrolló una nueva forma de interactuar con la tabla en el paso 5 del asistente de simulador, implementando controles intuitivos para inserción, modificación y eliminación de celdas. Se agregó validación en tiempo real y retroalimentación visual para guiar al usuario durante el proceso, garantizando que los errores sintácticos puedan simularse y corregirse de manera efectiva.
 
-% \textbf{Objetivo}: comprobar si las funciones de inserción de elementos en la entrada se añadían de forma automática en cualquier simulación.
-% \medskip
+\subsection{Generación parcial de árboles de análisis}
 
-% \textbf{Proceso}: se han usado diferentes gramáticas para comprobar que las funciones de error se definían y se podían usar correctamente.
-% \medskip
+\textbf{Objetivo}: verificar que la generación completa de árboles sintácticos se realiza correctamente, incluyendo nodos con el símbolo épsilon, resolviendo las limitaciones observadas en SimAS 2.0.
+\medskip
 
-% \textbf{Resultado}: al iniciar la funcionalidad de funciones de error, el simulador cargaba directamente como funciones de error todas aquellas inserciones disponibles para la entrada. Además su funcionamiento en el simulador era el correcto
+\textbf{Proceso}: se cargó una gramática en el simulador y se inició el proceso de simulación con una cadena de entrada específica. Se observó cómo el nuevo método robusto construye el árbol de análisis de manera progresiva, mostrando su evolución en tiempo real durante la simulación. A continuación se ilustran los elementos clave:
+\medskip
 
-% \medskip
+\needspace{6cm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figuras2/pruebas/simulador/gramatica.png}
+  \caption{Gramática original utilizada para la prueba.}
+\end{figure}
 
-% \textbf{Solución adoptada}: no hubo necesidad de tomar ninguna acción correctora de esta prueba.
+\needspace{6cm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figuras2/pruebas/simulador/cadena_entrada.png}
+  \caption{Cadena de entrada utilizada para la simulación.}
+\end{figure}
 
-% %
-% %Prueba Errores asterisco
-% %
+\needspace{6cm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figuras2/pruebas/simulador/arbol.png}
+  \caption{Árbol sintáctico generado completamente durante la simulación.}
+\end{figure}
 
-%\subsection{Funciones de Error del modo pánico}
+\textbf{Resultado}: el árbol de análisis se generó de forma completa y correcta, incluyendo correctamente los nodos con el símbolo épsilon. El proceso de construcción progresiva permite visualizar la evolución del árbol en tiempo real, facilitando la comprensión del análisis sintáctico.
+\medskip
 
-% \textbf{Objetivo}: permitir que el programa leyese de la tabla de análisis sintáctico las celdas con reglas con asteriscos o funciones de error con asteriscos tales, como 2*) T -> int o r4*. Esto se utiliza principalmente en el modo de pánico de la recuperación de errores.
-% \medskip
+\textbf{Solución adoptada}: se construyó un método robusto para la generación de árboles durante el proceso de simulación, implementando algoritmos específicos para manejar correctamente el símbolo épsilon y otros casos especiales. Se agregó funcionalidad para mostrar el árbol de manera progresiva conforme avanza la simulación, proporcionando una experiencia visual intuitiva para el usuario.
 
-% \textbf{Proceso}: se han cargado diferentes gramáticas y se les han añadido las reglas y funciones de error con asteriscos de tal manera que, al simular el análisis de una cadena, se tuviese que usar una de dichas reglas o funciones con asterisco y así poder comprobar la simulación era correcta.
-% \medskip
+\subsection{Limitación en la generación de informes}
 
-% \textbf{Resultado}: durante la simulación se encontraba con un error debido a la imposibilidad de distinguir el asterisco. Esto suponía el acceso a una celda incorrecta pues no encontraba ninguna regla que coincidiese. Aun con el asterisco, la regla a usar debe ser la especificada y, por tanto, debe de acceder a la celda correcta.
+\textbf{Objetivo}: verificar que la funcionalidad de generación de informes se realiza correctamente, resolviendo las limitaciones significativas observadas en versiones anteriores.
+\medskip
 
-% \medskip
+\textbf{Proceso}: se probaron las tres modalidades de informes disponibles (editor, simulador y simulación) para confirmar su correcta generación. Se verificó que el informe del editor esté englobado en el del simulador, y que estos dos estén integrados en el informe de simulación completa. Además, se comprobó el sistema de nomenclatura automática para guardar los informes, que utiliza el nombre del archivo XML cargado como base.
+\medskip
 
-% \textbf{Solución adoptada}: ha sido necesario alterar el código de manera que el programa sea capaz de distinguir los asteriscos y pueda ejecutar la regla correcta.
+\textbf{Resultado}: los tres informes se generan correctamente con toda la información necesaria. La estructura jerárquica permite una navegación intuitiva desde el informe más general (simulación) hacia los más específicos (simulador y editor). Los archivos se guardan con nomenclatura automática: el informe del editor mantiene el nombre del XML original, mientras que los informes del simulador y simulación añaden "\_simulador" o "\_simulación" (según el idioma de la aplicación) al nombre base, o permiten al usuario elegir un nombre personalizado.
+\medskip
 
-% %
-% %Prueba Árbol descendente
-% %
-
-
-%\subsection{Generación del árbol descendente}
-
-% \textbf{Objetivo}: obtener una generación iterativa o instantánea del árbol descendente.
-% \medskip
-
-% \textbf{Proceso}: se han cargado diferentes gramática y se ha simulado un análisis descendente de una cadena de entrada de tal manera que se pudiera ver el árbol al continuar con el análisis.
-% \medskip
-
-% \textbf{Resultado}: el árbol se ha generado correctamente sin ningún problema.
-% \medskip
-
-% \textbf{Solución adoptada}: no hubo necesidad de tomar ninguna acción correctora
-% de esta prueba.
-
-% %
-% %Prueba Árbol Ascendente
-% %
-
-%\subsection{Generación del árbol ascendente}
-
-% \textbf{Objetivo}:  obtener una generación iterativa o instantánea del árbol ascendente.
-% \medskip
-
-% \textbf{Proceso}: se han cargado diferentes gramática y se ha simulado un análisis de una cadena de entrada de tal manera que se pudiera ver el árbol al continuar con el análisis
-% \medskip
-
-% \textbf{Resultado}: el árbol se generaba de forma incorrecta. Los nodos se posicionaban en lugares inesperados y no se conseguía el árbol correcto.
-% \medskip
-
-% \textbf{Solución adoptada}: se ha utilizado un nuevo enfoque para este árbol, haciendo uso de dos pilas adicionales, una para guardar la pila de la derivación y otra para guardar la entrada, de esta manera el árbol obtenido es siempre el correcto. Para arreglar el posicionamiento de los nodos, se ha optado por una generación nueva de la imagen, usando la opción -Kfdp y el atributo pos. 
-
-% %
-% %Prueba Derivación generada
-% %
-
-%\subsection{Generación de la derivación}
-
-% \textbf{Objetivo}:  obtener la derivación, ascendente o descendente, iterativa o instantánea al simular una cadena de entrada. 
-% \medskip
-
-% \textbf{Proceso}: se han añadido nuevos botones para  comprobar la generación de la derivación en la ventana de la simulación actual.
-% \medskip
-
-% \textbf{Resultado}: la derivación se generaba correctamente.
-% \medskip
-
-% \textbf{Solución adoptada}: no hubo necesidad de tomar ninguna acción correctora
-% de esta prueba.
-
-% %
-% %Prueba Derivación generada
-% %
-
-%\subsection{Generación de un informe de simulación}
-
-% \textbf{Objetivo}:  comprobar que se obtenía correctamente el informe de simulación, con los nuevos campos de árbol sintáctico y derivación.
-% \medskip
-
-% \textbf{Proceso}: se cargaron diferentes gramáticas y se procedió a simular de forma tanto ascendente como descendente algunas cadenas de entrada. Una vez finalizada la simulación, se generaba el informe.
-% \medskip
-
-% \textbf{Resultado}: el informe de simulación se obtuvo de forma satisfactoria. 
-
-% \textbf{Solución adoptada}: no hubo necesidad de tomar ninguna acción correctora.
-% de esta prueba.
+\textbf{Solución adoptada}: se implementó un sistema completo de generación de informes que produce tres tipos diferenciados con estructura jerárquica. Se agregó funcionalidad de nomenclatura automática inteligente que respeta el idioma de la aplicación y permite personalización por parte del usuario, facilitando la organización y identificación de los documentos generados.
 
