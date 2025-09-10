@@ -332,22 +332,25 @@
 \contentsline {section}{\numberline {10.1}Introducción}{223}{section.10.1}%
 \contentsline {section}{\numberline {10.2}Menú principal}{224}{section.10.2}%
 \contentsline {section}{\numberline {10.3}Barras de herramientas}{225}{section.10.3}%
-\contentsline {section}{\numberline {10.4}Ventana del editor}{227}{section.10.4}%
-\contentsline {subsection}{\numberline {10.4.1}Panel de edición}{228}{subsection.10.4.1}%
-\contentsline {section}{\numberline {10.5}Ventana del simulador}{229}{section.10.5}%
-\contentsline {subsection}{\numberline {10.5.1}Panel de simulación}{230}{subsection.10.5.1}%
-\contentsline {subsection}{\numberline {10.5.2}Ventana de Gramática Original}{231}{subsection.10.5.2}%
-\contentsline {section}{\numberline {10.6}Ventana de simulación}{231}{section.10.6}%
-\contentsline {section}{\numberline {10.7}Ventana de Visualización del Árbol Sintáctico}{232}{section.10.7}%
-\contentsline {section}{\numberline {10.8}Ventana de Derivación Sintáctica}{232}{section.10.8}%
-\contentsline {section}{\numberline {10.9}Ventana de asistente}{232}{section.10.9}%
-\contentsline {section}{\numberline {10.10}Ventanas de edición}{237}{section.10.10}%
-\contentsline {part}{IV\hspace {1em}Pruebas}{239}{part.4}%
-\contentsline {chapter}{\numberline {11}Pruebas}{241}{chapter.11}%
-\contentsline {section}{\numberline {11.1}Introducción}{241}{section.11.1}%
-\contentsline {section}{\numberline {11.2}Pruebas del módulo Editor}{241}{section.11.2}%
-\contentsline {subsection}{\numberline {11.2.1}Almacenamiento y recuperación de gramáticas}{241}{subsection.11.2.1}%
-\contentsline {subsection}{\numberline {11.2.2}Validación de gramáticas}{241}{subsection.11.2.2}%
-\contentsline {section}{\numberline {11.3}Pruebas del módulo Simulador}{241}{section.11.3}%
-\contentsline {chapter}{Bibliografía}{243}{section.11.3}%
-\contentsline {chapter}{Bibliograf\'{\i }a}{243}{chapter*.93}%
+\contentsline {section}{\numberline {10.4}Pestaña del editor}{227}{section.10.4}%
+\contentsline {subsection}{\numberline {10.4.1}Pestaña de edición}{228}{subsection.10.4.1}%
+\contentsline {subsubsection}{\numberline {10.4.1.1}Paso 1: Nombre y descripción}{229}{subsubsection.10.4.1.1}%
+\contentsline {subsubsection}{\numberline {10.4.1.2}Paso 2: Símbolos terminales y no terminales}{230}{subsubsection.10.4.1.2}%
+\contentsline {subsubsection}{\numberline {10.4.1.3}Paso 3: Producciones}{230}{subsubsection.10.4.1.3}%
+\contentsline {subsubsection}{\numberline {10.4.1.4}Paso 4: Símbolo inicial y validación}{231}{subsubsection.10.4.1.4}%
+\contentsline {section}{\numberline {10.5}Pestaña del simulador}{232}{section.10.5}%
+\contentsline {subsection}{\numberline {10.5.1}Panel de simulación}{233}{subsection.10.5.1}%
+\contentsline {subsection}{\numberline {10.5.2}Pestaña de Gramática Original}{234}{subsection.10.5.2}%
+\contentsline {section}{\numberline {10.6}Pestaña de simulación}{236}{section.10.6}%
+\contentsline {section}{\numberline {10.7}Pestaña de Visualización del Árbol Sintáctico}{236}{section.10.7}%
+\contentsline {section}{\numberline {10.8}Pestaña de Derivación Sintáctica}{236}{section.10.8}%
+\contentsline {section}{\numberline {10.9}Pestaña de asistente}{236}{section.10.9}%
+\contentsline {part}{IV\hspace {1em}Pruebas}{241}{part.4}%
+\contentsline {chapter}{\numberline {11}Pruebas}{243}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Introducción}{243}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Pruebas del módulo Editor}{243}{section.11.2}%
+\contentsline {subsection}{\numberline {11.2.1}Almacenamiento y recuperación de gramáticas}{243}{subsection.11.2.1}%
+\contentsline {subsection}{\numberline {11.2.2}Validación de gramáticas}{243}{subsection.11.2.2}%
+\contentsline {section}{\numberline {11.3}Pruebas del módulo Simulador}{243}{section.11.3}%
+\contentsline {chapter}{Bibliografía}{245}{section.11.3}%
+\contentsline {chapter}{Bibliograf\'{\i }a}{245}{chapter*.96}%

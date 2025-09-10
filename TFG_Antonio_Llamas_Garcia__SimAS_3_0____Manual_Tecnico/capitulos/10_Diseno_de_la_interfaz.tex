@@ -4,7 +4,7 @@
 
 En este capítulo se abordará el diseño de cada uno de los componentes que forman la interfaz de la aplicación SimAS 3.0. Esta versión representa una evolución significativa respecto a las versiones anteriores, incorporando mejoras sustanciales tanto en funcionalidad como en experiencia de usuario.
 
-La interfaz de SimAS 3.0 ha sido completamente rediseñada con un enfoque moderno y profesional, integrando las mejores prácticas de diseño de interfaces gráficas. Se ha implementado un sistema avanzado de pestañas que permite trabajar simultáneamente con múltiples gramáticas y simulaciones, mejorando significativamente la productividad del usuario. El manejo inteligente de ventanas secundarias facilita la comparación de resultados y el trabajo paralelo, características que no estaban disponibles en versiones anteriores.
+La interfaz de SimAS 3.0 ha sido completamente rediseñada con un enfoque moderno y profesional, integrando las mejores prácticas de diseño de interfaces gráficas. Se ha implementado un sistema avanzado de pestañas que permite trabajar simultáneamente con múltiples gramáticas y simulaciones, mejorando significativamente la productividad del usuario. El manejo inteligente de pestañas secundarias facilita la comparación de resultados y el trabajo paralelo, características que no estaban disponibles en versiones anteriores.
 
 Uno de los aspectos más destacados es la incorporación de acciones contextuales intuitivas, con iconos descriptivos que representan fielmente las operaciones que realizan. La interfaz presenta un aspecto formal y elegante, con una paleta de colores coherente y una tipografía legible que facilita la lectura prolongada. La navegación se ha optimizado mediante atajos de teclado estratégicos y un sistema de menús jerárquicos que agrupan las funcionalidades de manera lógica.
 
@@ -77,53 +77,123 @@ Por ejemplo, las operaciones relacionadas con gramáticas están representadas c
 Esta estrategia de diseño no solo mejora la intuitividad de la interfaz, sino que también optimiza el espacio disponible y reduce la carga cognitiva del usuario. El sistema de habilitación contextual asegura que los usuarios se centren en las tareas apropiadas para cada etapa del proceso, mejorando tanto la eficiencia como la calidad del trabajo realizado.
   
 
-\section{Ventana del editor}
+\section{Pestaña del editor}
 
-La ventana del editor representa el módulo principal de creación y gestión de gramáticas en SimAS 3.0. Este componente se abre en una nueva pestaña independiente cuando el usuario selecciona las opciones de crear una nueva gramática o editar una existente desde el menú principal.
+La pestaña del editor representa el módulo principal de creación y gestión de gramáticas en SimAS 3.0. Este componente se abre en una nueva pestaña independiente cuando el usuario selecciona las opciones de crear una nueva gramática o editar una existente desde el menú principal.
 
-El editor proporciona una interfaz completa para el diseño, modificación y validación de gramáticas de contexto libre, facilitando el proceso de preparación de datos para las simulaciones posteriores. Las imágenes mostradas en esta sección corresponden al estado del editor con una gramática activa cargada. Para observar las diferencias con la ventana del editor vacía, se puede consultar el Manual de Usuario.
+El editor proporciona una interfaz completa para el diseño, modificación y validación de gramáticas de contexto libre, facilitando el proceso de preparación de datos para las simulaciones posteriores. Las imágenes mostradas en esta sección corresponden al estado del editor con una gramática activa cargada. Para observar las diferencias con la pestaña del editor vacía, se puede consultar el Manual de Usuario.
 
-La ventana del editor está compuesta por los siguientes elementos principales:
+La pestaña del editor está compuesta por los siguientes elementos principales:
 \begin{enumerate}
  \item \textbf{Barra de herramientas}: proporciona accesos directos a todas las operaciones disponibles.
  \item \textbf{Información de la gramática}: componentes que muestran la información de la gramática activa.
 \end{enumerate}
 
-En la figura \ref{fig:d3}, se muestra un ejemplo completo de la ventana del editor con una gramática activa.
+En la figura \ref{fig:d3}, se muestra un ejemplo completo de la pestaña del editor con una gramática activa.
 
 \needspace{8cm}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{figuras2/ejemplo_practico/editor.png}
-\caption{Ventana del editor con gramática activa.}
+\caption{Pestaña del editor con gramática activa.}
 \label{fig:d3}
 \end{figure}
 
-La barra de herramientas del editor ya fue detallada en la sección anterior, destacando su sistema inteligente de habilitación/deshabilitación de controles. A continuación se describe el panel de edición, que constituye el corazón funcional del módulo de creación de gramáticas.
+La barra de herramientas del editor ya fue detallada en la sección anterior, destacando su sistema inteligente de habilitación/deshabilitación de controles. A continuación se describe la pestaña de edición, que implementa un proceso estructurado de 4 pasos para la creación y modificación de gramáticas.
 
-\subsection{Panel de edición}
+\subsection{Pestaña de edición}
 
-El panel de edición constituye el núcleo funcional del módulo de creación de gramáticas, implementando un proceso estructurado de 4 pasos que guía al usuario a través de la definición completa de una gramática de contexto libre. Este proceso asistido asegura que se recopilen todos los elementos necesarios para una gramática válida y funcional.
+La pestaña de edición representa la interfaz principal de interacción para la creación y modificación de gramáticas de contexto libre en SimAS 3.0. Esta pestaña se abre inicialmente en el paso 1 del proceso y proporciona un flujo de trabajo guiado que asegura la correcta definición de todos los componentes necesarios para una gramática funcional.
 
-El proceso de 4 pasos se detalla exhaustivamente en la sección \ref{sec:ventana_asistente} de este mismo capítulo, donde se explica el funcionamiento del asistente de creación de gramáticas. En esta sección se proporciona una visión general de los componentes principales del panel de edición.
+Uno de los aspectos más destacados de esta pestaña es su sistema de navegación inferior, que permite al usuario moverse fluidamente entre los 4 pasos del proceso de edición. Este menú de navegación facilita la revisión y modificación de cualquier paso anterior, proporcionando una experiencia de usuario flexible y no lineal.
 
-Este panel representa la interfaz principal de interacción para la creación y modificación de gramáticas, proporcionando una experiencia de usuario intuitiva y guiada que facilita el proceso de definición de lenguajes formales.
+El proceso de creación de gramáticas se estructura en 4 pasos secuenciales:
 
-\section{Ventana del simulador}
+\subsubsection{Paso 1: Nombre y descripción}
 
-La ventana del simulador permite ejecutar la simulación de un analizador descendente o ascendente utilizando una gramática. En la figura \ref{fig:d5}, se muestra un ejemplo de esta ventana.
+El primer paso se centra en la identificación y documentación básica de la gramática. El usuario debe proporcionar:
+\begin{itemize}
+ \item \textbf{Nombre de la gramática}: un identificador único y descriptivo
+ \item \textbf{Descripción}: documentación obligatoria sobre el propósito y características de la gramática
+\end{itemize}
 
-La ventana está compuesta de los siguientes elementos:
+En la figura \ref{fig:paso1}, se muestra la interfaz del paso 1 donde se introducen el nombre y la descripción de la gramática.
+
+\needspace{6cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figuras2/editor/paso1_datos.png}
+\caption{Paso 1: Nombre y descripción de la gramática.}
+\label{fig:paso1}
+\end{figure}
+
+\subsubsection{Paso 2: Símbolos terminales y no terminales}
+
+En este paso se definen los alfabetos fundamentales de la gramática:
+\begin{itemize}
+ \item \textbf{Símbolos terminales}: el vocabulario básico del lenguaje
+ \item \textbf{Símbolos no terminales}: variables que representan construcciones sintácticas
+\end{itemize}
+
+La figura \ref{fig:paso2} ilustra la interfaz del paso 2 donde se definen los símbolos terminales y no terminales de la gramática.
+
+\needspace{6cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figuras2/editor/paso2_simbolos.png}
+\caption{Paso 2: Definición de símbolos terminales y no terminales.}
+\label{fig:paso2}
+\end{figure}
+
+\subsubsection{Paso 3: Producciones}
+
+El paso más complejo del proceso, donde se definen las reglas de producción que constituyen el núcleo de la gramática. Cada producción relaciona símbolos no terminales con secuencias de símbolos terminales y no terminales.
+
+En la figura \ref{fig:paso3}, se presenta la interfaz del paso 3 donde se configuran las producciones de la gramática.
+
+\needspace{6cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figuras2/editor/paso3_producciones.png}
+\caption{Paso 3: Definición de las producciones de la gramática.}
+\label{fig:paso3}
+\end{figure}
+
+\subsubsection{Paso 4: Símbolo inicial y validación}
+
+El paso final consolida la definición de la gramática:
+\begin{itemize}
+ \item \textbf{Símbolo inicial}: selección del símbolo no terminal que inicia el proceso de derivación
+ \item \textbf{Validación}: verificación automática de la corrección sintáctica de la gramática
+\end{itemize}
+
+La figura \ref{fig:paso4} muestra la interfaz del paso 4 donde se selecciona el símbolo inicial y se realiza la validación final de la gramática.
+
+\needspace{6cm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figuras2/editor/paso4_inicial.png}
+\caption{Paso 4: Selección del símbolo inicial y validación de la gramática.}
+\label{fig:paso4}
+\end{figure}
+
+Esta estructura de 4 pasos proporciona una experiencia de usuario intuitiva y pedagógica, guiando al estudiante a través del proceso de definición de gramáticas de manera sistemática y asegurando que no se omitan componentes esenciales.
+
+\section{Pestaña del simulador}
+
+La pestaña del simulador permite ejecutar la simulación de un analizador descendente o ascendente utilizando una gramática. En la figura \ref{fig:d5}, se muestra un ejemplo de esta pestaña.
+
+La pestaña está compuesta de los siguientes elementos:
 \begin{enumerate}
- \item \textbf{Barra de menús}: barra de menús de la ventana.
- \item \textbf{Barra de herramientas}: barra de herramientas de la ventana.
+ \item \textbf{Barra de menús}: barra de menús de la pestaña.
+ \item \textbf{Barra de herramientas}: barra de herramientas de la pestaña.
  \item \textbf{Panel de simulación}: panel que muestra los datos de la gramática a simular.
 \end{enumerate}
 
 \begin{figure}[htp]
 \centering
 	\includegraphics[width=0.8\textwidth]{figuras2/ejemplo_practico/simulador.png}
-	\caption{Ventana de simulación.}
+	\caption{Pestaña de simulación.}
 	\label{fig:d5}
 \end{figure}
 
@@ -150,9 +220,9 @@ El panel está compuesto de los siguientes elementos:
 	\label{fig:d6}
 \end{figure}
 
-\subsection{Ventana de Gramática Original}
+\subsection{Pestaña de Gramática Original}
 
-\textbf{Visualización de la Gramática Original} (Novedad): a medida que se generan los diferentes conjuntos, tablas y funciones de error, se le permite al usuario visualizar la gramática original para así poder realizar las comparaciones que desee si dicha gramática se ha transformado en otra porque se ha eliminado la recursividad por la izquierda o se ha factorizado por la izquierda. La ventana será un panel simple donde se muestre la gramática original de la misma forma que se muestra la gramática modificada (Figura \ref{fig:d10}).
+\textbf{Visualización de la Gramática Original} (Novedad): a medida que se generan los diferentes conjuntos, tablas y funciones de error, se le permite al usuario visualizar la gramática original para así poder realizar las comparaciones que desee si dicha gramática se ha transformado en otra porque se ha eliminado la recursividad por la izquierda o se ha factorizado por la izquierda. La pestaña será un panel simple donde se muestre la gramática original de la misma forma que se muestra la gramática modificada (Figura \ref{fig:d10}).
 
 \begin{figure}[htp]
 \centering
@@ -161,57 +231,57 @@ El panel está compuesto de los siguientes elementos:
 \label{fig:d10}
 \end{figure}
 
- \section{Ventana de simulación}
+\section{Pestaña de simulación}
 
-La ventana de simulación se encarga de ejecutar las simulaciones de una cadena de entrada. En la figura \ref{fig:d7}, se muestra un ejemplo de esta ventana.
+La pestaña de simulación se encarga de ejecutar las simulaciones de una cadena de entrada. En la figura \ref{fig:d7}, se muestra un ejemplo de esta pestaña.
 
-La ventana está compuesta de los siguientes elementos:
+La pestaña está compuesta de los siguientes elementos:
 \begin{enumerate}
   \item \textbf{Tipo de análisis}: muestra el tipo de simulación que se va a llevar a cabo, \textit{descendente} o \textit{ascendente}. En el caso de ser la simulación del análisis ascendente, también se detalla el tipo: \textit{SLR}, \textit{LR-canónico} o \textit{LALR}.
  \item \textbf{Cadena de entrada}: permite introducir los símbolos terminales que forman parte de la cadena de entrada que se va a simular.
  \item \textbf{Botones de Avance y Retroceso}: la simulación se podrá realizar paso a paso o de forma completa, pudiendo avanzar y retroceder en cada paso.
  \item \textbf{Tabla de análisis}: representa la tabla de resultados del análisis.
- \item \textbf{Generar Árbol Sintáctico} (Novedad): permite abrir una ventana en la que se genere el árbol sintáctico correspondiente.
- \item \textbf{Generar Derivación} (Novedad): permite abrir una ventana en la que se genere la derivación de la simulación correspondiente.
+ \item \textbf{Generar Árbol Sintáctico} (Novedad): permite abrir una pestaña en la que se genere el árbol sintáctico correspondiente.
+ \item \textbf{Generar Derivación} (Novedad): permite abrir una pestaña en la que se genere la derivación de la simulación correspondiente.
  \item \textbf{Informe de la Simulación}: permite al usuario generar un informe en pdf de la simulación.
 \end{enumerate}
 
 \begin{figure}[htp]
 \centering
 	\includegraphics[width=0.8\textwidth]{figuras2/simulador/simulacion_cadenaEntrada.png}
-	\caption{Ventana de simulación.}
+	\caption{Pestaña de simulación.}
 	\label{fig:d7}
 \end{figure}
 
-\section{Ventana de Visualización del Árbol Sintáctico}
+\section{Pestaña de Visualización del Árbol Sintáctico}
 
-El árbol sintáctico se podrá ver en una ventana la cual se irá repintando a medida que se continue con la simulación (Figura \ref{fig:da22}).
+El árbol sintáctico se podrá ver en una pestaña la cual se irá repintando a medida que se continue con la simulación (Figura \ref{fig:da22}).
 
 \begin{figure}[htp]
 \centering
 	\includegraphics[width=0.8\textwidth]{figuras2/simulador/simulacion_arbol.png}
-	\caption{Ventana de simulación.}
+	\caption{Pestaña de simulación.}
 	\label{fig:da22}
 \end{figure}
 
- \section{Ventana de Derivación Sintáctica}
+ \section{Pestaña de Derivación Sintáctica}
 
-Además del árbol, es posible generar la derivación de la simulación actual en una ventana adicional tal y como se muestra en la imagen \ref{fig:da24}:
+Además del árbol, es posible generar la derivación de la simulación actual en una pestaña adicional tal y como se muestra en la imagen \ref{fig:da24}:
 
 \begin{figure}[htp]
 \centering
 	\includegraphics[width=0.8\textwidth]{figuras2/simulador/simulacion_derivacion.png}
-	\caption{Ventana de simulación.}
+	\caption{Pestaña de simulación.}
 	\label{fig:da24}
 \end{figure}
 
-\section{Ventana de asistente} \label{sec:ventana_asistente}
+\section{Pestaña de asistente} \label{sec:pestaña_asistente}
 
-En SimAS se han creado dos tipos de asistentes: el \textit{asistente de creación de una gramática} y el \textit{asistente de creación de una simulación}. En la figura \ref{fig:d8}, se muestra un ejemplo de esta ventana; en concreto, el primer paso del asistente de creación de una gramática.
+En SimAS se han creado dos tipos de asistentes: el \textit{asistente de creación de una gramática} y el \textit{asistente de creación de una simulación}. En la figura \ref{fig:d8}, se muestra un ejemplo de esta pestaña; en concreto, el primer paso del asistente de creación de una gramática.
 
-La ventana está compuesta de los siguientes elementos:
+La pestaña está compuesta de los siguientes elementos:
 \begin{enumerate}
- \item \textbf{Título}: contiene un título descriptivo de la ventana en la que se sitúe el asistente.
+ \item \textbf{Título}: contiene un título descriptivo de la pestaña en la que se sitúe el asistente.
  \item \textbf{Contenido}: información que se muestra en el panel en función del paso en el que se está.
  \item \textbf{Botonera}: permite controlar la evolución del asistente (cancelar, ir al paso anterior, ir al primer paso, etcétera).
 \end{enumerate}
@@ -219,24 +289,6 @@ La ventana está compuesta de los siguientes elementos:
 \begin{figure}[htp]
 \centering
 	\includegraphics[width=0.8\textwidth]{figuras2/ejemplo_practico/editor_paso1.png}
-	\caption{Ventana de asistente.}
+	\caption{Pestaña de asistente.}
 	\label{fig:d8}
-\end{figure}
-
-\section{Ventanas de edición} \label{sec:ventanas_edicion}
-
-Las ventanas de edición representa a todas las ventanas que permiten realizar una edición de un objeto (nombre, descripción, símbolos, producciones, funciones de error, etcétera). En la figura \ref{fig:d9}, se muestra un ejemplo de esta ventana; en concreto, la ventana de edición de los símbolos de la gramática.
-
-La ventana está compuesta de los siguientes elementos:
-\begin{enumerate}
- \item \textbf{Título}: contiene un título descriptivo de la ventana.
- \item \textbf{Contenido}: información a editar que se muestra en la ventana.
- \item \textbf{Botonera}: permite cancelar o aceptar la operación. El botón de cancelar siempre estará situado a la izquierda, mientras que el de aceptar lo estará en la derecha.
-\end{enumerate}
-
-\begin{figure}[htp]
-\centering
-	\includegraphics[width=0.8\textwidth]{figuras2/editor/panel_terminales.png}
-	\caption{Ventana de edición.}
-	\label{fig:d9}
 \end{figure}
