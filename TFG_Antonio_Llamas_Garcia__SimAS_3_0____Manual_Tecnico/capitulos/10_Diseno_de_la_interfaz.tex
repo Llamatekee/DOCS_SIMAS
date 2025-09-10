@@ -79,44 +79,35 @@ Esta estrategia de diseño no solo mejora la intuitividad de la interfaz, sino q
 
 \section{Ventana del editor}
 
-La ventana del editor permite crear, editar y validar las gramáticas de contexto libre para su posterior simulación. En la figura \ref{fig:d3}, se muestra un ejemplo de esta ventana con una gramática creada y validada.
+La ventana del editor representa el módulo principal de creación y gestión de gramáticas en SimAS 3.0. Este componente se abre en una nueva pestaña independiente cuando el usuario selecciona las opciones de crear una nueva gramática o editar una existente desde el menú principal.
 
-La ventana está compuesta de los siguientes elementos:
+El editor proporciona una interfaz completa para el diseño, modificación y validación de gramáticas de contexto libre, facilitando el proceso de preparación de datos para las simulaciones posteriores. Las imágenes mostradas en esta sección corresponden al estado del editor con una gramática activa cargada. Para observar las diferencias con la ventana del editor vacía, se puede consultar el Manual de Usuario.
+
+La ventana del editor está compuesta por los siguientes elementos principales:
 \begin{enumerate}
- \item \textbf{Barra de menús}: barra de menús de la ventana.
- \item \textbf{Barra de herramientas}: barra de herramientas de la ventana.
- \item \textbf{Panel de edición}: panel que almacena y representa las gramáticas.
+ \item \textbf{Barra de herramientas}: proporciona accesos directos a todas las operaciones disponibles.
+ \item \textbf{Información de la gramática}: componentes que muestran la información de la gramática activa.
 \end{enumerate}
 
-\begin{figure}[htp]
+En la figura \ref{fig:d3}, se muestra un ejemplo completo de la ventana del editor con una gramática activa.
+
+\needspace{8cm}
+\begin{figure}[H]
 \centering
-	\includegraphics[width=0.8\textwidth]{figuras2/ejemplo_practico/editor.png}
-	\caption{Ventana del editor.}
-	\label{fig:d3}
+\includegraphics[width=0.9\textwidth]{figuras2/ejemplo_practico/editor.png}
+\caption{Ventana del editor con gramática activa.}
+\label{fig:d3}
 \end{figure}
 
-En las secciones anteriores ya se vio con detalle el menú principal y la barra de herramientas; a continuación se va a llevar a cabo la descripción de cada una de las partes que compone el panel de edición.
+La barra de herramientas del editor ya fue detallada en la sección anterior, destacando su sistema inteligente de habilitación/deshabilitación de controles. A continuación se describe el panel de edición, que constituye el corazón funcional del módulo de creación de gramáticas.
 
 \subsection{Panel de edición}
 
-El panel de edición permite visualizar cada uno de los componentes de las gramáticas de contexto libre así como su estado: validada o no validada. En la figura \ref{fig:d4}, se muestra un ejemplo de este panel.
+El panel de edición constituye el núcleo funcional del módulo de creación de gramáticas, implementando un proceso estructurado de 4 pasos que guía al usuario a través de la definición completa de una gramática de contexto libre. Este proceso asistido asegura que se recopilen todos los elementos necesarios para una gramática válida y funcional.
 
-El panel está compuesto de los siguientes elementos:
-\begin{enumerate}
- \item \textbf{Nombre de la gramática}: nombre descriptivo de la gramática.
-  \item \textbf{Estado de la gramática}: muestra si la gramática ha sido validada o no.
-  \item \textbf{Descripción}: descripción de la gramática.
- \item \textbf{Símbolos de la gramática}: se muestran los símbolos terminales y los no terminales.
- \item \textbf{Símbolo inicial}: muestra cuál de los símbolos no terminales es el símbolo inicial de la gramática.
- \item \textbf{Producciones de la gramática}: visualización de las reglas de producción de la gramática.
- \end{enumerate}
+El proceso de 4 pasos se detalla exhaustivamente en la sección \ref{sec:ventana_asistente} de este mismo capítulo, donde se explica el funcionamiento del asistente de creación de gramáticas. En esta sección se proporciona una visión general de los componentes principales del panel de edición.
 
-\begin{figure}[htp]
-\centering
-	\includegraphics[width=0.8\textwidth]{figuras2/editor/panel_producciones.png}
-	\caption{Panel de edición.}
-	\label{fig:d4}
-\end{figure}
+Este panel representa la interfaz principal de interacción para la creación y modificación de gramáticas, proporcionando una experiencia de usuario intuitiva y guiada que facilita el proceso de definición de lenguajes formales.
 
 \section{Ventana del simulador}
 
@@ -214,7 +205,7 @@ Además del árbol, es posible generar la derivación de la simulación actual e
 	\label{fig:da24}
 \end{figure}
 
-\section{Ventana de asistente}
+\section{Ventana de asistente} \label{sec:ventana_asistente}
 
 En SimAS se han creado dos tipos de asistentes: el \textit{asistente de creación de una gramática} y el \textit{asistente de creación de una simulación}. En la figura \ref{fig:d8}, se muestra un ejemplo de esta ventana; en concreto, el primer paso del asistente de creación de una gramática.
 
@@ -232,7 +223,7 @@ La ventana está compuesta de los siguientes elementos:
 	\label{fig:d8}
 \end{figure}
 
-\section{Ventanas de edición}
+\section{Ventanas de edición} \label{sec:ventanas_edicion}
 
 Las ventanas de edición representa a todas las ventanas que permiten realizar una edición de un objeto (nombre, descripción, símbolos, producciones, funciones de error, etcétera). En la figura \ref{fig:d9}, se muestra un ejemplo de esta ventana; en concreto, la ventana de edición de los símbolos de la gramática.
 

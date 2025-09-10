@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1757510179.21482 "main.bcf" "main.bbl" "main" 1757510218.06226 0
-  "main.bcf" 1757510217.29422 115927 03c39a72cfd8601a7e0509d54fd128a6 "pdflatex"
+["biber main"] 1757515391.38854 "main.bcf" "main.bbl" "main" 1757516043.05582 0
+  "main.bcf" 1757516042.30958 115927 03c39a72cfd8601a7e0509d54fd128a6 "pdflatex"
   "references.bib" 1757418317.58614 5708 1cc7f76518d3b0f2c6664fdc1fd96568 ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1757510206.53186 "main.tex" "main.pdf" "main" 1757510218.06298 0
+["pdflatex"] 1757516030.8477 "main.tex" "main.pdf" "main" 1757516043.05625 0
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
@@ -309,7 +309,7 @@
   "capitulos/07_Analisis_Funcional.tex" 1757418317.18165 70088 26e02448f61274299f93123711ae7203 ""
   "capitulos/08_Diseno_de_paquetes.tex" 1757418317.18296 53312 c93c358ced6d417e2ed9017e3aca51ed ""
   "capitulos/09_Diseno_de_clases.tex" 1757493952.13924 135409 17835c938a7722f44a7f51ac64f029a4 ""
-  "capitulos/10_Diseno_de_la_interfaz.tex" 1757510151.83496 17762 e657d81e959eae3e40b571edeb8ee347 ""
+  "capitulos/10_Diseno_de_la_interfaz.tex" 1757516000.22432 18405 9ddbe81e04e8ab75337a074d71fbbd29 ""
   "capitulos/11_Pruebas.tex" 1757418317.18622 10028 b80f2203cc297a421fc1934a0389197b ""
   "figuras/Cap1/fasescomp.png" 1757418317.18996 45531 8fc69d01cc4de000286810c7750cfbe3 ""
   "figuras/Cap3/Paso-13-arbol-derivacion-descendente.pdf" 1757418317.20909 8052 f326978410c034a25d8783a27cb2ce54 ""
@@ -355,7 +355,6 @@
   "figuras/Cap9/diagrama_utils.png" 1757460217.58145 20698 8e3d6c1f2421ec882648eb2c61d8bebf ""
   "figuras2/editor/barra_herramientas.png" 1757509385.32847 17488 c124ca1b90673738aefba8401bfcf3c3 ""
   "figuras2/editor/barra_herramientas_deshabilita_parcial.png" 1757510057.37579 16808 0046f70937224f9031193a21134a75ca ""
-  "figuras2/editor/panel_producciones.png" 1757505063.08327 117641 9f35c4254208db521ae6dc91157eca01 ""
   "figuras2/editor/panel_terminales.png" 1757505063.08514 90166 fcb674ceb70371263b9b0ce00f42d899 ""
   "figuras2/ejemplo_practico/editor.png" 1757505063.10803 113828 182a7cd3d240ef0f9dcb7a0c5406d2fd ""
   "figuras2/ejemplo_practico/editor_paso1.png" 1757505063.1104 74437 d8de1ac91aa89973396ffca28598f347 ""
@@ -371,14 +370,14 @@
   "img/emblema-ing-informatica.pdf" 1757418317.46617 8580 50917c02c22450d26b55704c4c5679ec ""
   "img/topRightCorner.pdf" 1757418317.52638 1281 aa53b8ee73503bf55b28924ecfa3585f ""
   "img/uco_debajo.pdf" 1757418317.52695 22217 3f0ec81e6d4ee2ee174a8c125f9a9095 ""
-  "main.aux" 1757510217.26328 98618 6204efea8a50023588c67c7a4382fa44 "pdflatex"
-  "main.bbl" 1757510182.72212 34752 85252f128c3b7273b22e0effe1e8dde8 "biber main"
-  "main.lof" 1757510217.29632 6847 0560b621697376f159cc6ebbe090ab48 "pdflatex"
-  "main.lot" 1757510217.29637 8995 437011f6632329d5950a8920ced6248f "pdflatex"
-  "main.out" 1757510217.28922 67868 d5792595882ea922963414c1c0c29fd7 "pdflatex"
-  "main.run.xml" 1757510217.296 2305 76c44fea4789d1f6305c2f013e1aba2a "pdflatex"
+  "main.aux" 1757516042.27965 98615 29d92658a0c3057373573995f3fe3f7e "pdflatex"
+  "main.bbl" 1757515394.91609 34752 85252f128c3b7273b22e0effe1e8dde8 "biber main"
+  "main.lof" 1757516042.31101 6766 be3a76f1aaf0b98b0ac3ee817f7879f9 "pdflatex"
+  "main.lot" 1757516042.31114 8995 437011f6632329d5950a8920ced6248f "pdflatex"
+  "main.out" 1757516042.30395 67868 684df182432311e25c36d1d80f1e2f04 "pdflatex"
+  "main.run.xml" 1757516042.31076 2305 76c44fea4789d1f6305c2f013e1aba2a "pdflatex"
   "main.tex" 1757508706.16641 8541 7b01ee41d1a2acd101e41a3abaf8525f ""
-  "main.toc" 1757510217.29624 35090 7e2d196367924df9aa1c9a25afea307f "pdflatex"
+  "main.toc" 1757516042.31093 35090 ccb04083e9139217a01750364e012f37 "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"
