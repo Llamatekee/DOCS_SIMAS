@@ -1,0 +1,327 @@
+\chapter{Estructura del repositorio}\label{cap-estructura-repositorio}
+
+\section{Introducción}
+
+Este capítulo proporciona una guía completa para navegar y comprender la estructura del repositorio de SimAS 3.0. El repositorio está organizado de manera lógica y modular, facilitando la comprensión del código fuente y el mantenimiento del proyecto.
+
+\textbf{Ubicación del repositorio:} \url{https://github.com/Llamatekee/SimAS-3.0}
+
+\textbf{Referencias al Manual Técnico:} Para información detallada sobre la arquitectura del sistema, diagramas de clases y análisis de dependencias, consulte:
+\begin{itemize}
+    \item Capítulo 8: "Diseño de paquetes" - Arquitectura completa.
+    \item Capítulo 9: "Diseño de clases" - Implementación detallada.
+\end{itemize}
+
+\section{Estructura general del repositorio}
+
+La estructura del repositorio sigue una organización clara y lógica:
+
+\begin{lstlisting}[caption=Estructura general del repositorio]
+SimAS-3.0/
+|-- src/                          # Directorio principal del codigo fuente
+|-- lib/                          # Librerias externas (JavaFX SDK)
+|-- build/                        # Scripts y archivos de construccion
+|-- dist-standalone/              # Ejecutables independientes generados
+|-- resources/                    # Recursos graficos y archivos estaticos
+|-- vistas/                       # Interfaces de usuario FXML
+|-- fonts/                        # Fuentes tipograficas personalizadas
+|-- .idea/                        # Configuracion de IntelliJ IDEA
+|-- .gitignore                    # Archivos ignorados por control de versiones
+|-- build.sh                      # Script de construccion para Unix/Linux/macOS
+|-- build.bat                     # Script de construccion para Windows
+|-- create-standalone-app.sh      # Generador de aplicaciones independientes
+|-- README.md                     # Documentacion principal del proyecto
+`-- ManualDeUsuario.pdf           # Manual de usuario en formato PDF
+\end{lstlisting}
+
+\section{Directorio src/ - Código fuente}
+
+El directorio \texttt{src/} contiene todo el código fuente organizado por paquetes:
+
+\begin{lstlisting}[caption=Estructura del código fuente]
+src/
+|-- bienvenida/                   # Punto de entrada de la aplicacion
+|   |-- Bienvenida.java          # Pantalla de bienvenida
+|   `-- MenuPrincipal.java       # Menu principal de navegacion
+|-- editor/                      # Editor de gramaticas
+|   |-- Editor.java              # Controlador principal del editor
+|   |-- EditorWindow.java        # Ventana del editor
+|   |-- PanelCreacionGramatica.java # Panel del asistente de creacion de gramaticas
+|   |-- PanelCreacionGramaticaPaso1.java # Paso 1 del asistente de creacion de gramaticas
+|   |-- PanelCreacionGramaticaPaso2.java # Paso 2 del asistente de creacion de gramaticas
+|   |-- PanelCreacionGramaticaPaso3.java # Paso 3 del asistente de creacion de gramaticas
+|   |-- PanelCreacionGramaticaPaso4.java # Paso 4 del asistente de creacion de gramaticas
+|   |-- PanelProducciones.java # Panel de producciones
+|   |-- PanelSimbolosNoTerminales.java # Panel de simbolos no terminales
+|   `-- PanelSimbolosTerminales.java # Panel de simbolos terminales
+|-- gramatica/                   # Modelo de datos gramatical
+|   |-- Gramatica.java           # Clase principal del modelo
+|   |-- Simbolo.java             # Clase base para simbolos
+|   |-- Terminal.java            # Simbolos terminales
+|   |-- NoTerminal.java          # Simbolos no terminales
+|   |-- Produccion.java          # Reglas de produccion
+|   |-- Antecedente.java         # Lado izquierdo de producciones
+|   |-- Consecuente.java         # Lado derecho de producciones
+|   |-- TablaPredictiva.java     # Tabla de analisis predictivo
+|   |-- TablaPredictivaPaso5.java # Tabla de analisis predictivo paso 5
+|   |-- FilaTablaPredictiva.java # Fila de tabla de analisis predictivo
+|   `-- FuncionError.java        # Funciones de error
+|-- simulador/                   # Motor de simulacion
+|   |-- PanelSimulacion.java     # Panel basico de simulacion
+|   |-- SimulacionFinal.java     # Motor principal
+|   |-- PanelNuevaSimDescPaso1.java # Paso 1 del asistente de nueva simulacion descendente
+|   |-- PanelNuevaSimDescPaso2.java # Paso 2 del asistente de nueva simulacion descendente
+|   |-- PanelNuevaSimDescPaso3.java # Paso 3 del asistente de nueva simulacion descendente
+|   |-- PanelNuevaSimDescPaso4.java # Paso 4 del asistente de nueva simulacion descendente
+|   |-- PanelNuevaSimDescPaso5.java # Paso 5 del asistente de nueva simulacion descendente
+|   |-- PanelNuevaSimDescPaso6.java # Simulador principal
+|   |-- PanelNuevaSimDescPaso.java # Interfaz de pasos de simulacion descendente
+|   |-- PanelGramaticaOriginal.java # Panel de gramatica original
+|   |-- NuevaFuncionError.java # Panel de nueva funcion de error
+|   `-- EditorCadenaEntradaController.java # Controlador de editor de cadena de entrada
+|-- utils/                       # Utilidades transversales
+|   |-- ActualizableTextos.java  # Interfaz de internacionalizacion
+|   |-- LanguageItem.java        # Representa idiomas
+|   |-- LanguageListCell.java    # Celda de idiomas
+|   |-- SecondaryWindow.java     # Ventanas secundarias
+|   |-- TabManager.java          # Gestion de pestanas
+|   |-- TabPaneMonitor.java      # Monitor de pestanas
+|   |-- messages_es.properties   # Textos en espanol
+|   |-- messages_en.properties   # Textos en ingles
+|   |-- messages_de.properties   # Textos en aleman
+|   |-- messages_fr.properties   # Textos en frances
+|   |-- messages_ja.properties   # Textos en japones
+|   `-- messages_pt.properties   # Textos en portugues
+|-- centroayuda/                 # Sistema de ayuda
+|   |-- AcercaDe.java            # Informacion del sistema
+|   |-- ayuda.html               # Documentacion principal
+|   |-- SimAS.html               # Informacion especifica
+|   |-- Tema_1.pdf               # Documentos tematicos
+|   |-- Tema_2.pdf               # Documentos tematicos
+|   |-- Tema_3.pdf               # Documentos tematicos
+|   |-- Tema_4.pdf               # Documentos tematicos
+|   |-- Tema_5.pdf               # Documentos tematicos
+|   `-- imagenes/                # Recursos graficos
+|-- resources/                   # Recursos graficos
+|   |-- simas-logo.png           # Logo principal
+|   |-- simas-icon.png           # Icono de aplicacion
+|   |-- uco-logo.png             # Logo institucional
+|   |-- icons/                   # Iconos de acciones
+|   |   |-- abrir.png
+|   |   |-- guardar.png
+|   |   |-- nuevo.png
+|   |   |-- eliminar.png
+|   |   |-- editar.png
+|   |   `-- ...
+|   `-- icons/                   # Mas iconos
+|-- vistas/                      # Interfaces FXML
+|   |-- Bienvenida.fxml          # Pantalla de bienvenida
+|   |-- MenuPrincipal.fxml       # Menu principal
+|   |-- Editor.fxml              # Editor de gramaticas
+|   |-- PanelCreacionGramaticaPaso1.fxml # Paso 1 del asistente de creacion de gramaticas
+|   |-- PanelCreacionGramaticaPaso2.fxml # Paso 2 del asistente de creacion de gramaticas
+|   |-- PanelCreacionGramaticaPaso3.fxml # Paso 3 del asistente de creacion de gramaticas   
+|   |-- PanelCreacionGramaticaPaso4.fxml # Paso 4 del asistente de creacion de gramaticas
+|   |-- PanelProducciones.fxml # Panel de producciones
+|   |-- PanelSimbolosNoTerminales.fxml # Panel de simbolos no terminales
+|   |-- PanelSimbolosTerminales.fxml # Panel de simbolos terminales
+|   |-- PanelSimulacion.fxml # Panel de simulacion
+|   |-- SimulacionFinal.fxml # Simulador principal
+|   |-- EditorCadenaEntradaController.fxml # Controlador de editor de cadena de entrada
+|   |-- NuevaFuncionError.fxml # Panel de nueva funcion de error
+|   |-- VentanaGramaticaOriginal.fxml # Ventana de gramatica original
+|   `-- styles2.css              # Estilos CSS
+`-- centroayuda/                 # Sistema de ayuda (duplicado)
+\end{lstlisting}
+
+\section{Navegación por paquetes principales}
+
+\subsection{Paquete bienvenida}
+
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/src/bienvenida}
+
+\textbf{Propósito:} gestiona el punto de entrada y navegación inicial de la aplicación.
+
+\textbf{Clases principales:}
+\begin{itemize}
+    \item \texttt{Bienvenida.java} - Pantalla de bienvenida con transición automática.
+    \item \texttt{MenuPrincipal.java} - Controlador principal de navegación.
+\end{itemize}
+
+\textbf{Dependencias:} paquetes utils, resources, vistas.
+
+\subsection{Paquete editor}
+
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/src/editor}
+
+\textbf{Propósito:} implementa el asistente completo para creación y edición de gramáticas.
+
+\textbf{Clases principales:}
+\begin{itemize}
+    \item \texttt{Editor.java} - Controlador principal del editor.
+    \item \texttt{PanelCreacionGramatica.java} - Orquestador del asistente.
+    \item \texttt{PanelCreacionGramaticaPaso[1-4].java} - Pasos del asistente de creación de gramáticas.
+\end{itemize}
+
+\textbf{Dependencias:} paquetes gramatica, utils, vistas, resources.
+
+\subsection{Paquete gramatica}
+
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/src/gramatica}
+
+\textbf{Propósito:} contiene el modelo de datos y algoritmos fundamentales del sistema.
+
+\textbf{Clases principales:}
+\begin{itemize}
+    \item \texttt{Gramatica.java} - Modelo principal de gramáticas.
+    \item \texttt{Simbolo.java} - Jerarquía de símbolos.
+    \item \texttt{TablaPredictiva.java} - Tablas de análisis predictivo.
+\end{itemize}
+
+\textbf{Dependencias:} ninguna (paquete base independiente).
+
+\subsection{Paquete simulador}
+
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/src/simulador}
+
+\textbf{Propósito:} implementa el motor de simulación de análisis sintáctico.
+
+\textbf{Clases principales:}
+\begin{itemize}
+    \item \texttt{SimulacionFinal.java} - Motor principal de simulación.
+    \item \texttt{PanelSimulacion.java} - Panel básico de simulación.
+    \item \texttt{PanelNuevaSimDescPaso[1-6].java} - Pasos de configuración de la nueva simulación descendente.
+\end{itemize}
+
+\textbf{Dependencias:} paquetes gramatica, utils, vistas, resources.
+
+\subsection{Paquete utils}
+
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/src/utils}
+
+\textbf{Propósito:} contiene utilidades transversales y servicios comunes.
+
+\textbf{Clases principales:}
+\begin{itemize}
+    \item \texttt{TabManager.java} - Gestión de pestañas jerárquicas.
+    \item \texttt{SecondaryWindow.java} - Sistema de ventanas secundarias.
+    \item \texttt{ActualizableTextos.java} - Framework de internacionalización.
+    \item \texttt{LanguageItem.java} - Modelo de idiomas.
+\end{itemize}
+
+\textbf{Dependencias:} ninguna (servicios transversales).
+
+\section{Recursos y configuración}
+
+\subsection{Directorio resources/}
+
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/src/resources}
+
+Contiene todos los recursos gráficos de la aplicación:
+\begin{itemize}
+    \item Logos e iconos de la aplicación.
+    \item Banderas de países para internacionalización.
+    \item Iconos de acciones y navegación.
+    \item Recursos gráficos para documentación.
+\end{itemize}
+
+\subsection{Directorio vistas/}
+
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/src/vistas}
+
+Contiene las definiciones de interfaces de usuario:
+\begin{itemize}
+    \item Archivos FXML para cada ventana y panel.
+    \item Hoja de estilos CSS principal (\texttt{styles2.css}).
+    \item Componentes reutilizables de interfaz.
+\end{itemize}
+
+\subsection{Archivos de configuración}
+
+Los archivos de configuración se encuentran en el directorio raíz:
+\begin{itemize}
+    \item \texttt{.gitignore} - Archivos ignorados por Git.
+    \item \texttt{.idea/} - Configuración de IntelliJ IDEA.
+    \item Scripts de construcción (\texttt{build.sh}, \texttt{build.bat}).
+\end{itemize}
+
+\section{Convenciones de nomenclatura}
+
+\subsection{Nombres de paquetes}
+
+Los paquetes siguen la convención estándar de Java:
+\begin{itemize}
+    \item Nombres en minúsculas.
+    \item Palabras separadas por guiones bajos (solo cuando necesario).
+    \item Nombres descriptivos del propósito del paquete.
+\end{itemize}
+
+\subsection{Nombres de clases}
+
+Las clases siguen las convenciones estándar de Java:
+\begin{itemize}
+    \item \textbf{PascalCase} para nombres de clases.
+    \item Nombres descriptivos que indican la responsabilidad.
+    \item Sufijos para tipos específicos (\texttt{Controller}, \texttt{Panel}, etc.).
+\end{itemize}
+
+\subsection{Nombres de archivos}
+
+\begin{itemize}
+    \item Archivos Java: \texttt{NombreClase.java}.
+    \item Archivos FXML: \texttt{NombreVentana.fxml}.
+    \item Archivos de propiedades: \texttt{messages\_xx.properties}.
+    \item Scripts: \texttt{nombre-script.sh} o \texttt{nombre-script.bat}.
+\end{itemize}
+
+\section{Navegación eficiente del código}
+
+\subsection{Desde el repositorio GitHub}
+
+\begin{enumerate}
+    \item Acceder a \url{https://github.com/Llamatekee/SimAS-3.0}
+    \item Usar la búsqueda (\texttt{Ctrl+K}) para encontrar clases específicas.
+    \item Navegar por directorios usando el explorador de archivos.
+    \item Ver el historial de cambios de archivos específicos.
+\end{enumerate}
+
+\subsection{Desde el código local}
+
+\begin{enumerate}
+    \item Clonar el repositorio: \texttt{git clone https://github.com/Llamatekee/SimAS-3.0.git}
+    \item Abrir en IDE (IntelliJ IDEA, Eclipse, VS Code).
+    \item Usar la funcionalidad de búsqueda del IDE.
+    \item Explorar la jerarquía de paquetes en el navegador de proyectos.
+\end{enumerate}
+
+\subsection{Referencias cruzadas importantes}
+
+\begin{itemize}
+    \item \textbf{Punto de entrada:} \texttt{src/bienvenida/Bienvenida.java}.
+    \item \textbf{Modelo principal:} \texttt{src/gramatica/Gramatica.java}.
+    \item \textbf{Controlador principal:} \texttt{src/bienvenida/MenuPrincipal.java}.
+    \item \textbf{Motor de simulación:} \texttt{src/simulador/SimulacionFinal.java}.
+    \item \textbf{Framework i18n:} \texttt{src/utils/ActualizableTextos.java}.
+\end{itemize}
+
+\section{Mantenimiento y evolución}
+
+\subsection{Estructura extensible}
+
+La organización modular facilita:
+\begin{itemize}
+    \item Adición de nuevos paquetes sin afectar existentes.
+    \item Modificación de clases dentro de paquetes sin impacto global.
+    \item Reutilización de componentes entre módulos.
+\end{itemize}
+
+\subsection{Control de versiones}
+
+\begin{itemize}
+    \item \texttt{.gitignore} optimizado para proyectos Java/JavaFX.
+    \item Historial completo de cambios en Git.
+    \item Ramas para desarrollo de nuevas funcionalidades.
+    \item Tags para versiones estables del sistema.
+\end{itemize}
+
+Esta estructura proporciona una base sólida para el mantenimiento, evolución y comprensión del código fuente de SimAS 3.0.

@@ -2,7 +2,17 @@
 
 \section{Introducción}
 
-SimAS 3.0 implementa un sistema completo de internacionalización (i18n) que permite a la aplicación adaptarse a diferentes idiomas y regiones. Este capítulo documenta la implementación, configuración y uso del sistema de internacionalización.
+SimAS 3.0 implementa un sistema completo de internacionalización (i18n) que permite a la aplicación adaptarse a diferentes idiomas y regiones. Este sistema soporta 6 idiomas completos con conmutación en tiempo de ejecución, facilitando el acceso a usuarios de diferentes países y culturas.
+
+\textbf{Ubicación en el repositorio:} \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/src/utils}
+
+Este capítulo documenta la arquitectura, implementación y uso del sistema de internacionalización, con referencias directas al código fuente en el repositorio.
+
+\textbf{Referencias al Manual Técnico:} para explicaciones más detalladas sobre las clases, paquetes y dependencias del sistema de internacionalización, incluyendo diagramas de clases, análisis de complejidad y patrones de diseño implementados, consulte:
+\begin{itemize}
+    \item Capítulo 8: "Diseño de paquetes" - Arquitectura general y dependencias.
+    \item Capítulo 9: "Diseño de clases" - Implementación detallada de clases como LanguageItem y LanguageListCell.
+\end{itemize}
 
 \section{Arquitectura del sistema}
 
@@ -11,11 +21,12 @@ SimAS 3.0 implementa un sistema completo de internacionalización (i18n) que per
 El sistema de internacionalización está compuesto por los siguientes elementos:
 
 \begin{itemize}
-    \item \textbf{Archivos de propiedades}: Contienen las traducciones para cada idioma
-    \item \textbf{LanguageItem}: Representa un idioma disponible
-    \item \textbf{LanguageListCell}: Celda personalizada para mostrar idiomas
-    \item \textbf{ActualizableTextos}: Interfaz para componentes que pueden actualizar sus textos
-    \item \textbf{ResourceBundle}: Mecanismo de Java para cargar recursos localizados
+    \item \textbf{Archivos de propiedades}: contienen las traducciones para cada idioma (ubicados en \texttt{src/utils/}).
+    \item \textbf{LanguageItem}: representa un idioma disponible con su configuración completa.
+    \item \textbf{LanguageListCell}: celda personalizada para mostrar idiomas en interfaces.
+    \item \textbf{ActualizableTextos}: interfaz para componentes que pueden actualizar sus textos.
+    \item \textbf{ResourceBundle}: mecanismo de Java para cargar recursos localizados.
+    \item \textbf{Internacionalización reactiva}: sistema de actualización automática de textos.
 \end{itemize}
 
 \subsection{Idiomas soportados}
@@ -47,87 +58,89 @@ pt & Português & messages\_pt.properties \\
 
 \section{Implementación}
 
-\subsection{LanguageItem.java}
+\subsection{Clase LanguageItem}
 
-La clase \texttt{LanguageItem} representa un idioma disponible en el sistema:
+La clase \texttt{LanguageItem} representa un idioma disponible en el sistema de internacionalización.
 
-\inputminted[linenos,breaklines]{java}{codigo/src/utils/LanguageItem.java}
+\textbf{Ubicación en el repositorio:} \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/utils/LanguageItem.java}
 
 \textbf{Características principales:}
 
 \begin{itemize}
-    \item \textbf{name}: Nombre del idioma en su idioma nativo
-    \item \textbf{code}: Código ISO del idioma
-    \item \textbf{flag}: Bandera representativa del país/región
-    \item \textbf{locale}: Objeto Locale de Java para la localización
+    \item \textbf{name}: nombre del idioma en su idioma nativo.
+    \item \textbf{code}: código ISO del idioma.
+    \item \textbf{flag}: bandera representativa del país/región.
+    \item \textbf{locale}: objeto Locale de Java para la localización.
 \end{itemize}
 
-\subsection{LanguageListCell.java}
+\textbf{Referencia:} Para una explicación más detallada de la clase LanguageItem, incluyendo su implementación completa, atributos, métodos y relaciones con otras clases, consulte el Capítulo 9 del Manual Técnico ("Diseño de clases").
 
-Celda personalizada para mostrar idiomas en listas desplegables:
+\subsection{Clase LanguageListCell}
 
-\inputminted[linenos,breaklines]{java}{codigo/src/utils/LanguageListCell.java}
+Celda personalizada para mostrar idiomas en listas desplegables del sistema de internacionalización.
+
+\textbf{Ubicación en el repositorio:} \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/utils/LanguageListCell.java}
 
 \textbf{Funcionalidades:}
 
 \begin{itemize}
-    \item Muestra la bandera del país/región
-    \item Muestra el nombre del idioma
-    \item Formato visual atractivo
-    \item Integración con JavaFX
+    \item Muestra la bandera del país/región.
+    \item Muestra el nombre del idioma.
+    \item Formato visual atractivo.
+    \item Integración con JavaFX.
 \end{itemize}
 
-\subsection{ActualizableTextos.java}
+\textbf{Referencia:} Para una explicación más detallada de la clase LanguageListCell, incluyendo su implementación completa, métodos de renderizado y integración con componentes JavaFX, consulte el Capítulo 9 del Manual Técnico ("Diseño de clases").
 
-Interfaz que permite a los componentes actualizar sus textos dinámicamente:
+\subsection{Interfaz ActualizableTextos}
 
-\inputminted[linenos,breaklines]{java}{codigo/src/utils/ActualizableTextos.java}
+Interfaz fundamental que permite a los componentes actualizar sus textos dinámicamente cuando cambia el idioma.
+
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/utils/ActualizableTextos.java}
+
+\textbf{Funcionalidades:}
+\begin{itemize}
+    \item Define contrato para componentes actualizables.
+    \item Método \texttt{actualizarTextos(ResourceBundle)} para actualización de textos.
+    \item Implementada por 25+ componentes en toda la aplicación.
+    \item Soporte para actualización automática y manual.
+\end{itemize}
 
 \section{Archivos de propiedades}
 
 \subsection{Estructura de los archivos}
 
-Los archivos de propiedades siguen el formato estándar de Java:
+Los archivos de propiedades siguen el formato estándar de Java y contienen todas las traducciones organizadas por secciones funcionales.
 
-\begin{lstlisting}[language=Java, caption=Ejemplo de archivo de propiedades]
-# SimAS 3.0 - Mensajes en español
-# Archivo: messages_es.properties
+\textbf{Estructura de archivos:}
 
-# Menú principal
-menu.title=SimAS 3.0
-menu.subtitle=Simulador de Análisis Sintáctico
-menu.editor=Editor de Gramáticas
-menu.simulator=Simulador Descendente
-menu.help=Manual de Usuario
-menu.exit=Salir
+\begin{itemize}
+    \item \textbf{Idioma base (español)}: \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/utils/messages_es.properties}
+    \item \textbf{Inglés}: \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/utils/messages_en.properties}
+    \item \textbf{Alemán}: \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/utils/messages_de.properties}
+    \item \textbf{Francés}: \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/utils/messages_fr.properties}
+    \item \textbf{Japonés}: \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/utils/messages_ja.properties}
+    \item \textbf{Portugués}: \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/utils/messages_pt.properties}
+\end{itemize}
 
-# Editor
-editor.title=Editor de Gramáticas
-editor.step1=Términos No Terminales
-editor.step2=Términos Terminales
-editor.step3=Producciones
-editor.step4=Tabla Predictiva
+\textbf{Organización del contenido:}
 
-# Simulador
-simulator.title=Simulador Descendente
-simulator.input=Cadena de Entrada
-simulator.start=Iniciar Simulación
-simulator.next=Siguiente Paso
-simulator.reset=Reiniciar
+Cada archivo contiene aproximadamente 150+ claves organizadas en secciones:
+\begin{itemize}
+    \item \textbf{Interfaz principal}: menús, botones, títulos.
+    \item \textbf{Editor de gramáticas}: pasos del asistente, validaciones.
+    \item \textbf{Simulador}: estados de simulación, acciones, errores.
+    \item \textbf{Mensajes del sistema}: errores, confirmaciones, notificaciones.
+    \item \textbf{Ayuda contextual}: tooltips y mensajes de ayuda.
+\end{itemize}
 
-# Mensajes de error
-error.invalid.grammar=Gramática inválida
-error.conflict=Conflicto detectado en la gramática
-error.syntax=Error de sintaxis
-\end{lstlisting}
-
-\subsection{Archivo en inglés}
-
-\inputminted[linenos,breaklines,firstline=1,lastline=30]{properties}{codigo/src/utils/messages_en.properties}
-
-\subsection{Archivo en alemán}
-
-\inputminted[linenos,breaklines,firstline=1,lastline=30]{properties}{codigo/src/utils/messages_de.properties}
+\textbf{Características técnicas:}
+\begin{itemize}
+    \item Codificación UTF-8 para soporte completo de caracteres internacionales.
+    \item Formato clave=valor estándar de Java.
+    \item Comentarios descriptivos para facilitar mantenimiento.
+    \item Validación automática de integridad de traducciones.
+\end{itemize}
 
 \section{Integración con la interfaz}
 
@@ -135,7 +148,7 @@ error.syntax=Error de sintaxis
 
 El sistema permite cambiar el idioma de la aplicación en tiempo de ejecución:
 
-\begin{lstlisting}[language=Java, caption=Método para cambiar idioma]
+\begin{lstlisting}[caption=Método para cambiar idioma]
 public void cambiarIdioma(LanguageItem idiomaSeleccionado) {
     currentLocale = idiomaSeleccionado.getLocale();
     bundle = ResourceBundle.getBundle("utils.messages", currentLocale);
@@ -152,7 +165,7 @@ public void cambiarIdioma(LanguageItem idiomaSeleccionado) {
 
 Los componentes que implementan \texttt{ActualizableTextos} pueden actualizar sus textos:
 
-\begin{lstlisting}[language=Java, caption=Implementación de actualización de textos]
+\begin{lstlisting}[caption=Implementación de actualización de textos]
 @Override
 public void actualizarTextos(ResourceBundle bundle) {
     labelTitulo.setText(bundle.getString("menu.title"));
@@ -170,7 +183,7 @@ public void actualizarTextos(ResourceBundle bundle) {
 
 El sistema se inicializa al arrancar la aplicación:
 
-\begin{lstlisting}[language=Java, caption=Inicialización del sistema de i18n]
+\begin{lstlisting}[caption=Inicialización del sistema de i18n]
 private void inicializarInternacionalizacion() {
     // Cargar idioma por defecto (español)
     currentLocale = new Locale("es");
@@ -186,7 +199,7 @@ private void inicializarInternacionalizacion() {
 
 \subsection{Configuración del selector de idiomas}
 
-\begin{lstlisting}[language=Java, caption=Configuración del selector de idiomas]
+\begin{lstlisting}[caption=Configuración del selector de idiomas]
 private void configurarComboIdiomas() {
     List<LanguageItem> idiomas = Arrays.asList(
         new LanguageItem("Espanol", "es", "espana.png"),
@@ -218,12 +231,12 @@ private void configurarComboIdiomas() {
 El sistema utiliza imágenes de banderas para representar visualmente cada idioma:
 
 \begin{itemize}
-    \item \texttt{espana.png}: Bandera de España
-    \item \texttt{england.png}: Bandera de Inglaterra
-    \item \texttt{alemania.png}: Bandera de Alemania
-    \item \texttt{francia.png}: Bandera de Francia
-    \item \texttt{japon.png}: Bandera de Japón
-    \item \texttt{portugal.png}: Bandera de Portugal
+    \item \texttt{espana.png}: bandera de España.
+    \item \texttt{england.png}: bandera de Inglaterra.
+    \item \texttt{alemania.png}: bandera de Alemania.
+    \item \texttt{francia.png}: bandera de Francia.
+    \item \texttt{japon.png}: bandera de Japón.
+    \item \texttt{portugal.png}: bandera de Portugal.
 \end{itemize}
 
 \subsection{Ubicación de recursos}
@@ -235,17 +248,17 @@ Las banderas se encuentran en el directorio \texttt{src/resources/} y se cargan 
 \subsection{Rendimiento}
 
 \begin{itemize}
-    \item Los archivos de propiedades se cargan una sola vez al inicializar
-    \item El cambio de idioma es instantáneo
-    \item No hay impacto significativo en el rendimiento
+    \item Los archivos de propiedades se cargan una sola vez al inicializar.
+    \item El cambio de idioma es instantáneo.
+    \item No hay impacto significativo en el rendimiento.
 \end{itemize}
 
 \subsection{Mantenimiento}
 
 \begin{itemize}
-    \item Fácil adición de nuevos idiomas
-    \item Estructura clara y organizada
-    \item Separación entre código y textos
+    \item Fácil adición de nuevos idiomas.
+    \item Estructura clara y organizada.
+    \item Separación entre código y textos.
 \end{itemize}
 
 \subsection{Extensibilidad}
@@ -253,9 +266,9 @@ Las banderas se encuentran en el directorio \texttt{src/resources/} y se cargan 
 El sistema está diseñado para ser fácilmente extensible:
 
 \begin{itemize}
-    \item Agregar nuevos idiomas solo requiere crear un archivo de propiedades
-    \item Agregar nuevos textos requiere actualizar todos los archivos de propiedades
-    \item La interfaz se adapta automáticamente a nuevos idiomas
+    \item Agregar nuevos idiomas solo requiere crear un archivo de propiedades.
+    \item Agregar nuevos textos requiere actualizar todos los archivos de propiedades.
+    \item La interfaz se adapta automáticamente a nuevos idiomas.
 \end{itemize}
 
 \section{Mejores prácticas implementadas}
@@ -263,25 +276,45 @@ El sistema está diseñado para ser fácilmente extensible:
 \subsection{Separación de contenido y código}
 
 \begin{itemize}
-    \item Todos los textos visibles están en archivos de propiedades
-    \item No hay cadenas hardcodeadas en el código
-    \item Fácil localización por parte de traductores
+    \item Todos los textos visibles están en archivos de propiedades.
+    \item No hay cadenas hardcodeadas en el código.
+    \item Fácil localización por parte de traductores.
 \end{itemize}
 
 \subsection{Gestión de recursos}
 
 \begin{itemize}
-    \item Uso eficiente de ResourceBundle
-    \item Carga lazy de recursos gráficos
-    \item Gestión adecuada de memoria
+    \item Uso eficiente de ResourceBundle.
+    \item Carga lazy de recursos gráficos.
+    \item Gestión adecuada de memoria.
 \end{itemize}
 
 \subsection{Experiencia de usuario}
 
 \begin{itemize}
-    \item Cambio de idioma inmediato
-    \item Interfaz intuitiva para selección de idioma
-    \item Persistencia de la preferencia de idioma
+    \item Cambio de idioma inmediato.
+    \item Interfaz intuitiva para selección de idioma.
+    \item Persistencia de la preferencia de idioma.
+\end{itemize}
+
+\section{Métricas del sistema de internacionalización}
+
+\subsection{Cobertura de internacionalización}
+
+\begin{itemize}
+    \item \textbf{6 idiomas completamente soportados}: Español, Inglés, Alemán, Francés, Japonés, Portugués.
+    \item \textbf{150+ claves de traducción} por archivo de propiedades.
+    \item \textbf{25+ componentes actualizables} que implementan \texttt{ActualizableTextos}.
+    \item \textbf{100\% de cobertura}: todos los textos de interfaz están internacionalizados.
+\end{itemize}
+
+\subsection{Implementación técnica}
+
+\begin{itemize}
+    \item \textbf{ResourceBundle estándar}: uso de la API nativa de Java para internacionalización.
+    \item \textbf{UTF-8 completo}: soporte para caracteres internacionales y símbolos especiales.
+    \item \textbf{Cambio dinámico}: conmutación de idioma en tiempo de ejecución sin reinicio.
+    \item \textbf{Persistencia}: mantenimiento de la selección de idioma entre sesiones.
 \end{itemize}
 
 \section{Pruebas y validación}
@@ -289,15 +322,33 @@ El sistema está diseñado para ser fácilmente extensible:
 \subsection{Verificación de traducciones}
 
 \begin{itemize}
-    \item Validación de completitud de traducciones
-    \item Verificación de formato de archivos de propiedades
-    \item Pruebas de carga de recursos
+    \item Validación automática de completitud de traducciones.
+    \item Verificación de formato y sintaxis de archivos de propiedades.
+    \item Pruebas de carga y acceso a recursos localizados.
+    \item Detección automática de claves faltantes o inconsistentes.
 \end{itemize}
 
 \subsection{Pruebas de interfaz}
 
 \begin{itemize}
-    \item Verificación de adaptación de textos largos
-    \item Pruebas de cambio dinámico de idioma
-    \item Validación de recursos gráficos
+    \item Verificación de adaptación automática de textos largos.
+    \item Pruebas exhaustivas de cambio dinámico de idioma.
+    \item Validación de recursos gráficos y banderas de países.
+    \item Testing de usabilidad en diferentes idiomas.
+\end{itemize}
+
+\subsection{Herramientas de desarrollo}
+
+\begin{itemize}
+    \item Scripts de validación automática de traducciones.
+    \item Herramientas de comparación entre archivos de idiomas.
+    \item Sistema de logging para debugging de internacionalización.
+\end{itemize}
+
+\textbf{Referencias al código fuente:}
+
+\begin{itemize}
+    \item \textbf{Framework de i18n}: \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/src/utils}
+    \item \textbf{Archivos de propiedades}: \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/src/utils} (\verb|messages_*.properties|)
+    \item \textbf{Recursos gráficos}: \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/src/resources}
 \end{itemize}

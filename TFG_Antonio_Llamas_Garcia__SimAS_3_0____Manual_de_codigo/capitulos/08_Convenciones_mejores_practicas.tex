@@ -1,0 +1,522 @@
+\chapter{Convenciones de código y mejores prácticas}\label{cap-convenciones-practicas}
+
+\section{Introducción}
+
+Este capítulo documenta las convenciones de código, patrones de diseño y mejores prácticas implementadas en SimAS 3.0. Estas directrices garantizan la calidad, mantenibilidad y extensibilidad del código fuente.
+
+\textbf{Referencias al Manual Técnico:} Para análisis detallado de patrones de diseño específicos y métricas de calidad del código, consulte:
+\begin{itemize}
+    \item Capítulo 8: "Diseño de paquetes" - Patrones arquitectónicos.
+    \item Capítulo 9: "Diseño de clases" - Patrones de diseño por clase.
+\end{itemize}
+
+\section{Convenciones de nomenclatura}
+
+\subsection{Nombres de paquetes}
+
+\begin{itemize}
+    \item \textbf{Convención:} nombres en minúsculas, sin guiones bajos.
+    \item \textbf{Ejemplos:}
+    \begin{itemize}
+        \item \texttt{bienvenida} - Punto de entrada.
+        \item \texttt{gramatica} - Modelo de datos.
+        \item \texttt{simulador} - Motor de simulación.
+        \item \texttt{utils} - Utilidades transversales.
+    \end{itemize}
+    \item \textbf{Justificación:} sigue las convenciones estándar de Java y facilita la navegación.
+\end{itemize}
+
+\subsection{Nombres de clases}
+
+\begin{itemize}
+    \item \textbf{Convención:} PascalCase (UpperCamelCase).
+    \item \textbf{Ejemplos:}
+    \begin{itemize}
+        \item \texttt{Gramatica} - Clase principal del modelo.
+        \item \texttt{SimulacionFinal} - Motor de simulación.
+        \item \texttt{MenuPrincipal} - Controlador principal.
+        \item \texttt{LanguageItem} - Modelo de idiomas.
+    \end{itemize}
+    \item \textbf{Prefijos/Sufijos comunes:}
+    \begin{itemize}
+        \item \texttt{Panel} - Para componentes de interfaz.
+        \item \texttt{Controller} - Para controladores FXML.
+        \item \texttt{Window} - Para gestores de ventanas.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Nombres de métodos}
+
+\begin{itemize}
+    \item \textbf{Convención:} camelCase.
+    \item \textbf{Ejemplos:}
+    \begin{itemize}
+        \item \texttt{calcularFirst()} - Calcula conjuntos PRIMERO.
+        \item \texttt{onBtnEditorAction()} - Manejador de eventos.
+        \item \texttt{cargarGramatica()} - Carga datos de gramática.
+        \item \texttt{actualizarTextos()} - Actualiza textos de interfaz.
+    \end{itemize}
+    \item \textbf{Prefijos comunes:}
+    \begin{itemize}
+        \item \texttt{calcular} - Para algoritmos de cálculo.
+        \item \texttt{cargar} - Para operaciones de carga.
+        \item \texttt{guardar} - Para operaciones de persistencia.
+        \item \texttt{on[Componente]Action} - Para manejadores de eventos.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Nombres de variables}
+
+\begin{itemize}
+    \item \textbf{Atributos de instancia:} camelCase con prefijo opcional.
+    \begin{itemize}
+        \item \texttt{tabPane} - Panel de pestañas.
+        \item \texttt{gramaticaActual} - Gramática activa.
+        \item \texttt{bundle} - Recursos de internacionalización.
+    \end{itemize}
+    \item \textbf{Variables locales:} camelCase descriptivo.
+    \begin{itemize}
+        \item \texttt{conjuntoFirst} - Conjunto PRIMERO calculado.
+        \item \texttt{nuevaProduccion} - Nueva regla de producción.
+    \end{itemize}
+    \item \textbf{Constantes:} UPPER\_SNAKE\_CASE.
+    \begin{itemize}
+        \item \texttt{IDIOMA\_POR\_DEFECTO} - Idioma por defecto.
+        \item \texttt{MAXIMO\_PRODUCCIONES} - Límite de producciones.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Nombres de archivos}
+
+\begin{itemize}
+    \item \textbf{Clases Java:} \texttt{NombreClase.java}.
+    \item \textbf{Archivos FXML:} \texttt{NombreVentana.fxml}.
+    \item \textbf{Archivos CSS:} \texttt{nombreEstilos.css}.
+    \item \textbf{Propiedades i18n:} \texttt{messages\_xx.properties}.
+    \item \textbf{Recursos:} \texttt{nombre-descriptivo.ext}.
+\end{itemize}
+
+\section{Estructura y organización del código}
+
+\subsection{Estructura de clases}
+
+\begin{itemize}
+    \item \textbf{Orden de miembros:}
+    \begin{enumerate}
+        \item Constantes estáticas.
+        \item Atributos de instancia.
+        \item Constructores.
+        \item Métodos públicos.
+        \item Métodos protegidos.
+        \item Métodos privados.
+        \item Métodos estáticos.
+    \end{enumerate}
+    \item \textbf{Agrupación lógica:} métodos relacionados se agrupan juntos.
+    \item \textbf{Documentación:} JavaDoc completo para clases y métodos públicos.
+\end{itemize}
+
+\subsection{Imports y dependencias}
+
+\begin{itemize}
+    \item \textbf{Orden de imports:}
+    \begin{enumerate}
+        \item Imports de Java estándar.
+        \item Imports de JavaFX.
+        \item Imports de librerías externas (iText, etc.).
+        \item Imports del proyecto actual.
+    \end{enumerate}
+    \item \textbf{Imports específicos:} evitar \texttt{import java.util.*;}.
+    \item \textbf{Líneas en blanco:} separar grupos de imports relacionados.
+\end{itemize}
+
+\section{Patrones de diseño implementados}
+
+\subsection{Patrones creacionales}
+
+\subsubsection{Singleton}
+
+El patrón \textit{Singleton} asegura que una clase tenga únicamente una instancia y proporciona un punto de acceso global a ella. En SimAS 3.0, este patrón se utiliza para garantizar que la pantalla de bienvenida sea única durante toda la ejecución de la aplicación.
+
+\textbf{Implementación en SimAS 3.0:} la clase \texttt{Bienvenida} implementa el patrón Singleton mediante:
+
+\begin{itemize}
+    \item Un constructor privado que previene la instanciación externa.
+    \item Un atributo estático privado que mantiene la única instancia.
+    \item Un método estático público \texttt{getInstance()} que devuelve la instancia única.
+    \item Inicialización lazy (diferida) para optimizar recursos.
+\end{itemize}
+
+Esta implementación permite que la aplicación tenga un único punto de entrada controlado, evitando múltiples instancias que podrían causar conflictos en la gestión de recursos de JavaFX y mantener el estado consistente de la aplicación.
+
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/bienvenida/Bienvenida.java}
+
+\textbf{Referencia:} \cite[pp. 127-134]{gamma1994design}
+
+\subsubsection{Factory Method}
+
+El patrón \textit{Factory Method} define una interfaz para crear objetos, pero permite a las subclases decidir qué clase instanciar. En SimAS 3.0, este patrón facilita la creación dinámica de componentes de interfaz y objetos del modelo de datos.
+
+\textbf{Implementación en SimAS 3.0:} el sistema utiliza Factory Methods en varios puntos:
+
+\begin{itemize}
+    \item \texttt{TabManager.getOrCreateTab()} - Método fábrica que crea pestañas específicas según el tipo solicitado (editor, simulador, ayuda).
+    \item Factorías para paneles de simulación que crean los diferentes pasos del asistente de simulación descendente.
+    \item Creación de símbolos gramaticales (\texttt{Terminal}, \texttt{NoTerminal}) a través de métodos que encapsulan la lógica de instanciación.
+\end{itemize}
+
+Esta implementación permite que el código cliente no conozca las clases concretas que se están creando, proporcionando flexibilidad para añadir nuevos tipos de componentes sin modificar el código existente.
+
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/utils/TabManager.java}
+
+\textbf{Referencia:} \cite[pp. 107-116]{gamma1994design}
+
+\subsection{Patrones estructurales}
+
+\subsubsection{MVC (Modelo-Vista-Controlador)}
+
+El patrón \textit{Modelo-Vista-Controlador} (MVC) separa la lógica de aplicación en tres componentes interconectados: el modelo (datos y lógica de negocio), la vista (presentación) y el controlador (manejo de entrada del usuario).
+
+\textbf{Implementación en SimAS 3.0:} la arquitectura completa de la aplicación sigue el patrón MVC:
+
+\begin{itemize}
+    \item \textbf{Modelo:} el paquete \texttt{gramatica} contiene todas las clases de dominio (\texttt{Gramatica}, \texttt{Simbolo}, \texttt{TablaPredictiva}) que representan los datos y la lógica de negocio del analizador sintáctico.
+    \item \textbf{Vista:} el paquete \texttt{vistas} contiene los archivos FXML que definen la estructura visual de las interfaces, junto con los estilos CSS que controlan la apariencia.
+    \item \textbf{Controlador:} las clases en paquetes como \texttt{bienvenida}, \texttt{editor}, \texttt{simulador} y \texttt{utils} actúan como controladores, manejando los eventos del usuario y coordinando entre modelo y vista.
+\end{itemize}
+
+Esta separación permite que los cambios en la interfaz no afecten la lógica de negocio, facilitando el mantenimiento y la evolución del código. Por ejemplo, se pueden cambiar los estilos visuales sin modificar la lógica del analizador sintáctico.
+
+\textbf{Referencia:} \cite{krasner1988model}
+
+\subsubsection{Facade}
+
+El patrón \textit{Facade} proporciona una interfaz unificada para un conjunto de interfaces en un subsistema, simplificando su uso y ocultando su complejidad.
+
+\textbf{Implementación en SimAS 3.0:} la clase \texttt{MenuPrincipal} actúa como fachada del sistema, proporcionando una interfaz simple para acceder a todas las funcionalidades de la aplicación:
+
+\begin{itemize}
+    \item Centraliza la navegación entre los diferentes módulos (editor, simulador, ayuda).
+    \item Proporciona métodos de alto nivel que encapsulan operaciones complejas de inicialización.
+    \item Oculta la complejidad de la gestión de pestañas y componentes internos.
+    \item Ofrece una API consistente para que otros componentes interactúen con el sistema principal.
+\end{itemize}
+
+Por ejemplo, en lugar de que los componentes tengan que conocer cómo crear pestañas específicas o gestionar el estado de la aplicación, simplemente llaman métodos del \texttt{MenuPrincipal} que maneja toda la complejidad interna.
+
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/bienvenida/MenuPrincipal.java}
+
+\textbf{Referencia:} \cite[pp. 185-193]{gamma1994design}
+
+\subsubsection{Composite}
+
+El patrón \textit{Composite} permite tratar objetos individuales y composiciones de objetos de manera uniforme, creando una estructura de árbol donde tanto las hojas como los nodos compuestos implementan la misma interfaz.
+
+\textbf{Implementación en SimAS 3.0:} la jerarquía de símbolos gramaticales utiliza el patrón Composite para representar la estructura de las gramáticas:
+
+\begin{itemize}
+    \item \texttt{Simbolo} es la clase base abstracta (Component) que define la interfaz común.
+    \item \texttt{Terminal} y \texttt{NoTerminal} son las implementaciones concretas (Leaf y Composite respectivamente).
+    \item Los símbolos no terminales pueden contener otros símbolos (producciones), creando una estructura jerárquica.
+    \item El código cliente puede tratar todos los símbolos de manera uniforme sin conocer su tipo específico.
+\end{itemize}
+
+Esta implementación permite que algoritmos como la construcción de tablas predictivas o la validación de gramáticas puedan operar recursivamente sobre la estructura de símbolos sin necesidad de conocer si están trabajando con terminales o no terminales.
+
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/gramatica/Simbolo.java}
+
+\textbf{Referencia:} \cite[pp. 163-173]{gamma1994design}
+
+\subsection{Patrones de comportamiento}
+
+\subsubsection{Observer}
+
+El patrón \textit{Observer} define una dependencia de uno-a-muchos entre objetos, de manera que cuando un objeto cambia su estado, todos sus dependientes son notificados y actualizados automáticamente.
+
+\textbf{Implementación en SimAS 3.0:} el sistema de internacionalización utiliza el patrón Observer para mantener sincronizados todos los textos de la interfaz cuando cambia el idioma:
+
+\begin{itemize}
+    \item La interfaz \texttt{ActualizableTextos} define el contrato que deben implementar todos los observadores (componentes de UI).
+    \item Cada componente visual (botones, etiquetas, menús) implementa esta interfaz y registra sus textos observables.
+    \item Cuando el usuario cambia el idioma, el sistema notifica a todos los observadores registrados.
+    \item Cada componente actualiza automáticamente sus textos desde el archivo de propiedades correspondiente.
+\end{itemize}
+
+Esta implementación permite que el cambio de idioma sea instantáneo en toda la aplicación sin necesidad de reiniciar, y asegura que todos los componentes estén siempre sincronizados con el idioma seleccionado por el usuario.
+
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/utils/ActualizableTextos.java}
+
+\textbf{Referencia:} \cite[pp. 293-303]{gamma1994design}
+
+\subsubsection{Strategy}
+
+El patrón \textit{Strategy} define una familia de algoritmos, encapsula cada uno y los hace intercambiables, permitiendo que el algoritmo varíe independientemente de los clientes que lo utilizan.
+
+\textbf{Implementación en SimAS 3.0:} el sistema utiliza el patrón Strategy para manejar diferentes algoritmos de procesamiento de gramáticas:
+
+\begin{itemize}
+    \item \textbf{Estrategias de análisis sintáctico:} diferentes algoritmos para analizar gramáticas (LL(1), otros métodos predictivos).
+    \item \textbf{Estrategias de manejo de errores:} diferentes enfoques para tratar errores durante el análisis sintáctico.
+    \item \textbf{Algoritmos de transformación:} estrategias para convertir gramáticas a formas normales o optimizadas.
+    \item \textbf{Estrategias de visualización:} diferentes formas de mostrar los resultados de simulación.
+\end{itemize}
+
+Esta implementación permite cambiar dinámicamente el comportamiento del analizador sin modificar el código cliente, facilitando la extensión del sistema con nuevos algoritmos y la comparación de diferentes enfoques de resolución.
+
+\textbf{Referencia:} \cite[pp. 315-323]{gamma1994design}
+
+\subsubsection{Command}
+
+El patrón \textit{Command} encapsula una solicitud como un objeto, permitiendo parametrizar clientes con diferentes solicitudes, encolar solicitudes, y soportar operaciones de deshacer/rehacer.
+
+\textbf{Implementación en SimAS 3.0:} las operaciones de simulación utilizan el patrón Command para manejar acciones complejas de manera estructurada:
+
+\begin{itemize}
+    \item \textbf{Comandos de navegación:} avanzar/retroceder en los pasos de la simulación descendente.
+    \item \textbf{Operaciones de edición:} funcionalidad de deshacer/rehacer para modificaciones en gramáticas.
+    \item \textbf{Acciones del menú contextual:} comandos que pueden ejecutarse desde diferentes contextos (botones, menús, atajos de teclado).
+    \item \textbf{Comandos de simulación:} ejecutar análisis sintáctico, mostrar resultados, generar reportes.
+\end{itemize}
+
+Cada comando implementa una interfaz común que permite ejecutarlo, deshacerlo y verificar si puede ejecutarse, proporcionando consistencia en el manejo de todas las operaciones del sistema.
+
+\textbf{Referencia:} \cite[pp. 233-242]{gamma1994design}
+
+\subsubsection{Template Method}
+
+El patrón \textit{Template Method} define el esqueleto de un algoritmo en una operación, delegando algunos pasos a las subclases, permitiendo que las subclases redefinan ciertos pasos del algoritmo sin cambiar su estructura.
+
+\textbf{Implementación en SimAS 3.0:} los asistentes de simulación utilizan el patrón Template Method para mantener una estructura consistente en todos los pasos:
+
+\begin{itemize}
+    \item \texttt{PanelNuevaSimDescPaso} define el método plantilla con la estructura común de todos los pasos.
+    \item Cada paso específico (\texttt{Paso1}, \texttt{Paso2}, etc.) implementa los métodos específicos para su funcionalidad.
+    \item \textbf{Estructura común:} inicialización, validación de entrada, procesamiento, actualización de UI, navegación.
+    \item \textbf{Especializaciones:} contenido específico de cada paso (configuración de gramática, definición de entrada, etc.)
+\end{itemize}
+
+Esta implementación asegura que todos los pasos del asistente sigan el mismo flujo de trabajo, manteniendo consistencia en la experiencia del usuario mientras permiten flexibilidad en el contenido específico de cada paso.
+
+\textbf{Referencia:} \cite[pp. 325-330]{gamma1994design}
+
+\subsubsection{Mediator}
+
+El patrón \textit{Mediator} define cómo un conjunto de objetos interactúan entre sí, promoviendo el bajo acoplamiento al evitar que los objetos se refieran unos a otros explícitamente, centralizando en su lugar la interacción.
+
+\textbf{Implementación en SimAS 3.0:} varias clases actúan como mediadores para coordinar la comunicación entre componentes complejos:
+
+\begin{itemize}
+    \item \texttt{Editor} actúa como mediador entre todos los paneles del asistente de creación de gramáticas, coordinando su activación/desactivación y el flujo de datos entre ellos.
+    \item \texttt{SimulacionFinal} gestiona la comunicación entre todos los componentes de la simulación (paneles, controles, visualización de resultados).
+    \item \texttt{TabManager} coordina la jerarquía de pestañas, manejando la creación, cierre y navegación entre diferentes vistas del sistema.
+    \item \textbf{Beneficio:} los componentes individuales no necesitan conocer cómo interactuar directamente con otros componentes.
+\end{itemize}
+
+Esta implementación reduce significativamente el acoplamiento entre componentes, facilitando el mantenimiento y la evolución del código, ya que los cambios en la lógica de coordinación se centralizan en los mediadores.
+
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/editor/Editor.java}
+
+\textbf{Referencia:} \cite[pp. 273-282]{gamma1994design}
+
+\section{Mejores prácticas implementadas}
+
+\subsection{Gestión de memoria}
+
+\begin{itemize}
+    \item \textbf{JavaFX Properties:} para binding automático de datos.
+    \begin{itemize}
+        \item \texttt{StringProperty} para textos observables.
+        \item \texttt{IntegerProperty} para contadores.
+        \item \texttt{BooleanProperty} para estados.
+    \end{itemize}
+    \item \textbf{Collections observables:} para actualización automática de UI.
+    \begin{itemize}
+        \item \texttt{FXCollections.observableArrayList()}.
+        \item \texttt{FXCollections.observableMap()}.
+    \end{itemize}
+    \item \textbf{Lazy loading:} componentes cargados bajo demanda.
+\end{itemize}
+
+\subsection{Manejo de errores}
+
+\begin{itemize}
+    \item \textbf{Validación temprana:} verificación de entrada en UI.
+    \item \textbf{Mensajes informativos:} diálogos contextuales para usuarios.
+    \item \textbf{Logging estructurado:} información de debugging completa.
+    \item \textbf{Recuperación graceful:} manejo de errores sin crash.
+\end{itemize}
+
+\subsection{Internacionalización}
+
+\begin{itemize}
+    \item \textbf{ResourceBundle:} sistema estándar de Java.
+    \item \textbf{UTF-8 completo:} soporte para caracteres internacionales.
+    \item \textbf{Actualización dinámica:} cambio de idioma sin reinicio.
+    \item \textbf{Separación clara:} textos separados del código.
+\end{itemize}
+
+\subsection{Documentación}
+
+\begin{itemize}
+    \item \textbf{JavaDoc completo:} para todas las clases y métodos públicos.
+    \item \textbf{Comentarios explicativos:} algoritmos complejos documentados.
+    \item \textbf{Referencias cruzadas:} enlaces entre componentes relacionados.
+    \item \textbf{Ejemplos de uso:} casos de uso documentados.
+\end{itemize}
+
+\section{Principios de diseño aplicados}
+
+\subsection{SOLID Principles}
+
+\subsubsection{S - Single Responsibility Principle}
+
+Cada clase tiene una única responsabilidad bien definida:
+\begin{itemize}
+    \item \texttt{Gramatica} - Gestiona datos y algoritmos gramaticales.
+    \item \texttt{SimulacionFinal} - Maneja simulación paso a paso.
+    \item \texttt{TabManager} - Coordina pestañas jerárquicas.
+\end{itemize}
+
+\subsubsection{O - Open/Closed Principle}
+
+Las clases están abiertas a extensión pero cerradas a modificación:
+\begin{itemize}
+    \item Interfaces como \texttt{ActualizableTextos}.
+    \item Jerarquía extensible de símbolos gramaticales.
+    \item Sistema de plugins para funciones de error.
+\end{itemize}
+
+\subsubsection{L - Liskov Substitution Principle}
+
+Las subclases pueden reemplazar a sus clases base:
+\begin{itemize}
+    \item \texttt{Terminal} y \texttt{NoTerminal} extienden \texttt{Simbolo}.
+    \item Implementaciones de \texttt{ActualizableTextos}.
+\end{itemize}
+
+\subsubsection{I - Interface Segregation Principle}
+
+Interfaces específicas en lugar de generales:
+\begin{itemize}
+    \item \texttt{ActualizableTextos} - Solo para internacionalización.
+    \item Interfaces específicas por funcionalidad.
+\end{itemize}
+
+\subsubsection{D - Dependency Inversion Principle}
+
+Dependencia de abstracciones, no de concreciones:
+\begin{itemize}
+    \item Inyección de dependencias en controladores.
+    \item Interfaces para servicios transversales.
+\end{itemize}
+
+\subsection{DRY (Don't Repeat Yourself)}
+
+\begin{itemize}
+    \item \textbf{Componentes reutilizables:} paneles base para asistentes.
+    \item \textbf{Métodos utilitarios:} funciones comunes extraídas.
+    \item \textbf{Constantes compartidas:} valores comunes centralizados.
+\end{itemize}
+
+\subsection{KISS (Keep It Simple, Stupid)}
+
+\begin{itemize}
+    \item \textbf{Algoritmos claros:} implementaciones directas y comprensibles.
+    \item \textbf{Interfaces intuitivas:} diseño de usuario simple.
+    \item \textbf{Estructuras lógicas:} organización clara del código.
+\end{itemize}
+
+\section{Herramientas de desarrollo}
+
+\subsection{Control de versiones}
+
+\begin{itemize}
+    \item \textbf{Git:} sistema de control de versiones distribuido.
+    \item \textbf{GitHub:} plataforma de colaboración y hosting.
+    \item \textbf{Conventional commits:} formato estandarizado para mensajes.
+\end{itemize}
+
+\subsection{IDE y herramientas}
+
+\begin{itemize}
+    \item \textbf{IntelliJ IDEA:} IDE principal para desarrollo.
+    \item \textbf{JavaFX Scene Builder:} diseño de interfaces FXML.
+    \item \textbf{Graphviz:} generación de diagramas (árboles sintácticos).
+\end{itemize}
+
+\subsection{Construcción y despliegue}
+
+\begin{itemize}
+    \item \textbf{jpackage:} creación de ejecutables nativos.
+    \item \textbf{JavaFX SDK:} framework de interfaces de usuario.
+    \item \textbf{iText PDF:} generación de informes PDF.
+\end{itemize}
+
+\section{Métricas de calidad del código}
+
+\subsection{Complejidad ciclomática}
+
+\begin{itemize}
+    \item \textbf{Métodos simples:} < 10 puntos de complejidad.
+    \item \textbf{Métodos complejos:} 10-20 puntos (algoritmos de análisis).
+    \item \textbf{Límites aceptables:} Máximo 25 puntos por método.
+\end{itemize}
+
+\subsection{Cobertura de código}
+
+\begin{itemize}
+    \item \textbf{Enfoque:} casos de uso principales y algoritmos críticos.
+    \item \textbf{Herramientas:} JaCoCo para medición de cobertura.
+\end{itemize}
+
+\section{Guías de contribución}
+
+\subsection{Proceso de desarrollo}
+
+\begin{enumerate}
+    \item \textbf{Fork} del repositorio principal.
+    \item \textbf{Clone} del fork local.
+    \item \textbf{Branch} para nueva funcionalidad.
+    \item \textbf{Commits} frecuentes con mensajes descriptivos.
+    \item \textbf{Pull request} para revisión.
+    \item \textbf{Code review} y aprobación.
+    \item \textbf{Merge} a rama principal.
+\end{enumerate}
+
+\subsection{Estandares de commit}
+
+\begin{itemize}
+    \item \textbf{Formato:} \texttt{tipo: descripción}.
+    \item \textbf{Tipos comunes:}
+    \begin{itemize}
+        \item \texttt{feat:} nueva funcionalidad.
+        \item \texttt{fix:} corrección de errores.
+        \item \texttt{docs:} cambios en documentación.
+        \item \texttt{style:} cambios de formato/código.
+        \item \texttt{refactor:} refactorización de código.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Code reviews}
+
+\begin{itemize}
+    \item \textbf{Revisión obligatoria:} Todos los cambios requieren aprobación.
+    \item \textbf{Criterios de calidad:}
+    \begin{itemize}
+        \item Funcionalidad correcta.
+        \item Código legible y documentado.
+        \item Pruebas incluidas.
+        \item Convenciones de código respetadas.
+    \end{itemize}
+\end{itemize}
+
+\section{Conclusión}
+
+Las convenciones y mejores prácticas implementadas en SimAS 3.0 garantizan:
+\begin{itemize}
+    \item \textbf{Mantenibilidad:} código fácil de entender y modificar.
+    \item \textbf{Escalabilidad:} arquitectura que soporta crecimiento.
+    \item \textbf{Calidad:} implementación de patrones probados.
+    \item \textbf{Consistencia:} estándares uniformes en todo el proyecto.
+\end{itemize}
+
+Estas directrices no solo mejoran la calidad actual del código, sino que también facilitan la incorporación de nuevos desarrolladores y la evolución futura del sistema.

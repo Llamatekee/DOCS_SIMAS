@@ -4,7 +4,7 @@
 
 Este manual de código tiene como objetivo proporcionar una documentación técnica completa y detallada de la aplicación \textbf{SimAS 3.0} (Simulador de Análisis Sintáctico), desarrollada como Trabajo de Fin de Grado en Ingeniería Informática en la Universidad de Córdoba.
 
-El documento está dirigido a desarrolladores, mantenedores del software y cualquier persona que necesite comprender la estructura interna, el funcionamiento y los algoritmos implementados en la aplicación.
+El documento está dirigido a desarrolladores, mantenedores del software y cualquier persona que necesite comprender la estructura interna, el funcionamiento y los algoritmos implementados en la aplicación. A diferencia de versiones anteriores del manual, este documento no incluye código fuente embebido, sino que hace referencia al repositorio oficial donde se encuentra todo el código fuente completo y actualizado.
 
 \section{Descripción general del proyecto}
 
@@ -18,6 +18,42 @@ SimAS 3.0 es una aplicación educativa desarrollada en Java que implementa un si
     \item Gestionar funciones de error personalizadas
 \end{itemize}
 
+\section{Repositorio oficial del proyecto}
+
+Todo el código fuente de SimAS 3.0 está disponible en el repositorio oficial de GitHub:
+
+\begin{center}
+\url{https://github.com/Llamatekee/SimAS-3.0.git}
+\end{center}
+
+\subsection{Estructura del repositorio}
+
+El repositorio está organizado de la siguiente manera:
+
+\begin{itemize}
+    \item \texttt{src/}: Directorio principal del código fuente
+    \item \texttt{lib/}: Librerías externas (JavaFX SDK)
+    \item \texttt{build/}: Scripts de construcción
+    \item \texttt{dist-standalone/}: Ejecutables generados
+    \item \texttt{resources/}: Recursos gráficos e internacionalización
+    \item \texttt{vistas/}: Archivos FXML de la interfaz
+\end{itemize}
+
+\subsection{Acceso al código fuente}
+
+Para acceder al código fuente completo:
+
+\begin{enumerate}
+    \item Clonar el repositorio:
+    \begin{lstlisting}
+    git clone https://github.com/Llamatekee/SimAS-3.0.git
+    \end{lstlisting}
+
+    \item Explorar la estructura de paquetes en \texttt{src/}
+    \item Revisar la documentación de clases en los archivos Java
+    \item Consultar los archivos de configuración y scripts de construcción
+\end{enumerate}
+
 \section{Características principales}
 
 \subsection{Interfaz de usuario moderna}
@@ -25,7 +61,7 @@ La aplicación utiliza JavaFX 17 para proporcionar una interfaz de usuario moder
 \begin{itemize}
     \item Diseño responsivo y adaptable
     \item Sistema de pestañas para múltiples proyectos
-    \item Interfaz completamente internacionalizada
+    \item Interfaz completamente internacionalizada (6 idiomas)
     \item Atajos de teclado para operaciones frecuentes
 \end{itemize}
 
@@ -36,6 +72,7 @@ Implementa algoritmos estándar de análisis sintáctico descendente predictivo:
     \item Generación de tablas de análisis predictivo
     \item Algoritmo de análisis LL(1)
     \item Detección y manejo de conflictos
+    \item Funciones de error personalizables
 \end{itemize}
 
 \subsection{Arquitectura modular}
@@ -52,13 +89,15 @@ El sistema está diseñado con una arquitectura modular que separa claramente:
 Este manual cubre los siguientes aspectos de la aplicación:
 
 \begin{enumerate}
-    \item \textbf{Arquitectura del sistema}: Diseño general y organización de componentes
-    \item \textbf{Documentación de paquetes}: Descripción detallada de cada paquete Java
-    \item \textbf{Clases principales}: Documentación de las clases más importantes
-    \item \textbf{Algoritmos implementados}: Explicación de los algoritmos de análisis sintáctico
-    \item \textbf{Interfaz de usuario}: Documentación de la capa de presentación
-    \item \textbf{Sistema de internacionalización}: Gestión de múltiples idiomas
-    \item \textbf{Compilación y despliegue}: Proceso de construcción de la aplicación
+    \item \textbf{Acceso al repositorio}: cómo obtener y navegar el código fuente.
+    \item \textbf{Arquitectura del sistema}: diseño general y organización de componentes.
+    \item \textbf{Documentación de paquetes}: descripción detallada de cada paquete Java.
+    \item \textbf{Clases principales}: documentación de las clases más importantes.
+    \item \textbf{Algoritmos implementados}: explicación de los algoritmos de análisis sintáctico.
+    \item \textbf{Interfaz de usuario}: documentación de la capa de presentación.
+    \item \textbf{Sistema de internacionalización}: gestión de múltiples idiomas.
+    \item \textbf{Compilación y despliegue}: proceso de construcción de la aplicación.
+    \item \textbf{Convenciones y mejores prácticas}: estándares de desarrollo utilizados.
 \end{enumerate}
 
 \section{Convenciones utilizadas}
@@ -66,11 +105,12 @@ Este manual cubre los siguientes aspectos de la aplicación:
 A lo largo de este manual se utilizarán las siguientes convenciones:
 
 \begin{itemize}
-    \item \textbf{Código Java}: Se mostrará con sintaxis resaltada y numeración de líneas
-    \item \textbf{Nombres de clases}: Se escribirán en formato \texttt{ClaseNombre}
-    \item \textbf{Nombres de métodos}: Se escribirán en formato \texttt{metodoNombre()}
-    \item \textbf{Paquetes}: Se escribirán en formato \texttt{paquete.subpaquete}
-    \item \textbf{Archivos}: Se escribirán en formato \texttt{archivo.extensión}
+    \item \textbf{Nombres de clases}: se escribirán en formato \texttt{ClaseNombre}.
+    \item \textbf{Nombres de métodos}: se escribirán en formato \texttt{metodoNombre()}.
+    \item \textbf{Paquetes}: se escribirán en formato \texttt{paquete.subpaquete}.
+    \item \textbf{Archivos}: se escribirán en formato \texttt{archivo.extensión}.
+    \item \textbf{Rutas del repositorio}: referencias a archivos usando rutas relativas al repositorio.
+    \item \textbf{Enlaces a GitHub}: enlaces directos a archivos específicos en el repositorio.
 \end{itemize}
 
 \section{Estructura del documento}
@@ -78,12 +118,21 @@ A lo largo de este manual se utilizarán las siguientes convenciones:
 El manual está organizado en las siguientes secciones principales:
 
 \begin{description}
-    \item[Parte I - Documentación Externa] Contiene información sobre recursos, requisitos y arquitectura general del sistema.
-    \item[Parte II - Documentación Interna] Incluye la documentación detallada del código fuente, algoritmos y componentes internos.
+    \item[Parte I - Acceso y Arquitectura] Contiene información sobre el repositorio, estructura general y arquitectura del sistema.
+    \item[Parte II - Componentes del Sistema] Incluye la documentación detallada de paquetes, clases y algoritmos.
+    \item[Parte III - Desarrollo y Despliegue] Cubre aspectos técnicos de desarrollo, internacionalización y despliegue.
 \end{description}
 
-Esta estructura permite tanto una visión general del sistema como un análisis profundo de su implementación, facilitando la comprensión y mantenimiento del código.
+Esta estructura permite tanto una visión general del sistema como referencias específicas al código fuente en el repositorio, facilitando la comprensión y mantenimiento del código.
 
 \section{Referencias técnicas}
 
 Este manual se basa en los principios fundamentales de análisis sintáctico descritos en \cite{aho2006compilers} y \cite{hopcroft2006introduction}, implementados utilizando las tecnologías Java \cite{java} y JavaFX \cite{javafx}. La aplicación utiliza herramientas modernas de desarrollo como \cite{jpackage} para la generación de ejecutables nativos.
+
+Para información detallada sobre la implementación específica de algoritmos y estructuras de datos, consulte directamente el código fuente en el repositorio oficial.
+
+\textbf{Referencias al Manual Técnico:} Para explicaciones más detalladas sobre el diseño arquitectónico, análisis de clases, métricas de complejidad y patrones de diseño implementados en SimAS 3.0, consulte:
+\begin{itemize}
+    \item Capítulo 8: "Diseño de paquetes" - Arquitectura completa del sistema
+    \item Capítulo 9: "Diseño de clases" - Implementación detallada de todas las clases
+\end{itemize}

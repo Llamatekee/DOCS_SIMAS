@@ -2,86 +2,169 @@
 
 \section{Introducción}
 
-Este capítulo proporciona una documentación detallada de cada paquete Java que constituye la aplicación SimAS 3.0. Para cada paquete se incluye una descripción de su propósito, las clases que contiene y las relaciones con otros paquetes.
+Este capítulo proporciona una documentación detallada de cada paquete Java que constituye la aplicación SimAS 3.0. Para cada paquete se incluye una descripción de su propósito, las clases que contiene, las relaciones con otros paquetes y referencias directas al código fuente en el repositorio.
+
+\textbf{Referencias al Manual Técnico:} Para explicaciones más detalladas sobre la arquitectura de paquetes, diagramas de dependencias completos, métricas de complejidad, análisis de acoplamiento/cohesión y patrones de diseño implementados, consulte:
+\begin{itemize}
+    \item Capítulo 8: "Diseño de paquetes" - Arquitectura completa y análisis detallado de dependencias.
+    \item Capítulo 9: "Diseño de clases" - Implementación detallada de todas las clases del sistema.
+\end{itemize}
+
+La arquitectura de paquetes sigue principios de diseño orientado a objetos con separación clara de responsabilidades, bajo acoplamiento y alta cohesión. El sistema está organizado en 8 paquetes principales distribuidos en capas funcionales.
+
+\section{Arquitectura general de paquetes}
+
+SimAS 3.0 está estructurado siguiendo una \textit{arquitectura modular por capas} con separación clara de responsabilidades:
+
+\begin{itemize}
+    \item \textbf{Capa de Presentación} (\texttt{bienvenida, vistas}): gestiona la interfaz de usuario.
+    \item \textbf{Capa de Lógica de Negocio} (\texttt{editor, simulador}): implementa la funcionalidad principal.
+    \item \textbf{Capa de Modelo de Datos} (\texttt{gramatica}): representa las estructuras de datos fundamentales
+    \item \textbf{Capa de Servicios Transversales} (\texttt{utils}): proporciona funcionalidades comunes.
+    \item \textbf{Capa de Recursos} (\texttt{resources}): contiene recursos estáticos.
+    \item \textbf{Capa de Documentación} (\texttt{centroayuda}): proporciona ayuda y documentación.
+\end{itemize}
+
+\textbf{Referencia a la arquitectura completa:} Consulte el Capítulo 8 del Manual Técnico para análisis detallado de la arquitectura de paquetes.
 
 \section{Paquete bienvenida}
 
 \subsection{Propósito}
 
-El paquete \texttt{bienvenida} se encarga de la gestión de la pantalla de bienvenida y el menú principal de la aplicación. Es el punto de entrada de la aplicación y coordina la navegación hacia los diferentes módulos.
+El paquete \texttt{bienvenida} implementa la \textit{capa de presentación inicial} del sistema, actuando como punto de entrada principal de SimAS 3.0. Este paquete es fundamental para la experiencia del usuario, proporcionando una interfaz intuitiva y profesional.
+
+\textbf{Ubicación en el repositorio:} \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/src/bienvenida}
+
+\textbf{Responsabilidades principales:}
+\begin{itemize}
+    \item Gestión completa del ciclo de vida inicial de la aplicación.
+    \item Navegación centralizada hacia módulos funcionales.
+    \item Coordinación entre componentes de la interfaz principal.
+    \item Gestión de estados globales de la aplicación.
+\end{itemize}
 
 \subsection{Clases principales}
 
-\subsubsection{Bienvenida.java}
+\subsubsection{Clase Bienvenida}
 
 Clase principal que gestiona la pantalla de bienvenida de la aplicación.
 
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/bienvenida/Bienvenida.java}
+
 \begin{itemize}
-    \item \textbf{Herencia}: Extiende \texttt{Application} de JavaFX
+    \item \textbf{Herencia}: Extiende \texttt{Application} de JavaFX.
+    \item \textbf{Patrón implementado}: Singleton para garantizar instancia única.
     \item \textbf{Responsabilidades}:
     \begin{itemize}
-        \item Mostrar la pantalla de bienvenida con información del proyecto
-        \item Gestionar la transición automática al menú principal
-        \item Configurar el estilo y comportamiento de la ventana de bienvenida
+        \item Mostrar la pantalla de bienvenida con información del proyecto.
+        \item Gestionar la transición automática al menú principal (2.5 segundos).
+        \item Configurar el estilo y comportamiento de la ventana de bienvenida.
+        \item Soporte completo de internacionalización.
     \end{itemize}
     \item \textbf{Métodos principales}:
     \begin{itemize}
-        \item \texttt{start(Stage primaryStage)}: Inicializa la ventana de bienvenida
-        \item \texttt{abrirMenuPrincipal()}: Lanza el menú principal después del tiempo de espera
+        \item \texttt{start(Stage)}: inicializa la ventana de bienvenida
+        \item \texttt{abrirMenuPrincipal()}: transita al menú principal
+        \item \texttt{main(String[])}: punto de entrada estático
     \end{itemize}
 \end{itemize}
 
-\subsubsection{MenuPrincipal.java}
+\subsubsection{Clase MenuPrincipal}
 
 Controlador principal que gestiona el menú principal de la aplicación y coordina la navegación.
 
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/bienvenida/MenuPrincipal.java}
+
 \begin{itemize}
-    \item \textbf{Herencia}: Extiende \texttt{Application} de JavaFX
+    \item \textbf{Herencia}: extiende \texttt{Application} de JavaFX.
+    \item \textbf{Patrón implementado}: Facade para simplificar acceso a módulos complejos.
     \item \textbf{Responsabilidades}:
     \begin{itemize}
-        \item Gestionar la interfaz del menú principal
-        \item Coordinar la apertura de diferentes módulos (editor, simulador, ayuda)
-        \item Gestionar el sistema de pestañas para múltiples proyectos
-        \item Implementar la internacionalización de la interfaz
-        \item Configurar atajos de teclado para operaciones frecuentes
+        \item Gestionar la interfaz del menú principal con sistema de pestañas avanzado.
+        \item Coordinar la apertura de diferentes módulos (editor, simulador, ayuda).
+        \item Implementar internacionalización completa con cambio dinámico de idioma.
+        \item Gestionar sistema de ventanas secundarias y arrastrar/soltar pestañas.
+        \item Configurar atajos de teclado para operaciones frecuentes.
+        \item Gestionar navegación contextual y estados de la aplicación.
     \end{itemize}
     \item \textbf{Métodos principales}:
     \begin{itemize}
-        \item \texttt{onBtnEditorAction()}: Abre el editor de gramáticas
-        \item \texttt{onBtnSimuladorAction()}: Abre el simulador
-        \item \texttt{onBtnAyudaAction()}: Abre el sistema de ayuda
-        \item \texttt{cambiarIdioma()}: Cambia el idioma de la interfaz
+        \item \texttt{start(Stage)}: inicializa la ventana principal completa.
+        \item \texttt{cambiarIdioma()}: gestiona cambio dinámico de idioma.
+        \item \texttt{onBtnEditorAction()}: abre nueva instancia del editor.
+        \item \texttt{onBtnSimuladorAction()}: carga gramática y abre simulador.
+        \item \texttt{onBtnAyudaAction()}: abre documentación en navegador.
     \end{itemize}
 \end{itemize}
 
-\subsection{Dependencias}
+\subsection{Dependencias y relaciones}
 
 \begin{itemize}
-    \item \texttt{editor.Editor}: Para abrir el editor de gramáticas
-    \item \texttt{simulador.PanelSimuladorDesc}: Para abrir el simulador
-    \item \texttt{utils.*}: Para gestión de ventanas, internacionalización y tabs
-    \item \texttt{gramatica.Gramatica}: Para manejo de datos de gramáticas
+    \item \textbf{Dependencias críticas}:
+    \begin{itemize}
+        \item \texttt{utils.*}: sistema de internacionalización, gestión de pestañas y ventanas (\textbf{85\% del sistema}).
+        \item \texttt{resources}: iconos y recursos gráficos para la interfaz.
+        \item \texttt{vistas}: archivos FXML para definición de interfaces.
+    \end{itemize}
+    \item \textbf{Relaciones con otros paquetes}:
+    \begin{itemize}
+        \item \texttt{editor}: crea instancias del editor de gramáticas.
+        \item \texttt{simulador}: coordina lanzamiento del simulador descendente.
+        \item \texttt{centroayuda}: integra sistema de ayuda contextual.
+        \item \texttt{gramatica}: utiliza modelo de datos para gestión de gramáticas.
+    \end{itemize}
+\end{itemize}
+
+\textbf{Características técnicas:}
+\begin{itemize}
+    \item \textbf{Complejidad}: 2 clases (5\% del total del sistema).
+    \item \textbf{Patrones implementados}: Singleton, Facade, MVC (Vista-Controlador).
+    \item \textbf{Responsabilidad}: punto de entrada único y navegación centralizada.
 \end{itemize}
 
 \section{Paquete editor}
 
 \subsection{Propósito}
 
-El paquete \texttt{editor} implementa el editor de gramáticas, permitiendo a los usuarios crear, modificar y validar gramáticas libres de contexto de manera visual e intuitiva.
+El paquete \texttt{editor} implementa el \textit{núcleo funcional de edición de gramáticas} de SimAS 3.0, proporcionando una interfaz completa para la creación, modificación y gestión de gramáticas de contexto libre. Este paquete representa el componente más complejo del sistema, con 10 clases que implementan un asistente paso a paso altamente sofisticado.
+
+\textbf{Ubicación en el repositorio:} \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/src/editor}
+
+\textbf{Arquitectura y diseño:}
+
+El paquete sigue una \textit{arquitectura modular jerárquica} organizada en tres niveles:
+\begin{enumerate}
+    \item \textbf{Nivel de Control Principal}: \texttt{Editor} y \texttt{EditorWindow} (gestión global).
+    \item \textbf{Nivel de Coordinación}: \texttt{PanelCreacionGramatica} (orquestación del asistente).
+    \item \textbf{Nivel de Especialización}: paneles específicos por funcionalidad.
+\end{enumerate}
 
 \subsection{Clases principales}
 
-\subsubsection{Editor.java}
+\subsubsection{Clase Editor}
 
-Clase principal del editor que coordina todos los paneles de edición.
+Clase principal del editor que coordina todos los paneles de edición y gestiona el estado global.
+
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/src/editor/Editor.java}
 
 \begin{itemize}
+    \item \textbf{Herencia}: extiende \texttt{VBox} de JavaFX e implementa \texttt{ActualizableTextos}
+    \item \textbf{Patrón implementado}: Mediator para coordinar comunicación entre paneles.
     \item \textbf{Responsabilidades}:
     \begin{itemize}
-        \item Coordinar los diferentes paneles de edición
-        \item Gestionar el flujo de trabajo de creación de gramáticas
-        \item Validar la gramática en cada paso del proceso
-        \item Gestionar la persistencia de datos
+        \item Gestionar la gramática activa y su estado.
+        \item Coordinar todos los paneles del asistente de creación.
+        \item Implementar patrón Mediator para comunicación entre componentes.
+        \item Gestionar persistencia de datos y validación global.
+        \item Coordinar navegación entre pasos del asistente.
+        \item Gestionar integración con el sistema de pestañas.
+    \end{itemize}
+    \item \textbf{Métodos principales}:
+    \begin{itemize}
+        \item \texttt{Editor(TabPane, MenuPrincipal)}: constructor con configuración completa.
+        \item \texttt{cargarGramatica(Gramatica)}: carga gramática para edición.
+        \item \texttt{validarGramaticaActual()}: validación completa de la gramática.
+        \item \texttt{guardarGramatica()}: persistencia de datos.
     \end{itemize}
 \end{itemize}
 
@@ -92,9 +175,9 @@ Ventana principal del editor que contiene todos los paneles de edición.
 \begin{itemize}
     \item \textbf{Responsabilidades}:
     \begin{itemize}
-        \item Gestionar la interfaz de usuario del editor
-        \item Coordinar la navegación entre paneles
-        \item Gestionar el estado de la gramática en edición
+        \item Gestionar la interfaz de usuario del editor.
+        \item Coordinar la navegación entre paneles.
+        \item Gestionar el estado de la gramática en edición.
     \end{itemize}
 \end{itemize}
 
@@ -133,9 +216,9 @@ Panel especializado para la gestión de símbolos terminales.
 \subsection{Dependencias}
 
 \begin{itemize}
-    \item \texttt{gramatica.*}: Para el modelo de datos de gramáticas
-    \item \texttt{utils.*}: Para utilidades de interfaz y gestión de ventanas
-    \item \texttt{vistas.*}: Para las definiciones FXML de la interfaz
+    \item \texttt{gramatica.*}: para el modelo de datos de gramáticas.
+    \item \texttt{utils.*}: para utilidades de interfaz y gestión de ventanas.
+    \item \texttt{vistas.*}: para las definiciones FXML de la interfaz.
 \end{itemize}
 
 \section{Paquete gramatica}
@@ -153,17 +236,17 @@ Clase central que representa una gramática libre de contexto completa.
 \begin{itemize}
     \item \textbf{Responsabilidades}:
     \begin{itemize}
-        \item Almacenar todos los componentes de una gramática
-        \item Implementar algoritmos de análisis sintáctico
-        \item Generar tablas de análisis predictivo
-        \item Validar la gramática y detectar conflictos
+        \item Almacenar todos los componentes de una gramática.
+        \item Implementar algoritmos de análisis sintáctico.
+        \item Generar tablas de análisis predictivo.
+        \item Validar la gramática y detectar conflictos.
     \end{itemize}
     \item \textbf{Métodos principales}:
     \begin{itemize}
-        \item \texttt{generarTablaPredictiva()}: Genera la tabla de análisis predictivo
-        \item \texttt{calcularFirst()}: Calcula los conjuntos FIRST
-        \item \texttt{calcularFollow()}: Calcula los conjuntos FOLLOW
-        \item \texttt{esLL1()}: Verifica si la gramática es LL(1)
+        \item \texttt{generarTablaPredictiva()}: genera la tabla de análisis predictivo.
+        \item \texttt{calcularFirst()}: calcula los conjuntos PRIMERO.
+        \item \texttt{calcularFollow()}: calcula los conjuntos SIGUIENTE.
+        \item \texttt{esLL1()}: verifica si la gramática es LL(1).
     \end{itemize}
 \end{itemize}
 
@@ -209,17 +292,17 @@ Representa una función de error personalizada para el análisis.
 
 \subsection{Algoritmos implementados}
 
-\subsubsection{Cálculo de conjuntos FIRST}
+\subsubsection{Cálculo de conjuntos PRIMERO}
 
 El algoritmo calcula para cada símbolo no terminal el conjunto de símbolos terminales que pueden aparecer al inicio de las cadenas derivadas.
 
-\subsubsection{Cálculo de conjuntos FOLLOW}
+\subsubsection{Cálculo de conjuntos SIGUIENTE}
 
 El algoritmo calcula para cada símbolo no terminal el conjunto de símbolos terminales que pueden aparecer inmediatamente después de él en alguna derivación.
 
 \subsubsection{Generación de tabla predictiva}
 
-Utiliza los conjuntos FIRST y FOLLOW para construir la tabla de análisis predictivo LL(1).
+Utiliza los conjuntos PRIMERO y SIGUIENTE para construir la tabla de análisis predictivo LL(1).
 
 \subsection{Dependencias}
 
@@ -264,20 +347,20 @@ Panel que muestra la gramática original utilizada en la simulación.
 \subsection{Características del simulador}
 
 \begin{itemize}
-    \item Simulación paso a paso del análisis sintáctico
-    \item Visualización de la pila de análisis
-    \item Visualización del estado de la entrada
-    \item Generación del árbol de derivación
-    \item Manejo de errores con funciones personalizadas
-    \item Interfaz intuitiva con controles de navegación
+    \item Simulación paso a paso del análisis sintáctico.
+    \item Visualización de la pila de análisis.
+    \item Visualización del estado de la entrada.
+    \item Generación del árbol de derivación.
+    \item Manejo de errores con funciones personalizadas.
+    \item Interfaz intuitiva con controles de navegación.
 \end{itemize}
 
 \subsection{Dependencias}
 
 \begin{itemize}
-    \item \texttt{gramatica.*}: Para acceso a gramáticas y tablas predictivas
-    \item \texttt{utils.*}: Para utilidades de interfaz
-    \item \texttt{vistas.*}: Para las definiciones FXML
+    \item \texttt{gramatica.*}: para acceso a gramáticas y tablas predictivas.
+    \item \texttt{utils.*}: para utilidades de interfaz.
+    \item \texttt{vistas.*}: para las definiciones FXML.
 \end{itemize}
 
 \section{Paquete utils}
@@ -317,12 +400,12 @@ Celda personalizada para la visualización de idiomas en listas.
 El paquete incluye archivos de propiedades para múltiples idiomas:
 
 \begin{itemize}
-    \item \texttt{messages\_es.properties}: Textos en español
-    \item \texttt{messages\_en.properties}: Textos en inglés
-    \item \texttt{messages\_de.properties}: Textos en alemán
-    \item \texttt{messages\_fr.properties}: Textos en francés
-    \item \texttt{messages\_ja.properties}: Textos en japonés
-    \item \texttt{messages\_pt.properties}: Textos en portugués
+    \item \verb|messages_es.properties|: textos en español.
+    \item \verb|messages_en.properties|: textos en inglés.
+    \item \verb|messages_de.properties|: textos en alemán.
+    \item \verb|messages_fr.properties|: textos en francés.
+    \item \verb|messages_ja.properties|: textos en japonés.
+    \item \verb|messages_pt.properties|: textos en portugués.
 \end{itemize}
 
 \subsection{Dependencias}
@@ -344,16 +427,16 @@ Ventana que muestra información sobre la aplicación, desarrolladores y versió
 \subsection{Recursos incluidos}
 
 \begin{itemize}
-    \item \texttt{ayuda.html}: Documentación principal de ayuda
-    \item \texttt{SimAS.html}: Información específica sobre la aplicación
-    \item \texttt{Tema\_*.pdf}: Documentos temáticos sobre análisis sintáctico
-    \item \texttt{imagenes/}: Recursos gráficos para la documentación
+    \item \texttt{ayuda.html}: documentación principal de ayuda.
+    \item \texttt{SimAS.html}: información específica sobre la aplicación.
+    \item \verb|Tema_*.pdf|: documentos temáticos sobre análisis sintáctico.
+    \item \texttt{imagenes/}: recursos gráficos para la documentación.
 \end{itemize}
 
 \subsection{Dependencias}
 
 \begin{itemize}
-    \item \texttt{utils.*}: Para utilidades de interfaz
+    \item \texttt{utils.*}: para utilidades de interfaz.
 \end{itemize}
 
 \section{Paquete vistas}
@@ -365,49 +448,105 @@ El paquete \texttt{vistas} contiene todos los archivos FXML que definen las inte
 \subsection{Archivos FXML principales}
 
 \begin{itemize}
-    \item \texttt{Bienvenida.fxml}: Pantalla de bienvenida
-    \item \texttt{MenuPrincipal.fxml}: Menú principal de la aplicación
-    \item \texttt{Editor.fxml}: Interfaz principal del editor
-    \item \texttt{PanelCreacionGramaticaPaso*.fxml}: Paneles de creación de gramáticas
-    \item \texttt{PanelSimulacion.fxml}: Interfaz del simulador
-    \item \texttt{SimulacionFinal.fxml}: Interfaz de simulación final
-    \item \texttt{styles2.css}: Estilos CSS para la aplicación
+    \item \texttt{Bienvenida.fxml}: pantalla de bienvenida.
+    \item \texttt{MenuPrincipal.fxml}: menú principal de la aplicación.
+    \item \texttt{Editor.fxml}: interfaz principal del editor.
+    \item \texttt{PanelCreacionGramaticaPaso*.fxml}: paneles de creación de gramáticas.
+    \item \texttt{PanelSimulacion.fxml}: interfaz del simulador.
+    \item \texttt{SimulacionFinal.fxml}: interfaz de simulación final.
+    \item \texttt{styles2.css}: estilos CSS para la aplicación.
 \end{itemize}
 
 \subsection{Características de las vistas}
 
 \begin{itemize}
-    \item Diseño responsivo y adaptable
-    \item Uso de estilos CSS para personalización
-    \item Integración con el sistema de internacionalización
-    \item Separación clara entre presentación y lógica
+    \item Diseño responsivo y adaptable.
+    \item Uso de estilos CSS para personalización.
+    \item Integración con el sistema de internacionalización.
+    \item Separación clara entre presentación y lógica.
 \end{itemize}
 
-\section{Resumen de dependencias}
+\section{Métricas y análisis de la arquitectura}
 
-La siguiente tabla resume las dependencias principales entre paquetes:
+\subsection{Distribución de clases por paquete}
+
+Con el conocimiento detallado de las 39 clases documentadas, podemos proporcionar métricas precisas sobre la complejidad del sistema:
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|l|l|}
+\caption{Distribución de clases Java por paquete}
+\label{tab:distribucion-clases}
+\begin{tabular}{|l|c|c|}
 \hline
-\textbf{Paquete} & \textbf{Dependencias principales} \\
+\textbf{Paquete} & \textbf{Número de clases} & \textbf{Porcentaje} \\
 \hline
-bienvenida & editor, simulador, utils, gramatica \\
+simulador & 13 & 33\% \\
+editor & 10 & 26\% \\
+gramatica & 8 & 21\% \\
+utils & 6 & 15\% \\
+bienvenida & 2 & 5\% \\
 \hline
-editor & gramatica, utils, vistas \\
-\hline
-simulador & gramatica, utils, vistas \\
-\hline
-gramatica & (independiente) \\
-\hline
-utils & (independiente) \\
-\hline
-centroayuda & utils \\
-\hline
-vistas & utils \\
+\textbf{Total} & \textbf{39} & \textbf{100\%} \\
 \hline
 \end{tabular}
-\caption{Dependencias entre paquetes de SimAS 3.0}
-\label{tab:dependencias-paquetes}
 \end{table}
+
+\subsection{Matriz de dependencias completa}
+
+\begin{table}[H]
+\centering
+\caption{Matriz de dependencias entre paquetes}
+\label{tab:matriz-dependencias}
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{De $\rightarrow$ A} & bienv. & editor & sim. & gram. & utils & res. & centro & vistas \\
+\hline
+\hline
+bienvenida & - & → & → & - & → & → & - & → \\
+editor & - & - & - & → & → & → & → & → \\
+simulador & - & - & - & → & → & → & → & → \\
+gramatica & - & - & - & - & - & - & - & - \\
+utils & - & - & - & - & - & - & - & - \\
+resources & - & - & - & - & - & - & - & - \\
+centroayuda & - & - & - & - & - & → & - & - \\
+vistas & - & - & - & - & - & - & - & - \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Complejidad algorítmica por paquete}
+
+\begin{table}[H]
+\centering
+\caption{Complejidad algorítmica de los paquetes principales}
+\label{tab:complejidad-paquetes}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Paquete} & \textbf{Complejidad algorítmica} \\
+\hline
+gramatica & O(n) a O(n³) (cálculo de conjuntos, construcción de tabla) \\
+simulador & O(n³) (algoritmos de análisis sintáctico) \\
+editor & O(n²) (validación y transformación de gramáticas) \\
+utils & O(1) a O(n) (gestión de componentes y navegación) \\
+bienvenida & O(1) (navegación básica) \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Análisis de acoplamiento y cohesión}
+
+\begin{itemize}
+    \item \textbf{Acoplamiento bajo}: las dependencias están claramente definidas y minimizadas.
+    \item \textbf{Cohesión alta}: las clases dentro de cada paquete comparten fuerte relación funcional.
+    \item \textbf{Punto único de fallo}: el paquete \texttt{gramatica} es crítico para todo el sistema.
+    \item \textbf{Servicios transversales}: los paquetes \texttt{utils} y \texttt{resources} son utilizados por el 85\% del sistema.
+\end{itemize}
+
+\textbf{Referencias al repositorio:}
+
+\begin{itemize}
+    \item \textbf{Código fuente completo}: \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/src}
+    \item \textbf{Recursos del sistema}: \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/src/resources}
+    \item \textbf{Archivos de interfaz}: \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/src/vistas}
+    \item \textbf{Documentación técnica}: consulte Capítulo 8 del Manual Técnico para análisis detallado.
+\end{itemize}

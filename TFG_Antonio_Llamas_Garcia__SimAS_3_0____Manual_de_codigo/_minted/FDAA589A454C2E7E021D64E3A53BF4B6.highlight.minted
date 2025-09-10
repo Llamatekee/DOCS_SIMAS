@@ -1,5 +1,0 @@
-\begin{MintedVerbatim}[commandchars=\\\{\}]
-\PYG{n+na}{Manifest\PYGZhy{}Version}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{1.0}
-\PYG{n+na}{Main\PYGZhy{}Class}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{bienvenida.Bienvenida}
-\PYG{n+na}{Class\PYGZhy{}Path}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s}{itextpdf\PYGZhy{}5.5.13.3.jar}
-\end{MintedVerbatim}

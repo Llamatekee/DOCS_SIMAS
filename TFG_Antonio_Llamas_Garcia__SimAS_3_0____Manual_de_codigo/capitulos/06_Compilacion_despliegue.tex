@@ -2,24 +2,40 @@
 
 \section{Introducción}
 
-Este capítulo describe el proceso completo de compilación, empaquetado y despliegue de la aplicación SimAS 3.0. Se incluyen los scripts de construcción, configuración de dependencias y procedimientos para generar ejecutables nativos.
+Este capítulo describe el proceso completo de compilación, empaquetado y despliegue de la aplicación SimAS 3.0. Se incluyen referencias a los scripts de construcción en el repositorio, configuración de dependencias y procedimientos para generar ejecutables nativos multiplataforma.
+
+\textbf{Referencias al Manual Técnico:} Para información detallada sobre la arquitectura del sistema de construcción, configuración de entornos de desarrollo y análisis de rendimiento del sistema, consulte:
+\begin{itemize}
+    \item Capítulo 8: "Diseño de paquetes" - Estructura del sistema y dependencias.
+    \item Capítulo 9: "Diseño de clases" - Clases relacionadas con configuración y utilidades del sistema.
+\end{itemize}
+
+\textbf{Ubicación en el repositorio:} \url{https://github.com/Llamatekee/SimAS-3.0/tree/main}
 
 \section{Herramientas de construcción}
 
 \subsection{Java Development Kit (JDK)}
 
-\textbf{Requisitos:}
+\textbf{Requisitos del sistema:}
 \begin{itemize}
-    \item JDK 17 o superior
-    \item Herramienta \texttt{jpackage} (incluida desde JDK 14+)
-    \item Variables de entorno configuradas correctamente
+    \item JDK 17 o superior (OpenJDK o Oracle JDK).
+    \item Herramienta \texttt{jpackage} (incluida desde JDK 14+).
+    \item Variables de entorno \verb|JAVA_HOME| y \verb|PATH| configuradas.
+    \item JavaFX SDK 17.0.12 (no incluido en JDK estándar).
 \end{itemize}
 
 \textbf{Verificación de instalación:}
-\begin{lstlisting}[language=bash, caption=Verificación del JDK]
-java -version
-javac -version
-jpackage --version
+\begin{itemize}
+    \item \texttt{java -version} - Verificar versión de Java.
+    \item \texttt{javac -version} - Verificar compilador Java.
+    \item \texttt{jpackage --version} - Verificar herramienta de empaquetado.
+\end{itemize}
+
+\textbf{Configuración recomendada:}
+\begin{lstlisting}[caption=Configuración de variables de entorno]
+export JAVA_HOME=/path/to/jdk17
+export PATH=$JAVA_HOME/bin:$PATH
+export JAVAFX_HOME=/path/to/javafx-sdk-17.0.12
 \end{lstlisting}
 
 \subsection{JavaFX SDK}
@@ -30,72 +46,81 @@ jpackage --version
 
 \textbf{Componentes incluidos:}
 \begin{itemize}
-    \item \texttt{lib/}: Librerías JavaFX
-    \item \texttt{bin/}: Herramientas de JavaFX
-    \item \texttt{legal/}: Licencias y documentación legal
+    \item \texttt{lib/}: Librerías JavaFX.
+    \item \texttt{bin/}: Herramientas de JavaFX.
+    \item \texttt{legal/}: Licencias y documentación legal.
 \end{itemize}
 
 \section{Scripts de construcción}
 
-\subsection{build.sh (Unix/Linux/macOS)}
+\subsection{Script build.sh (Unix/Linux/macOS)}
 
-Script principal para sistemas Unix-like:
+Script principal para compilación en sistemas Unix-like.
 
-\inputminted[linenos,breaklines]{bash}{codigo/build.sh}
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/build.sh}
 
-\textbf{Funcionalidades:}
+\textbf{Funcionalidades principales:}
 
 \begin{itemize}
-    \item \textbf{Líneas 1-10}: Configuración de variables y verificación de dependencias
-    \item \textbf{Líneas 12-15}: Creación de directorios necesarios
-    \item \textbf{Líneas 17-25}: Compilación del código fuente Java
-    \item \textbf{Líneas 27-35}: Copia de recursos y dependencias
-    \item \textbf{Líneas 37-45}: Creación del archivo JAR ejecutable
-    \item \textbf{Líneas 47-50}: Generación del manifest con información de la aplicación
+    \item Configuración automática de variables de entorno.
+    \item Verificación de dependencias (JDK, JavaFX).
+    \item Creación de estructura de directorios \texttt{build/}.
+    \item Compilación completa del código fuente Java.
+    \item Copia de recursos (FXML, CSS, imágenes, internacionalización).
+    \item Copia de librerías JavaFX al directorio de construcción.  
+    \item Generación del archivo JAR ejecutable con manifest.
+    \item Optimización y minificación del paquete final.
 \end{itemize}
 
-\subsection{build.bat (Windows)}
+\subsection{Script build.bat (Windows)}
 
-Script equivalente para sistemas Windows:
+Script equivalente para compilación en sistemas Windows.
 
-\inputminted[linenos,breaklines]{batch}{codigo/build.bat}
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/build.bat}
 
-\textbf{Diferencias con build.sh:}
+\textbf{Características específicas:}
 \begin{itemize}
-    \item Sintaxis de comandos de Windows
-    \item Variables de entorno específicas de Windows
-    \item Rutas con separadores de Windows
+    \item Sintaxis de comandos nativa de Windows (\texttt{cmd}).
+    \item Manejo de variables de entorno de Windows.
+    \item Rutas con separadores de directorio de Windows (\textbackslash).
+    \item Integración con herramientas de desarrollo Windows.
+    \item Soporte para PowerShell y Command Prompt.
 \end{itemize}
 
-\subsection{create-standalone-app.sh}
+\subsection{Script create-standalone-app.sh}
 
-Script para crear aplicación independiente en macOS:
+Script especializado para crear aplicaciones independientes.
 
-\inputminted[linenos,breaklines]{bash}{codigo/create-standalone-app.sh}
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/create-standalone-app.sh}
 
 \textbf{Características principales:}
 
 \begin{itemize}
-    \item Utiliza \texttt{jpackage} para crear aplicación nativa
-    \item Incluye todas las dependencias JavaFX
-    \item Genera archivo \texttt{.app} ejecutable
-    \item Configuración específica para macOS
+    \item Utiliza \texttt{jpackage} para crear aplicaciones nativas.
+    \item Incluye JRE embebido (no requiere Java instalado).
+    \item Empaqueta todas las dependencias JavaFX.
+    \item Genera ejecutables nativos (.app, .exe, .deb).
+    \item Configuración específica por plataforma.
+    \item Optimización de tamaño y rendimiento.
 \end{itemize}
+
+\textbf{Resultado:} Aplicación completamente autónoma en \texttt{dist-standalone/}
 
 \section{Proceso de compilación}
 
 \subsection{Paso 1: Preparación del entorno}
 
 \begin{enumerate}
-    \item Verificar instalación de JDK 17+
-    \item Configurar variables de entorno:
-    \begin{lstlisting}[language=bash]
-    export JAVA_HOME=/path/to/jdk17
-    export PATH=$JAVA_HOME/bin:$PATH
+    \item Clonar el repositorio:
+    \begin{lstlisting}[]
+    git clone https://github.com/Llamatekee/SimAS-3.0.git
+    cd SimAS-3.0
     \end{lstlisting}
-    \item Verificar acceso a JavaFX SDK
+
+    \item Verificar instalación de JDK 17+ y JavaFX SDK
+    \item Configurar variables de entorno (si no están configuradas globalmente)
     \item Dar permisos de ejecución a scripts:
-    \begin{lstlisting}[language=bash]
+    \begin{lstlisting}[]
     chmod +x build.sh
     chmod +x create-standalone-app.sh
     \end{lstlisting}
@@ -103,29 +128,25 @@ Script para crear aplicación independiente en macOS:
 
 \subsection{Paso 2: Compilación del código fuente}
 
-\begin{lstlisting}[language=bash, caption=Compilación del proyecto]
-# Para sistemas Unix/Linux/macOS
-./build.sh
+\begin{itemize}
+    \item \textbf{Sistemas Unix/Linux/macOS:}
+    \begin{lstlisting}[]
+    ./build.sh
+    \end{lstlisting}
 
-# Para sistemas Windows
-build.bat
-\end{lstlisting}
+    \item \textbf{Sistemas Windows:}
+    \begin{lstlisting}
+    build.bat
+    \end{lstlisting}
+\end{itemize}
 
-\textbf{Proceso interno:}
-
-\begin{enumerate}
-    \item Creación de directorio \texttt{build/}
-    \item Compilación de archivos Java a bytecode
-    \item Copia de recursos (imágenes, FXML, propiedades)
-    \item Copia de librerías JavaFX
-    \item Generación del archivo JAR
-\end{enumerate}
+\textbf{Proceso interno:} El script automatiza la compilación completa incluyendo verificación de dependencias, creación de directorios, compilación Java, copia de recursos y generación del JAR.
 
 \subsection{Paso 3: Estructura de archivos generada}
 
 Después de la compilación, se genera la siguiente estructura:
 
-\begin{lstlisting}[language=bash, caption=Estructura del directorio build]
+\begin{lstlisting}[, caption=Estructura del directorio build]
 build/
 |-- SimAS.jar                    # Archivo JAR principal
 |-- lib/                         # Librerías JavaFX
@@ -152,7 +173,7 @@ build/
 \subsection{Usando jpackage}
 
 \textbf{Comando básico:}
-\begin{lstlisting}[language=bash, caption=Creación de ejecutable con jpackage]
+\begin{lstlisting}[, caption=Creación de ejecutable con jpackage]
 jpackage --input build \
          --main-jar SimAS.jar \
          --main-class bienvenida.Bienvenida \
@@ -166,7 +187,7 @@ jpackage --input build \
 \textbf{Parámetros específicos por plataforma:}
 
 \subsubsection{macOS}
-\begin{lstlisting}[language=bash, caption=Configuración para macOS]
+\begin{lstlisting}[, caption=Configuración para macOS]
 jpackage --input build \
          --main-jar SimAS.jar \
          --main-class bienvenida.Bienvenida \
@@ -179,7 +200,7 @@ jpackage --input build \
 \end{lstlisting}
 
 \subsubsection{Windows}
-\begin{lstlisting}[language=bash, caption=Configuración para Windows]
+\begin{lstlisting}[, caption=Configuración para Windows]
 jpackage --input build \
          --main-jar SimAS.jar \
          --main-class bienvenida.Bienvenida \
@@ -193,7 +214,7 @@ jpackage --input build \
 \end{lstlisting}
 
 \subsubsection{Linux}
-\begin{lstlisting}[language=bash, caption=Configuración para Linux]
+\begin{lstlisting}[, caption=Configuración para Linux]
 jpackage --input build \
          --main-jar SimAS.jar \
          --main-class bienvenida.Bienvenida \
@@ -208,34 +229,43 @@ jpackage --input build \
 
 El script \texttt{create-standalone-app.sh} crea una aplicación completamente independiente:
 
-\begin{lstlisting}[language=bash, caption=Creación de aplicación independiente]
+\begin{lstlisting}[, caption=Creación de aplicación independiente]
 ./create-standalone-app.sh
 \end{lstlisting}
 
 \textbf{Resultado:}
 \begin{itemize}
-    \item Archivo \texttt{SimAS.app} en \texttt{dist-standalone/}
-    \item Aplicación completamente autónoma
-    \item No requiere Java instalado en el sistema
-    \item Incluye todas las dependencias necesarias
+    \item Archivo \texttt{SimAS.app} en \texttt{dist-standalone/}.
+    \item Aplicación completamente autónoma.
+    \item No requiere Java instalado en el sistema.
+    \item Incluye todas las dependencias necesarias.
 \end{itemize}
 
 \section{Configuración del manifest}
 
-\subsection{MANIFEST.MF}
+\subsection{Archivo MANIFEST.MF}
 
-El archivo manifest contiene metadatos importantes:
+El archivo manifest contiene metadatos importantes sobre la aplicación.
 
-\inputminted[linenos,breaklines]{properties}{codigo/build/MANIFEST.MF}
+\textbf{Ubicación:} \url{https://github.com/Llamatekee/SimAS-3.0/blob/main/build/MANIFEST.MF}
 
 \textbf{Atributos principales:}
 
 \begin{itemize}
-    \item \texttt{Main-Class}: Clase principal de la aplicación
-    \item \texttt{Class-Path}: Ruta a las librerías JavaFX
-    \item \texttt{Implementation-Title}: Nombre de la aplicación
-    \item \texttt{Implementation-Version}: Versión de la aplicación
-    \item \texttt{Implementation-Vendor}: Desarrollador
+    \item \texttt{Main-Class}: \texttt{bienvenida.Bienvenida} - Clase principal de la aplicación.
+    \item \texttt{Class-Path}: rutas a las librerías JavaFX embebidas.
+    \item \texttt{Implementation-Title}: nombre completo de la aplicación.
+    \item \texttt{Implementation-Version}: versión actual (3.0).
+    \item \texttt{Implementation-Vendor}: información del desarrollador.
+    \item \texttt{Specification-Version}: versión de especificación.
+\end{itemize}
+
+\textbf{Funciones del manifest:}
+\begin{itemize}
+    \item Define el punto de entrada de la aplicación.
+    \item Especifica dependencias de classpath.
+    \item Proporciona metadatos para herramientas de desarrollo.
+    \item Habilita ejecución con \texttt{java -jar SimAS.jar}.
 \end{itemize}
 
 \section{Distribución}
@@ -244,31 +274,31 @@ El archivo manifest contiene metadatos importantes:
 
 \textbf{Opción 1: JAR ejecutable}
 \begin{itemize}
-    \item Java Runtime Environment (JRE) 17+
-    \item JavaFX Runtime (incluido en JRE 11+ o por separado)
+    \item Java Runtime Environment (JRE) 17+.
+    \item JavaFX Runtime (incluido en JRE 11+ o por separado).
 \end{itemize}
 
 \textbf{Opción 2: Aplicación nativa}
 \begin{itemize}
-    \item No requiere Java instalado
-    \item Ejecutable nativo del sistema operativo
-    \item Mayor tamaño de descarga
+    \item No requiere Java instalado.
+    \item Ejecutable nativo del sistema operativo.
+    \item Mayor tamaño de descarga.
 \end{itemize}
 
 \subsection{Instrucciones de instalación}
 
 \subsubsection{Para desarrolladores}
 \begin{enumerate}
-    \item Clonar el repositorio
-    \item Ejecutar \texttt{./build.sh} o \texttt{build.bat}
-    \item Ejecutar \texttt{java -jar build/SimAS.jar}
+    \item Clonar el repositorio.
+    \item Ejecutar \texttt{./build.sh} o \texttt{build.bat}.
+    \item Ejecutar \texttt{java -jar build/SimAS.jar}.
 \end{enumerate}
 
 \subsubsection{Para usuarios finales}
 \begin{enumerate}
-    \item Descargar la aplicación desde el repositorio
-    \item Ejecutar \texttt{./dist-standalone/SimAS.app} (macOS)
-    \item O ejecutar \texttt{java -jar SimAS.jar} (requiere Java)
+    \item Descargar la aplicación desde el repositorio.
+    \item Ejecutar \texttt{./dist-standalone/SimAS.app} (macOS).
+    \item O ejecutar \texttt{java -jar SimAS.jar} (requiere Java).
 \end{enumerate}
 
 \section{Solución de problemas}
@@ -276,83 +306,114 @@ El archivo manifest contiene metadatos importantes:
 \subsection{Errores comunes}
 
 \subsubsection{Error: \texttt{JavaFX runtime components are missing}}
-\textbf{Causa:} JavaFX no está disponible en el classpath
-\textbf{Solución:} Asegurar que las librerías JavaFX estén en \texttt{lib/}
+\textbf{Causa:} JavaFX no está disponible en el classpath.
+\textbf{Solución:} asegurar que las librerías JavaFX estén en \texttt{lib/}.
 
 \subsubsection{Error: \texttt{Main class not found}}
-\textbf{Causa:} La clase principal no está especificada correctamente
-\textbf{Solución:} Verificar el manifest y la estructura de paquetes
+\textbf{Causa:} la clase principal no está especificada correctamente.
+\textbf{Solución:} verificar el manifest y la estructura de paquetes.
 
 \subsubsection{Error: \texttt{Permission denied}}
-\textbf{Causa:} Scripts sin permisos de ejecución
-\textbf{Solución:} \texttt{chmod +x build.sh create-standalone-app.sh}
+\textbf{Causa:} scripts sin permisos de ejecución.
+\textbf{Solución:} \texttt{chmod +x build.sh create-standalone-app.sh}.
 
 \subsection{Verificación de la instalación}
 
-\begin{lstlisting}[language=bash, caption=Verificación de la instalación]
-# Verificar que la aplicación se ejecuta
-java -jar build/SimAS.jar
+\begin{itemize}
+    \item \textbf{Ejecutar la aplicación:}
+    \begin{lstlisting}[]
+    java -jar build/SimAS.jar
+    \end{lstlisting}
 
-# Verificar estructura de archivos
-ls -la build/
+    \item \textbf{Verificar estructura de archivos:}
+    \begin{lstlisting}[]
+    ls -la build/
+    \end{lstlisting}
 
-# Verificar manifest
-unzip -p build/SimAS.jar META-INF/MANIFEST.MF
-\end{lstlisting}
+    \item \textbf{Verificar manifest:}
+    \begin{lstlisting}[]
+    unzip -p build/SimAS.jar META-INF/MANIFEST.MF
+    \end{lstlisting}
+\end{itemize}
 
 \section{Optimizaciones de rendimiento}
 
 \subsection{Configuración de JVM}
 
-\textbf{Parámetros recomendados:}
-\begin{lstlisting}[language=bash, caption=Parámetros JVM optimizados]
+\textbf{Parámetros recomendados para ejecución:}
+\begin{lstlisting}[, caption=Parámetros JVM optimizados]
 java -Xmx512m -Xms256m -jar SimAS.jar
 \end{lstlisting}
+
+\textbf{Explicación de parámetros:}
+\begin{itemize}
+    \item \texttt{-Xmx512m}: máximo heap de 512MB.
+    \item \texttt{-Xms256m}: heap inicial de 256MB.
+    \item \texttt{-jar}: ejecutar archivo JAR.
+\end{itemize}
 
 \subsection{Reducción del tamaño}
 
 \begin{itemize}
-    \item Uso de ProGuard para ofuscación y minificación
-    \item Eliminación de dependencias no utilizadas
-    \item Compresión de recursos
+    \item Uso de ProGuard para ofuscación y minificación del código.
+    \item Eliminación de dependencias no utilizadas con herramientas de análisis.
+    \item Compresión de recursos (imágenes, archivos de configuración).
+    \item Optimización de archivos JAR con \texttt{pack200}.
 \end{itemize}
 
 \section{Automatización con CI/CD}
 
 \subsection{GitHub Actions}
 
-Ejemplo de workflow para compilación automática:
+El repositorio incluye configuración para compilación automática mediante GitHub Actions.
 
-\begin{lstlisting}[language=bash, caption=Workflow de GitHub Actions]
-name: Build SimAS
-on: [push, pull_request]
+\textbf{Ubicación del workflow:} \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/.github/workflows}
 
-jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    
-    steps:
-    - uses: actions/checkout@v2
-    
-    - name: Set up JDK 17
-      uses: actions/setup-java@v2
-      with:
-        java-version: '17'
-        distribution: 'adopt'
-    
-    - name: Build application
-      run: |
-        chmod +x build.sh
-        ./build.sh
-    
-    - name: Create native executable
-      run: |
-        chmod +x create-standalone-app.sh
-        ./create-standalone-app.sh
-\end{lstlisting}
+\textbf{Características del pipeline CI/CD:}
+
+\begin{itemize}
+    \item \textbf{Compilación multiplataforma:} Linux, macOS y Windows.
+    \item \textbf{Generación de releases:} generación automática de ejecutables.
+    \item \textbf{Despliegue continuo:} publicación automática de versiones.
+\end{itemize}
+
+\subsection{Beneficios de la automatización}
+
+\begin{itemize}
+    \item Verificación automática de cambios en cada commit.
+    \item Compilación consistente en múltiples plataformas.
+    \item Detección temprana de errores de compilación.
+    \item Distribución simplificada de versiones.
+    \item Historial completo de construcción.
+\end{itemize}
+
+\section{Referencias al código fuente}
+
+\begin{itemize}
+    \item \textbf{Scripts de construcción:} \url{https://github.com/Llamatekee/SimAS-3.0/tree/main}
+    \begin{itemize}
+        \item \texttt{build.sh} - Compilación Unix/Linux/macOS.
+        \item \texttt{build.bat} - Compilación Windows.
+        \item \texttt{create-standalone-app.sh} - Aplicación independiente.
+    \end{itemize}
+    \item \textbf{Configuración de dependencias:} \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/lib}
+    \item \textbf{Ejecutables generados:} \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/dist-standalone}
+    \item \textbf{Documentación CI/CD:} \url{https://github.com/Llamatekee/SimAS-3.0/tree/main/.github}
+\end{itemize}
+
+\section{Conclusión}
+
+El sistema de compilación y despliegue de SimAS 3.0 proporciona una solución completa y multiplataforma para el desarrollo y distribución de la aplicación. Los scripts automatizados facilitan el proceso de construcción, mientras que el uso de jpackage permite generar ejecutables nativos independientes.
+
+\textbf{Ventajas del sistema implementado:}
+
+\begin{itemize}
+    \item \textbf{Multiplataforma:} soporte completo para Windows, macOS y Linux.
+    \item \textbf{Automatización:} scripts que automatizan todo el proceso de construcción.
+    \item \textbf{Independencia:} aplicaciones que no requieren Java instalado.
+    \item \textbf{Calidad:} verificación automática de dependencias y configuración.
+    \item \textbf{Mantenibilidad:} código bien estructurado y documentado.
+\end{itemize}
 
 \section{Consideraciones de seguridad}
 
@@ -361,15 +422,15 @@ jobs:
 Para distribuir la aplicación de forma segura:
 
 \begin{itemize}
-    \item Firmar el JAR con certificado digital
-    \item Firmar ejecutables nativos
-    \item Verificar integridad de archivos
+    \item Firmar el JAR con certificado digital.
+    \item Firmar ejecutables nativos.
+    \item Verificar integridad de archivos.
 \end{itemize}
 
 \subsection{Verificación de dependencias}
 
 \begin{itemize}
-    \item Verificar checksums de librerías JavaFX
-    \item Actualizar dependencias regularmente
-    \item Usar versiones estables y soportadas
+    \item Verificar checksums de librerías JavaFX.
+    \item Actualizar dependencias regularmente.
+    \item Usar versiones estables y soportadas.
 \end{itemize}

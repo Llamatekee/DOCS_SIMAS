@@ -1,8 +1,0 @@
-\begin{MintedVerbatim}[commandchars=\\\{\}]
-\PYG{k+kn}{package}\PYG{+w}{ }\PYG{n+nn}{utils}\PYG{p}{;}
-\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{java.util.ResourceBundle}\PYG{p}{;}
-
-\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{interface} \PYG{n+nc}{ActualizableTextos}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
-\PYG{+w}{    }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{actualizarTextos}\PYG{p}{(}\PYG{n}{ResourceBundle}\PYG{+w}{ }\PYG{n}{bundle}\PYG{p}{)}\PYG{p}{;}
-\PYG{p}{\PYGZcb{}}\PYG{+w}{ }
-\end{MintedVerbatim}
