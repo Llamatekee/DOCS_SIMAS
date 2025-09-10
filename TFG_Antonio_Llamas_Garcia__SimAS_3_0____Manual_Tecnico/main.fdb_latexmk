@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1757509078.25001 "main.bcf" "main.bbl" "main" 1757509121.08728 0
-  "main.bcf" 1757509120.33619 115859 79f8d85e347515bdd41522635664f234 "pdflatex"
+["biber main"] 1757509632.93663 "main.bcf" "main.bbl" "main" 1757509672.15629 0
+  "main.bcf" 1757509671.32573 115859 79f8d85e347515bdd41522635664f234 "pdflatex"
   "references.bib" 1757418317.58614 5708 1cc7f76518d3b0f2c6664fdc1fd96568 ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1757509108.91559 "main.tex" "main.pdf" "main" 1757509121.08783 0
+["pdflatex"] 1757509659.8364 "main.tex" "main.pdf" "main" 1757509672.15712 0
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
@@ -309,7 +309,7 @@
   "capitulos/07_Analisis_Funcional.tex" 1757418317.18165 70088 26e02448f61274299f93123711ae7203 ""
   "capitulos/08_Diseno_de_paquetes.tex" 1757418317.18296 53312 c93c358ced6d417e2ed9017e3aca51ed ""
   "capitulos/09_Diseno_de_clases.tex" 1757493952.13924 135409 17835c938a7722f44a7f51ac64f029a4 ""
-  "capitulos/10_Diseno_de_la_interfaz.tex" 1757509043.93502 13711 3d8be063d1f44ee5bfdc48d7d701937b ""
+  "capitulos/10_Diseno_de_la_interfaz.tex" 1757509613.75493 15511 d93f8c1dfcf5a8fa57128b67ed6baf16 ""
   "capitulos/11_Pruebas.tex" 1757418317.18622 10028 b80f2203cc297a421fc1934a0389197b ""
   "figuras/Cap1/fasescomp.png" 1757418317.18996 45531 8fc69d01cc4de000286810c7750cfbe3 ""
   "figuras/Cap3/Paso-13-arbol-derivacion-descendente.pdf" 1757418317.20909 8052 f326978410c034a25d8783a27cb2ce54 ""
@@ -370,14 +370,14 @@
   "img/emblema-ing-informatica.pdf" 1757418317.46617 8580 50917c02c22450d26b55704c4c5679ec ""
   "img/topRightCorner.pdf" 1757418317.52638 1281 aa53b8ee73503bf55b28924ecfa3585f ""
   "img/uco_debajo.pdf" 1757418317.52695 22217 3f0ec81e6d4ee2ee174a8c125f9a9095 ""
-  "main.aux" 1757509120.30446 98182 73ab1c5bd319d22c1ffe52dca765c031 "pdflatex"
-  "main.bbl" 1757509081.91914 34752 85252f128c3b7273b22e0effe1e8dde8 "biber main"
-  "main.lof" 1757509120.33791 6666 e7ce1de02f7f454b67ed1954627f0068 "pdflatex"
-  "main.lot" 1757509120.33802 8995 437011f6632329d5950a8920ced6248f "pdflatex"
-  "main.out" 1757509120.3316 67868 684df182432311e25c36d1d80f1e2f04 "pdflatex"
-  "main.run.xml" 1757509120.33746 2305 76c44fea4789d1f6305c2f013e1aba2a "pdflatex"
+  "main.aux" 1757509671.29597 98182 4a6b550465755d18bebf21f96940c752 "pdflatex"
+  "main.bbl" 1757509636.47789 34752 85252f128c3b7273b22e0effe1e8dde8 "biber main"
+  "main.lof" 1757509671.32734 6666 b870fbe5ebfd2ec465ab7f545eb883d2 "pdflatex"
+  "main.lot" 1757509671.3274 8995 437011f6632329d5950a8920ced6248f "pdflatex"
+  "main.out" 1757509671.31946 67868 684df182432311e25c36d1d80f1e2f04 "pdflatex"
+  "main.run.xml" 1757509671.32709 2305 76c44fea4789d1f6305c2f013e1aba2a "pdflatex"
   "main.tex" 1757508706.16641 8541 7b01ee41d1a2acd101e41a3abaf8525f ""
-  "main.toc" 1757509120.33771 35090 1f88f0881e2e16e5a8c031db914a5d1b "pdflatex"
+  "main.toc" 1757509671.32725 35090 82fb183af37ac232d4e0f2df137cf42b "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"

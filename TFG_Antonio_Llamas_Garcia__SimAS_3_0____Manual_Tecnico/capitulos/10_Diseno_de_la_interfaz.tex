@@ -8,7 +8,7 @@ La interfaz de SimAS 3.0 ha sido completamente rediseñada con un enfoque modern
 
 Uno de los aspectos más destacados es la incorporación de acciones contextuales intuitivas, con iconos descriptivos que representan fielmente las operaciones que realizan. La interfaz presenta un aspecto formal y elegante, con una paleta de colores coherente y una tipografía legible que facilita la lectura prolongada. La navegación se ha optimizado mediante atajos de teclado estratégicos y un sistema de menús jerárquicos que agrupan las funcionalidades de manera lógica.
 
-La aplicación ha sido estructurada siguiendo el patrón Modelo-Vista-Controlador (MVC) \ref{bib:mvc-pattern}, donde el módulo de vistas (implementado en clases como \texttt{MenuPrincipal.fxml}, \texttt{Editor.fxml}, \texttt{PanelSimulacion.fxml}) se encarga de la presentación e interacción con el usuario, proporcionando una separación clara entre la lógica de negocio y la interfaz gráfica.
+La aplicación ha sido estructurada siguiendo el patrón Modelo-Vista-Controlador (MVC) \cite{mvc-pattern}, donde el módulo de vistas (implementado en clases como \texttt{MenuPrincipal.fxml}, \texttt{Editor.fxml}, \texttt{PanelSimulacion.fxml}) se encarga de la presentación e interacción con el usuario, proporcionando una separación clara entre la lógica de negocio y la interfaz gráfica.
 
 Se ha prestado especial atención a la accesibilidad y usabilidad, incorporando características como soporte multiidioma completo, indicadores visuales claros para el estado de las operaciones, y validación en tiempo real de las entradas del usuario. La interfaz se adapta automáticamente a diferentes resoluciones de pantalla, manteniendo una experiencia consistente en diversos entornos de trabajo.
 
@@ -18,7 +18,17 @@ A continuación se muestran los elementos gráficos de la interfaz final de la a
 
 \section{Menú principal}
 
-El menú principal contiene las acciones a realizar en una ventana agrupadas por categorías. En la figura \ref{fig:d1}, se muestra un ejemplo de una barra de menús para el Editor de gramáticas del programa SimAS.
+El menú principal constituye la interfaz de entrada principal a la aplicación SimAS 3.0, sirviendo como punto de acceso centralizado a todas las funcionalidades del sistema. Diseñado con una arquitectura modular clara, este componente actúa como un hub de navegación que facilita el acceso intuitivo a los diferentes módulos de la aplicación.
+
+Desde el menú principal, el usuario puede acceder directamente a los módulos principales del sistema: el \textit{Editor de gramáticas}, el \textit{Simulador descendente}, el \textit{Manual de Usuario} y el \textit{Tutorial interactivo}. Esta estructura jerárquica permite una navegación eficiente, reduciendo la curva de aprendizaje y mejorando la experiencia del usuario.
+
+Una de las características más destacadas del menú principal es su diseño responsivo, que se adapta automáticamente a diferentes resoluciones de pantalla manteniendo la legibilidad y funcionalidad. El sistema incorpora indicadores visuales claros que guían al usuario en la selección de opciones, con iconos descriptivos que representan fielmente las operaciones disponibles.
+
+El menú principal implementa un sistema de navegación inteligente que incluye validación de permisos y estados del sistema, asegurando que solo se muestren las opciones disponibles en cada momento. Esta característica es especialmente importante en un entorno educativo donde los usuarios pueden tener diferentes niveles de experiencia.
+
+Además, el menú principal incluye un selector de idioma integrado que permite cambiar dinámicamente el idioma de toda la interfaz, característica que demuestra la internacionalización completa implementada en SimAS 3.0. Los textos se actualizan en tiempo real sin necesidad de reiniciar la aplicación.
+
+En la figura \ref{fig:d1}, se muestra el menú principal de SimAS con sus elementos principales: el título de la aplicación, los botones de navegación principales, el selector de idioma y la información del desarrollador.
 
 \needspace{8cm}
 \begin{figure}[H]
@@ -28,7 +38,7 @@ El menú principal contiene las acciones a realizar en una ventana agrupadas por
 \label{fig:d1}
 \end{figure}
 
-El menú principal contiene cada una de las acciones que se puede realizar en la aplicación SimAS agrupadas según la funcionalidad de la acción. Además, se han dado nombres muy descriptivos a cada elemento, para así procurar que la interfaz sea lo más intuitiva posible. 
+El menú principal mantiene una estructura consistente y predecible que facilita la navegación, agrupando las funcionalidades relacionadas de manera lógica. Esta organización refleja la arquitectura modular del software, donde cada módulo mantiene su independencia mientras colabora eficientemente con los demás componentes del sistema. 
 
 \section{Barras de herramientas}
 
@@ -41,7 +51,7 @@ Las barras de herramientas contienen los accesos directos a las acciones que se 
 	\label{fig:d2}
 \end{figure}
 
-  Se ha procurado que cada botón sea descriptivo y represente fielmente la operación que realiza. Por esto, se ha tomado como convenio usar una forma base en los iconos según el objeto al que involucran en la operación, por ejemplo: las operaciones de la gramática está representada con la letra \textit{G} y las operaciones de las simulaciones con la letra \textit{S}.
+Se ha procurado que cada botón sea descriptivo y represente fielmente la operación que realiza. Por esto, se ha tomado como convenio usar una forma base en los iconos según el objeto al que involucran en la operación, por ejemplo: las operaciones de la gramática está representada con la letra \textit{G} y las operaciones de las simulaciones con la letra \textit{S}.
 
 A esta forma base, se le ha superpuesto una forma que representa de forma gráfica la acción a llevar a cabo. Así, se ha superpuesto la forma base del objeto con la acción a realizar, siempre en la esquina superior derecha de cada uno de los iconos de la barra de herramientas. Todo esto permite que la interfaz sea muy intuitiva y permita al usuario trabajar con eficacia y con el mínimo de confusiones posibles.
   
@@ -64,7 +74,7 @@ La ventana está compuesta de los siguientes elementos:
 	\label{fig:d3}
 \end{figure}
 
-  En las secciones anteriores ya se vio con detalle la barra de menús y la barra de herramientas; a continuación se va a llevar a cabo la descripción de cada una de las partes que compone el panel de edición.
+En las secciones anteriores ya se vio con detalle el menú principal y la barra de herramientas; a continuación se va a llevar a cabo la descripción de cada una de las partes que compone el panel de edición.
 
 \subsection{Panel de edición}
 
