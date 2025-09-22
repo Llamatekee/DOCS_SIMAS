@@ -1,0 +1,34 @@
+% 4. Requisitos
+\begin{frame}{Visión general}
+  \begin{itemize}
+    \item El sistema se organiza en cuatro bloques: editor de gramáticas, simulador LL(1), tutorial y ayuda.
+    \item La información fluye desde la edición hasta la simulación, manteniendo siempre la gramática y los artefactos generados.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Requisitos funcionales}
+  \begin{itemize}
+    \item \textbf{Editor}: crear/cargar/guardar gramáticas; validar símbolos, producciones y símbolo inicial; consultar y generar informe de gramática.
+    \item \textbf{Simulador}: Primero/Siguiente, tabla predictiva LL(1), funciones de recuperación de errores, simulación continua y paso a paso, derivación y árbol.
+    \item \textbf{Documentación}: informes (PDF) y recursos de ayuda; tutorial accesible desde cualquier vista.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Requisitos no funcionales}
+  \begin{itemize}
+    \item \textbf{Usabilidad}: interfaz clara, asistente por pasos y mensajes comprensibles.
+    \item \textbf{Fiabilidad}: resultados deterministas y control de errores en todas las operaciones.
+    \item \textbf{Compatibilidad/Portabilidad}: funcionamiento equivalente en Windows, macOS y Linux.
+    \item \textbf{Rendimiento}: respuesta fluida en cálculos y renderizado del árbol/derivación.
+    \item \textbf{Mantenibilidad/Extensibilidad}: diseño modular con patrones (MVC, Strategy, Observer) y recursos i18n.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Requisitos de interfaz e información}
+  \begin{itemize}
+    \item Interfaz basada en pestañas con navegación padre–hijo y estados consistentes.
+    \item Gramática estructurada (símbolos, producciones, símbolo inicial) y artefactos derivados (Primero/Siguiente, tabla, informe, derivación y árbol).
+  \end{itemize}
+\end{frame}
+
+
