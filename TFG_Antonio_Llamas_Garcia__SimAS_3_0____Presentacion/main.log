@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  22 SEP 2025 10:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  22 SEP 2025 10:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -992,7 +992,7 @@ LaTeX Info: Redefining \. on input line 42.
 LaTeX Info: Redefining \% on input line 42.
  (./main.nav) (./capitulos/00_Transparencia.tex
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/topRightCorner.p
-df, id=39, 372.71536pt x 177.29297pt>
+df, id=47, 372.71536pt x 177.29297pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/topRightCor
 ner.pdf Graphic file (type pdf)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/topRightCorn
@@ -1001,7 +1001,7 @@ Package pdftex.def Info: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecn
 ico/img/topRightCorner.pdf  used on input line 28.
 (pdftex.def)             Requested size: 127.46777pt x 60.6332pt.
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/bottomLeftCorner
-.pdf, id=40, 373.7158pt x 179.53836pt>
+.pdf, id=48, 373.7158pt x 179.53836pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/bottomLeftC
 orner.pdf Graphic file (type pdf)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/bottomLeftCo
@@ -1010,7 +1010,7 @@ Package pdftex.def Info: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecn
 ico/img/bottomLeftCorner.pdf  used on input line 28.
 (pdftex.def)             Requested size: 127.46777pt x 61.23674pt.
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/uco_debajo.pdf, 
-id=41, 112.27277pt x 64.74771pt>
+id=49, 112.27277pt x 64.74771pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/uco_debajo.
 pdf Graphic file (type pdf)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/uco_debajo.p
@@ -1019,7 +1019,7 @@ Package pdftex.def Info: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecn
 ico/img/uco_debajo.pdf  used on input line 28.
 (pdftex.def)             Requested size: 41.93771pt x 24.18501pt.
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/emblema-ing-info
-rmatica.pdf, id=42, 75.72227pt x 63.87949pt>
+rmatica.pdf, id=50, 75.72227pt x 63.87949pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/emblema-ing
 -informatica.pdf Graphic file (type pdf)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/emblema-ing-
@@ -1028,7 +1028,7 @@ Package pdftex.def Info: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecn
 ico/img/emblema-ing-informatica.pdf  used on input line 28.
 (pdftex.def)             Requested size: 28.66846pt x 24.18501pt.
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/LogotipoEPSC.pdf
-, id=43, 634.5805pt x 190.81488pt>
+, id=51, 634.5805pt x 190.81488pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/LogotipoEPS
 C.pdf Graphic file (type pdf)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/LogotipoEPSC
@@ -1208,7 +1208,7 @@ LaTeX Info: Redefining \% on input line 1.
 
 ] (./capitulos/06_Pruebas.tex
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/editor/va
-lidar.png, id=875, 805.0075pt x 905.3825pt>
+lidar.png, id=898, 805.0075pt x 905.3825pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/edit
 or/validar.png Graphic file (type png)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/edito
@@ -1223,7 +1223,7 @@ suario/figuras/editor/validar.png  used on input line 8.
  <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/editor/v
 alidar.png>]
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulador
-/paso1_recursividad_factorizacion.png, id=905, 806.01125pt x 906.38625pt>
+/paso1_recursividad_factorizacion.png, id=929, 806.01125pt x 906.38625pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simu
 lador/paso1_recursividad_factorizacion.png Graphic file (type png)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simul
@@ -1239,7 +1239,7 @@ ne 16.
  <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulado
 r/paso1_recursividad_factorizacion.png>]
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulador
-/paso2_conjuntos.png, id=935, 805.0075pt x 905.3825pt>
+/paso2_conjuntos.png, id=958, 805.0075pt x 905.3825pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simu
 lador/paso2_conjuntos.png Graphic file (type png)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simul
@@ -1254,7 +1254,7 @@ suario/figuras/simulador/paso2_conjuntos.png  used on input line 24.
  <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulado
 r/paso2_conjuntos.png>]
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulador
-/paso5_tablaPredictivaCompleta.png, id=964, 805.0075pt x 903.375pt>
+/paso5_tablaPredictivaCompleta.png, id=987, 805.0075pt x 903.375pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simu
 lador/paso5_tablaPredictivaCompleta.png Graphic file (type png)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simul
@@ -1270,7 +1270,7 @@ suario/figuras/simulador/paso5_tablaPredictivaCompleta.png  used on input line
  <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulado
 r/paso5_tablaPredictivaCompleta.png>]
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulador
-/paso4_funcionesError.png, id=994, 799.98875pt x 905.3825pt>
+/paso4_funcionesError.png, id=1017, 799.98875pt x 905.3825pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simu
 lador/paso4_funcionesError.png Graphic file (type png)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simul
@@ -1285,7 +1285,7 @@ suario/figuras/simulador/paso4_funcionesError.png  used on input line 40.
  <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulado
 r/paso4_funcionesError.png>]
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulador
-/simulacion_derivacion.png, id=1023, 800.9925pt x 904.37875pt>
+/simulacion_derivacion.png, id=1047, 800.9925pt x 904.37875pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simu
 lador/simulacion_derivacion.png Graphic file (type png)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simul
@@ -1300,7 +1300,7 @@ suario/figuras/simulador/simulacion_derivacion.png  used on input line 48.
  <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulado
 r/simulacion_derivacion.png>]
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulador
-/simulacion_arbol.png, id=1052, 805.0075pt x 904.37875pt>
+/simulacion_arbol.png, id=1075, 805.0075pt x 904.37875pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simu
 lador/simulacion_arbol.png Graphic file (type png)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simul
@@ -1313,7 +1313,33 @@ suario/figuras/simulador/simulacion_arbol.png  used on input line 56.
 [34
 
  <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulado
-r/simulacion_arbol.png>])
+r/simulacion_arbol.png>]) (./main.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
+
+[35
+
+] (./capitulos/07_Demostracion.tex
+
+[36
+
+]) (./main.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
+
+[37
+
+] (./capitulos/08_Conclusiones.tex
+
+[38
+
+]
+
+[39
+
+])
 \tf@nav=\write6
 \openout6 = `main.nav'.
 
@@ -1332,14 +1358,14 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 50F4E69504451F66C54FB52A27632E7B;544.
+(rerunfilecheck)             Checksum: 8DEAA33369D6CB3AC1C689D6A0ED42E6;824.
  ) 
 Here is how much of TeX's memory you used:
- 26667 strings out of 473190
- 531205 string characters out of 5715801
- 894271 words of memory out of 5000000
- 49290 multiletter control sequences out of 15000+600000
- 574275 words of font info for 70 fonts, out of 8000000 for 9000
+ 26721 strings out of 473190
+ 532091 string characters out of 5715801
+ 897271 words of memory out of 5000000
+ 49320 multiletter control sequences out of 15000+600000
+ 575817 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,123p,379b,911s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
@@ -1352,11 +1378,12 @@ cal/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss1440.pfb></usr/loca
 l/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/
 texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/te
 xlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texl
-ive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1728.pfb>
-Output written on main.pdf (34 pages, 853818 bytes).
+ive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1728.pfb></usr/local/texliv
+e/2025/texmf-dist/fonts/type1/public/cm-super/sfsx2488.pfb>
+Output written on main.pdf (39 pages, 881011 bytes).
 PDF statistics:
- 1147 PDF objects out of 1200 (max. 8388607)
- 1005 compressed objects within 11 object streams
- 75 named destinations out of 1000 (max. 500000)
- 169 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1328 PDF objects out of 1440 (max. 8388607)
+ 1173 compressed objects within 12 object streams
+ 87 named destinations out of 1000 (max. 500000)
+ 185 words of extra memory for PDF output out of 10000 (max. 10000000)
 
