@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  22 SEP 2025 10:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  22 SEP 2025 10:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -805,44 +805,92 @@ File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )))
 Package hyperref Info: Option `colorlinks' set `true' on input line 11.
 
-(/usr/local/texlive/2025/texmf-dist/tex/latex/beamer/beamerthemeMadrid.sty
-(/usr/local/texlive/2025/texmf-dist/tex/latex/beamer/beamercolorthemewhale.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/beamertheme-metropolis/beamerthem
+emetropolis.sty
+Package: beamerthememetropolis 2017/01/23 v1.2 Metropolis Beamer theme
 
-(/usr/local/texlive/2025/texmf-dist/tex/latex/beamer/beamercolorthemeorchid.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/pgfopts/pgfopts.sty
+Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
+\pgfopts@list@add@a@toks=\toks51
+\pgfopts@list@add@b@toks=\toks52
 )
-(/usr/local/texlive/2025/texmf-dist/tex/latex/beamer/beamerinnerthemerounded.st
-y)
-(/usr/local/texlive/2025/texmf-dist/tex/latex/beamer/beamerouterthemeinfolines.
-sty))
-(/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+(/usr/local/texlive/2025/texmf-dist/tex/latex/beamertheme-metropolis/beamerinne
+rthememetropolis.sty
+Package: beamerinnerthememetropolis 2017/01/23 Metropolis inner theme
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count357
+\calc@Bcount=\count358
+\calc@Adimen=\dimen309
+\calc@Bdimen=\dimen310
+\calc@Askip=\skip66
+\calc@Bskip=\skip67
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count359
+\calc@Cskip=\skip68
+)
+\metropolis@titleseparator@linewidth=\skip69
+\metropolis@progressonsectionpage=\skip70
+\metropolis@progressonsectionpage@linewidth=\skip71
+\metropolis@blocksep=\skip72
+\metropolis@blockadjust=\skip73
+\metropolis@parskip=\skip74
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/beamertheme-metropolis/beameroute
+rthememetropolis.sty
+Package: beamerouterthememetropolis 2017/01/23 Metropolis outer theme
+\metropolis@frametitle@padding=\skip75
+\metropolis@progressinheadfoot=\skip76
+\metropolis@progressinheadfoot@linewidth=\skip77
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/beamertheme-metropolis/beamercolo
+rthememetropolis.sty
+Package: beamercolorthememetropolis 2017/01/23 Metropolis color theme
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/beamertheme-metropolis/beamerfont
+thememetropolis.sty
+Package: beamerfontthememetropolis 2017/01/23 Metropolis font theme
+
+(/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/ifxetex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+)
+
+Package beamerthememetropolis Warning: You need to compile with XeLaTeX or LuaL
+aTeX to use the Fira fonts on input line 95.
+
+)) (/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count357
+\l__color_backend_stack_int=\count360
 \l__pdf_internal_box=\box82
-)
-(./main.aux
+) (./main.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -852,14 +900,14 @@ LaTeX Font Info:    ... okay on input line 42.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: includehead includefoot 
-* h-part:(L,W,R)=(10.88002pt, 433.48404pt, 10.88002pt)
+* h-part:(L,W,R)=(28.45274pt, 398.3386pt, 28.45274pt)
 * v-part:(T,H,B)=(0.0pt, 256.0748pt, 0.0pt)
 * \paperwidth=455.24408pt
 * \paperheight=256.0748pt
-* \textwidth=433.48404pt
+* \textwidth=398.3386pt
 * \textheight=227.62207pt
-* \oddsidemargin=-61.38997pt
-* \evensidemargin=-61.38997pt
+* \oddsidemargin=-43.81725pt
+* \evensidemargin=-43.81725pt
 * \topmargin=-72.26999pt
 * \headheight=14.22636pt
 * \headsep=0.0pt
@@ -880,17 +928,17 @@ LaTeX Font Info:    ... okay on input line 42.
 
 (/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count358
-\scratchdimen=\dimen309
+\scratchcounter=\count361
+\scratchdimen=\dimen311
 \scratchbox=\box83
-\nofMPsegments=\count359
-\nofMParguments=\count360
-\everyMPshowfont=\toks51
-\MPscratchCnt=\count361
-\MPscratchDim=\dimen310
-\MPnumerator=\count362
-\makeMPintoPDFobject=\count363
-\everyMPtoPDFconversion=\toks52
+\nofMPsegments=\count362
+\nofMParguments=\count363
+\everyMPshowfont=\toks53
+\MPscratchCnt=\count364
+\MPscratchDim=\dimen312
+\MPnumerator=\count365
+\makeMPintoPDFobject=\count366
+\everyMPtoPDFconversion=\toks54
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -900,69 +948,69 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring ON on input line 42.
+Package hyperref Info: Link coloring ON on input line 41.
 
 (./main.out) (./main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 42.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 41.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 42.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 41.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/cmr/m/n on input line 42.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 42.
+(Font)                  OT1/cmss/m/n --> T1/cmr/m/n on input line 41.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> T1/cmss/b/n on input line 42.
+(Font)                  OT1/cmr/bx/n --> T1/cmss/b/n on input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> T1/cmss/b/n on input line 42.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 42.
+(Font)                  OT1/cmr/bx/n --> T1/cmss/b/n on input line 41.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/cmss/m/n on input line 42.
+(Font)                  OT1/cmss/m/n --> T1/cmss/m/n on input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> T1/cmss/m/n on input line 42.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 42.
+(Font)                  OT1/cmss/bx/n --> T1/cmss/m/n on input line 41.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> T1/cmss/m/it on input line 42.
+(Font)                  OT1/cmr/m/it --> T1/cmss/m/it on input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> T1/cmss/m/it on input line 42.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 42.
+(Font)                  OT1/cmr/bx/it --> T1/cmss/m/it on input line 41.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 42.
+(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 42.
+(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 41.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  T1/cmss/m/n --> T1/cmss/b/n on input line 42.
+(Font)                  T1/cmss/m/n --> T1/cmss/b/n on input line 41.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  T1/cmss/m/it --> T1/cmss/b/it on input line 42.
+(Font)                  T1/cmss/m/it --> T1/cmss/b/it on input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/b/n --> T1/cmr/b/n on input line 42.
+(Font)                  OT1/cmss/b/n --> T1/cmr/b/n on input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  T1/cmss/b/n --> T1/cmss/b/n on input line 42.
+(Font)                  T1/cmss/b/n --> T1/cmss/b/n on input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  T1/cmss/m/n --> T1/cmss/b/n on input line 42.
+(Font)                  T1/cmss/m/n --> T1/cmss/b/n on input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  T1/cmss/m/it --> T1/cmss/b/it on input line 42.
+(Font)                  T1/cmss/m/it --> T1/cmss/b/it on input line 41.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  T1/cmtt/m/n --> T1/cmtt/b/n on input line 42.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 42.
+(Font)                  T1/cmtt/m/n --> T1/cmtt/b/n on input line 41.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 41.
 LaTeX Font Info:    Encoding `T1' has changed to `OT1' for symbol font
-(Font)              `pureletters' in the math version `normal' on input line 42
+(Font)              `pureletters' in the math version `normal' on input line 41
 .
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
-(Font)                  T1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 42
+(Font)                  T1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 41
 .
 LaTeX Font Info:    Encoding `T1' has changed to `OT1' for symbol font
-(Font)              `pureletters' in the math version `bold' on input line 42.
+(Font)              `pureletters' in the math version `bold' on input line 41.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  T1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 42
+(Font)                  T1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 41
 .
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on inp
-ut line 42.
+ut line 41.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/translator/translator-basic-dicti
 onary-English.dict
@@ -988,54 +1036,54 @@ Dictionary: translator-numbers-dictionary, Language: English
 tionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \. on input line 42.
-LaTeX Info: Redefining \% on input line 42.
+LaTeX Info: Redefining \. on input line 41.
+LaTeX Info: Redefining \% on input line 41.
  (./main.nav) (./capitulos/00_Transparencia.tex
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/topRightCorner.p
-df, id=47, 372.71536pt x 177.29297pt>
+df, id=45, 372.71536pt x 177.29297pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/topRightCor
 ner.pdf Graphic file (type pdf)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/topRightCorn
 er.pdf>
 Package pdftex.def Info: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecn
 ico/img/topRightCorner.pdf  used on input line 28.
-(pdftex.def)             Requested size: 127.46777pt x 60.6332pt.
+(pdftex.def)             Requested size: 100.15425pt x 47.63979pt.
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/bottomLeftCorner
-.pdf, id=48, 373.7158pt x 179.53836pt>
+.pdf, id=46, 373.7158pt x 179.53836pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/bottomLeftC
 orner.pdf Graphic file (type pdf)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/bottomLeftCo
 rner.pdf>
 Package pdftex.def Info: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecn
 ico/img/bottomLeftCorner.pdf  used on input line 28.
-(pdftex.def)             Requested size: 127.46777pt x 61.23674pt.
+(pdftex.def)             Requested size: 100.15425pt x 48.11438pt.
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/uco_debajo.pdf, 
-id=49, 112.27277pt x 64.74771pt>
+id=47, 112.27277pt x 64.74771pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/uco_debajo.
 pdf Graphic file (type pdf)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/uco_debajo.p
 df>
 Package pdftex.def Info: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecn
 ico/img/uco_debajo.pdf  used on input line 28.
-(pdftex.def)             Requested size: 41.93771pt x 24.18501pt.
+(pdftex.def)             Requested size: 39.46907pt x 22.76228pt.
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/emblema-ing-info
-rmatica.pdf, id=50, 75.72227pt x 63.87949pt>
+rmatica.pdf, id=48, 75.72227pt x 63.87949pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/emblema-ing
 -informatica.pdf Graphic file (type pdf)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/emblema-ing-
 informatica.pdf>
 Package pdftex.def Info: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecn
 ico/img/emblema-ing-informatica.pdf  used on input line 28.
-(pdftex.def)             Requested size: 28.66846pt x 24.18501pt.
+(pdftex.def)             Requested size: 26.98152pt x 22.76228pt.
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/LogotipoEPSC.pdf
-, id=51, 634.5805pt x 190.81488pt>
+, id=49, 634.5805pt x 190.81488pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/LogotipoEPS
 C.pdf Graphic file (type pdf)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/LogotipoEPSC
 .pdf>
 Package pdftex.def Info: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecn
 ico/img/LogotipoEPSC.pdf  used on input line 28.
-(pdftex.def)             Requested size: 195.06648pt x 58.65411pt.
+(pdftex.def)             Requested size: 143.40213pt x 43.11783pt.
 
 
 [1
@@ -1070,7 +1118,8 @@ ncluded in a single page
 
 [2
 
-]) (./main.toc
+{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+) (./main.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 )
@@ -1208,14 +1257,18 @@ LaTeX Info: Redefining \% on input line 1.
 
 ] (./capitulos/06_Pruebas.tex
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/editor/va
-lidar.png, id=898, 805.0075pt x 905.3825pt>
+lidar.png, id=288, 805.0075pt x 905.3825pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/edit
 or/validar.png Graphic file (type png)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/edito
 r/validar.png>
 Package pdftex.def Info: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_U
 suario/figuras/editor/validar.png  used on input line 8.
-(pdftex.def)             Requested size: 151.49129pt x 170.38048pt.
+(pdftex.def)             Requested size: 142.0085pt x 159.71529pt.
+
+Overfull \vbox (1.9081pt too high) detected at line 8
+ []
+
 
 
 [28
@@ -1223,7 +1276,7 @@ suario/figuras/editor/validar.png  used on input line 8.
  <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/editor/v
 alidar.png>]
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulador
-/paso1_recursividad_factorizacion.png, id=929, 806.01125pt x 906.38625pt>
+/paso1_recursividad_factorizacion.png, id=296, 806.01125pt x 906.38625pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simu
 lador/paso1_recursividad_factorizacion.png Graphic file (type png)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simul
@@ -1231,7 +1284,11 @@ ador/paso1_recursividad_factorizacion.png>
 Package pdftex.def Info: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_U
 suario/figuras/simulador/paso1_recursividad_factorizacion.png  used on input li
 ne 16.
-(pdftex.def)             Requested size: 151.508pt x 170.37573pt.
+(pdftex.def)             Requested size: 142.02568pt x 159.71255pt.
+
+Overfull \vbox (1.90536pt too high) detected at line 16
+ []
+
 
 
 [29
@@ -1239,14 +1296,18 @@ ne 16.
  <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulado
 r/paso1_recursividad_factorizacion.png>]
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulador
-/paso2_conjuntos.png, id=958, 805.0075pt x 905.3825pt>
+/paso2_conjuntos.png, id=303, 805.0075pt x 905.3825pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simu
 lador/paso2_conjuntos.png Graphic file (type png)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simul
 ador/paso2_conjuntos.png>
 Package pdftex.def Info: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_U
 suario/figuras/simulador/paso2_conjuntos.png  used on input line 24.
-(pdftex.def)             Requested size: 151.49129pt x 170.38048pt.
+(pdftex.def)             Requested size: 142.0085pt x 159.71529pt.
+
+Overfull \vbox (2.51636pt too high) detected at line 24
+ []
+
 
 
 [30
@@ -1254,7 +1315,7 @@ suario/figuras/simulador/paso2_conjuntos.png  used on input line 24.
  <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulado
 r/paso2_conjuntos.png>]
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulador
-/paso5_tablaPredictivaCompleta.png, id=987, 805.0075pt x 903.375pt>
+/paso5_tablaPredictivaCompleta.png, id=310, 805.0075pt x 903.375pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simu
 lador/paso5_tablaPredictivaCompleta.png Graphic file (type png)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simul
@@ -1262,7 +1323,11 @@ ador/paso5_tablaPredictivaCompleta.png>
 Package pdftex.def Info: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_U
 suario/figuras/simulador/paso5_tablaPredictivaCompleta.png  used on input line 
 32.
-(pdftex.def)             Requested size: 151.82294pt x 170.37486pt.
+(pdftex.def)             Requested size: 142.32787pt x 159.71954pt.
+
+Overfull \vbox (2.52061pt too high) detected at line 32
+ []
+
 
 
 [31
@@ -1270,14 +1335,18 @@ suario/figuras/simulador/paso5_tablaPredictivaCompleta.png  used on input line
  <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulado
 r/paso5_tablaPredictivaCompleta.png>]
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulador
-/paso4_funcionesError.png, id=1017, 799.98875pt x 905.3825pt>
+/paso4_funcionesError.png, id=318, 799.98875pt x 905.3825pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simu
 lador/paso4_funcionesError.png Graphic file (type png)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simul
 ador/paso4_funcionesError.png>
 Package pdftex.def Info: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_U
 suario/figuras/simulador/paso4_funcionesError.png  used on input line 40.
-(pdftex.def)             Requested size: 150.54683pt x 170.38048pt.
+(pdftex.def)             Requested size: 141.12315pt x 159.71529pt.
+
+Overfull \vbox (1.9081pt too high) detected at line 40
+ []
+
 
 
 [32
@@ -1285,14 +1354,14 @@ suario/figuras/simulador/paso4_funcionesError.png  used on input line 40.
  <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulado
 r/paso4_funcionesError.png>]
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulador
-/simulacion_derivacion.png, id=1047, 800.9925pt x 904.37875pt>
+/simulacion_derivacion.png, id=325, 800.9925pt x 904.37875pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simu
 lador/simulacion_derivacion.png Graphic file (type png)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simul
 ador/simulacion_derivacion.png>
 Package pdftex.def Info: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_U
 suario/figuras/simulador/simulacion_derivacion.png  used on input line 48.
-(pdftex.def)             Requested size: 150.8946pt x 170.37097pt.
+(pdftex.def)             Requested size: 141.4591pt x 159.71762pt.
 
 
 [33
@@ -1300,14 +1369,14 @@ suario/figuras/simulador/simulacion_derivacion.png  used on input line 48.
  <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulado
 r/simulacion_derivacion.png>]
 <../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simulador
-/simulacion_arbol.png, id=1075, 805.0075pt x 904.37875pt>
+/simulacion_arbol.png, id=332, 805.0075pt x 904.37875pt>
 File: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simu
 lador/simulacion_arbol.png Graphic file (type png)
 <use ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_Usuario/figuras/simul
 ador/simulacion_arbol.png>
 Package pdftex.def Info: ../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_de_U
 suario/figuras/simulador/simulacion_arbol.png  used on input line 56.
-(pdftex.def)             Requested size: 151.65097pt x 170.37097pt.
+(pdftex.def)             Requested size: 142.16818pt x 159.71762pt.
 
 
 [34
@@ -1361,29 +1430,27 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 8DEAA33369D6CB3AC1C689D6A0ED42E6;824.
  ) 
 Here is how much of TeX's memory you used:
- 26721 strings out of 473190
- 532091 string characters out of 5715801
- 897271 words of memory out of 5000000
- 49320 multiletter control sequences out of 15000+600000
- 575817 words of font info for 72 fonts, out of 8000000 for 9000
+ 27045 strings out of 473190
+ 543153 string characters out of 5715801
+ 898514 words of memory out of 5000000
+ 49630 multiletter control sequences out of 15000+600000
+ 576162 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,15n,123p,379b,911s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,13n,123p,1871b,648s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></
-usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></us
-r/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/
-local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/lo
-cal/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss1440.pfb></usr/loca
-l/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/
-texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/te
-xlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texl
-ive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1728.pfb></usr/local/texliv
-e/2025/texmf-dist/fonts/type1/public/cm-super/sfsx2488.pfb>
-Output written on main.pdf (39 pages, 881011 bytes).
+usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></us
+r/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/
+local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/lo
+cal/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/loca
+l/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/
+texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1728.pfb></usr/local/te
+xlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx2488.pfb>
+Output written on main.pdf (39 pages, 810775 bytes).
 PDF statistics:
- 1328 PDF objects out of 1440 (max. 8388607)
- 1173 compressed objects within 12 object streams
+ 451 PDF objects out of 1000 (max. 8388607)
+ 350 compressed objects within 4 object streams
  87 named destinations out of 1000 (max. 500000)
- 185 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 167 words of extra memory for PDF output out of 10000 (max. 10000000)
 

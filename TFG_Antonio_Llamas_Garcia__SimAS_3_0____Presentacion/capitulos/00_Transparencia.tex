@@ -5,26 +5,26 @@
   \begin{tikzpicture}[remember picture, overlay]
     % Esquinas decorativas: arriba a la derecha y abajo a la izquierda
     \node [anchor=north east, inner sep=0pt] at (current page.north east)
-      {\includegraphics[width=0.28\paperwidth]{../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/topRightCorner.pdf}};
+      {\includegraphics[width=0.22\paperwidth]{../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/topRightCorner.pdf}};
     \node [anchor=south west, inner sep=0pt] at (current page.south west)
-      {\includegraphics[width=0.28\paperwidth]{../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/bottomLeftCorner.pdf}};
+      {\includegraphics[width=0.22\paperwidth]{../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/bottomLeftCorner.pdf}};
     % UCO + emblema escuela, desplazados al borde inferior derecho
-    \node (uco) [anchor=south east, inner sep=0pt, xshift=-6mm, yshift=3mm] at (current page.south east)
-      {\includegraphics[height=0.85cm]{../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/uco_debajo.pdf}};
-    \node [anchor=south east, inner sep=0pt, xshift=-6mm] at (uco.south west)
-      {\includegraphics[height=0.85cm]{../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/emblema-ing-informatica.pdf}};
+    \node (uco) [anchor=south east, inner sep=0pt, xshift=-8mm, yshift=2mm] at (current page.south east)
+      {\includegraphics[height=0.8cm]{../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/uco_debajo.pdf}};
+    \node [anchor=south east, inner sep=0pt, xshift=-8mm] at (uco.south west)
+      {\includegraphics[height=0.8cm]{../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/emblema-ing-informatica.pdf}};
   \end{tikzpicture}
 
   % Bloque central con logotipo EPSC y títulos en paleta EPSC
-  \vspace*{0.6cm}
+  \vspace*{-8mm}
   \centering
-  {\includegraphics[width=0.45\linewidth]{../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/LogotipoEPSC.pdf}\\[6mm]}
-  {\Large\bfseries\textcolor{epsc:medio}{TRABAJO FIN DE GRADO}\\[3mm]}
-  {\large\bfseries\textcolor{epsc:verde}{Grado en Ingeniería Informática}\\[1mm]
-   \large\bfseries\textcolor{epsc:verde}{Especialidad de Computación}\\[6mm]}
-  {\LARGE\bfseries\textcolor{epsc:oscuro}{SimAS 3.0 descendente predictivo}\\[1mm]
-   \large\bfseries\textcolor{epsc:oscuro}{Simulador de analizadores sintácticos descendentes predictivos}\\[6mm]}
-  {\large\textbf{\color{epsc:verde}{\today}}}
+  {\includegraphics[width=0.36\linewidth]{../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/LogotipoEPSC.pdf}\\[4mm]}
+  {\Large\bfseries\textcolor{epsc:medio}{TRABAJO FIN DE GRADO}\\[2mm]}
+  {\large\bfseries\textcolor{epsc:verde}{Grado en Ingeniería Informática}\\[0.5mm]
+   \large\bfseries\textcolor{epsc:verde}{Especialidad de Computación}\\[4mm]}
+  {\LARGE\bfseries\textcolor{epsc:oscuro}{SimAS 3.0 descendente predictivo}\\[0.5mm]
+   \normalsize\bfseries\textcolor{epsc:oscuro}{Simulador de analizadores sintácticos descendentes predictivos}\\[4mm]}
+  {\normalsize\textbf{\color{epsc:verde}{\today}}}
 \end{frame}
 
 % Datos del proyecto (similar a ficha inicial de los manuales)
