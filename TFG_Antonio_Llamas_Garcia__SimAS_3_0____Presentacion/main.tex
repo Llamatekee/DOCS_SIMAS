@@ -1,0 +1,56 @@
+% !TeX program = pdflatex
+\documentclass[aspectratio=169]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue}
+
+% EPSC color palette (as in manuals)
+\definecolor{epsc:oscuro}{HTML}{280091}
+\definecolor{epsc:medio}{HTML}{4C5CC5}
+\definecolor{epsc:claro}{HTML}{3FCFD5}
+\definecolor{epsc:verde}{HTML}{00B299}
+
+% Theme
+\usetheme{Madrid}
+\usecolortheme{default}
+
+% Mostrar índice al inicio de cada sección (excepto la primera),
+% remarcando la sección actual
+\AtBeginSection[]{
+  \ifnum\value{section}>1
+    \begin{frame}{Contenido}
+      \tableofcontents[currentsection]
+    \end{frame}
+  \fi
+}
+
+% Title metadata
+\title{SimAS 3.0 descendente predictivo}
+\subtitle{Simulador de analizadores sintácticos descendentes predictivos}
+\author{D. Antonio Llamas García}
+\date{\today}
+
+% Logos (optional): comment out if not available
+% \titlegraphic{\includegraphics[height=1.2cm]{../TFG_Antonio_Llamas_Garcia__SimAS_3_0____Manual_Tecnico/img/LogotipoEPSC.pdf}}
+
+\begin{document}
+
+% Transparencia de presentación (similar a portada de manuales)
+\input{capitulos/00_Transparencia}
+
+% Índice general (después de la segunda transparencia y los datos del proyecto)
+\begin{frame}{Contenido}
+  \tableofcontents
+\end{frame}
+
+% 1. Introducción
+\section{Introducción}
+\input{capitulos/01_Introduccion}
+
+\end{document}
