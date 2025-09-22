@@ -1,0 +1,48 @@
+% 5. Diseño
+\begin{frame}{Arquitectura general}
+  \begin{itemize}
+    \item Arquitectura modular con separación clara entre \emph{modelo}, \emph{lógica de análisis} y \emph{presentación}.
+    \item Persistencia de artefactos de gramática para mantener consistencia: gramática, Primero/Siguiente, tabla predictiva LL(1), derivación y árbol.
+    \item Interfaz basada en pestañas inteligentes (padre–hijo) para trabajar en paralelo sin perder el contexto.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Grupos de gramáticas y dependencias}
+  \begin{itemize}
+    \item Cada \textbf{editor} abre una gramática y forma un \emph{grupo lógico} con los \textbf{simuladores} lanzados desde él: comparten gramática y artefactos (Primero/Siguiente, tabla LL(1), derivación y árbol).
+    \item Las dependencias se mantienen dentro del grupo: cambios en el editor se reflejan en los simuladores del mismo grupo de forma coherente.
+    \item También es posible abrir \textbf{simuladores independientes} (sin editor activo). En ese caso, el simulador trabaja con una gramática seleccionada/importada sin crear dependencia con ningún editor.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Diseño de paquetes}
+  \begin{itemize}
+    \item \textbf{bienvenida}: pantalla inicial y acceso rápido a tareas frecuentes.
+    \item \textbf{gramatica}: modelo de gramática y artefactos derivados (Primero/Siguiente, tabla LL(1), árbol, derivación).
+    \item \textbf{editor}: edición/validación de gramáticas e informes.
+    \item \textbf{simulador}: ejecución paso a paso/continua y visualización.
+    \item \textbf{utils}: utilidades comunes y servicios de apoyo.
+    \item \textbf{resources}: internacionalización (i18n), textos y recursos gráficos.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Patrones y principios}
+  \begin{itemize}
+    \item MVC para desacoplar modelo, lógica y vistas.
+    \item Strategy para algoritmos de análisis y recuperación de errores.
+    \item Observer para sincronizar vistas con cambios en el modelo.
+    \item Principios SOLID para facilitar mantenibilidad y extensibilidad.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Interfaz y experiencia de uso}
+  \begin{itemize}
+    \item Flujo guiado: edición \(\rightarrow\) análisis \(\rightarrow\) simulación \(\rightarrow\) informe.
+    \item \textbf{Grupos de gramáticas}: pestañas padre-hijo con gramática compartida, manteniendo sincronía de datos.
+    \item \textbf{Simuladores independientes}: pueden abrirse sin editor; operan sobre una gramática elegida sin depender de una pestaña de edición.
+    \item Vistas sincronizadas: cualquier cambio en la gramática del grupo actualiza artefactos y simulación.
+    \item Internacionalización: recursos de texto separados y conmutables en tiempo de ejecución.
+  \end{itemize}
+\end{frame}
+
+

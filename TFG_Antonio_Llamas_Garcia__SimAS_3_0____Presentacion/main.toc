@@ -3,3 +3,5 @@
 \beamer@sectionintoc {2}{Objetivos}{7}{0}{2}
 \beamer@sectionintoc {3}{Antecedentes}{12}{0}{3}
 \beamer@sectionintoc {4}{Requisitos}{16}{0}{4}
+\beamer@sectionintoc {5}{Diseño}{21}{0}{5}
+\beamer@sectionintoc {6}{Pruebas}{27}{0}{6}
