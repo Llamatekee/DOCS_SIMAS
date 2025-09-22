@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  22 SEP 2025 10:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.9.1)  22 SEP 2025 10:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1408,6 +1408,10 @@ LaTeX Info: Redefining \% on input line 1.
 
 [39
 
+]) (./capitulos/99_Fin.tex
+
+[40
+
 ])
 \tf@nav=\write6
 \openout6 = `main.nav'.
@@ -1430,10 +1434,10 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 8DEAA33369D6CB3AC1C689D6A0ED42E6;824.
  ) 
 Here is how much of TeX's memory you used:
- 27045 strings out of 473190
- 543153 string characters out of 5715801
+ 27055 strings out of 473190
+ 543362 string characters out of 5715801
  898514 words of memory out of 5000000
- 49630 multiletter control sequences out of 15000+600000
+ 49635 multiletter control sequences out of 15000+600000
  576162 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,13n,123p,1871b,648s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1442,15 +1446,16 @@ Here is how much of TeX's memory you used:
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></
 usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></us
 r/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/
-local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/lo
-cal/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/loca
-l/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/
-texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1728.pfb></usr/local/te
-xlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx2488.pfb>
-Output written on main.pdf (39 pages, 810775 bytes).
+local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfss1200.pfb></usr/lo
+cal/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/loca
+l/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/
+texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/te
+xlive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx1728.pfb></usr/local/texl
+ive/2025/texmf-dist/fonts/type1/public/cm-super/sfsx2488.pfb>
+Output written on main.pdf (40 pages, 819791 bytes).
 PDF statistics:
- 451 PDF objects out of 1000 (max. 8388607)
- 350 compressed objects within 4 object streams
- 87 named destinations out of 1000 (max. 500000)
+ 461 PDF objects out of 1000 (max. 8388607)
+ 357 compressed objects within 4 object streams
+ 89 named destinations out of 1000 (max. 500000)
  167 words of extra memory for PDF output out of 10000 (max. 10000000)
 
